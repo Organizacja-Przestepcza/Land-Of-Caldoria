@@ -1,9 +1,9 @@
 [gd_scene load_steps=6 format=3 uid="uid://duhsnn2f3traa"]
 
-[ext_resource type="Script" path="res://scenes/custom_buttons.gd" id="1_3cnbb"]
-[ext_resource type="Texture2D" uid="uid://c1afuupjt3hsc" path="res://assets/Land-Of-Caldoria-Assets/ui/menu/button_hover.png" id="2_u6bxp"]
-[ext_resource type="Texture2D" uid="uid://ds3mgcms8weff" path="res://assets/Land-Of-Caldoria-Assets/ui/menu/button_normal.png" id="3_h3leq"]
-[ext_resource type="FontFile" uid="uid://bot2gtulu16on" path="res://assets/Land-Of-Caldoria-Assets/ui/m5x7.ttf" id="4_bs4sg"]
+[ext_resource type="Script" path="res://scenes/button/custom_button.gd" id="1_3cnbb"]
+[ext_resource type="Texture2D" uid="uid://ds3mgcms8weff" path="res://assets/textures/ui/menu/button_normal.png" id="2_qx6bc"]
+[ext_resource type="Texture2D" uid="uid://c1afuupjt3hsc" path="res://assets/textures/ui/menu/button_hover.png" id="3_c8qjk"]
+[ext_resource type="FontFile" uid="uid://bot2gtulu16on" path="res://assets/fonts/m5x7.ttf" id="4_wujaj"]
 
 [sub_resource type="Theme" id="Theme_ax0ri"]
 
@@ -39,13 +39,13 @@ texture_filter = 1
 custom_minimum_size = Vector2(256, 64)
 layout_mode = 2
 theme = SubResource("Theme_ax0ri")
-texture_normal = ExtResource("3_h3leq")
-texture_hover = ExtResource("2_u6bxp")
+texture_normal = ExtResource("2_qx6bc")
+texture_hover = ExtResource("3_c8qjk")
 stretch_mode = 0
 
 [node name="Label" type="Label" parent="MarginContainer"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("4_bs4sg")
+theme_override_fonts/font = ExtResource("4_wujaj")
 theme_override_font_sizes/font_size = 48
 text = "Template"
 horizontal_alignment = 1

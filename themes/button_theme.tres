@@ -1,7 +1,0 @@
-[gd_resource type="Theme" load_steps=2 format=3 uid="uid://qn87leo0xf7a"]
-
-[ext_resource type="FontFile" uid="uid://bk6r6fyrof78t" path="res://assets/Land-Of-Caldoria-Assets/ui/MinimalPixel v2.ttf" id="1_aeyyj"]
-
-[resource]
-default_font = ExtResource("1_aeyyj")
-default_font_size = 60
