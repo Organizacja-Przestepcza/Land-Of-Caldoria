@@ -23,3 +23,7 @@ window/stretch/aspect="expand"
 [dotnet]
 
 project/assembly_name="Land Of Caldoria"
+
+[rendering]
+
+textures/canvas_textures/default_texture_filter=0
