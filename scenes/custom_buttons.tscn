@@ -1,0 +1,51 @@
+[gd_scene load_steps=6 format=3 uid="uid://duhsnn2f3traa"]
+
+[ext_resource type="Script" path="res://scenes/custom_buttons.gd" id="1_3cnbb"]
+[ext_resource type="Texture2D" uid="uid://c1afuupjt3hsc" path="res://assets/Land-Of-Caldoria-Assets/ui/menu/button_hover.png" id="2_u6bxp"]
+[ext_resource type="Texture2D" uid="uid://ds3mgcms8weff" path="res://assets/Land-Of-Caldoria-Assets/ui/menu/button_normal.png" id="3_h3leq"]
+[ext_resource type="FontFile" uid="uid://bot2gtulu16on" path="res://assets/Land-Of-Caldoria-Assets/ui/m5x7.ttf" id="4_bs4sg"]
+
+[sub_resource type="Theme" id="Theme_ax0ri"]
+
+[node name="custom_buttons" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_3cnbb")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -105.0
+offset_top = -32.0
+offset_right = 105.0
+offset_bottom = 32.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 25
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_right = 25
+theme_override_constants/margin_bottom = 0
+
+[node name="TextureButton" type="TextureButton" parent="MarginContainer"]
+texture_filter = 1
+custom_minimum_size = Vector2(256, 64)
+layout_mode = 2
+theme = SubResource("Theme_ax0ri")
+texture_normal = ExtResource("3_h3leq")
+texture_hover = ExtResource("2_u6bxp")
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="MarginContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_bs4sg")
+theme_override_font_sizes/font_size = 48
+text = "Template"
+horizontal_alignment = 1

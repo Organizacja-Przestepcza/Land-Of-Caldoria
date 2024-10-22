@@ -1,0 +1,83 @@
+[gd_scene load_steps=5 format=3 uid="uid://crgiiwlyq3yni"]
+
+[ext_resource type="Script" path="res://scenes/main_menu.gd" id="1_m4xa7"]
+[ext_resource type="Texture2D" uid="uid://byatqr0oyakgk" path="res://assets/Land-Of-Caldoria-Assets/ui/menu/Summer6.png" id="1_njlqa"]
+[ext_resource type="Texture2D" uid="uid://bv3fcq18kx01k" path="res://assets/Land-Of-Caldoria-Assets/ui/menu/game_logov2.png" id="2_2t8p1"]
+[ext_resource type="PackedScene" uid="uid://duhsnn2f3traa" path="res://scenes/custom_buttons.tscn" id="3_lv7u4"]
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_m4xa7")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+texture_filter = 1
+layout_mode = 2
+anchor_left = -0.061632
+anchor_top = -0.0771605
+anchor_right = 1.21472
+anchor_bottom = 1.2246
+offset_right = 833.644
+offset_bottom = 452.459
+scale = Vector2(0.559672, 0.569865)
+texture = ExtResource("1_njlqa")
+metadata/_edit_use_anchors_ = true
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -256.0
+offset_right = 256.0
+offset_bottom = 536.0
+grow_horizontal = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 40
+alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+texture = ExtResource("2_2t8p1")
+stretch_mode = 2
+
+[node name="start_button" parent="HBoxContainer/VBoxContainer" instance=ExtResource("3_lv7u4")]
+layout_mode = 2
+
+[node name="Separator" type="Control" parent="HBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="load_button" parent="HBoxContainer/VBoxContainer" instance=ExtResource("3_lv7u4")]
+layout_mode = 2
+
+[node name="Separator2" type="Control" parent="HBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="options_button" parent="HBoxContainer/VBoxContainer" instance=ExtResource("3_lv7u4")]
+layout_mode = 2
+
+[node name="Separator3" type="Control" parent="HBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="exit_button" parent="HBoxContainer/VBoxContainer" instance=ExtResource("3_lv7u4")]
+layout_mode = 2
