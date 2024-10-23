@@ -59,3 +59,5 @@ theme_override_styles/hover = SubResource("StyleBoxTexture_y0g1a")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_6i5pv")
 theme_override_styles/normal = SubResource("StyleBoxTexture_ha18l")
 text = "Template"
+
+[connection signal="pressed" from="MarginContainer/Button" to="." method="_on_button_pressed"]

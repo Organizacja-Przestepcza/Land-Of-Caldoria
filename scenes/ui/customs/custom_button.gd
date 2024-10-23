@@ -9,3 +9,9 @@ func set_button_label(new_label: String) -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
+
+
+func _on_button_pressed() -> void:
+	emit_signal("button_pressed")
+	
+signal button_pressed
