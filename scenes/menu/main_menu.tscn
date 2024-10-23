@@ -14,7 +14,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_faypp")
 
-[node name="TextureRect" type="TextureRect" parent="."]
+[node name="Background" type="TextureRect" parent="."]
 texture_filter = 1
 layout_mode = 2
 anchor_left = -0.061632
@@ -54,30 +54,30 @@ layout_mode = 2
 theme_override_constants/separation = 40
 alignment = 1
 
-[node name="TextureRect" type="TextureRect" parent="HBoxContainer/VBoxContainer"]
+[node name="Logo" type="TextureRect" parent="HBoxContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 0
 texture = ExtResource("3_saann")
 stretch_mode = 2
 
-[node name="start_button" parent="HBoxContainer/VBoxContainer" instance=ExtResource("4_le0a0")]
+[node name="StartButton" parent="HBoxContainer/VBoxContainer" instance=ExtResource("4_le0a0")]
 layout_mode = 2
 
 [node name="Separator" type="Control" parent="HBoxContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="load_button" parent="HBoxContainer/VBoxContainer" instance=ExtResource("4_le0a0")]
+[node name="LoadButton" parent="HBoxContainer/VBoxContainer" instance=ExtResource("4_le0a0")]
 layout_mode = 2
 
 [node name="Separator2" type="Control" parent="HBoxContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="options_button" parent="HBoxContainer/VBoxContainer" instance=ExtResource("4_le0a0")]
+[node name="OptionsButton" parent="HBoxContainer/VBoxContainer" instance=ExtResource("4_le0a0")]
 layout_mode = 2
 
 [node name="Separator3" type="Control" parent="HBoxContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="exit_button" parent="HBoxContainer/VBoxContainer" instance=ExtResource("4_le0a0")]
+[node name="ExitButton" parent="HBoxContainer/VBoxContainer" instance=ExtResource("4_le0a0")]
 layout_mode = 2

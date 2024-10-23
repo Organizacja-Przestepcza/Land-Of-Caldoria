@@ -34,7 +34,7 @@ theme_override_constants/margin_top = 0
 theme_override_constants/margin_right = 25
 theme_override_constants/margin_bottom = 0
 
-[node name="TextureButton" type="TextureButton" parent="MarginContainer"]
+[node name="Background" type="TextureButton" parent="MarginContainer"]
 texture_filter = 1
 custom_minimum_size = Vector2(256, 64)
 layout_mode = 2
