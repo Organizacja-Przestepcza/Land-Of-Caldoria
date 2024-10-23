@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://crgiiwlyq3yni"]
+[gd_scene load_steps=6 format=3 uid="uid://crgiiwlyq3yni"]
 
-[ext_resource type="Script" path="res://scenes/menu/main_menu.gd" id="1_faypp"]
+[ext_resource type="Script" path="res://scenes/ui/menu/main_menu.gd" id="1_faypp"]
 [ext_resource type="Texture2D" uid="uid://byatqr0oyakgk" path="res://assets/textures/ui/menu/Summer6.png" id="2_paiea"]
+[ext_resource type="PackedScene" uid="uid://blogvt3aumpmv" path="res://scenes/ui/menu/option_menu.tscn" id="3_1ei2v"]
 [ext_resource type="Texture2D" uid="uid://bv3fcq18kx01k" path="res://assets/textures/ui/menu/game_logov2.png" id="3_saann"]
-[ext_resource type="PackedScene" uid="uid://duhsnn2f3traa" path="res://scenes/button/custom_button.tscn" id="4_le0a0"]
+[ext_resource type="PackedScene" uid="uid://duhsnn2f3traa" path="res://scenes/ui/customs/custom_button.tscn" id="4_le0a0"]
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -38,6 +39,9 @@ theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
+
+[node name="option_menu" parent="." instance=ExtResource("3_1ei2v")]
+layout_mode = 1
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 1

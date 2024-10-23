@@ -5,7 +5,7 @@ func _ready() -> void:
 	pass
 
 func set_button_label(new_label: String) -> void:
-	$MarginContainer/Label.text = new_label
+	$MarginContainer/Button.text = new_label
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass

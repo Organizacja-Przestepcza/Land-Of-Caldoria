@@ -1,0 +1,60 @@
+[gd_scene load_steps=5 format=3 uid="uid://blogvt3aumpmv"]
+
+[ext_resource type="PackedScene" uid="uid://dpo66v51ji0o4" path="res://scenes/ui/customs/custom_label.tscn" id="1_gkgix"]
+[ext_resource type="PackedScene" uid="uid://duhsnn2f3traa" path="res://scenes/ui/customs/custom_button.tscn" id="1_jq4oj"]
+[ext_resource type="PackedScene" uid="uid://b6ansjm7c2ht1" path="res://scenes/ui/customs/custom_slider.tscn" id="1_qjsbi"]
+[ext_resource type="PackedScene" uid="uid://di4cxfi35whxc" path="res://scenes/ui/customs/custom_options.tscn" id="2_8cpov"]
+
+[node name="option_menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_top = -40.0
+offset_bottom = 40.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 40
+
+[node name="MusicLabel" parent="VBoxContainer" instance=ExtResource("1_gkgix")]
+layout_mode = 2
+
+[node name="MusicSlider" parent="VBoxContainer" instance=ExtResource("1_qjsbi")]
+layout_mode = 2
+
+[node name="Separator3" type="Control" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="SoundLabel" parent="VBoxContainer" instance=ExtResource("1_gkgix")]
+layout_mode = 2
+
+[node name="SoundSlider" parent="VBoxContainer" instance=ExtResource("1_qjsbi")]
+layout_mode = 2
+
+[node name="Separator4" type="Control" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="ResolutionsOptions" parent="VBoxContainer" instance=ExtResource("2_8cpov")]
+layout_mode = 2
+
+[node name="Separator" type="Control" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="FullscreenButton" parent="VBoxContainer" instance=ExtResource("1_jq4oj")]
+layout_mode = 2
+
+[node name="Separator2" type="Control" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="KeybindsButton" parent="VBoxContainer" instance=ExtResource("1_jq4oj")]
+layout_mode = 2

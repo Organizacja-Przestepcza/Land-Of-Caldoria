@@ -1,11 +1,25 @@
-[gd_scene load_steps=6 format=3 uid="uid://duhsnn2f3traa"]
+[gd_scene load_steps=10 format=3 uid="uid://duhsnn2f3traa"]
 
-[ext_resource type="Script" path="res://scenes/button/custom_button.gd" id="1_3cnbb"]
+[ext_resource type="Script" path="res://scenes/ui/customs/custom_button.gd" id="1_3cnbb"]
 [ext_resource type="Texture2D" uid="uid://ds3mgcms8weff" path="res://assets/textures/ui/menu/button_normal.png" id="2_qx6bc"]
 [ext_resource type="Texture2D" uid="uid://c1afuupjt3hsc" path="res://assets/textures/ui/menu/button_hover.png" id="3_c8qjk"]
+[ext_resource type="Texture2D" uid="uid://cwteuy53jsqr8" path="res://assets/textures/ui/menu/button_pressed.png" id="4_trgqg"]
 [ext_resource type="FontFile" uid="uid://bot2gtulu16on" path="res://assets/fonts/m5x7.ttf" id="4_wujaj"]
 
-[sub_resource type="Theme" id="Theme_ax0ri"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_wl6fk"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_y0g1a"]
+texture = ExtResource("3_c8qjk")
+expand_margin_left = 2.0
+expand_margin_top = 2.0
+expand_margin_right = 2.0
+expand_margin_bottom = 2.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_6i5pv"]
+texture = ExtResource("4_trgqg")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ha18l"]
+texture = ExtResource("2_qx6bc")
 
 [node name="custom_buttons" type="Control"]
 layout_mode = 3
@@ -34,18 +48,14 @@ theme_override_constants/margin_top = 0
 theme_override_constants/margin_right = 25
 theme_override_constants/margin_bottom = 0
 
-[node name="Background" type="TextureButton" parent="MarginContainer"]
+[node name="Button" type="Button" parent="MarginContainer"]
 texture_filter = 1
 custom_minimum_size = Vector2(256, 64)
 layout_mode = 2
-theme = SubResource("Theme_ax0ri")
-texture_normal = ExtResource("2_qx6bc")
-texture_hover = ExtResource("3_c8qjk")
-stretch_mode = 0
-
-[node name="Label" type="Label" parent="MarginContainer"]
-layout_mode = 2
 theme_override_fonts/font = ExtResource("4_wujaj")
 theme_override_font_sizes/font_size = 48
+theme_override_styles/focus = SubResource("StyleBoxEmpty_wl6fk")
+theme_override_styles/hover = SubResource("StyleBoxTexture_y0g1a")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_6i5pv")
+theme_override_styles/normal = SubResource("StyleBoxTexture_ha18l")
 text = "Template"
-horizontal_alignment = 1
