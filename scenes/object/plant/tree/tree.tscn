@@ -1,12 +1,12 @@
 [gd_scene load_steps=8 format=3 uid="uid://dmwbf7ojo1e5l"]
 
-[ext_resource type="Script" path="res://scenes/resource/plant/tree/tree.gd" id="1_il7q3"]
-[ext_resource type="Texture2D" uid="uid://cdqipxtmd6f70" path="res://assets/textures/resource/plant/tree/tree_1.png" id="2_wmcfu"]
-[ext_resource type="Texture2D" uid="uid://c0ihacq1tlypf" path="res://assets/textures/resource/plant/tree/tree_2.png" id="3_0vnjf"]
-[ext_resource type="Texture2D" uid="uid://q6wf32soula8" path="res://assets/textures/resource/plant/tree/tree_3.png" id="4_b1ymq"]
-[ext_resource type="Texture2D" uid="uid://djpo32fqhksde" path="res://assets/textures/resource/plant/tree/tree_4.png" id="5_awjob"]
-[ext_resource type="Texture2D" uid="uid://mjtg6lilwo8j" path="res://assets/textures/resource/plant/tree/tree_5.png" id="6_a32y2"]
-[ext_resource type="Texture2D" uid="uid://d08pt3ca4kc55" path="res://assets/textures/resource/plant/tree/tree_6.png" id="7_1lhhx"]
+[ext_resource type="Script" path="res://scenes/object/plant/tree/tree.gd" id="1_il7q3"]
+[ext_resource type="Texture2D" uid="uid://cdqipxtmd6f70" path="res://assets/textures/object/plant/tree/tree_1.png" id="2_wmcfu"]
+[ext_resource type="Texture2D" uid="uid://c0ihacq1tlypf" path="res://assets/textures/object/plant/tree/tree_2.png" id="3_0vnjf"]
+[ext_resource type="Texture2D" uid="uid://q6wf32soula8" path="res://assets/textures/object/plant/tree/tree_3.png" id="4_b1ymq"]
+[ext_resource type="Texture2D" uid="uid://djpo32fqhksde" path="res://assets/textures/object/plant/tree/tree_4.png" id="5_awjob"]
+[ext_resource type="Texture2D" uid="uid://mjtg6lilwo8j" path="res://assets/textures/object/plant/tree/tree_5.png" id="6_a32y2"]
+[ext_resource type="Texture2D" uid="uid://d08pt3ca4kc55" path="res://assets/textures/object/plant/tree/tree_6.png" id="7_1lhhx"]
 
 [node name="Tree" type="Node2D"]
 script = ExtResource("1_il7q3")
