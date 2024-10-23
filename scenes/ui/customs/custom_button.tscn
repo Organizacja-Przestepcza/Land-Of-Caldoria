@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://scenes/ui/customs/custom_button.gd" id="1_3cnbb"]
 [ext_resource type="Texture2D" uid="uid://ds3mgcms8weff" path="res://assets/textures/ui/menu/button_normal.png" id="2_qx6bc"]
 [ext_resource type="Texture2D" uid="uid://c1afuupjt3hsc" path="res://assets/textures/ui/menu/button_hover.png" id="3_c8qjk"]
-[ext_resource type="Texture2D" uid="uid://cwteuy53jsqr8" path="res://assets/textures/ui/menu/button_pressed.png" id="4_trgqg"]
+[ext_resource type="Texture2D" uid="uid://bpiwsk3ivbcn0" path="res://assets/textures/ui/menu/button_pressed.png" id="4_trgqg"]
 [ext_resource type="FontFile" uid="uid://bot2gtulu16on" path="res://assets/fonts/m5x7.ttf" id="4_wujaj"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_wl6fk"]
