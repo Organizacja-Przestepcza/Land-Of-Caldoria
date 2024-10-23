@@ -55,3 +55,5 @@ layout_mode = 2
 
 [node name="ExitButton" parent="HBoxContainer/VBoxContainer" instance=ExtResource("4_le0a0")]
 layout_mode = 2
+
+[connection signal="button_pressed" from="HBoxContainer/VBoxContainer/OptionButton" to="." method="_on_option_button_button_pressed"]

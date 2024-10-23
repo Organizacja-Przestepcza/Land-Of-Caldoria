@@ -10,13 +10,17 @@ func _ready() -> void:
 	buttonLoadGame.set_button_label("Load Game")
 	
 	var buttonOptions = $HBoxContainer/VBoxContainer/OptionButton
-	buttonLoadGame.set_button_label("Options")
+	buttonOptions.set_button_label("Options")
 	
 	var buttonExit = $HBoxContainer/VBoxContainer/ExitButton
 	buttonExit.set_button_label("Exit")
 	
 
-
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
+
+func _on_option_button_button_pressed() -> void:
+	emit_signal("options_button_pressed")
+	
+signal options_button_pressed
