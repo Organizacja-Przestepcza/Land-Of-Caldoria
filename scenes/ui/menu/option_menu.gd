@@ -3,9 +3,9 @@ extends Control
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	var BackButton = $MarginContainer/VBoxContainer/BackButton
+	BackButton.set_button_label("Go back")
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
+func _on_back_button_button_pressed() -> void:
+		emit_signal("backbutton_pressed")
+signal backbutton_pressed
