@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://b6ansjm7c2ht1"]
+[gd_scene load_steps=3 format=3 uid="uid://b6ansjm7c2ht1"]
 
-[ext_resource type="Texture2D" uid="uid://cmwu4wb0kdydk" path="res://assets/textures/ui/menu/slider_grab.png" id="1_ht0jv"]
+[ext_resource type="Script" path="res://scenes/ui/customs/custom_slider.gd" id="1_5kuvp"]
+[ext_resource type="Texture2D" uid="uid://sbfr2vy7ropu" path="res://assets/textures/ui/menu/slider_grab.png" id="1_ht0jv"]
 
 [node name="custom_slider" type="Control"]
 layout_mode = 3
@@ -9,6 +10,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_5kuvp")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
