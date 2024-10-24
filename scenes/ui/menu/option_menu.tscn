@@ -43,6 +43,7 @@ layout_mode = 2
 
 [node name="MusicSlider" parent="MarginContainer/VBoxContainer" instance=ExtResource("1_qjsbi")]
 layout_mode = 2
+script = null
 
 [node name="Separator3" type="Control" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -52,6 +53,7 @@ layout_mode = 2
 
 [node name="SoundSlider" parent="MarginContainer/VBoxContainer" instance=ExtResource("1_qjsbi")]
 layout_mode = 2
+script = null
 
 [node name="Separator4" type="Control" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -79,4 +81,5 @@ layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 8
 
+[connection signal="button_pressed" from="MarginContainer/VBoxContainer/FullscreenButton" to="." method="_on_fullscreen_button_button_pressed"]
 [connection signal="button_pressed" from="MarginContainer/VBoxContainer/BackButton" to="." method="_on_back_button_button_pressed"]

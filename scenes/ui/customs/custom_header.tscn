@@ -1,6 +1,5 @@
-[gd_scene load_steps=3 format=3 uid="uid://dxuaos18hx233"]
+[gd_scene load_steps=2 format=3 uid="uid://dxuaos18hx233"]
 
-[ext_resource type="Script" path="res://scenes/ui/customs/custom_header.gd" id="1_66q6r"]
 [ext_resource type="FontFile" uid="uid://bot2gtulu16on" path="res://assets/fonts/m5x7.ttf" id="1_d0uyr"]
 
 [node name="custom-label" type="Control"]
@@ -10,7 +9,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_66q6r")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
