@@ -2,3 +2,9 @@
 .godot/
 /android/
 assets/
+
+# IDE
+.idea/
+
+# MacOS
+.DS_Store
