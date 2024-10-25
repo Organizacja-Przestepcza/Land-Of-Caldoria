@@ -4,7 +4,7 @@ extends Control
 func _ready() -> void:
 	pass
 
-func set_button_label(new_label: String) -> void:
+func set_label(new_label: String) -> void:
 	$MarginContainer/Button.text = new_label
 
 func _on_button_pressed() -> void:

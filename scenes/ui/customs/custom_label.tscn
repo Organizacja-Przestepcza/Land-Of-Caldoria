@@ -25,7 +25,11 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Label" type="Label" parent="MarginContainer"]
+texture_filter = 1
 layout_mode = 2
+theme_override_colors/font_color = Color(0.247059, 0.247059, 0.243137, 1)
+theme_override_colors/font_outline_color = Color(0.960784, 0.960784, 0.960784, 1)
+theme_override_constants/outline_size = 12
 theme_override_fonts/font = ExtResource("1_2fis0")
 theme_override_font_sizes/font_size = 48
 text = "Template Label"
