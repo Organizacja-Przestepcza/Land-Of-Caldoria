@@ -1,0 +1,60 @@
+[gd_scene load_steps=4 format=3 uid="uid://crgiiwlyq3yni"]
+
+[ext_resource type="Script" path="res://scenes/ui/menu/main_menu.gd" id="1_faypp"]
+[ext_resource type="Texture2D" uid="uid://bv3fcq18kx01k" path="res://assets/textures/ui/menu/game_logov2.png" id="3_saann"]
+[ext_resource type="PackedScene" uid="uid://duhsnn2f3traa" path="res://scenes/ui/customs/custom_button.tscn" id="4_le0a0"]
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_faypp")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -256.0
+offset_right = 256.0
+offset_bottom = 536.0
+grow_horizontal = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 40
+alignment = 1
+
+[node name="Logo" type="TextureRect" parent="HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+texture = ExtResource("3_saann")
+stretch_mode = 2
+
+[node name="StartButton" parent="HBoxContainer/VBoxContainer" instance=ExtResource("4_le0a0")]
+layout_mode = 2
+
+[node name="Separator" type="Control" parent="HBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="LoadButton" parent="HBoxContainer/VBoxContainer" instance=ExtResource("4_le0a0")]
+layout_mode = 2
+
+[node name="Separator2" type="Control" parent="HBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="OptionButton" parent="HBoxContainer/VBoxContainer" instance=ExtResource("4_le0a0")]
+layout_mode = 2
+
+[node name="Separator3" type="Control" parent="HBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="ExitButton" parent="HBoxContainer/VBoxContainer" instance=ExtResource("4_le0a0")]
+layout_mode = 2
+
+[connection signal="button_pressed" from="HBoxContainer/VBoxContainer/OptionButton" to="." method="_on_option_button_button_pressed"]
+[connection signal="button_pressed" from="HBoxContainer/VBoxContainer/ExitButton" to="." method="_on_exit_button_button_pressed"]

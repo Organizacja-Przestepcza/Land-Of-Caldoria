@@ -1,0 +1,47 @@
+[gd_scene load_steps=5 format=3 uid="uid://cvtq0enjtags6"]
+
+[ext_resource type="PackedScene" uid="uid://crgiiwlyq3yni" path="res://scenes/ui/menu/main_menu.tscn" id="1_aiedp"]
+[ext_resource type="Script" path="res://scenes/start.gd" id="1_odj8b"]
+[ext_resource type="Texture2D" uid="uid://byatqr0oyakgk" path="res://assets/textures/ui/menu/Summer6.png" id="2_ir8uq"]
+[ext_resource type="PackedScene" uid="uid://blogvt3aumpmv" path="res://scenes/ui/menu/option_menu.tscn" id="2_jsv6s"]
+
+[node name="Start" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_odj8b")
+
+[node name="Background" type="TextureRect" parent="."]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.061632
+anchor_top = -0.0771605
+anchor_right = 1.21472
+anchor_bottom = 1.2246
+offset_right = 833.644
+offset_bottom = 452.459
+scale = Vector2(0.559672, 0.569865)
+texture = ExtResource("2_ir8uq")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="MainMenu" parent="MarginContainer" instance=ExtResource("1_aiedp")]
+layout_mode = 2
+
+[node name="OptionMenu" parent="MarginContainer" instance=ExtResource("2_jsv6s")]
+visible = false
+layout_mode = 2

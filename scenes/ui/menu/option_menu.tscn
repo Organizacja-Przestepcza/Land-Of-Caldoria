@@ -1,0 +1,125 @@
+[gd_scene load_steps=5 format=3 uid="uid://blogvt3aumpmv"]
+
+[ext_resource type="Script" path="res://scenes/ui/menu/option_menu.gd" id="1_ak7jx"]
+[ext_resource type="PackedScene" uid="uid://duhsnn2f3traa" path="res://scenes/ui/customs/custom_button.tscn" id="1_jq4oj"]
+[ext_resource type="PackedScene" uid="uid://di4cxfi35whxc" path="res://scenes/ui/customs/custom_options.tscn" id="2_8cpov"]
+[ext_resource type="Texture2D" uid="uid://dkmsxfnm2ad7s" path="res://assets/textures/ui/menu/bg_darkener.png" id="2_b1ksy"]
+
+[node name="option_menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ak7jx")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -256.0
+offset_right = 256.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_b1ksy")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 40
+
+[node name="HeaderLabel" type="Label" parent="MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 64
+text = "Template Label"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MusicMargin" type="VBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="MusicLabel" type="Label" parent="MarginContainer/VBoxContainer/MusicMargin"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 48
+text = "Template label"
+horizontal_alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/MusicMargin"]
+layout_mode = 2
+theme_override_constants/margin_left = 300
+theme_override_constants/margin_right = 300
+
+[node name="MusicSlider" type="HSlider" parent="MarginContainer/VBoxContainer/MusicMargin/MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 8
+
+[node name="SoundMargin" type="VBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="SoundLabel" type="Label" parent="MarginContainer/VBoxContainer/SoundMargin"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 48
+text = "Template label"
+horizontal_alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/SoundMargin"]
+layout_mode = 2
+theme_override_constants/margin_left = 300
+theme_override_constants/margin_right = 300
+
+[node name="SoundSlider" type="HSlider" parent="MarginContainer/VBoxContainer/SoundMargin/MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="ResolutionsOptions" parent="MarginContainer/VBoxContainer" instance=ExtResource("2_8cpov")]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="Separator" type="Control" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="FullscreenButton" parent="MarginContainer/VBoxContainer" instance=ExtResource("1_jq4oj")]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="Separator2" type="Control" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="KeybindsButton" parent="MarginContainer/VBoxContainer" instance=ExtResource("1_jq4oj")]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="Separator5" type="Control" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="BackButton" parent="MarginContainer/VBoxContainer" instance=ExtResource("1_jq4oj")]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+
+[connection signal="value_changed" from="MarginContainer/VBoxContainer/MusicMargin/MarginContainer/MusicSlider" to="." method="_on_music_slider_value_changed"]
+[connection signal="value_changed" from="MarginContainer/VBoxContainer/SoundMargin/MarginContainer/SoundSlider" to="." method="_on_sound_slider_value_changed"]
+[connection signal="button_pressed" from="MarginContainer/VBoxContainer/FullscreenButton" to="." method="_on_fullscreen_button_button_pressed"]
+[connection signal="button_pressed" from="MarginContainer/VBoxContainer/BackButton" to="." method="_on_back_button_button_pressed"]
