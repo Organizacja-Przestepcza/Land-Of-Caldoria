@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Item" load_steps=3 format=3 uid="uid://dxloyuqiafnn8"]
+
+[ext_resource type="Script" path="res://items/Item.gd" id="1_375th"]
+[ext_resource type="Texture2D" uid="uid://bbwqf0el75fp3" path="res://assets/textures/item/resource/wood/log.png" id="2_p2lj5"]
+
+[resource]
+script = ExtResource("1_375th")
+slot = 0
+name = "Log"
+weight = 1
+texture = ExtResource("2_p2lj5")
