@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://dcbb038jx8fxu"]
+
+[ext_resource type="Texture2D" uid="uid://bqjfivaesion5" path="res://assets/textures/object/plant/bush/blueberry-bush/Blueberry Bush.png" id="1_h7mh7"]
+[ext_resource type="Script" path="res://scenes/object/plant/tree/tree.gd" id="2_0cmsk"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_h7mh7")
+script = ExtResource("2_0cmsk")
