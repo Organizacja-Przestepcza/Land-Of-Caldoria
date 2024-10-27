@@ -1,17 +1,15 @@
 extends Control
 
-
-
 func _ready() -> void:
 	var StartButton = $HBoxContainer/VBoxContainer/StartButton
 	StartButton.set_label("Start Game")
-	
+
 	var LoadButton = $HBoxContainer/VBoxContainer/LoadButton
 	LoadButton.set_label("Load Game")
-	
+
 	var OptionsButton = $HBoxContainer/VBoxContainer/OptionButton
 	OptionsButton.set_label("Options")
-	
+
 	var ExitButton = $HBoxContainer/VBoxContainer/ExitButton
 	ExitButton.set_label("Exit")
 
