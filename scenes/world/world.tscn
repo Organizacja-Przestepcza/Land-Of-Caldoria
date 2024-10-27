@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://dsn7lp3w3rtus"]
+
+[ext_resource type="Script" path="res://scenes/world/world.gd" id="1_0fdg7"]
+[ext_resource type="TileSet" uid="uid://2mtw8y1ywi02" path="res://tilesets/ground_tileset.tres" id="2_kr456"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_hrfrx"]
+frequency = 0.0075
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_n3ew2"]
+noise = SubResource("FastNoiseLite_hrfrx")
+
+[node name="World" type="Node2D"]
+scale = Vector2(0.5, 0.5)
+script = ExtResource("1_0fdg7")
+height_noise = SubResource("NoiseTexture2D_n3ew2")
+
+[node name="WaterLayer" type="TileMapLayer" parent="."]
+z_index = -1
+tile_set = ExtResource("2_kr456")
+
+[node name="SandLayer" type="TileMapLayer" parent="."]
+tile_set = ExtResource("2_kr456")
+
+[node name="GroundLayer" type="TileMapLayer" parent="."]
+tile_set = ExtResource("2_kr456")
+
+[node name="GrassLayer" type="TileMapLayer" parent="."]
+tile_set = ExtResource("2_kr456")
