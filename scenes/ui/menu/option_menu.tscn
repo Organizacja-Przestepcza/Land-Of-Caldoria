@@ -1,7 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://blogvt3aumpmv"]
+[gd_scene load_steps=5 format=3 uid="uid://l72ck6aqcfe8"]
 
 [ext_resource type="Script" path="res://scenes/ui/menu/option_menu.gd" id="1_ak7jx"]
-[ext_resource type="PackedScene" uid="uid://duhsnn2f3traa" path="res://scenes/ui/customs/custom_button.tscn" id="1_jq4oj"]
+[ext_resource type="PackedScene" uid="uid://b4fsqxuv1y37y" path="res://scenes/ui/customs/custom_button.tscn" id="1_jq4oj"]
 [ext_resource type="PackedScene" uid="uid://di4cxfi35whxc" path="res://scenes/ui/customs/custom_options.tscn" id="2_8cpov"]
 [ext_resource type="Texture2D" uid="uid://dkmsxfnm2ad7s" path="res://assets/textures/ui/menu/bg_darkener.png" id="2_b1ksy"]
 

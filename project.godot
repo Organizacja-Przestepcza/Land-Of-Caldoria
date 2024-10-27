@@ -27,7 +27,6 @@ project/assembly_name="Land Of Caldoria"
 [gui]
 
 theme/custom_font="res://assets/fonts/m5x7.ttf"
-
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0
