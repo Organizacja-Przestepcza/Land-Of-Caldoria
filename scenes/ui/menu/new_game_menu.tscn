@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://cbghomtojyvih"]
+[gd_scene load_steps=3 format=3 uid="uid://cbghomtojyvih"]
 
 [ext_resource type="Script" path="res://scenes/ui/menu/new_game_menu.gd" id="1_ptwxn"]
+[ext_resource type="Texture2D" uid="uid://dkmsxfnm2ad7s" path="res://assets/textures/ui/menu/bg_darkener.png" id="2_xdtma"]
 
 [node name="NewGameMenu" type="Control"]
 layout_mode = 3
@@ -10,6 +11,19 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_ptwxn")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -383.0
+offset_right = 384.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+texture = ExtResource("2_xdtma")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
@@ -53,7 +67,7 @@ placeholder_text = "Game seed here..."
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 3
-theme_override_constants/separation = 600
+theme_override_constants/separation = 200
 
 [node name="BackButton" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer"]
 unique_name_in_owner = true
