@@ -1,5 +1,6 @@
-[gd_scene load_steps=12 format=3 uid="uid://byb1nycwprtqb"]
+[gd_scene load_steps=13 format=3 uid="uid://byb1nycwprtqb"]
 
+[ext_resource type="Script" path="res://scenes/player/player.gd" id="1_g8p60"]
 [ext_resource type="Texture2D" uid="uid://cymgv6lkq3y7j" path="res://assets/textures/player/player_male.png" id="1_ur4wn"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_fkvvw"]
@@ -69,8 +70,10 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6ipx2"]
 size = Vector2(20, 25)
 
-[node name="Player" type="Area2D"]
+[node name="Player" type="CharacterBody2D"]
 position = Vector2(-1, -7)
+script = ExtResource("1_g8p60")
+speed = 40
 metadata/_edit_group_ = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -80,3 +83,6 @@ animation = &"run-down"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 15.5)
 shape = SubResource("RectangleShape2D_6ipx2")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(3, 3)
