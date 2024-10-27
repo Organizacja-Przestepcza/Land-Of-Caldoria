@@ -11,7 +11,7 @@ func _init(t: Type, cms: Vector2) -> void:
 
 func _can_drop_data(_at_position: Vector2, data: Variant):
 	if data is InventoryItem:
-		if type == Item.Type.MAIN:
+		if type == Type.MAIN:
 			if get_child_count() == 0:
 				return true
 			else:
