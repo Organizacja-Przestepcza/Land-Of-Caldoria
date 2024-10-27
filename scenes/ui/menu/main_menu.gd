@@ -26,3 +26,9 @@ func _on_exit_button_button_pressed() -> void:
 	emit_signal("exit_button_pressed")
 
 signal exit_button_pressed
+
+
+func _on_start_button_button_pressed() -> void:
+	emit_signal("start_button_pressed")
+	
+signal start_button_pressed
