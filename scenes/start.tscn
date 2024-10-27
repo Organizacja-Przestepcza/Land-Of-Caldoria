@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://cvtq0enjtags6"]
 
-[ext_resource type="PackedScene" uid="uid://crgiiwlyq3yni" path="res://scenes/ui/menu/main_menu.tscn" id="1_aiedp"]
+[ext_resource type="PackedScene" uid="uid://rfys7fl6ljbu" path="res://scenes/ui/menu/main_menu.tscn" id="1_aiedp"]
 [ext_resource type="Script" path="res://scenes/start.gd" id="1_odj8b"]
 [ext_resource type="Texture2D" uid="uid://byatqr0oyakgk" path="res://assets/textures/ui/menu/Summer6.png" id="2_ir8uq"]
 [ext_resource type="PackedScene" uid="uid://l72ck6aqcfe8" path="res://scenes/ui/menu/option_menu.tscn" id="2_jsv6s"]
