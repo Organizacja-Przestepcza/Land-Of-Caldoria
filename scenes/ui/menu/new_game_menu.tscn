@@ -1,6 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://cv3v2l65rkhh7"]
+[gd_scene load_steps=2 format=3 uid="uid://cbghomtojyvih"]
 
-[ext_resource type="PackedScene" uid="uid://dxuaos18hx233" path="res://scenes/ui/customs/custom_header.tscn" id="1_4fd7s"]
+[ext_resource type="PackedScene" path="res://scenes/ui/customs/custom_button.tscn" id="1_3uccq"]
 
 [node name="NewGameMenu" type="Control"]
 layout_mode = 3
@@ -10,10 +10,53 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="custom-label" parent="." instance=ExtResource("1_4fd7s")]
+[node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
 
-[node name="TextEdit" type="TextEdit" parent="."]
-layout_mode = 0
-offset_right = 8.0
-offset_bottom = 8.0
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 40
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 64
+text = "New Game"
+horizontal_alignment = 1
+
+[node name="NameField" type="TextEdit" parent="MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(512, 64)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_font_sizes/font_size = 48
+placeholder_text = "Game name here..."
+
+[node name="SeedField" type="TextEdit" parent="MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(512, 64)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_font_sizes/font_size = 48
+placeholder_text = "Game seed here..."
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 3
+theme_override_constants/separation = 600
+
+[node name="custom_buttons" parent="MarginContainer/VBoxContainer/HBoxContainer" instance=ExtResource("1_3uccq")]
+layout_mode = 2
+
+[node name="custom_buttons2" parent="MarginContainer/VBoxContainer/HBoxContainer" instance=ExtResource("1_3uccq")]
+layout_mode = 2
+size_flags_vertical = 4
