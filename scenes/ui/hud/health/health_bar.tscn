@@ -1,0 +1,20 @@
+[gd_scene load_steps=2 format=3 uid="uid://rrt0cyh4tqgq"]
+
+[ext_resource type="Texture2D" uid="uid://c16plep6vks5d" path="res://assets/textures/ui/hud/health/heart.png" id="1_n8tjg"]
+
+[node name="HealthBar" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="HealthIcon" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("1_n8tjg")
+
+[node name="HealthValue" type="Label" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 13.0
