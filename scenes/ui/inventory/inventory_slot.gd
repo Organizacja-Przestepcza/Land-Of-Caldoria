@@ -9,23 +9,15 @@ func _init(t: Type, cms: Vector2) -> void:
 	custom_minimum_size = cms
 
 
-func _can_drop_data(_at_position: Vector2, data: Variant):
-	if data is InventoryItem:
-		if type == Type.MAIN:
-			if get_child_count() == 0:
-				return true
-			else:
-				if type == data.get_parent().type:
-					return true
-			return get_child(0).data.type == data.data.type
-		else:
-			return data.data.type == type
+func _can_drop_data(_at_position: Vector2, item: Variant):
+	if item is InventoryItem:
+		return item.data.slot == type
 	return false
 	
-func _drop_data(_at_position: Vector2, data: Variant):
+func _drop_data(_at_position: Vector2, dropped_item: Variant):
 	if get_child_count() > 0:
-		var item = get_child(0)
-		if item == data:
+		var current_item = get_child(0)
+		if current_item == dropped_item:
 			return
-		item.reparent(data.get_parent())
-	data.reparent(self)
+		current_item.reparent(dropped_item.get_parent())
+	dropped_item.reparent(self)

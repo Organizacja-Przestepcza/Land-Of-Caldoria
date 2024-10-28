@@ -25,6 +25,7 @@ tile_set = ExtResource("2_kr456")
 [node name="Trees" type="Node2D" parent="."]
 
 [node name="Player" parent="." instance=ExtResource("3_7odcl")]
+position = Vector2(-1, -7)
 
 [node name="Inventory" parent="Player" instance=ExtResource("4_87r7m")]
 visible = false
