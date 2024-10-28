@@ -1,10 +1,5 @@
 extends Control
 
-
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass
-
 signal backbutton_pressed
 
 
@@ -13,4 +8,10 @@ func _on_back_button_pressed() -> void:
 
 
 func _on_new_game_button_pressed() -> void:
-	pass # Replace with function body.
+	var user_seed: int
+	var seedString: String = %SeedField.text
+	if not seedString.is_empty():
+		user_seed = seedString.hash()
+		WorldData.seed = user_seed
+	WorldData.size = 32
+	get_tree().change_scene_to_packed(preload("res://scenes/world/world.tscn"))

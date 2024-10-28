@@ -1,10 +1,7 @@
 extends Node2D
 
-@export var height_noise: NoiseTexture2D
-@export var map_size: int = 256
+var noise: FastNoiseLite
 
-var noise: Noise
-var noise_arr = []
 # Tile arrays (for autotiling)
 var tiles_grass: Array  = []
 var tiles_ground: Array = []
@@ -23,12 +20,21 @@ var source_water: int  = 1
 @onready var ground_layer = $GroundLayer
 @onready var grass_layer = $GrassLayer
 
+
 func _ready() -> void:
-	noise = height_noise.noise
+	noise = FastNoiseLite.new()
+	var user_seed = WorldData.seed
+	if user_seed == -1:
+		noise.seed = randi()
+	else:
+		print("User seed: " + str(user_seed))
+		noise.seed = user_seed
+	noise.frequency = 0.0075
 	generate_world()
 
 
 func generate_world() -> void:
+	var map_size = WorldData.size
 	var map_range: Array = range(-map_size/2, map_size/2)
 	for x in map_range:
 		for y in map_range:
