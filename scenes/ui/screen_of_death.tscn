@@ -1,0 +1,76 @@
+[gd_scene load_steps=2 format=3 uid="uid://boef7gl1icct4"]
+
+[ext_resource type="Texture2D" uid="uid://dkmsxfnm2ad7s" path="res://assets/textures/ui/menu/bg_darkener.png" id="1_6lhks"]
+
+[node name="screen_of_death" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 25
+theme_override_constants/margin_top = 25
+theme_override_constants/margin_right = 25
+theme_override_constants/margin_bottom = 25
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer"]
+layout_mode = 2
+texture = ExtResource("1_6lhks")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/TextureRect"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -486.0
+offset_top = -107.5
+offset_right = 486.0
+offset_bottom = 107.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 40
+
+[node name="HeaderLabel" type="Label" parent="MarginContainer/TextureRect/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 128
+text = "You have died loser!"
+horizontal_alignment = 1
+
+[node name="Label" type="Label" parent="MarginContainer/TextureRect/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 48
+text = "What do you want  to do now?"
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/TextureRect/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 10
+
+[node name="DeleteButton" type="Button" parent="MarginContainer/TextureRect/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 48
+text = "Destroy the whole world (delete)"
+
+[node name="RespawnButton" type="Button" parent="MarginContainer/TextureRect/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 48
+text = "Get myself killed again (respawn)"
+
+[node name="MenuButton" type="Button" parent="MarginContainer/TextureRect/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 48
+text = "Mom, take me back home :c"
