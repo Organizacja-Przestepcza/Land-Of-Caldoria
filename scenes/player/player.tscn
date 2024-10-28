@@ -124,7 +124,6 @@ animations = [{
 size = Vector2(20, 25)
 
 [node name="Player" type="CharacterBody2D"]
-position = Vector2(-1, -7)
 script = ExtResource("1_g8p60")
 metadata/_edit_group_ = true
 
