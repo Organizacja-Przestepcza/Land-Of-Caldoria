@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://byb1nycwprtqb"]
+[gd_scene load_steps=17 format=3 uid="uid://byb1nycwprtqb"]
 
 [ext_resource type="Script" path="res://scenes/player/player.gd" id="1_g8p60"]
 [ext_resource type="Texture2D" uid="uid://cymgv6lkq3y7j" path="res://assets/textures/player/player_male.png" id="1_ur4wn"]
@@ -35,6 +35,22 @@ region = Rect2(192, 0, 32, 64)
 atlas = ExtResource("1_ur4wn")
 region = Rect2(224, 0, 32, 64)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_mg2pv"]
+atlas = ExtResource("1_ur4wn")
+region = Rect2(0, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kmslg"]
+atlas = ExtResource("1_ur4wn")
+region = Rect2(32, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cjsj5"]
+atlas = ExtResource("1_ur4wn")
+region = Rect2(128, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r1iv7"]
+atlas = ExtResource("1_ur4wn")
+region = Rect2(160, 0, 32, 64)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_j11y6"]
 animations = [{
 "frames": [{
@@ -63,7 +79,44 @@ animations = [{
 "texture": SubResource("AtlasTexture_8jvek")
 }],
 "loop": true,
-"name": &"run-down",
+"name": &"run_down",
+"speed": 10.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"run_side",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"run_up",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mg2pv")
+}, {
+"duration": 1.8,
+"texture": SubResource("AtlasTexture_kmslg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cjsj5")
+}, {
+"duration": 1.8,
+"texture": SubResource("AtlasTexture_r1iv7")
+}],
+"loop": true,
+"name": &"walk_down",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"walk_side",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"walk_up",
 "speed": 5.0
 }]
 
@@ -73,16 +126,15 @@ size = Vector2(20, 25)
 [node name="Player" type="CharacterBody2D"]
 position = Vector2(-1, -7)
 script = ExtResource("1_g8p60")
-speed = 40
 metadata/_edit_group_ = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_j11y6")
-animation = &"run-down"
+animation = &"run_down"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 15.5)
 shape = SubResource("RectangleShape2D_6ipx2")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(3, 3)
+zoom = Vector2(4, 4)

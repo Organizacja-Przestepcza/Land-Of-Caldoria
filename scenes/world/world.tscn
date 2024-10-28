@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://dsn7lp3w3rtus"]
+[gd_scene load_steps=5 format=3 uid="uid://dsn7lp3w3rtus"]
 
 [ext_resource type="Script" path="res://scenes/world/world.gd" id="1_0fdg7"]
 [ext_resource type="TileSet" uid="uid://2mtw8y1ywi02" path="res://tilesets/ground_tileset.tres" id="2_kr456"]
 [ext_resource type="PackedScene" uid="uid://byb1nycwprtqb" path="res://scenes/player/player.tscn" id="3_7odcl"]
+[ext_resource type="PackedScene" uid="uid://c83lveoubd7vh" path="res://scenes/ui/inventory/inventory.tscn" id="4_87r7m"]
 
 [node name="World" type="Node2D"]
 scale = Vector2(0.5, 0.5)
@@ -22,3 +23,6 @@ tile_set = ExtResource("2_kr456")
 tile_set = ExtResource("2_kr456")
 
 [node name="Player" parent="." instance=ExtResource("3_7odcl")]
+
+[node name="Inventory" parent="Player" instance=ExtResource("4_87r7m")]
+visible = false
