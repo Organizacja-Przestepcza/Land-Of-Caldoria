@@ -14,7 +14,8 @@ script = ExtResource("1_il7q3")
 
 [node name="Variant1" type="Area2D" parent="."]
 visible = false
-position = Vector2(-1, -30)
+position = Vector2(-1, -56)
+scale = Vector2(2, 2)
 metadata/_edit_group_ = true
 
 [node name="Sprite" type="Sprite2D" parent="Variant1"]
@@ -26,7 +27,8 @@ disabled = true
 
 [node name="Variant2" type="Area2D" parent="."]
 visible = false
-position = Vector2(3, -31)
+position = Vector2(6, -44)
+scale = Vector2(1.5, 1.5)
 metadata/_edit_group_ = true
 
 [node name="Sprite" type="Sprite2D" parent="Variant2"]
@@ -38,7 +40,8 @@ disabled = true
 
 [node name="Variant3" type="Area2D" parent="."]
 visible = false
-position = Vector2(-1, -29)
+position = Vector2(-3, -42)
+scale = Vector2(1.5, 1.5)
 metadata/_edit_group_ = true
 
 [node name="Sprite" type="Sprite2D" parent="Variant3"]
@@ -50,7 +53,8 @@ disabled = true
 
 [node name="Variant4" type="Area2D" parent="."]
 visible = false
-position = Vector2(7, -27)
+position = Vector2(9, -39)
+scale = Vector2(1.5, 1.5)
 metadata/_edit_group_ = true
 
 [node name="Sprite" type="Sprite2D" parent="Variant4"]
@@ -62,7 +66,8 @@ disabled = true
 
 [node name="Variant5" type="Area2D" parent="."]
 visible = false
-position = Vector2(-11, -29)
+position = Vector2(-16, -42)
+scale = Vector2(1.5, 1.5)
 metadata/_edit_group_ = true
 
 [node name="Sprite" type="Sprite2D" parent="Variant5"]
@@ -74,7 +79,8 @@ disabled = true
 
 [node name="Variant6" type="Area2D" parent="."]
 visible = false
-position = Vector2(1, -27)
+position = Vector2(2, -52)
+scale = Vector2(2, 2)
 metadata/_edit_group_ = true
 
 [node name="Sprite" type="Sprite2D" parent="Variant6"]
