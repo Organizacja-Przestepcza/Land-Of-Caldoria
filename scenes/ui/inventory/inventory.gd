@@ -3,7 +3,8 @@ extends CanvasLayer
 var invSize: int = 24
 var slotSize: Vector2 = Vector2(64,64)
 var itemsLoad = [
-	"res://items/resource/wood/log.tres"
+	"res://items/resource/wood/log.tres",
+	"res://items/food/blueberry/blueberry.tres"
 ]
 
 

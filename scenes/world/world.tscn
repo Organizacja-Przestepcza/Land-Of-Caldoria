@@ -6,23 +6,32 @@
 [ext_resource type="PackedScene" uid="uid://c83lveoubd7vh" path="res://scenes/ui/inventory/inventory.tscn" id="4_87r7m"]
 
 [node name="World" type="Node2D"]
+y_sort_enabled = true
 scale = Vector2(0.5, 0.5)
 script = ExtResource("1_0fdg7")
 
 [node name="WaterLayer" type="TileMapLayer" parent="."]
-z_index = -1
+z_index = -2
 tile_set = ExtResource("2_kr456")
 
 [node name="SandLayer" type="TileMapLayer" parent="."]
+z_index = -1
 tile_set = ExtResource("2_kr456")
 
 [node name="GroundLayer" type="TileMapLayer" parent="."]
+z_index = -1
 tile_set = ExtResource("2_kr456")
 
 [node name="GrassLayer" type="TileMapLayer" parent="."]
+z_index = -1
 tile_set = ExtResource("2_kr456")
 
+[node name="Trees" type="Node2D" parent="."]
+
 [node name="Player" parent="." instance=ExtResource("3_7odcl")]
+modulate = Color(0.941176, 0.941176, 0.941176, 1)
+z_index = 1
+position = Vector2(-1, -7)
 
 [node name="Inventory" parent="Player" instance=ExtResource("4_87r7m")]
 visible = false

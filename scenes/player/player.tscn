@@ -124,7 +124,6 @@ animations = [{
 size = Vector2(20, 25)
 
 [node name="Player" type="CharacterBody2D"]
-position = Vector2(-1, -7)
 script = ExtResource("1_g8p60")
 metadata/_edit_group_ = true
 
@@ -137,4 +136,4 @@ position = Vector2(0, 15.5)
 shape = SubResource("RectangleShape2D_6ipx2")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(4, 4)
+zoom = Vector2(5, 5)
