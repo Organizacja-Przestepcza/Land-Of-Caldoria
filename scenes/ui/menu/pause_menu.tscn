@@ -1,14 +1,17 @@
-[gd_scene load_steps=2 format=3 uid="uid://dkjm44whve4q8"]
+[gd_scene load_steps=3 format=3 uid="uid://cjujthjmwxxxn"]
 
+[ext_resource type="Script" path="res://scenes/ui/menu/pause_menu.gd" id="1_cjn31"]
 [ext_resource type="Texture2D" uid="uid://dkmsxfnm2ad7s" path="res://assets/textures/ui/menu/bg_darkener.png" id="1_qrphm"]
 
-[node name="pause_menu" type="Control"]
+[node name="PauseMenu" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+scale = Vector2(0.4, 0.4)
+script = ExtResource("1_cjn31")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
@@ -77,3 +80,6 @@ layout_mode = 2
 size_flags_horizontal = 4
 theme_override_font_sizes/font_size = 48
 text = "Quit"
+
+[connection signal="pressed" from="MarginContainer/TextureRect/VBoxContainer/ContinueButton" to="." method="_on_continue_button_pressed"]
+[connection signal="pressed" from="MarginContainer/TextureRect/VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]

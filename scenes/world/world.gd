@@ -63,3 +63,7 @@ func generate_world() -> void:
 	ground_layer.set_cells_terrain_connect(tiles_ground, 0, terrain_ground)
 	grass_layer.set_cells_terrain_connect(tiles_grass, 0, terrain_grass)
 	
+
+
+func _on_pause_menu_quit_pressed() -> void:
+	get_tree().change_scene_to_file("res://scenes/start.tscn")

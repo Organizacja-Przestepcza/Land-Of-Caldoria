@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://di4cxfi35whxc" path="res://scenes/ui/customs/custom_options.tscn" id="2_8cpov"]
 [ext_resource type="Texture2D" uid="uid://dkmsxfnm2ad7s" path="res://assets/textures/ui/menu/bg_darkener.png" id="2_b1ksy"]
 
-[node name="option_menu" type="Control"]
+[node name="OptionMenu" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0

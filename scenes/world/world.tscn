@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://dsn7lp3w3rtus"]
+[gd_scene load_steps=6 format=3 uid="uid://dsn7lp3w3rtus"]
 
 [ext_resource type="Script" path="res://scenes/world/world.gd" id="1_0fdg7"]
 [ext_resource type="TileSet" uid="uid://2mtw8y1ywi02" path="res://tilesets/ground_tileset.tres" id="2_kr456"]
 [ext_resource type="PackedScene" uid="uid://byb1nycwprtqb" path="res://scenes/player/player.tscn" id="3_7odcl"]
 [ext_resource type="PackedScene" uid="uid://c83lveoubd7vh" path="res://scenes/ui/inventory/inventory.tscn" id="4_87r7m"]
+[ext_resource type="PackedScene" uid="uid://cjujthjmwxxxn" path="res://scenes/ui/menu/pause_menu.tscn" id="5_l5u8x"]
 
 [node name="World" type="Node2D"]
 y_sort_enabled = true
@@ -35,3 +36,11 @@ position = Vector2(-1, -7)
 
 [node name="Inventory" parent="Player" instance=ExtResource("4_87r7m")]
 visible = false
+
+[node name="PauseMenu" parent="Player" instance=ExtResource("5_l5u8x")]
+offset_left = 1.0
+offset_top = 7.0
+offset_right = 1.0
+offset_bottom = 7.0
+
+[connection signal="quit_pressed" from="Player/PauseMenu" to="." method="_on_pause_menu_quit_pressed"]

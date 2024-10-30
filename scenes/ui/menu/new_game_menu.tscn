@@ -1,4 +1,4 @@
-[gd_scene load_steps=3 format=3 uid="uid://cm10a3nbro4y"]
+[gd_scene load_steps=3 format=3 uid="uid://cbghomtojyvih"]
 
 [ext_resource type="Script" path="res://scenes/ui/menu/new_game_menu.gd" id="1_ptwxn"]
 [ext_resource type="Texture2D" uid="uid://dkmsxfnm2ad7s" path="res://assets/textures/ui/menu/bg_darkener.png" id="2_xdtma"]
