@@ -9,3 +9,5 @@ slot = 0
 name = "Blueberry"
 weight = 1
 texture = ExtResource("2_fid72")
+max_stack_size = 16
+description = "Tasty"
