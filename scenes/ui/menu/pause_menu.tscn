@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://cjujthjmwxxxn"]
+[gd_scene load_steps=5 format=3 uid="uid://cjujthjmwxxxn"]
 
 [ext_resource type="Script" path="res://scenes/ui/menu/pause_menu.gd" id="1_cjn31"]
 [ext_resource type="Texture2D" uid="uid://dkmsxfnm2ad7s" path="res://assets/textures/ui/menu/bg_darkener.png" id="1_qrphm"]
 [ext_resource type="PackedScene" uid="uid://l72ck6aqcfe8" path="res://scenes/ui/menu/option_menu.tscn" id="3_awxyc"]
+[ext_resource type="PackedScene" uid="uid://deus7ptsylqp" path="res://scenes/ui/menu/save_menu.tscn" id="4_yadad"]
 
 [node name="PauseMenu" type="Control"]
 layout_mode = 3
@@ -81,9 +82,17 @@ text = "Quit"
 
 [node name="OptionMenu" parent="MarginContainer" instance=ExtResource("3_awxyc")]
 unique_name_in_owner = true
+visible = false
+layout_mode = 2
+
+[node name="SaveMenu" parent="MarginContainer" instance=ExtResource("4_yadad")]
+unique_name_in_owner = true
+visible = false
 layout_mode = 2
 
 [connection signal="pressed" from="MarginContainer/TextureRect/VBoxContainer/ContinueButton" to="." method="_on_continue_button_pressed"]
+[connection signal="pressed" from="MarginContainer/TextureRect/VBoxContainer/SaveButton" to="." method="_on_save_button_pressed"]
 [connection signal="pressed" from="MarginContainer/TextureRect/VBoxContainer/OptionsButton" to="." method="_on_options_button_pressed"]
 [connection signal="pressed" from="MarginContainer/TextureRect/VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]
 [connection signal="backbutton_pressed" from="MarginContainer/OptionMenu" to="." method="_on_option_menu_backbutton_pressed"]
+[connection signal="cancel_pressed" from="MarginContainer/SaveMenu" to="." method="_on_save_menu_cancel_pressed"]
