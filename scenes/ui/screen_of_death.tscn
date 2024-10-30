@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://boef7gl1icct4"]
+[gd_scene load_steps=3 format=3 uid="uid://boef7gl1icct4"]
 
 [ext_resource type="Texture2D" uid="uid://dkmsxfnm2ad7s" path="res://assets/textures/ui/menu/bg_darkener.png" id="1_6lhks"]
+[ext_resource type="Script" path="res://scenes/ui/screen_of_death.gd" id="1_t62bl"]
 
 [node name="screen_of_death" type="Control"]
 layout_mode = 3
@@ -9,6 +10,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_t62bl")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
@@ -51,7 +53,7 @@ horizontal_alignment = 1
 [node name="Label" type="Label" parent="MarginContainer/TextureRect/VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 48
-text = "What do you want  to do now?"
+text = "What do you want to do now?"
 horizontal_alignment = 1
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/TextureRect/VBoxContainer"]
@@ -61,16 +63,23 @@ size_flags_vertical = 4
 theme_override_constants/separation = 10
 
 [node name="DeleteButton" type="Button" parent="MarginContainer/TextureRect/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(350, 0)
 layout_mode = 2
 theme_override_font_sizes/font_size = 48
-text = "Destroy the whole world (delete)"
+text = "Destroy the world 
+(delete)"
 
 [node name="RespawnButton" type="Button" parent="MarginContainer/TextureRect/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 48
-text = "Get myself killed again (respawn)"
+text = "Get myself killed again 
+(load last save)"
 
 [node name="MenuButton" type="Button" parent="MarginContainer/TextureRect/VBoxContainer"]
+custom_minimum_size = Vector2(512, 0)
 layout_mode = 2
+size_flags_horizontal = 4
 theme_override_font_sizes/font_size = 48
 text = "Mom, take me back home :c"
+
+[connection signal="pressed" from="MarginContainer/TextureRect/VBoxContainer/MenuButton" to="." method="_on_menu_button_pressed"]
