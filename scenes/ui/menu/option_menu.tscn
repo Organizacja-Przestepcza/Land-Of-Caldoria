@@ -1,8 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://l72ck6aqcfe8"]
+[gd_scene load_steps=3 format=3 uid="uid://l72ck6aqcfe8"]
 
 [ext_resource type="Script" path="res://scenes/ui/menu/option_menu.gd" id="1_ak7jx"]
-[ext_resource type="PackedScene" uid="uid://b4fsqxuv1y37y" path="res://scenes/ui/customs/custom_button.tscn" id="1_jq4oj"]
-[ext_resource type="PackedScene" uid="uid://di4cxfi35whxc" path="res://scenes/ui/customs/custom_options.tscn" id="2_8cpov"]
 [ext_resource type="Texture2D" uid="uid://dkmsxfnm2ad7s" path="res://assets/textures/ui/menu/bg_darkener.png" id="2_b1ksy"]
 
 [node name="OptionMenu" type="Control"]
@@ -16,37 +14,40 @@ script = ExtResource("1_ak7jx")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 1
-anchors_preset = 13
-anchor_left = 0.5
-anchor_right = 0.5
+anchors_preset = 15
+anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -256.0
-offset_right = 256.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("2_b1ksy")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -556.0
+offset_top = -241.5
+offset_right = 556.0
+offset_bottom = 241.5
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/margin_left = 20
-theme_override_constants/margin_top = 20
-theme_override_constants/margin_right = 20
-theme_override_constants/margin_bottom = 20
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_right = 0
+theme_override_constants/margin_bottom = 0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
 layout_mode = 2
-theme_override_constants/separation = 40
+theme_override_constants/separation = 20
 
 [node name="HeaderLabel" type="Label" parent="MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_font_sizes/font_size = 64
-text = "Template Label"
+text = "Options"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -58,7 +59,6 @@ theme_override_constants/separation = 10
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 0
-theme_override_font_sizes/font_size = 48
 text = "Template label"
 horizontal_alignment = 1
 
@@ -69,6 +69,7 @@ theme_override_constants/margin_right = 300
 
 [node name="MusicSlider" type="HSlider" parent="MarginContainer/VBoxContainer/MusicMargin/MarginContainer"]
 unique_name_in_owner = true
+custom_minimum_size = Vector2(512, 0)
 layout_mode = 2
 size_flags_vertical = 8
 
@@ -90,36 +91,42 @@ theme_override_constants/margin_right = 300
 
 [node name="SoundSlider" type="HSlider" parent="MarginContainer/VBoxContainer/SoundMargin/MarginContainer"]
 unique_name_in_owner = true
+custom_minimum_size = Vector2(512, 0)
 layout_mode = 2
 
-[node name="ResolutionsOptions" parent="MarginContainer/VBoxContainer" instance=ExtResource("2_8cpov")]
-unique_name_in_owner = true
-layout_mode = 2
-
-[node name="Separator" type="Control" parent="MarginContainer/VBoxContainer"]
-layout_mode = 2
-
-[node name="FullscreenButton" parent="MarginContainer/VBoxContainer" instance=ExtResource("1_jq4oj")]
-unique_name_in_owner = true
-layout_mode = 2
-
-[node name="Separator2" type="Control" parent="MarginContainer/VBoxContainer"]
-layout_mode = 2
-
-[node name="KeybindsButton" parent="MarginContainer/VBoxContainer" instance=ExtResource("1_jq4oj")]
-unique_name_in_owner = true
-layout_mode = 2
-
-[node name="Separator5" type="Control" parent="MarginContainer/VBoxContainer"]
-layout_mode = 2
-
-[node name="BackButton" parent="MarginContainer/VBoxContainer" instance=ExtResource("1_jq4oj")]
+[node name="ResolutionOptions" type="OptionButton" parent="MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
-size_flags_vertical = 8
+size_flags_vertical = 4
+selected = 0
+item_count = 2
+popup/item_0/text = "1920x1080 Full HD"
+popup/item_1/text = "1366x768"
+popup/item_1/id = 1
+
+[node name="FullscreenButton" type="Button" parent="MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Fullscreen: off"
+
+[node name="KeybindsButton" type="Button" parent="MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+text = "Keybinds"
+
+[node name="BackButton" type="Button" parent="MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+text = "Go back"
 
 [connection signal="value_changed" from="MarginContainer/VBoxContainer/MusicMargin/MarginContainer/MusicSlider" to="." method="_on_music_slider_value_changed"]
 [connection signal="value_changed" from="MarginContainer/VBoxContainer/SoundMargin/MarginContainer/SoundSlider" to="." method="_on_sound_slider_value_changed"]
-[connection signal="button_pressed" from="MarginContainer/VBoxContainer/FullscreenButton" to="." method="_on_fullscreen_button_button_pressed"]
-[connection signal="button_pressed" from="MarginContainer/VBoxContainer/BackButton" to="." method="_on_back_button_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/FullscreenButton" to="." method="_on_fullscreen_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/KeybindsButton" to="." method="_on_keybinds_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/BackButton" to="." method="_on_back_button_pressed"]

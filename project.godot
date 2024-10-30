@@ -30,6 +30,7 @@ project/assembly_name="Land Of Caldoria"
 
 [gui]
 
+theme/custom="res://themes/default.tres"
 theme/custom_font="res://assets/fonts/m5x7.ttf"
 
 [input]

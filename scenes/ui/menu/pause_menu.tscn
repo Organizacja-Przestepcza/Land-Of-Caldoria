@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://cjujthjmwxxxn"]
+[gd_scene load_steps=4 format=3 uid="uid://cjujthjmwxxxn"]
 
 [ext_resource type="Script" path="res://scenes/ui/menu/pause_menu.gd" id="1_cjn31"]
 [ext_resource type="Texture2D" uid="uid://dkmsxfnm2ad7s" path="res://assets/textures/ui/menu/bg_darkener.png" id="1_qrphm"]
+[ext_resource type="PackedScene" uid="uid://l72ck6aqcfe8" path="res://scenes/ui/menu/option_menu.tscn" id="3_awxyc"]
 
 [node name="PauseMenu" type="Control"]
 layout_mode = 3
@@ -15,18 +16,15 @@ script = ExtResource("1_cjn31")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
-anchors_preset = 13
-anchor_left = 0.5
-anchor_right = 0.5
+anchors_preset = 15
+anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -281.0
-offset_right = 281.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/margin_left = 25
-theme_override_constants/margin_top = 25
-theme_override_constants/margin_right = 25
-theme_override_constants/margin_bottom = 25
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_right = 0
+theme_override_constants/margin_bottom = 0
 
 [node name="TextureRect" type="TextureRect" parent="MarginContainer"]
 layout_mode = 2
@@ -81,5 +79,11 @@ size_flags_horizontal = 4
 theme_override_font_sizes/font_size = 48
 text = "Quit"
 
+[node name="OptionMenu" parent="MarginContainer" instance=ExtResource("3_awxyc")]
+unique_name_in_owner = true
+layout_mode = 2
+
 [connection signal="pressed" from="MarginContainer/TextureRect/VBoxContainer/ContinueButton" to="." method="_on_continue_button_pressed"]
+[connection signal="pressed" from="MarginContainer/TextureRect/VBoxContainer/OptionsButton" to="." method="_on_options_button_pressed"]
 [connection signal="pressed" from="MarginContainer/TextureRect/VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]
+[connection signal="backbutton_pressed" from="MarginContainer/OptionMenu" to="." method="_on_option_menu_backbutton_pressed"]
