@@ -1,9 +1,9 @@
-extends ProgressBar
+extends CanvasLayer
 
 var hunger = 100
-var hunger_decrease_rate = 30.0
+var hunger_decrease_rate = 15.0
 var hunger_timer = 0.0
-@onready var hunger_bar = $HungerProgressBar #Shortcut to get node path
+@onready var hunger_bar = %HungerProgressBar 
 
 func _process(delta):
 	hunger_timer += delta

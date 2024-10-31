@@ -1,0 +1,26 @@
+[gd_scene load_steps=3 format=3 uid="uid://cyle35g3r7yjd"]
+
+[ext_resource type="Texture2D" uid="uid://c070hiwvmn20" path="res://assets/textures/ui/hud/hunger/hunger.png" id="1_be2pv"]
+[ext_resource type="Script" path="res://scenes/ui/hud/hunger/hunger_bar.gd" id="1_f0u64"]
+
+[node name="Hunger" type="CanvasLayer"]
+script = ExtResource("1_f0u64")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+anchors_preset = -1
+anchor_right = 0.142361
+anchor_bottom = 0.0493827
+metadata/_edit_use_anchors_ = true
+
+[node name="HungerTextureProgressBar" type="TextureRect" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+texture = ExtResource("1_be2pv")
+
+[node name="HungerProgressBar" type="ProgressBar" parent="HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(128, 24)
+layout_mode = 2
+size_flags_vertical = 8
+value = 100.0
