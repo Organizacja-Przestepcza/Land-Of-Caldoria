@@ -54,12 +54,12 @@ func generate_world() -> void:
 			if h_noise_val > 0.1 and o_noise_val > 0 and y % randi_range(2,5) == x % randi_range(2,5):
 				print("tree")
 				var tree = preload("res://scenes/object/plant/tree/tree.tscn").instantiate()
-				tree.position = Vector2i((x*32)+16,(y*32)+16)
-				$Trees.add_child(tree)
+				tree.global_position = Vector2i((x*32)+16,(y*32)+16)
+				$".".add_child(tree)
 			if h_noise_val > -0.05 and o_noise_val < -0.1 and y % randi_range(2,5) == x % randi_range(2,5):
 				var stone = preload("res://scenes/object/ore/stone/stone.tscn").instantiate()
-				stone.position = Vector2i((x*32)+16,(y*32)+16)
-				$Stones.add_child(stone)
+				stone.global_position = Vector2i((x*32)+16,(y*32)+16)
+				$".".add_child(stone)
 	
 	sand_layer.set_cells_terrain_connect(tiles_sand, 0, terrain_sand)
 	ground_layer.set_cells_terrain_connect(tiles_ground, 0, terrain_ground)
