@@ -5,33 +5,17 @@
 [ext_resource type="PackedScene" uid="uid://l72ck6aqcfe8" path="res://scenes/ui/menu/option_menu.tscn" id="3_awxyc"]
 [ext_resource type="PackedScene" uid="uid://deus7ptsylqp" path="res://scenes/ui/menu/save_menu.tscn" id="4_yadad"]
 
-[node name="PauseMenu" type="Control"]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="PauseMenu" type="CanvasLayer"]
 scale = Vector2(0.4, 0.4)
+transform = Transform2D(0.4, 0, 0, 0.4, 0, 0)
 script = ExtResource("1_cjn31")
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/margin_left = 0
-theme_override_constants/margin_top = 0
-theme_override_constants/margin_right = 0
-theme_override_constants/margin_bottom = 0
-
-[node name="TextureRect" type="TextureRect" parent="MarginContainer"]
-layout_mode = 2
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_right = 1152.0
+offset_bottom = 648.0
 texture = ExtResource("1_qrphm")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/TextureRect"]
+[node name="VBoxContainer" type="VBoxContainer" parent="TextureRect"]
 layout_mode = 1
 anchors_preset = 14
 anchor_top = 0.5
@@ -43,56 +27,54 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 20
 
-[node name="HeaderLabel" type="Label" parent="MarginContainer/TextureRect/VBoxContainer"]
+[node name="HeaderLabel" type="Label" parent="TextureRect/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 1
 theme_override_font_sizes/font_size = 64
 text = "Paused"
 horizontal_alignment = 1
 
-[node name="ContinueButton" type="Button" parent="MarginContainer/TextureRect/VBoxContainer"]
+[node name="ContinueButton" type="Button" parent="TextureRect/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_font_sizes/font_size = 48
 text = "Continue"
 
-[node name="SaveButton" type="Button" parent="MarginContainer/TextureRect/VBoxContainer"]
+[node name="SaveButton" type="Button" parent="TextureRect/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_font_sizes/font_size = 48
 text = "Save"
 
-[node name="LoadButton" type="Button" parent="MarginContainer/TextureRect/VBoxContainer"]
+[node name="LoadButton" type="Button" parent="TextureRect/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_font_sizes/font_size = 48
 text = "Load"
 
-[node name="OptionsButton" type="Button" parent="MarginContainer/TextureRect/VBoxContainer"]
+[node name="OptionsButton" type="Button" parent="TextureRect/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_font_sizes/font_size = 48
 text = "Options"
 
-[node name="QuitButton" type="Button" parent="MarginContainer/TextureRect/VBoxContainer"]
+[node name="QuitButton" type="Button" parent="TextureRect/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_font_sizes/font_size = 48
 text = "Quit"
 
-[node name="OptionMenu" parent="MarginContainer" instance=ExtResource("3_awxyc")]
+[node name="OptionMenu" parent="." instance=ExtResource("3_awxyc")]
 unique_name_in_owner = true
 visible = false
-layout_mode = 2
 
-[node name="SaveMenu" parent="MarginContainer" instance=ExtResource("4_yadad")]
+[node name="SaveMenu" parent="." instance=ExtResource("4_yadad")]
 unique_name_in_owner = true
 visible = false
-layout_mode = 2
 
-[connection signal="pressed" from="MarginContainer/TextureRect/VBoxContainer/ContinueButton" to="." method="_on_continue_button_pressed"]
-[connection signal="pressed" from="MarginContainer/TextureRect/VBoxContainer/SaveButton" to="." method="_on_save_button_pressed"]
-[connection signal="pressed" from="MarginContainer/TextureRect/VBoxContainer/OptionsButton" to="." method="_on_options_button_pressed"]
-[connection signal="pressed" from="MarginContainer/TextureRect/VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]
-[connection signal="backbutton_pressed" from="MarginContainer/OptionMenu" to="." method="_on_option_menu_backbutton_pressed"]
-[connection signal="cancel_pressed" from="MarginContainer/SaveMenu" to="." method="_on_save_menu_cancel_pressed"]
+[connection signal="pressed" from="TextureRect/VBoxContainer/ContinueButton" to="." method="_on_continue_button_pressed"]
+[connection signal="pressed" from="TextureRect/VBoxContainer/SaveButton" to="." method="_on_save_button_pressed"]
+[connection signal="pressed" from="TextureRect/VBoxContainer/OptionsButton" to="." method="_on_options_button_pressed"]
+[connection signal="pressed" from="TextureRect/VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]
+[connection signal="backbutton_pressed" from="OptionMenu" to="." method="_on_option_menu_backbutton_pressed"]
+[connection signal="cancel_pressed" from="SaveMenu" to="." method="_on_save_menu_cancel_pressed"]

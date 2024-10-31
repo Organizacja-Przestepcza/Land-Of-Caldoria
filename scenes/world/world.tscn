@@ -38,4 +38,5 @@ position = Vector2(-1, -7)
 visible = false
 
 [node name="PauseMenu" parent="Player" instance=ExtResource("5_l5u8x")]
-scale = Vector2(0.5, 0.5)
+scale = Vector2(1, 1)
+transform = Transform2D(1, 0, 0, 1, 0, 0)

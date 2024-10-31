@@ -21,29 +21,18 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("2_b1ksy")
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -556.0
-offset_top = -241.5
-offset_right = 556.0
-offset_bottom = 241.5
+anchors_preset = -1
+anchor_top = 0.127315
+anchor_right = 1.0
+anchor_bottom = 0.872685
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/margin_left = 0
-theme_override_constants/margin_top = 0
-theme_override_constants/margin_right = 0
-theme_override_constants/margin_bottom = 0
-
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
-layout_mode = 2
 theme_override_constants/separation = 20
+metadata/_edit_use_anchors_ = true
 
-[node name="HeaderLabel" type="Label" parent="MarginContainer/VBoxContainer"]
+[node name="HeaderLabel" type="Label" parent="VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_font_sizes/font_size = 64
@@ -51,50 +40,50 @@ text = "Options"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="MusicMargin" type="VBoxContainer" parent="MarginContainer/VBoxContainer"]
+[node name="MusicMargin" type="VBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
 theme_override_constants/separation = 10
 
-[node name="MusicLabel" type="Label" parent="MarginContainer/VBoxContainer/MusicMargin"]
+[node name="MusicLabel" type="Label" parent="VBoxContainer/MusicMargin"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 0
 text = "Template label"
 horizontal_alignment = 1
 
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/MusicMargin"]
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/MusicMargin"]
 layout_mode = 2
 theme_override_constants/margin_left = 300
 theme_override_constants/margin_right = 300
 
-[node name="MusicSlider" type="HSlider" parent="MarginContainer/VBoxContainer/MusicMargin/MarginContainer"]
+[node name="MusicSlider" type="HSlider" parent="VBoxContainer/MusicMargin/MarginContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(512, 0)
 layout_mode = 2
 size_flags_vertical = 8
 
-[node name="SoundMargin" type="VBoxContainer" parent="MarginContainer/VBoxContainer"]
+[node name="SoundMargin" type="VBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
 theme_override_constants/separation = 10
 
-[node name="SoundLabel" type="Label" parent="MarginContainer/VBoxContainer/SoundMargin"]
+[node name="SoundLabel" type="Label" parent="VBoxContainer/SoundMargin"]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_font_sizes/font_size = 48
 text = "Template label"
 horizontal_alignment = 1
 
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/SoundMargin"]
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/SoundMargin"]
 layout_mode = 2
 theme_override_constants/margin_left = 300
 theme_override_constants/margin_right = 300
 
-[node name="SoundSlider" type="HSlider" parent="MarginContainer/VBoxContainer/SoundMargin/MarginContainer"]
+[node name="SoundSlider" type="HSlider" parent="VBoxContainer/SoundMargin/MarginContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(512, 0)
 layout_mode = 2
 
-[node name="ResolutionOptions" type="OptionButton" parent="MarginContainer/VBoxContainer"]
+[node name="ResolutionOptions" type="OptionButton" parent="VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
@@ -105,28 +94,28 @@ popup/item_0/text = "1920x1080 Full HD"
 popup/item_1/text = "1366x768"
 popup/item_1/id = 1
 
-[node name="FullscreenButton" type="Button" parent="MarginContainer/VBoxContainer"]
+[node name="FullscreenButton" type="Button" parent="VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
 text = "Fullscreen: off"
 
-[node name="KeybindsButton" type="Button" parent="MarginContainer/VBoxContainer"]
+[node name="KeybindsButton" type="Button" parent="VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 text = "Keybinds"
 
-[node name="BackButton" type="Button" parent="MarginContainer/VBoxContainer"]
+[node name="BackButton" type="Button" parent="VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 text = "Go back"
 
-[connection signal="value_changed" from="MarginContainer/VBoxContainer/MusicMargin/MarginContainer/MusicSlider" to="." method="_on_music_slider_value_changed"]
-[connection signal="value_changed" from="MarginContainer/VBoxContainer/SoundMargin/MarginContainer/SoundSlider" to="." method="_on_sound_slider_value_changed"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/FullscreenButton" to="." method="_on_fullscreen_button_pressed"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/KeybindsButton" to="." method="_on_keybinds_button_pressed"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/BackButton" to="." method="_on_back_button_pressed"]
+[connection signal="value_changed" from="VBoxContainer/MusicMargin/MarginContainer/MusicSlider" to="." method="_on_music_slider_value_changed"]
+[connection signal="value_changed" from="VBoxContainer/SoundMargin/MarginContainer/SoundSlider" to="." method="_on_sound_slider_value_changed"]
+[connection signal="pressed" from="VBoxContainer/FullscreenButton" to="." method="_on_fullscreen_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/KeybindsButton" to="." method="_on_keybinds_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/BackButton" to="." method="_on_back_button_pressed"]
