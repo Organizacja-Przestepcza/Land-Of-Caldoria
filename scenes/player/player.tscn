@@ -121,19 +121,22 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6ipx2"]
-size = Vector2(20, 25)
+size = Vector2(16, 10)
 
 [node name="Player" type="CharacterBody2D"]
+safe_margin = 0.02
 script = ExtResource("1_g8p60")
 metadata/_edit_group_ = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -25)
 sprite_frames = SubResource("SpriteFrames_j11y6")
 animation = &"run_down"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 15.5)
+position = Vector2(0, -2)
 shape = SubResource("RectangleShape2D_6ipx2")
 
 [node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(0, -25)
 zoom = Vector2(5, 5)

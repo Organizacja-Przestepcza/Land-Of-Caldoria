@@ -8,5 +8,4 @@ func _ready() -> void:
 	var random_variant = variants.pick_random()
 	random_variant.visible = true
 	var collision = random_variant.get_child(1)
-	if collision is CollisionObject2D:
-		collision.disabled = false  # Enable the collision
+	collision.disabled = false  # Enable the collision
