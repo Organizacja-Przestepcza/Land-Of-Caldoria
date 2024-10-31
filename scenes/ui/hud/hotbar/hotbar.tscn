@@ -1,0 +1,31 @@
+[gd_scene load_steps=2 format=3 uid="uid://b0bmpokyxvpu8"]
+
+[ext_resource type="Script" path="res://scenes/ui/hud/hotbar/hotbar.gd" id="1_xsdbp"]
+
+[node name="Hotbar" type="Control"]
+custom_minimum_size = Vector2(256, 74)
+layout_mode = 3
+anchor_left = 0.388889
+anchor_right = 0.611111
+anchor_bottom = 0.114198
+grow_horizontal = 2
+script = ExtResource("1_xsdbp")
+metadata/_edit_use_anchors_ = true
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_bottom = 10.0
+grow_horizontal = 2
+size_flags_vertical = 0
+theme_override_constants/margin_top = 10
+
+[node name="Hotbar" type="GridContainer" parent="MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+columns = 6
+
+[node name="Panel" type="Panel" parent="MarginContainer"]
+layout_mode = 2

@@ -1,41 +1,51 @@
-[gd_scene load_steps=2 format=3 uid="uid://c83lveoubd7vh"]
+[gd_scene load_steps=3 format=3 uid="uid://c83lveoubd7vh"]
 
 [ext_resource type="Script" path="res://scenes/ui/inventory/inventory.gd" id="1_c11j5"]
+[ext_resource type="PackedScene" uid="uid://b0bmpokyxvpu8" path="res://scenes/ui/hud/hotbar/hotbar.tscn" id="2_du27u"]
 
-[node name="Inventory" type="CanvasLayer"]
+[node name="Inventory" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 script = ExtResource("1_c11j5")
 
 [node name="Panel" type="Panel" parent="."]
+layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.0555556
-anchor_top = 0.0987654
-anchor_right = 0.944444
-anchor_bottom = 0.888889
+anchor_left = 0.168403
+anchor_top = 0.145062
+anchor_right = 0.831597
+anchor_bottom = 0.842593
 metadata/_edit_use_anchors_ = true
 
-[node name="Main" type="GridContainer" parent="."]
-anchors_preset = -1
-anchor_left = 0.138889
-anchor_top = 0.37037
-anchor_right = 0.777778
-anchor_bottom = 0.790123
-offset_top = 1.52588e-05
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 100
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+
+[node name="Hotbar" parent="HBoxContainer/VBoxContainer" instance=ExtResource("2_du27u")]
+layout_mode = 2
+
+[node name="Main" type="GridContainer" parent="HBoxContainer/VBoxContainer"]
+layout_mode = 2
 columns = 6
 metadata/_edit_use_anchors_ = true
 
-[node name="Toolbar" type="GridContainer" parent="."]
-anchors_preset = -1
-anchor_left = 0.111111
-anchor_top = 0.197531
-anchor_right = 0.777778
-anchor_bottom = 0.296296
-metadata/_edit_use_anchors_ = true
-
-[node name="Armor" type="GridContainer" parent="."]
-anchors_preset = -1
-anchor_left = 0.777778
-anchor_top = 0.197531
-anchor_right = 0.888889
-anchor_bottom = 0.796296
-grow_horizontal = 0
-grow_vertical = 2
+[node name="Armor" type="GridContainer" parent="HBoxContainer"]
+layout_mode = 2
