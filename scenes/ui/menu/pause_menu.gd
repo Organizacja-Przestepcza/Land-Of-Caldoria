@@ -8,6 +8,7 @@ func hide_menus() -> void:
 	$TextureRect.visible = true
 	$"%OptionMenu".visible = false
 	$"%SaveMenu".visible = false
+	$"%LoadMenu".visible = false
 
 func show_menu(menu_node: Node) -> void:
 	hide_menus()
@@ -56,4 +57,12 @@ func _on_save_button_pressed() -> void:
 
 
 func _on_save_menu_cancel_pressed() -> void:
+	hide_menus()
+
+
+func _on_load_button_pressed() -> void:
+	show_menu($"%LoadMenu")
+
+
+func _on_load_menu_cancel_pressed() -> void:
 	hide_menus()

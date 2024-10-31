@@ -72,4 +72,5 @@ theme_override_font_sizes/font_size = 48
 text = "Save
 "
 
+[connection signal="cancel_pressed" from="." to="." method="_on_cancel_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/CancelButton" to="." method="_on_cancel_button_pressed"]

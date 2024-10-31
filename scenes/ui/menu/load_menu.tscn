@@ -1,0 +1,71 @@
+[gd_scene load_steps=3 format=3 uid="uid://gna421381s1"]
+
+[ext_resource type="Script" path="res://scenes/ui/menu/load_menu.gd" id="1_bbuw4"]
+[ext_resource type="Texture2D" uid="uid://dkmsxfnm2ad7s" path="res://assets/textures/ui/menu/bg_darkener.png" id="2_tlwqn"]
+
+[node name="LoadMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_bbuw4")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_tlwqn")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -180.5
+offset_bottom = 180.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 20
+
+[node name="HeaderLabel" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 64
+text = "Load Game"
+horizontal_alignment = 1
+
+[node name="LoadList" type="ItemList" parent="VBoxContainer"]
+custom_minimum_size = Vector2(512, 256)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+max_text_lines = 3
+item_count = 2
+item_0/text = "save 1"
+item_1/text = "save 2"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_constants/separation = 200
+alignment = 1
+
+[node name="CancelButton" type="Button" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 8
+theme_override_font_sizes/font_size = 48
+text = "Cancel
+"
+
+[node name="LoadButton" type="Button" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 48
+text = "Load
+"
+
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/CancelButton" to="." method="_on_cancel_button_pressed"]
