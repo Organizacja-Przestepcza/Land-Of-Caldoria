@@ -12,7 +12,7 @@
 position = Vector2(16, 16)
 script = ExtResource("1_il7q3")
 
-[node name="Variant1" type="Area2D" parent="."]
+[node name="Variant1" type="StaticBody2D" parent="."]
 visible = false
 position = Vector2(-1, -56)
 scale = Vector2(2, 2)
@@ -25,7 +25,7 @@ texture = ExtResource("2_wmcfu")
 polygon = PackedVector2Array(-1, 19, -5, 30, 7, 30, 3, 19)
 disabled = true
 
-[node name="Variant2" type="Area2D" parent="."]
+[node name="Variant2" type="StaticBody2D" parent="."]
 visible = false
 position = Vector2(6, -44)
 scale = Vector2(1.5, 1.5)
@@ -38,7 +38,7 @@ texture = ExtResource("3_0vnjf")
 polygon = PackedVector2Array(-7, 21, -13, 31, 7, 31, 0, 21)
 disabled = true
 
-[node name="Variant3" type="Area2D" parent="."]
+[node name="Variant3" type="StaticBody2D" parent="."]
 visible = false
 position = Vector2(-3, -42)
 scale = Vector2(1.5, 1.5)
@@ -51,7 +51,7 @@ texture = ExtResource("4_b1ymq")
 polygon = PackedVector2Array(-5, 21, -8, 30, 15, 30, 5, 21)
 disabled = true
 
-[node name="Variant4" type="Area2D" parent="."]
+[node name="Variant4" type="StaticBody2D" parent="."]
 visible = false
 position = Vector2(9, -39)
 scale = Vector2(1.5, 1.5)
@@ -64,7 +64,7 @@ texture = ExtResource("5_awjob")
 polygon = PackedVector2Array(-8, 20, -16, 26, -8, 30, 4, 29, -1, 21)
 disabled = true
 
-[node name="Variant5" type="Area2D" parent="."]
+[node name="Variant5" type="StaticBody2D" parent="."]
 visible = false
 position = Vector2(-16, -42)
 scale = Vector2(1.5, 1.5)
@@ -77,7 +77,7 @@ texture = ExtResource("6_a32y2")
 polygon = PackedVector2Array(3, 21, 0, 30, 11, 31, 23, 30, 13, 21)
 disabled = true
 
-[node name="Variant6" type="Area2D" parent="."]
+[node name="Variant6" type="StaticBody2D" parent="."]
 visible = false
 position = Vector2(2, -52)
 scale = Vector2(2, 2)
