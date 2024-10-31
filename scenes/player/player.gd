@@ -21,12 +21,14 @@ func play_animation() -> void:
 	if Input.is_action_pressed("sprint"):
 		i = 3
 	if velocity.x != 0:
-		$AnimatedSprite2D.animation = animations[i+1]
+		$AnimatedSprite2D.animation = animations[i]
 		$AnimatedSprite2D.flip_h = velocity.x < 0
 	elif velocity.y > 0:
 		$AnimatedSprite2D.animation = animations[i+1]
+		$AnimatedSprite2D.flip_h =0
 	elif velocity.y < 0:
-		$AnimatedSprite2D.animation = animations[i+1]
+		$AnimatedSprite2D.animation = animations[i+2]
+		$AnimatedSprite2D.flip_h =0
 
 func _physics_process(delta):
 	get_input()
