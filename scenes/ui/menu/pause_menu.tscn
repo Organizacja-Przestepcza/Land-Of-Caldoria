@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://cjujthjmwxxxn"]
+[gd_scene load_steps=6 format=3 uid="uid://cjujthjmwxxxn"]
 
 [ext_resource type="Script" path="res://scenes/ui/menu/pause_menu.gd" id="1_cjn31"]
 [ext_resource type="Texture2D" uid="uid://dkmsxfnm2ad7s" path="res://assets/textures/ui/menu/bg_darkener.png" id="1_qrphm"]
 [ext_resource type="PackedScene" uid="uid://l72ck6aqcfe8" path="res://scenes/ui/menu/option_menu.tscn" id="3_awxyc"]
 [ext_resource type="PackedScene" uid="uid://deus7ptsylqp" path="res://scenes/ui/menu/save_menu.tscn" id="4_yadad"]
+[ext_resource type="PackedScene" uid="uid://gna421381s1" path="res://scenes/ui/menu/load_menu.tscn" id="5_8jqla"]
 
 [node name="PauseMenu" type="CanvasLayer"]
 scale = Vector2(0.4, 0.4)
@@ -72,9 +73,15 @@ visible = false
 unique_name_in_owner = true
 visible = false
 
-[connection signal="pressed" from="TextureRect/VBoxContainer/ContinueButton" to="." method="_on_continue_button_pressed"]
+[node name="LoadMenu" parent="." instance=ExtResource("5_8jqla")]
+unique_name_in_owner = true
+visible = false
+
+[connection signal="pressed" from="TextureRect/VBoxContainer/ContinueButton" to="." method="toggle_menu"]
 [connection signal="pressed" from="TextureRect/VBoxContainer/SaveButton" to="." method="_on_save_button_pressed"]
+[connection signal="pressed" from="TextureRect/VBoxContainer/LoadButton" to="." method="_on_load_button_pressed"]
 [connection signal="pressed" from="TextureRect/VBoxContainer/OptionsButton" to="." method="_on_options_button_pressed"]
 [connection signal="pressed" from="TextureRect/VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]
-[connection signal="backbutton_pressed" from="OptionMenu" to="." method="_on_option_menu_backbutton_pressed"]
-[connection signal="cancel_pressed" from="SaveMenu" to="." method="_on_save_menu_cancel_pressed"]
+[connection signal="backbutton_pressed" from="OptionMenu" to="." method="hide_menus"]
+[connection signal="save_cancel_pressed" from="SaveMenu" to="." method="hide_menus"]
+[connection signal="load_cancel_pressed" from="LoadMenu" to="." method="hide_menus"]
