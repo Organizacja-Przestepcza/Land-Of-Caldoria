@@ -33,7 +33,7 @@ func _ready() -> void:
 	o_noise.frequency = 0.02
 	h_noise.frequency = 0.0075
 	generate_world()
-
+	Engine.time_scale = 1
 
 func generate_world() -> void:
 	var map_size: int = WorldData.size
