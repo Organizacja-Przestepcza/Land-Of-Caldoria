@@ -12,4 +12,4 @@ func _process(delta: float) -> void:
 
 var start_scene = preload("res://scenes/start.tscn")
 func _on_menu_button_pressed() -> void:
-	get_tree().change_scene_to_packed(start_scene)
+	get_tree().change_scene_to_file("res://scenes/start.tscn")
