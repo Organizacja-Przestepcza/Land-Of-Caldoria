@@ -51,7 +51,8 @@ layout_mode = 2
 size_flags_vertical = 4
 placeholder_text = "Game seed here..."
 
-[node name="OptionButton" type="OptionButton" parent="VBoxContainer"]
+[node name="SizeOption" type="OptionButton" parent="VBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 selected = 0
 item_count = 4
