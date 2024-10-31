@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="Tool" load_steps=3 format=3 uid="uid://c1fmy7bs16ohd"]
+
+[ext_resource type="Script" path="res://items/Tool.gd" id="1_5d0h3"]
+[ext_resource type="Texture2D" uid="uid://4dmc7pvq5txi" path="res://assets/textures/item/tools/pickaxe/Pickaxe.png" id="2_eqk08"]
+
+[resource]
+script = ExtResource("1_5d0h3")
+damage = 2
+durability = 100
+knockback = 1
+range = 1.0
+slot = 0
+name = "Pickaxe"
+weight = 5
+texture = ExtResource("2_eqk08")
+max_stack_size = 1
+description = "PICK ME!"
