@@ -1,18 +1,20 @@
-[gd_scene load_steps=2 format=3 uid="uid://wqw2tb3yhbbc"]
+[gd_scene load_steps=2 format=3 uid="uid://cyle35g3r7yjd"]
 
-[ext_resource type="Texture2D" uid="uid://b5rtkxudx22yj" path="res://assets/textures/ui/hud/hunger/hunger.png" id="1_0gtyg"]
+[ext_resource type="Texture2D" uid="uid://dh7vqtrpeyhoj" path="res://scenes/ui/hud/hunger/hunger.png" id="1_be2pv"]
 
-[node name="Hunger" type="Control"]
-layout_mode = 3
-anchors_preset = 0
+[node name="Hunger" type="CanvasLayer"]
 
-[node name="HungerIcon" type="TextureRect" parent="."]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
-texture = ExtResource("1_0gtyg")
+[node name="HungerProgressBar" type="ProgressBar" parent="."]
+offset_left = -11.0
+offset_top = -6.0
+offset_right = 28.0
+offset_bottom = 15.0
+value = 100.0
 
-[node name="HungerValue" type="Label" parent="."]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 23.0
+[node name="HungerTextureProgressBar" type="TextureProgressBar" parent="."]
+offset_left = -49.0
+offset_top = -17.0
+offset_right = -17.0
+offset_bottom = 15.0
+nine_patch_stretch = true
+texture_under = ExtResource("1_be2pv")
