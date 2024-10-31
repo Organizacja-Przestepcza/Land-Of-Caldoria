@@ -20,7 +20,6 @@ var source_water: int  = 1
 @onready var sand_layer = $SandLayer
 @onready var ground_layer = $GroundLayer
 @onready var grass_layer = $GrassLayer
-@onready var trees = $Trees
 
 func _ready() -> void:
 	h_noise = FastNoiseLite.new()
@@ -44,20 +43,23 @@ func generate_world() -> void:
 			var h_noise_val: float = h_noise.get_noise_2d(x, y)
 			var o_noise_val: float = o_noise.get_noise_2d(x, y)
 			water_layer.set_cell(Vector2i(x,y), source_water,Vector2i(0,0))
-			if h_noise_val > 0:
+			if h_noise_val > -0.1:
 				tiles_sand.append(Vector2i(x,y))
-			if h_noise_val > 0.1:
+			if h_noise_val > -0.05:
 				tiles_ground.append(Vector2i(x,y))
-			if h_noise_val > 0.2:
+			if h_noise_val > 0.05:
 				tiles_grass.append(Vector2i(x,y))
 				
 			# Objects
-			if h_noise_val > 0.2 and o_noise_val > 0 and y % randi_range(2,5) == x % randi_range(2,5):
+			if h_noise_val > 0.1 and o_noise_val > 0 and y % randi_range(2,5) == x % randi_range(2,5):
 				print("tree")
 				var tree = preload("res://scenes/object/plant/tree/tree.tscn").instantiate()
-				tree.position = Vector2i((x*32)+16,(y*32)+16)
-				trees.add_child(tree)
-				pass
+				tree.global_position = Vector2i((x*32)+16,(y*32)+16)
+				$".".add_child(tree)
+			if h_noise_val > -0.05 and o_noise_val < -0.1 and y % randi_range(2,5) == x % randi_range(2,5):
+				var stone = preload("res://scenes/object/ore/stone/stone.tscn").instantiate()
+				stone.global_position = Vector2i((x*32)+16,(y*32)+16)
+				$".".add_child(stone)
 	
 	sand_layer.set_cells_terrain_connect(tiles_sand, 0, terrain_sand)
 	ground_layer.set_cells_terrain_connect(tiles_ground, 0, terrain_ground)

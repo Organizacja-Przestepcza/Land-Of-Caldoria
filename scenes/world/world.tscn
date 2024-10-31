@@ -27,12 +27,14 @@ tile_set = ExtResource("2_kr456")
 z_index = -1
 tile_set = ExtResource("2_kr456")
 
+[node name="Stones" type="Node2D" parent="."]
+
 [node name="Trees" type="Node2D" parent="."]
 
 [node name="Player" parent="." instance=ExtResource("3_7odcl")]
 modulate = Color(0.941176, 0.941176, 0.941176, 1)
-z_index = 1
 position = Vector2(-1, -7)
+collision_mask = 2
 
 [node name="Inventory" parent="Player" instance=ExtResource("4_87r7m")]
 visible = false
