@@ -51,6 +51,20 @@ layout_mode = 2
 size_flags_vertical = 4
 placeholder_text = "Game seed here..."
 
+[node name="SizeOption" type="OptionButton" parent="VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+selected = 0
+item_count = 4
+popup/item_0/text = "Small"
+popup/item_1/text = "Medium"
+popup/item_1/id = 1
+popup/item_2/text = "Large"
+popup/item_2/id = 2
+popup/item_3/text = "Infinite"
+popup/item_3/id = 3
+popup/item_3/disabled = true
+
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
