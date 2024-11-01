@@ -1,6 +1,7 @@
-[gd_resource type="TileSet" load_steps=4 format=3 uid="uid://2mtw8y1ywi02"]
+[gd_resource type="TileSet" load_steps=5 format=3 uid="uid://2mtw8y1ywi02"]
 
 [ext_resource type="Texture2D" uid="uid://j0xvhotm7q2d" path="res://assets/textures/ground_tileset_32.png" id="1_2g160"]
+[ext_resource type="Texture2D" uid="uid://bipcprw7rrykq" path="res://assets/textures/water.png" id="2_rtfs1"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_7bppt"]
 texture = ExtResource("1_2g160")
@@ -1041,6 +1042,7 @@ texture_region_size = Vector2i(32, 32)
 11:15/0 = 0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_kurxq"]
+texture = ExtResource("2_rtfs1")
 texture_region_size = Vector2i(32, 32)
 0:0/0 = 0
 
