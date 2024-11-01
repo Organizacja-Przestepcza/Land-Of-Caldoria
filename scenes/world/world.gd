@@ -34,7 +34,10 @@ func _ready() -> void:
 	h_noise.frequency = 0.0075
 	generate_world()
 	Engine.time_scale = 1
-
+	var slime = preload("res://scenes/mob/slime.tscn").instantiate()
+	slime.global_position = Vector2i(200,300)
+	add_child(slime)
+	
 func generate_world() -> void:
 	var map_size: int = WorldData.size
 	var map_range: Array = range(-map_size/2, map_size/2)

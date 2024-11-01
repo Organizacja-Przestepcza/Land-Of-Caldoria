@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://d1motrwehdjwo"]
+
+[ext_resource type="Script" path="res://scenes/mob/slime.gd" id="1_0ap38"]
+[ext_resource type="Texture2D" uid="uid://0dha4xgik3c1" path="res://assets/textures/item/food/blueberry/blueberry.png" id="2_uih4s"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_bt3m1"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_uih4s")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mwuaj"]
+size = Vector2(25, 25)
+
+[node name="Slime" type="CharacterBody2D"]
+script = ExtResource("1_0ap38")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_bt3m1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(2.5, -1.5)
+shape = SubResource("RectangleShape2D_mwuaj")
