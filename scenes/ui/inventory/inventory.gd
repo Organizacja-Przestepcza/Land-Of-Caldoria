@@ -8,12 +8,16 @@ var itemsLoad = [
 	"res://items/food/blueberry/blueberry.tres"
 ]
 
+@onready var main = $HBoxContainer/VBoxContainer/Main
+@onready var armor = $HBoxContainer/Armor
+
+
 
 func _ready() -> void:
-	var main = $HBoxContainer/VBoxContainer/Main
-	var armor = $HBoxContainer/Armor
 	for i in invSize:
 		var slot = InventorySlot.new(InventorySlot.Type.MAIN, slotSize)
+		slot.id = i
+		slot.gui_input.connect(_on_slot_clicked.bind(slot))
 		main.add_child(slot)
 		
 	var headSlot = InventorySlot.new(InventorySlot.Type.HEAD, slotSize)
@@ -27,7 +31,10 @@ func _ready() -> void:
 	armor.add_child(legsSlot)
 	armor.add_child(feetSlot)
 	
-	for i in itemsLoad.size():
-		var item = InventoryItem.new()
-		item.init(load(itemsLoad[i]))
-		main.get_child(i).add_child(item)
+
+func _on_slot_clicked(event: InputEvent, slot) -> void:
+	if event is InputEventMouseButton and event.is_pressed() and event.button_index == MOUSE_BUTTON_LEFT:
+		emit_signal("inv_slot_click", slot.id)
+			
+signal inv_slot_click(index: int)
+		
