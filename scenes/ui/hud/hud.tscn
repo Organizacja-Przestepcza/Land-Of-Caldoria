@@ -11,3 +11,5 @@ script = ExtResource("1_vbnoe")
 visible = false
 
 [node name="Hotbar" parent="." instance=ExtResource("3_w082k")]
+
+[connection signal="inv_slot_click" from="Inventory" to="." method="_on_inventory_inv_slot_click"]

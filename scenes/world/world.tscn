@@ -8,7 +8,6 @@
 [ext_resource type="PackedScene" uid="uid://cyle35g3r7yjd" path="res://scenes/ui/hud/hunger/hunger_bar.tscn" id="6_sptr6"]
 [ext_resource type="PackedScene" uid="uid://52kcruy75hex" path="res://scenes/ui/hud/health/health_bar.tscn" id="7_cav5h"]
 
-
 [node name="World" type="Node2D"]
 y_sort_enabled = true
 scale = Vector2(0.5, 0.5)
@@ -51,4 +50,3 @@ transform = Transform2D(1, 0, 0, 1, 0, 0)
 
 [connection signal="death_hunger" from="Hunger" to="." method="_on_hunger_death_hunger"]
 [connection signal="death" from="HealthBar" to="." method="_on_health_bar_death"]
-

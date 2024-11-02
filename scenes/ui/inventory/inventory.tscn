@@ -1,7 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://c83lveoubd7vh"]
+[gd_scene load_steps=2 format=3 uid="uid://c83lveoubd7vh"]
 
 [ext_resource type="Script" path="res://scenes/ui/inventory/inventory.gd" id="1_c11j5"]
-[ext_resource type="PackedScene" uid="uid://b0bmpokyxvpu8" path="res://scenes/ui/hud/hotbar/hotbar.tscn" id="2_du27u"]
 
 [node name="Inventory" type="Control"]
 layout_mode = 3
@@ -39,9 +38,6 @@ theme_override_constants/separation = 100
 [node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer"]
 layout_mode = 2
 theme_override_constants/separation = 15
-
-[node name="Hotbar" parent="HBoxContainer/VBoxContainer" instance=ExtResource("2_du27u")]
-layout_mode = 2
 
 [node name="Main" type="GridContainer" parent="HBoxContainer/VBoxContainer"]
 layout_mode = 2
