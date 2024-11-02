@@ -38,3 +38,8 @@ func _physics_process(delta):
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("ui_text_backspace"):
 		print(self.position)
+	if Input.is_action_just_pressed("ui_accept"):
+		attack()
+
+func attack():
+	pass

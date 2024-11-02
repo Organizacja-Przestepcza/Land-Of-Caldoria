@@ -294,7 +294,7 @@ animations = [{
 size = Vector2(16, 10)
 
 [node name="Player" type="CharacterBody2D"]
-safe_margin = 0.02
+collision_mask = 2
 script = ExtResource("1_g8p60")
 metadata/_edit_group_ = true
 

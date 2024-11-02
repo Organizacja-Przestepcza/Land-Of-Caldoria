@@ -16,7 +16,7 @@ script = ExtResource("1_ooobs")
 visible = false
 position = Vector2(-1, -5)
 scale = Vector2(0.4, 0.4)
-collision_layer = 3
+collision_layer = 2
 metadata/_edit_group_ = true
 
 [node name="Sprite" type="Sprite2D" parent="Variant1"]
@@ -30,7 +30,7 @@ disabled = true
 visible = false
 position = Vector2(-2, -4)
 scale = Vector2(0.4, 0.4)
-collision_layer = 3
+collision_layer = 2
 metadata/_edit_group_ = true
 
 [node name="Sprite" type="Sprite2D" parent="Variant2"]
@@ -44,7 +44,7 @@ disabled = true
 visible = false
 position = Vector2(-1, -5)
 scale = Vector2(0.4, 0.4)
-collision_layer = 3
+collision_layer = 2
 metadata/_edit_group_ = true
 
 [node name="Sprite" type="Sprite2D" parent="Variant3"]
@@ -60,7 +60,7 @@ disabled = true
 visible = false
 position = Vector2(-1, -4)
 scale = Vector2(0.4, 0.4)
-collision_layer = 3
+collision_layer = 2
 metadata/_edit_group_ = true
 
 [node name="Sprite" type="Sprite2D" parent="Variant4"]
@@ -74,7 +74,7 @@ disabled = true
 visible = false
 position = Vector2(-1, -4)
 scale = Vector2(0.4, 0.4)
-collision_layer = 3
+collision_layer = 2
 metadata/_edit_group_ = true
 
 [node name="Sprite" type="Sprite2D" parent="Variant5"]

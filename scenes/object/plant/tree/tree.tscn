@@ -16,6 +16,7 @@ script = ExtResource("1_il7q3")
 visible = false
 position = Vector2(-1, -56)
 scale = Vector2(2, 2)
+collision_layer = 2
 metadata/_edit_group_ = true
 
 [node name="Sprite" type="Sprite2D" parent="Variant1"]
@@ -23,11 +24,13 @@ texture = ExtResource("2_wmcfu")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Variant1"]
 polygon = PackedVector2Array(-1, 24.5, -3.5, 29, 5.5, 29, 3, 24.5)
+disabled = true
 
 [node name="Variant2" type="StaticBody2D" parent="."]
 visible = false
 position = Vector2(6, -44)
 scale = Vector2(1.5, 1.5)
+collision_layer = 2
 metadata/_edit_group_ = true
 
 [node name="Sprite" type="Sprite2D" parent="Variant2"]
@@ -41,6 +44,7 @@ disabled = true
 visible = false
 position = Vector2(-3, -42)
 scale = Vector2(1.5, 1.5)
+collision_layer = 2
 metadata/_edit_group_ = true
 
 [node name="Sprite" type="Sprite2D" parent="Variant3"]
@@ -54,6 +58,7 @@ disabled = true
 visible = false
 position = Vector2(9, -39)
 scale = Vector2(1.5, 1.5)
+collision_layer = 2
 metadata/_edit_group_ = true
 
 [node name="Sprite" type="Sprite2D" parent="Variant4"]
@@ -67,6 +72,7 @@ disabled = true
 visible = false
 position = Vector2(-16, -42)
 scale = Vector2(1.5, 1.5)
+collision_layer = 2
 metadata/_edit_group_ = true
 
 [node name="Sprite" type="Sprite2D" parent="Variant5"]
@@ -80,6 +86,7 @@ disabled = true
 visible = false
 position = Vector2(2, -52)
 scale = Vector2(2, 2)
+collision_layer = 2
 metadata/_edit_group_ = true
 
 [node name="Sprite" type="Sprite2D" parent="Variant6"]

@@ -14,7 +14,7 @@ func _on_new_game_button_pressed() -> void:
 		user_seed = seed_string.hash()
 		WorldData.seed = user_seed
 
-	WorldData.size =size_option.selected * 32 + 32
+	WorldData.size = size_option.selected * 32 + 32
 	
 	#small 32
 	#medium 64
