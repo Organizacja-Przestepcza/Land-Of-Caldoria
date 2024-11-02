@@ -8,5 +8,6 @@
 script = ExtResource("1_vbnoe")
 
 [node name="Inventory" parent="." instance=ExtResource("2_2o7xh")]
+visible = false
 
 [node name="Hotbar" parent="." instance=ExtResource("3_w082k")]

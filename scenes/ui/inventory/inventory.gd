@@ -9,7 +9,7 @@ var itemsLoad = [
 ]
 
 
-# Called when the node enters the scene tree for the first time.
+
 func _ready() -> void:
 	var main = $HBoxContainer/VBoxContainer/Main
 	var armor = $HBoxContainer/Armor

@@ -41,6 +41,8 @@ layout_mode = 2
 
 [node name="Hotbar" parent="HBoxContainer/VBoxContainer" instance=ExtResource("2_du27u")]
 layout_mode = 2
+hotbarSize = 6
+slotSize = Vector2(64, 64)
 
 [node name="Main" type="GridContainer" parent="HBoxContainer/VBoxContainer"]
 layout_mode = 2

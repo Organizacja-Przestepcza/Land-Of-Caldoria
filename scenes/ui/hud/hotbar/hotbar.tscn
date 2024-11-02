@@ -28,4 +28,5 @@ layout_mode = 2
 columns = 6
 
 [node name="Panel" type="Panel" parent="MarginContainer"]
+visible = false
 layout_mode = 2
