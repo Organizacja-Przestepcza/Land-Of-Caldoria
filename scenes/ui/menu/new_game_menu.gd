@@ -19,4 +19,4 @@ func _on_new_game_button_pressed() -> void:
 	#small 32
 	#medium 64
 	#large 256
-	get_tree().change_scene_to_packed(preload("res://scenes/world/world.tscn"))
+	get_tree().change_scene_to_packed(load("res://scenes/world/world.tscn"))
