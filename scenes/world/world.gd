@@ -77,3 +77,6 @@ func generate_object(obj_name: String, pos: Vector2i) -> void:
 	var obj = load(dirs[obj_name] + rand_obj).instantiate()
 	obj.global_position = pos
 	self.add_child(obj)
+
+func _on_health_bar_death() -> void:
+	get_tree().change_scene_to_packed(preload("res://scenes/ui/screen_of_death.tscn"))
