@@ -8,12 +8,12 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	if chase_player:
 		move_towards_player(player, delta)
+	print(chase_player)
 
 func _on_detection_area_body_entered(body: Node2D) -> void:
-	print(body)
 	chase_player = true
-
+	$AnimatedSprite2D.play("chasing")
 
 func _on_detection_area_body_exited(body: Node2D) -> void:
-	print(body)
 	chase_player = false
+	$AnimatedSprite2D.stop()
