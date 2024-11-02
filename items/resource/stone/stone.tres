@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="Item" load_steps=3 format=3 uid="uid://bc20xwa55ys0i"]
+
+[ext_resource type="Script" path="res://items/Item.gd" id="1_sghhq"]
+[ext_resource type="Texture2D" uid="uid://do5jhfacicdk7" path="res://assets/textures/item/resource/stone.png" id="2_asqw0"]
+
+[resource]
+script = ExtResource("1_sghhq")
+slot = 0
+name = "Stone"
+weight = 1
+texture = ExtResource("2_asqw0")
+max_stack_size = 4
+description = ""

@@ -54,7 +54,7 @@ func attack():
 	hitbox.shape = RectangleShape2D.new()
 	hitbox.position = Vector2i(0,-16)
 	hitbox.max_results = 1
-	hitbox.collision_mask = 2
+	hitbox.collision_mask = 6
 	var target: Vector2
 	match facing:
 		Direction.Down:
