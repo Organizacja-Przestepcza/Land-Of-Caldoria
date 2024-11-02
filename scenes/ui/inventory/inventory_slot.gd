@@ -2,6 +2,9 @@ class_name InventorySlot
 extends PanelContainer
 
 @export var type: Type
+@export var slotSize: Vector2 = Vector2(64,64)
+@export var id: int
+
 enum Type { MAIN, HEAD, ARMS, TORSO, LEGS, FEET }
 
 func _init(t: Type, cms: Vector2) -> void:

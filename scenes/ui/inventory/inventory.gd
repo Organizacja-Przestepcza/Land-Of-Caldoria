@@ -1,33 +1,40 @@
-extends CanvasLayer
+extends Control
 
-var invSize: int = 24
-var slotSize: Vector2 = Vector2(64,64)
+@export var invSize: int = 24
+@export var slotSize: Vector2 = Vector2(64,64)
+
 var itemsLoad = [
 	"res://items/resource/wood/log.tres",
 	"res://items/food/blueberry/blueberry.tres"
 ]
 
+@onready var main = $HBoxContainer/VBoxContainer/Main
+@onready var armor = $HBoxContainer/Armor
 
-# Called when the node enters the scene tree for the first time.
+
+
 func _ready() -> void:
 	for i in invSize:
 		var slot = InventorySlot.new(InventorySlot.Type.MAIN, slotSize)
-		$Main.add_child(slot)
+		slot.id = i
+		slot.gui_input.connect(_on_slot_clicked.bind(slot))
+		main.add_child(slot)
+		
 	var headSlot = InventorySlot.new(InventorySlot.Type.HEAD, slotSize)
 	var torsoSlot = InventorySlot.new(InventorySlot.Type.TORSO, slotSize)
 	var armsSlot = InventorySlot.new(InventorySlot.Type.ARMS, slotSize)
 	var legsSlot = InventorySlot.new(InventorySlot.Type.LEGS, slotSize)
 	var feetSlot = InventorySlot.new(InventorySlot.Type.FEET, slotSize)
-	$Armor.add_child(headSlot)
-	$Armor.add_child(torsoSlot)
-	$Armor.add_child(armsSlot)
-	$Armor.add_child(legsSlot)
-	$Armor.add_child(feetSlot)
-	for i in itemsLoad.size():
-		var item = InventoryItem.new()
-		item.init(load(itemsLoad[i]))
-		$Main.get_child(i).add_child(item)
+	armor.add_child(headSlot)
+	armor.add_child(torsoSlot)
+	armor.add_child(armsSlot)
+	armor.add_child(legsSlot)
+	armor.add_child(feetSlot)
+	
 
-func _process(delta: float) -> void:
-	if Input.is_action_just_pressed("ui_accept"):
-		self.visible = !self.visible
+func _on_slot_clicked(event: InputEvent, slot) -> void:
+	if event is InputEventMouseButton and event.is_pressed() and event.button_index == MOUSE_BUTTON_LEFT:
+		emit_signal("inv_slot_click", slot.id)
+			
+signal inv_slot_click(index: int)
+		
