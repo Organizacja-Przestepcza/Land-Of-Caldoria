@@ -9,7 +9,6 @@ var itemsLoad = [
 ]
 
 
-
 func _ready() -> void:
 	var main = $HBoxContainer/VBoxContainer/Main
 	var armor = $HBoxContainer/Armor
