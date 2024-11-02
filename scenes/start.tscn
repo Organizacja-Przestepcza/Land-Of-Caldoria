@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://cvtq0enjtags6"]
+[gd_scene load_steps=7 format=3 uid="uid://cvtq0enjtags6"]
 
 [ext_resource type="PackedScene" uid="uid://rfys7fl6ljbu" path="res://scenes/ui/menu/main_menu.tscn" id="1_aiedp"]
 [ext_resource type="Script" path="res://scenes/start.gd" id="1_odj8b"]
 [ext_resource type="Texture2D" uid="uid://byatqr0oyakgk" path="res://assets/textures/ui/menu/Summer6.png" id="2_ir8uq"]
 [ext_resource type="PackedScene" uid="uid://l72ck6aqcfe8" path="res://scenes/ui/menu/option_menu.tscn" id="2_jsv6s"]
 [ext_resource type="PackedScene" uid="uid://cbghomtojyvih" path="res://scenes/ui/menu/new_game_menu.tscn" id="5_3efak"]
+[ext_resource type="PackedScene" uid="uid://gna421381s1" path="res://scenes/ui/menu/load_menu.tscn" id="6_xfpok"]
 
 [node name="Start" type="Control"]
 layout_mode = 3
@@ -47,4 +48,6 @@ layout_mode = 2
 visible = false
 layout_mode = 2
 
-[connection signal="backbutton_pressed" from="MarginContainer/NewGameMenu" to="." method="_on_new_game_menu_backbutton_pressed"]
+[node name="LoadMenu" parent="MarginContainer" instance=ExtResource("6_xfpok")]
+visible = false
+layout_mode = 2
