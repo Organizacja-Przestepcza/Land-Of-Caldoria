@@ -12,7 +12,7 @@
 position = Vector2(16, 16)
 script = ExtResource("1_il7q3")
 
-[node name="Variant1" type="Area2D" parent="."]
+[node name="Variant1" type="StaticBody2D" parent="."]
 visible = false
 position = Vector2(-1, -56)
 scale = Vector2(2, 2)
@@ -22,10 +22,9 @@ metadata/_edit_group_ = true
 texture = ExtResource("2_wmcfu")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Variant1"]
-polygon = PackedVector2Array(-1, 19, -5, 30, 7, 30, 3, 19)
-disabled = true
+polygon = PackedVector2Array(-1, 24.5, -3.5, 29, 5.5, 29, 3, 24.5)
 
-[node name="Variant2" type="Area2D" parent="."]
+[node name="Variant2" type="StaticBody2D" parent="."]
 visible = false
 position = Vector2(6, -44)
 scale = Vector2(1.5, 1.5)
@@ -35,10 +34,10 @@ metadata/_edit_group_ = true
 texture = ExtResource("3_0vnjf")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Variant2"]
-polygon = PackedVector2Array(-7, 21, -13, 31, 7, 31, 0, 21)
+polygon = PackedVector2Array(-7.33333, 24.6667, -12, 30, 4.66667, 30, 0, 24.6667)
 disabled = true
 
-[node name="Variant3" type="Area2D" parent="."]
+[node name="Variant3" type="StaticBody2D" parent="."]
 visible = false
 position = Vector2(-3, -42)
 scale = Vector2(1.5, 1.5)
@@ -48,10 +47,10 @@ metadata/_edit_group_ = true
 texture = ExtResource("4_b1ymq")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Variant3"]
-polygon = PackedVector2Array(-5, 21, -8, 30, 15, 30, 5, 21)
+polygon = PackedVector2Array(-2.66667, 24.6667, -6.66667, 28.6667, 14, 30, 5.33333, 24.6667)
 disabled = true
 
-[node name="Variant4" type="Area2D" parent="."]
+[node name="Variant4" type="StaticBody2D" parent="."]
 visible = false
 position = Vector2(9, -39)
 scale = Vector2(1.5, 1.5)
@@ -61,10 +60,10 @@ metadata/_edit_group_ = true
 texture = ExtResource("5_awjob")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Variant4"]
-polygon = PackedVector2Array(-8, 20, -16, 26, -8, 30, 4, 29, -1, 21)
+polygon = PackedVector2Array(-8.66667, 22.6667, -12.6667, 26, -6, 28.6667, 2, 28, -1.33333, 22.6667)
 disabled = true
 
-[node name="Variant5" type="Area2D" parent="."]
+[node name="Variant5" type="StaticBody2D" parent="."]
 visible = false
 position = Vector2(-16, -42)
 scale = Vector2(1.5, 1.5)
@@ -74,10 +73,10 @@ metadata/_edit_group_ = true
 texture = ExtResource("6_a32y2")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Variant5"]
-polygon = PackedVector2Array(3, 21, 0, 30, 11, 31, 23, 30, 13, 21)
+polygon = PackedVector2Array(6, 24.6667, 0.666667, 30, 20.6667, 30, 13.3333, 24.6667)
 disabled = true
 
-[node name="Variant6" type="Area2D" parent="."]
+[node name="Variant6" type="StaticBody2D" parent="."]
 visible = false
 position = Vector2(2, -52)
 scale = Vector2(2, 2)
@@ -87,5 +86,5 @@ metadata/_edit_group_ = true
 texture = ExtResource("7_1lhhx")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Variant6"]
-polygon = PackedVector2Array(-4, 19, -8, 28, 0, 29, 7, 28, 1, 19)
+polygon = PackedVector2Array(-4, 23, -7.5, 27.5, -0.5, 28.5, 5.5, 28, 1, 23)
 disabled = true

@@ -1,4 +1,4 @@
-[gd_scene load_steps=3 format=3 uid="uid://cm10a3nbro4y"]
+[gd_scene load_steps=3 format=3 uid="uid://cbghomtojyvih"]
 
 [ext_resource type="Script" path="res://scenes/ui/menu/new_game_menu.gd" id="1_ptwxn"]
 [ext_resource type="Texture2D" uid="uid://dkmsxfnm2ad7s" path="res://assets/textures/ui/menu/bg_darkener.png" id="2_xdtma"]
@@ -12,69 +12,79 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_ptwxn")
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
+[node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/margin_left = 25
-theme_override_constants/margin_top = 25
-theme_override_constants/margin_right = 25
-theme_override_constants/margin_bottom = 25
-
-[node name="TextureRect" type="TextureRect" parent="MarginContainer"]
-layout_mode = 2
 texture = ExtResource("2_xdtma")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
-layout_mode = 2
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.171875
+anchor_top = 0.261574
+anchor_right = 0.828125
+anchor_bottom = 0.738426
+offset_top = 1.52588e-05
+grow_horizontal = 2
+grow_vertical = 2
 theme_override_constants/separation = 40
+metadata/_edit_use_anchors_ = true
 
-[node name="Label" type="Label" parent="MarginContainer/VBoxContainer"]
+[node name="Label" type="Label" parent="VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 64
 text = "New Game"
 horizontal_alignment = 1
 
-[node name="NameField" type="TextEdit" parent="MarginContainer/VBoxContainer"]
-custom_minimum_size = Vector2(512, 64)
+[node name="NameField" type="LineEdit" parent="VBoxContainer"]
 layout_mode = 2
-size_flags_horizontal = 4
 size_flags_vertical = 4
-theme_override_font_sizes/font_size = 48
 placeholder_text = "Game name here..."
 
-[node name="SeedField" type="TextEdit" parent="MarginContainer/VBoxContainer"]
+[node name="SeedField" type="LineEdit" parent="VBoxContainer"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(512, 64)
 layout_mode = 2
-size_flags_horizontal = 4
 size_flags_vertical = 4
-theme_override_font_sizes/font_size = 48
 placeholder_text = "Game seed here..."
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+[node name="SizeOption" type="OptionButton" parent="VBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 3
-theme_override_constants/separation = 200
+selected = 0
+item_count = 4
+popup/item_0/text = "Small"
+popup/item_1/text = "Medium"
+popup/item_1/id = 1
+popup/item_2/text = "Large"
+popup/item_2/id = 2
+popup/item_3/text = "Infinite"
+popup/item_3/id = 3
+popup/item_3/disabled = true
 
-[node name="BackButton" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 500
+alignment = 1
+
+[node name="BackButton" type="Button" parent="VBoxContainer/HBoxContainer"]
 unique_name_in_owner = true
 texture_filter = 1
+custom_minimum_size = Vector2(128, 0)
 layout_mode = 2
 size_flags_vertical = 4
-theme_override_font_sizes/font_size = 48
 text = "Back"
 
-[node name="NewGameButton" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="NewGameButton" type="Button" parent="VBoxContainer/HBoxContainer"]
 unique_name_in_owner = true
+custom_minimum_size = Vector2(128, 0)
 layout_mode = 2
 size_flags_vertical = 4
-theme_override_font_sizes/font_size = 48
 text = "Create"
 
-[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/BackButton" to="." method="_on_back_button_pressed"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/NewGameButton" to="." method="_on_new_game_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/BackButton" to="." method="_on_back_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/NewGameButton" to="." method="_on_new_game_button_pressed"]

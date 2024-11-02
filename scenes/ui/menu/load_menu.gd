@@ -10,6 +10,7 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	pass
 
-var start_scene = preload("res://scenes/start.tscn")
-func _on_menu_button_pressed() -> void:
-	get_tree().change_scene_to_file("res://scenes/start.tscn")
+
+func _on_cancel_button_pressed() -> void:
+	emit_signal("load_cancel_pressed")
+signal load_cancel_pressed
