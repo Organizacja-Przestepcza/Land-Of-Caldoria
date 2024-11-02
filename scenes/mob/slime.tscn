@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://d1motrwehdjwo"]
+[gd_scene load_steps=6 format=3 uid="uid://d1motrwehdjwo"]
 
 [ext_resource type="Script" path="res://scenes/mob/slime.gd" id="1_0ap38"]
 [ext_resource type="Texture2D" uid="uid://0dha4xgik3c1" path="res://assets/textures/item/food/blueberry/blueberry.png" id="2_uih4s"]
@@ -14,7 +14,10 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_mwuaj"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_efjds"]
+radius = 56.0803
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_oix7d"]
 size = Vector2(25, 25)
 
 [node name="Slime" type="CharacterBody2D"]
@@ -23,6 +26,16 @@ script = ExtResource("1_0ap38")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_bt3m1")
 
+[node name="DetectionArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea"]
+shape = SubResource("CircleShape2D_efjds")
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(2.5, -1.5)
-shape = SubResource("RectangleShape2D_mwuaj")
+shape = SubResource("RectangleShape2D_oix7d")
+
+[connection signal="area_entered" from="DetectionArea" to="." method="_on_area_2d_area_entered"]
+[connection signal="area_exited" from="DetectionArea" to="." method="_on_detection_area_area_exited"]
+[connection signal="body_entered" from="DetectionArea" to="." method="_on_detection_area_body_entered"]
+[connection signal="body_exited" from="DetectionArea" to="." method="_on_detection_area_body_exited"]

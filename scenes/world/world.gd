@@ -35,7 +35,7 @@ func _ready() -> void:
 	generate_world()
 	Engine.time_scale = 1
 	var slime = preload("res://scenes/mob/slime.tscn").instantiate()
-	slime.global_position = Vector2i(200,300)
+	slime.global_position = Vector2i(60,60)
 	add_child(slime)
 	
 func generate_world() -> void:
