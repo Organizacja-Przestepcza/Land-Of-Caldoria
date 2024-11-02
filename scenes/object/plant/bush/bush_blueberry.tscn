@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://dm1758xqmqajd" path="res://assets/textures/object/plant/bush/blueberry_bushh.png" id="1_h7mh7"]
 
-[node name="Node2D" type="StaticBody2D"]
+[node name="BlueberryBush" type="StaticBody2D"]
 collision_layer = 2
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
