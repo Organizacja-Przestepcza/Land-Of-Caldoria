@@ -52,7 +52,6 @@ func generate_world() -> void:
 				
 			# Objects
 			if h_noise_val > 0.1 and o_noise_val > 0 and y % randi_range(2,5) == x % randi_range(2,5):
-				print("tree")
 				var tree = preload("res://scenes/object/plant/tree/tree.tscn").instantiate()
 				tree.global_position = Vector2i((x*32)+16,(y*32)+16)
 				$".".add_child(tree)
