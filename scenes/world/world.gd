@@ -69,3 +69,7 @@ func generate_world() -> void:
 func _on_hunger_death_hunger() -> void:
 	print("World recives death")
 	get_tree().change_scene_to_packed(preload("res://scenes/ui/screen_of_death.tscn"))
+
+
+func _on_health_bar_death() -> void:
+	get_tree().change_scene_to_packed(preload("res://scenes/ui/screen_of_death.tscn"))

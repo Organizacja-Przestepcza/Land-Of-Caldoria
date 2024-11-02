@@ -10,6 +10,10 @@ script = ExtResource("1_f0u64")
 anchors_preset = -1
 anchor_right = 0.142361
 anchor_bottom = 0.0493827
+offset_left = 1.0
+offset_top = 75.0
+offset_right = 1.00012
+offset_bottom = 85.0
 metadata/_edit_use_anchors_ = true
 
 [node name="HungerTextureProgressBar" type="TextureRect" parent="HBoxContainer"]
