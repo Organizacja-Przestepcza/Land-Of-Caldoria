@@ -9,3 +9,4 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	if health_bar.value == 0:
 		emit_signal("death")
+
