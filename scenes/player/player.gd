@@ -80,4 +80,4 @@ func attack():
 	hitbox.queue_free()
 	if hitbox.is_colliding():
 		var victim = hitbox.get_collider(0)
-		print("hit on ", victim)
+		victim.free()
