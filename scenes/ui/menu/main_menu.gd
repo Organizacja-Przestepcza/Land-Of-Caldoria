@@ -32,3 +32,9 @@ func _on_start_button_button_pressed() -> void:
 	emit_signal("start_button_pressed")
 	
 signal start_button_pressed
+
+
+func _on_load_button_button_pressed() -> void:
+	emit_signal("load_button_pressed")
+	print("Load btn pressed")
+signal load_button_pressed
