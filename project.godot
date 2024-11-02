@@ -28,6 +28,15 @@ window/stretch/aspect="expand"
 
 project/assembly_name="Land Of Caldoria"
 
+[file_customization]
+
+folder_colors={
+"res://assets/": "yellow",
+"res://items/": "green",
+"res://themes/": "gray",
+"res://tilesets/": "gray"
+}
+
 [gui]
 
 theme/custom="res://themes/default.tres"
