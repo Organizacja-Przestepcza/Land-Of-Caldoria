@@ -15,6 +15,8 @@ var terrain_sand: int   = 2
 var source_ground: int = 0
 var source_water: int  = 1
 
+var dirs: Dictionary = {"tree":"res://scenes/object/plant/tree/","stone":"res://scenes/object/ore/stone/"}
+var files: Dictionary = {"tree":DirAccess.get_files_at(dirs["tree"]), "stone": DirAccess.get_files_at(dirs["stone"])}
 
 @onready var water_layer = $WaterLayer
 @onready var sand_layer = $SandLayer
@@ -54,15 +56,15 @@ func generate_world() -> void:
 				tiles_grass.append(Vector2i(x,y))
 				
 			# Objects
+			var pos = Vector2i((x*32)+16,(y*32)+16)
 			if h_noise_val > 0.1 and o_noise_val > 0 and y % randi_range(2,5) == x % randi_range(2,5):
-				var tree = preload("res://scenes/object/plant/tree/tree.tscn").instantiate()
-				tree.global_position = Vector2i((x*32)+16,(y*32)+16)
-				$".".add_child(tree)
+				generate_object("tree",pos)
 			if h_noise_val > -0.05 and o_noise_val < -0.1 and y % randi_range(2,5) == x % randi_range(2,5):
-				var stone = preload("res://scenes/object/ore/stone/stone.tscn").instantiate()
-				stone.global_position = Vector2i((x*32)+16,(y*32)+16)
-				$".".add_child(stone)
-	
+				generate_object("stone",pos)
+			if h_noise_val > 0.12 and o_noise_val < 0 and o_noise_val > -0.1 and y % randi_range(2,5) == x % randi_range(2,5):
+				var bush = load("res://scenes/object/plant/bush/bush_blueberry.tscn").instantiate()
+				bush.global_position = pos
+				self.add_child(bush)
 	sand_layer.set_cells_terrain_connect(tiles_sand, 0, terrain_sand)
 	ground_layer.set_cells_terrain_connect(tiles_ground, 0, terrain_ground)
 	grass_layer.set_cells_terrain_connect(tiles_grass, 0, terrain_grass)
@@ -72,6 +74,12 @@ func _on_hunger_death_hunger() -> void:
 	print("World recives death")
 	get_tree().change_scene_to_packed(preload("res://scenes/ui/screen_of_death.tscn"))
 
+func generate_object(obj_name: String, pos: Vector2i) -> void:
+	var f = files[obj_name] # takes the file array for given object
+	var rand_obj = f[randi_range(0,f.size()-1)]
+	var obj = load(dirs[obj_name] + rand_obj).instantiate()
+	obj.global_position = pos
+	self.add_child(obj)
 
 func _on_health_bar_death() -> void:
 	get_tree().change_scene_to_packed(preload("res://scenes/ui/screen_of_death.tscn"))

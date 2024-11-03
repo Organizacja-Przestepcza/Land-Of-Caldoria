@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://b0t557dst46s0"]
+
+[ext_resource type="Texture2D" uid="uid://c0ihacq1tlypf" path="res://assets/textures/object/plant/tree/tree_2.png" id="1_456y7"]
+[ext_resource type="Script" path="res://scenes/object/plant/tree.gd" id="1_ya7ji"]
+
+[node name="Tree2" type="StaticBody2D"]
+scale = Vector2(1.5, 1.5)
+collision_layer = 2
+script = ExtResource("1_ya7ji")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+position = Vector2(4, -29.3333)
+texture = ExtResource("1_456y7")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+position = Vector2(4, -29.3333)
+polygon = PackedVector2Array(-7.33333, 24.6667, -12, 30, 4.66667, 30, 0, 24.6667)

@@ -7,12 +7,6 @@ extends CanvasLayer
 
 var selected_slot: int
 
-var itemsLoad = [
-	"res://items/resource/wood/log.tres",
-	"res://items/food/blueberry/blueberry.tres",
-	"res://items/food/blueberry/blueberry.tres"
-]
-
 func find_free_space() -> int:
 	for i in hotbar.get_child_count():
 		if hotbar.get_child(i).get_child_count() == 0:
@@ -40,13 +34,7 @@ func remove_item(index):
 		var item_at_index = main.get_child(index - hotbar.get_child_count()).get_child(0)
 		if item_at_index != null:
 			item_at_index.queue_free()
-	
-func _ready() -> void:
-	for i in itemsLoad:
-		add_item(i)
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("drop_item"):
 		print("q pressed")

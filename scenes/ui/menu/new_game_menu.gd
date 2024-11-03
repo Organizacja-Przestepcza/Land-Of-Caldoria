@@ -14,9 +14,9 @@ func _on_new_game_button_pressed() -> void:
 		user_seed = seed_string.hash()
 		WorldData.seed = user_seed
 
-	WorldData.size =size_option.selected * 32 + 32
+	WorldData.size = size_option.selected * 32 + 32
 	
 	#small 32
 	#medium 64
 	#large 256
-	get_tree().change_scene_to_packed(preload("res://scenes/world/world.tscn"))
+	get_tree().change_scene_to_packed(load("res://scenes/world/world.tscn"))

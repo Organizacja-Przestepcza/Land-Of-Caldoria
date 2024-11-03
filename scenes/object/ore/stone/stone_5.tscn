@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://bf6msv0efjgt4"]
+
+[ext_resource type="Texture2D" uid="uid://chn7g3x0b3cx5" path="res://assets/textures/object/ore/stone/stone_5.png" id="1_1tgfj"]
+[ext_resource type="Script" path="res://scenes/object/ore/stone.gd" id="1_vqqre"]
+
+[node name="Stone5" type="StaticBody2D"]
+scale = Vector2(0.4, 0.4)
+collision_layer = 2
+script = ExtResource("1_vqqre")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+position = Vector2(-0.499999, -10)
+texture = ExtResource("1_1tgfj")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+position = Vector2(-0.499999, -10)
+polygon = PackedVector2Array(20, 12, 20, -2, -14, -2, -20, 10)
