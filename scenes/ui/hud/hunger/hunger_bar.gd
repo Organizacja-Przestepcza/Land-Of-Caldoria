@@ -15,17 +15,12 @@ func _ready() -> void:
 func _process(delta):
 	hunger_timer += delta
 	if hunger_timer >= hunger_decrease_rate:
-		decrease_hunger(1)
+		modify_hunger(-1)
 		hunger_timer = 0.0
 	if hunger <= 0:
 		emit_signal("death", "hunger")
 
-func decrease_hunger(value: int):
-	if hunger > 0:
-		hunger -= value
-		update_hunger_display()
-
-func restore_hunger(value: int):
+func modify_hunger(value: int):
 	if hunger > 0:
 		hunger += value
 		update_hunger_display()

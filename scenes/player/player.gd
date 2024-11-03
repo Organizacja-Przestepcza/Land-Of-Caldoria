@@ -54,7 +54,15 @@ func _process(delta: float) -> void:
 func hit(value: int):
 	print("hit received, damage: ", value)
 	var healthbar: Health = hud.get_node("HealthBar")
-	healthbar.decrease_health(value)
+	healthbar.modify_health(-value)
+
+func effect_from_item(item: Consumable):
+	if item.hunger_value != 0:
+		var hungerbar: Hunger = hud.get_node("HungerBar")
+		hungerbar.modify_hunger(item.hunger_value)
+	if item.health_value != 0:
+		var healthbar: Health = hud.get_node("HealthBar")
+		healthbar.modify_health(item.health_value)
 
 func attack():
 	var hitbox_duration = 0.2

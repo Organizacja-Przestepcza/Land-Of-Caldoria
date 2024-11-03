@@ -28,3 +28,6 @@ func make_drag_preview(at_position: Vector2):
 	c.add_child(t)
 	
 	return c
+
+func remove(amount: int):
+	pass

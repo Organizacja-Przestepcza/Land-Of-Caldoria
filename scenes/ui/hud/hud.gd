@@ -48,7 +48,8 @@ func consume(index: int) -> void:
 	if slot.get_child_count() > 0:
 		var item: InventoryItem = slot.get_child(0)
 		if item.data is Consumable:
-			pass
+			player.effect_from_item(item.data)
+			item.queue_free()
 
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("drop_item"):

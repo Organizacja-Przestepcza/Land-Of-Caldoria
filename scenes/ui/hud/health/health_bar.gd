@@ -12,13 +12,8 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	if health <= 0:
 		emit_signal("death", "health")
-
-func decrease_health(value: int) -> void:
-	if health > 0:
-		health -= value
-		update_display()
 	
-func restore_health(value: int) -> void:
+func modify_health(value: int) -> void:
 	if health > 0:
 		health += value
 		update_display()
