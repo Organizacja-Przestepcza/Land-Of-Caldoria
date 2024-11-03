@@ -1,11 +1,12 @@
 extends Enemy
 
-var player
 var chase_player = false
 func _ready() -> void:
+	speed = 30
+	strength = 5
 	player = get_parent().get_node("%Player")
 
-func _process(delta: float) -> void:
+func _physics_process(delta: float) -> void:
 	if chase_player:
 		move_towards_player(player, delta)
 

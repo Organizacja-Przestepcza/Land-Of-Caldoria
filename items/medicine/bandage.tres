@@ -1,13 +1,15 @@
-[gd_resource type="Resource" script_class="Item" load_steps=3 format=3 uid="uid://b6ve86f4ca2o0"]
+[gd_resource type="Resource" script_class="Consumable" load_steps=3 format=3 uid="uid://b6ve86f4ca2o0"]
 
-[ext_resource type="Script" path="res://items/Item.gd" id="1_8yrfs"]
-[ext_resource type="Texture2D" uid="uid://obteltcw3dmx" path="res://assets/textures/item/medicines/bandage.png" id="2_kddxw"]
+[ext_resource type="Script" path="res://items/Consumable.gd" id="1_vdp2h"]
+[ext_resource type="Texture2D" uid="uid://btp15abhb8ghw" path="res://assets/textures/item/medicine/bandage.png" id="2_kddxw"]
 
 [resource]
-script = ExtResource("1_8yrfs")
+script = ExtResource("1_vdp2h")
+hunger_value = 0
+health_value = 10
 slot = 0
 name = "Bandage"
 weight = 1
 texture = ExtResource("2_kddxw")
-max_stack_size = 16
-description = ""
+max_stack_size = 8
+description = "Restores 5 health"

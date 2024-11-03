@@ -40,13 +40,13 @@ position = Vector2(-1, -7)
 
 [node name="Hud" parent="Player" instance=ExtResource("4_voloi")]
 
+[node name="HealthBar" parent="Player/Hud" instance=ExtResource("7_cav5h")]
+
+[node name="HungerBar" parent="Player/Hud" instance=ExtResource("6_sptr6")]
+
 [node name="PauseMenu" parent="Player" instance=ExtResource("5_l5u8x")]
 scale = Vector2(1, 1)
 transform = Transform2D(1, 0, 0, 1, 0, 0)
 
-[node name="HungerBar" parent="Player" instance=ExtResource("6_sptr6")]
-
-[node name="HealthBar" parent="Player" instance=ExtResource("7_cav5h")]
-
-[connection signal="death" from="Player/HungerBar" to="Player" method="_on_death"]
-[connection signal="death" from="Player/HealthBar" to="Player" method="_on_death"]
+[connection signal="death" from="Player/Hud/HealthBar" to="Player" method="_on_death"]
+[connection signal="death" from="Player/Hud/HungerBar" to="Player" method="_on_death"]

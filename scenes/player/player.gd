@@ -22,7 +22,7 @@ func play_animation() -> void:
 		$AnimatedSprite2D.play()
 	else:
 		$AnimatedSprite2D.stop()
-	# !
+	
 	var animations: Array = ["walk_side", "walk_down", "walk_up", "run_side", "run_down", "run_up"]
 	var i: int = 0
 	if Input.is_action_pressed("sprint"):
@@ -50,6 +50,11 @@ func _process(delta: float) -> void:
 		print(self.position)
 	if Input.is_action_just_pressed("ui_accept"):
 		attack()
+
+func hit(value: int):
+	print("hit received, damage: ", value)
+	var healthbar: Health = hud.get_node("HealthBar")
+	healthbar.decrease_health(value)
 
 func attack():
 	var hitbox_duration = 0.2
@@ -89,5 +94,4 @@ func attack():
 				hud.add_item(victim.dropped_item)
 
 func _on_death(cause: String) -> void:
-	print()
 	get_tree().change_scene_to_packed(preload("res://scenes/ui/screen_of_death.tscn"))
