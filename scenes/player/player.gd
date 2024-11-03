@@ -2,6 +2,7 @@ extends CharacterBody2D
 
 @export var speed = 40
 var facing: Direction = Direction.Down
+@onready var hud = $Hud
 
 enum Direction {Down, Up, Right, Left}
 
@@ -80,4 +81,6 @@ func attack():
 	hitbox.queue_free()
 	if hitbox.is_colliding():
 		var victim = hitbox.get_collider(0)
-		victim.free()
+		if victim is Destroyable:
+			hud.add_item(victim.dropped_item)
+			victim.free()

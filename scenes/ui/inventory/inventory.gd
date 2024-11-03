@@ -3,11 +3,6 @@ extends Control
 @export var invSize: int = 24
 @export var slotSize: Vector2 = Vector2(64,64)
 
-var itemsLoad = [
-	"res://items/resource/wood/log.tres",
-	"res://items/food/blueberry/blueberry.tres"
-]
-
 @onready var main = $HBoxContainer/VBoxContainer/Main
 @onready var armor = $HBoxContainer/Armor
 
