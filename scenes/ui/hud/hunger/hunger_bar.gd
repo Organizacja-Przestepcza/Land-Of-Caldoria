@@ -1,9 +1,13 @@
 extends CanvasLayer
-signal death_hunger
-var hunger = 100
-var hunger_decrease_rate = 15.0
+var hunger: int
+var hunger_decrease_rate = 10.0
 var hunger_timer = 0.0
 @onready var hunger_bar = %HungerProgressBar 
+signal death(cause: String)
+
+func _ready() -> void:
+	var player: Player = get_parent()
+	hunger = player.hunger
 
 func _process(delta):
 	hunger_timer += delta
@@ -11,8 +15,7 @@ func _process(delta):
 		decrease_hunger()
 		hunger_timer = 0.0
 	if hunger == 0:
-		emit_signal("death_hunger")
-		print("Hunger emits death")
+		emit_signal("death", "hunger")
 
 func decrease_hunger():
 	if hunger > 0:

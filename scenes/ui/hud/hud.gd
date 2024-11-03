@@ -20,24 +20,23 @@ func add_item(new_item) -> void:
 	var index = find_free_space()
 	var item = InventoryItem.new()
 	item.init(load(new_item))
-	if index >= 0 && index <= 5:
+	if index in range(0,6):
 		hotbar.get_child(index).add_child(item)
 	elif index > 5:
 		main.get_child(index - hotbar.get_child_count()).add_child(item)
 		
 func remove_item(index):
-	if index >= 0 && index <= 5:
-		var item_at_index = hotbar.get_child(index).get_child(0)
-		if item_at_index != null:
-			item_at_index.queue_free()
+	var slot: Node
+	if index in range(0,6):
+		slot = hotbar.get_child(index)
 	elif index > 5:
-		var item_at_index = main.get_child(index - hotbar.get_child_count()).get_child(0)
-		if item_at_index != null:
-			item_at_index.queue_free()
+		slot = main.get_child(index - hotbar.get_child_count())
+	if slot.get_child_count() > 0:
+		var item_at_index = slot.get_child(0)
+		item_at_index.queue_free()
 
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("drop_item"):
-		print("q pressed")
 		remove_item(selected_slot)
 	if Input.is_action_just_pressed("gui_inventory"):
 		inventory.visible = !inventory.visible
@@ -47,7 +46,8 @@ func _process(delta: float) -> void:
 		else:
 			hotbar.reparent(get_node("Hotbar/MarginContainer"))
 
-
 func _on_inventory_inv_slot_click(index: int) -> void:
 	selected_slot = index + hotbar.get_child_count()
-	print(selected_slot)
+
+func _on_hotbar_slot_click(index: int) -> void:
+	selected_slot = index

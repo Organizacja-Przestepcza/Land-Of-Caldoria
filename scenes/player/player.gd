@@ -1,8 +1,11 @@
+class_name Player
 extends CharacterBody2D
 
 @export var speed = 40
 var facing: Direction = Direction.Down
 @onready var hud = $Hud
+var health = 100
+var hunger = 100
 
 enum Direction {Down, Up, Right, Left}
 
@@ -82,5 +85,9 @@ func attack():
 	if hitbox.is_colliding():
 		var victim = hitbox.get_collider(0)
 		if victim is Destroyable:
-			hud.add_item(victim.dropped_item)
-			victim.free()
+			if victim.take_damage(10):
+				hud.add_item(victim.dropped_item)
+
+func _on_death(cause: String) -> void:
+	print()
+	get_tree().change_scene_to_packed(preload("res://scenes/ui/screen_of_death.tscn"))

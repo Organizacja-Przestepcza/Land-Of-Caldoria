@@ -1,11 +1,13 @@
 extends CanvasLayer
 
+var health: int
 @onready var health_bar = %HealthProgressBar
-signal death
-func _ready() -> void:
-	pass # Replace with function body.
+signal death(cause: String)
 
+func _ready() -> void:
+	var player: Player = get_parent()
+	health = player.health
 
 func _process(delta: float) -> void:
 	if health_bar.value == 0:
-		emit_signal("death")
+		emit_signal("death", "health")
