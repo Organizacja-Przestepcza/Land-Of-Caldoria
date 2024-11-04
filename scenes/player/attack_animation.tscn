@@ -1,0 +1,59 @@
+[gd_scene load_steps=9 format=3 uid="uid://dsojx1nianp6r"]
+
+[ext_resource type="Texture2D" uid="uid://d3wftiv5atemw" path="res://assets/textures/player/attack_swing_side.png" id="1_8yysj"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0kfgk"]
+atlas = ExtResource("1_8yysj")
+region = Rect2(0, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a6nlm"]
+atlas = ExtResource("1_8yysj")
+region = Rect2(32, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_28aw3"]
+atlas = ExtResource("1_8yysj")
+region = Rect2(64, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jll4i"]
+atlas = ExtResource("1_8yysj")
+region = Rect2(96, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0frug"]
+atlas = ExtResource("1_8yysj")
+region = Rect2(128, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0tanh"]
+atlas = ExtResource("1_8yysj")
+region = Rect2(160, 0, 32, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_7kb0b"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0kfgk")
+}, {
+"duration": 0.8,
+"texture": SubResource("AtlasTexture_a6nlm")
+}, {
+"duration": 0.8,
+"texture": SubResource("AtlasTexture_28aw3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jll4i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0frug")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0tanh")
+}],
+"loop": false,
+"name": &"default",
+"speed": 15.0
+}]
+
+[node name="AttackAnimation" type="AnimatedSprite2D"]
+position = Vector2(8, -21)
+sprite_frames = SubResource("SpriteFrames_7kb0b")
+frame = 5
+frame_progress = 1.0

@@ -6,6 +6,7 @@ var facing: Direction = Direction.Down
 @onready var hud = $Hud
 var health = 100
 var hunger = 100
+var attack_animation_scene = preload("res://scenes/player/attack_animation.tscn")
 
 enum Direction {Down, Up, Right, Left}
 
@@ -48,7 +49,7 @@ func _physics_process(delta):
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("ui_text_backspace"):
 		print(self.position)
-	if Input.is_action_just_pressed("ui_accept"):
+	if Input.is_action_just_pressed("attack"):
 		attack()
 
 func hit(value: int):
@@ -65,6 +66,8 @@ func effect_from_item(item: Consumable):
 		healthbar.modify_health(item.health_value)
 
 func attack():
+	var attack_animation: AnimatedSprite2D = attack_animation_scene.instantiate()
+	attack_animation.position.y += 8
 	var hitbox_duration = 0.2
 	var length = 30
 	var hitbox = ShapeCast2D.new()
@@ -78,23 +81,34 @@ func attack():
 			hitbox.shape.size.y = length/2
 			hitbox.shape.size.x = length
 			target = Vector2i(0,length)
+			attack_animation.rotate(-PI*1.5)
+			attack_animation.position.y += 16
+			attack_animation.position.x -= 16
 		Direction.Up:
 			hitbox.shape.size.y = length/2
 			hitbox.shape.size.x = length
 			target = Vector2i(0,-length)
+			attack_animation.rotate(PI*1.5)
+			attack_animation.position.y -= 24
 		Direction.Right:
 			hitbox.shape.size.y = length
 			hitbox.shape.size.x = length/2
 			target = Vector2i(length,0)
+			attack_animation.position.x += 16
 		Direction.Left:
 			hitbox.shape.size.y = length
 			hitbox.shape.size.x = length/2
 			target = Vector2i(-length,0)
+			attack_animation.flip_h = true
+			attack_animation.position.x -= 32
 	hitbox.target_position = target
 	hitbox.enabled = true
 	add_child(hitbox)
+	attack_animation.play()
+	add_child(attack_animation)
 	await get_tree().create_timer(hitbox_duration).timeout
 	hitbox.queue_free()
+	attack_animation.queue_free()
 	if hitbox.is_colliding():
 		var victim = hitbox.get_collider(0)
 		if victim is Mob:
