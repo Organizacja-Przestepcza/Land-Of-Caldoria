@@ -71,7 +71,7 @@ func attack():
 	hitbox.shape = RectangleShape2D.new()
 	hitbox.position = Vector2i(0,-16)
 	hitbox.max_results = 1
-	hitbox.collision_mask = 6
+	hitbox.collision_mask = 2+8
 	var target: Vector2
 	match facing:
 		Direction.Down:
@@ -97,6 +97,8 @@ func attack():
 	hitbox.queue_free()
 	if hitbox.is_colliding():
 		var victim = hitbox.get_collider(0)
+		if victim is Mob:
+			victim.take_damage(10)
 		if victim is Destroyable:
 			if victim.take_damage(10):
 				hud.add_item(victim.dropped_item)
