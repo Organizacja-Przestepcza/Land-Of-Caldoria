@@ -8,3 +8,6 @@ assets/
 
 # MacOS
 .DS_Store
+
+# Linux
+.gitignore

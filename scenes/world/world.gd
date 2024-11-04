@@ -15,6 +15,8 @@ var terrain_sand: int   = 2
 var source_ground: int = 0
 var source_water: int  = 1
 
+var mob_amount: int = 0
+
 var dirs: Dictionary = {"tree":"res://scenes/object/plant/tree/","stone":"res://scenes/object/ore/stone/"}
 var files: Dictionary = {"tree":DirAccess.get_files_at(dirs["tree"]), "stone": DirAccess.get_files_at(dirs["stone"])}
 
@@ -36,9 +38,6 @@ func _ready() -> void:
 	h_noise.frequency = 0.0075
 	generate_world()
 	Engine.time_scale = 1
-	var slime = preload("res://scenes/mob/slime.tscn").instantiate()
-	slime.global_position = Vector2i(60,60)
-	add_child(slime)
 	
 func generate_world() -> void:
 	var map_size: int = WorldData.size
@@ -65,21 +64,22 @@ func generate_world() -> void:
 				var bush = load("res://scenes/object/plant/bush/bush_blueberry.tscn").instantiate()
 				bush.global_position = pos
 				self.add_child(bush)
+			if h_noise_val > 0.03:
+				chance_spawn_mob(pos)
 	sand_layer.set_cells_terrain_connect(tiles_sand, 0, terrain_sand)
 	ground_layer.set_cells_terrain_connect(tiles_ground, 0, terrain_ground)
 	grass_layer.set_cells_terrain_connect(tiles_grass, 0, terrain_grass)
 	
-
-func _on_hunger_death_hunger() -> void:
-	print("World recives death")
-	get_tree().change_scene_to_packed(preload("res://scenes/ui/screen_of_death.tscn"))
-
 func generate_object(obj_name: String, pos: Vector2i) -> void:
 	var f = files[obj_name] # takes the file array for given object
 	var rand_obj = f[randi_range(0,f.size()-1)]
 	var obj = load(dirs[obj_name] + rand_obj).instantiate()
 	obj.global_position = pos
 	self.add_child(obj)
-
-func _on_health_bar_death() -> void:
-	get_tree().change_scene_to_packed(preload("res://scenes/ui/screen_of_death.tscn"))
+	
+func chance_spawn_mob(pos: Vector2i) -> void:
+	if mob_amount <= 4 and randi_range(0, 100) == 1:
+		var slime = load("res://scenes/mob/slime.tscn").instantiate()
+		slime.global_position = pos
+		add_child(slime)
+		mob_amount+=1

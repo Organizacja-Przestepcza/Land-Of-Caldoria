@@ -30,6 +30,6 @@ func _ready() -> void:
 func _on_slot_clicked(event: InputEvent, slot) -> void:
 	if event is InputEventMouseButton and event.is_pressed() and event.button_index == MOUSE_BUTTON_LEFT:
 		emit_signal("inv_slot_click", slot.id)
-			
+
 signal inv_slot_click(index: int)
 		
