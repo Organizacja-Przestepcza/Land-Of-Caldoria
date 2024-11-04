@@ -35,7 +35,7 @@ func play_animation() -> void:
 	elif velocity.y > 0:
 		$AnimatedSprite2D.animation = animations[i+1]
 		$AnimatedSprite2D.flip_h = 0
-		facing = Direction.Down
+		facing = Direction.Downa
 	elif velocity.y < 0:
 		$AnimatedSprite2D.animation = animations[i+2]
 		$AnimatedSprite2D.flip_h = 0

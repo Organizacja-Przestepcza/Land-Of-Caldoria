@@ -1,17 +1,17 @@
 [gd_resource type="Resource" script_class="Tool" load_steps=3 format=3 uid="uid://dau0me6tpfdyb"]
 
-[ext_resource type="Script" path="res://items/Tool.gd" id="1_6rlhy"]
-[ext_resource type="Texture2D" uid="uid://cpqi20a3w4o7g" path="res://assets/textures/item/tools/axe/Axe.png" id="2_acobt"]
+[ext_resource type="Script" path="res://items/Tool.gd" id="1_i5j8w"]
+[ext_resource type="Texture2D" uid="uid://n6bijvhfblo1" path="res://assets/textures/item/tools/LongSword/LongSword.png" id="2_8qi44"]
 
 [resource]
-script = ExtResource("1_6rlhy")
-damage = 4
+script = ExtResource("1_i5j8w")
+damage = 7
 durability = 100
 knockback = 1
 range = 1.0
 slot = 0
-name = "Axe"
+name = "Long Sword"
 weight = 5
-texture = ExtResource("2_acobt")
+texture = ExtResource("2_8qi44")
 max_stack_size = 1
-description = "Old good axe..."
+description = "Shiny"
