@@ -50,9 +50,6 @@ size_flags_horizontal = 4
 size_flags_vertical = 3
 theme_override_font_sizes/font_size = 48
 max_text_lines = 3
-item_count = 2
-item_0/text = "save 1"
-item_1/text = "save 2"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
@@ -73,3 +70,4 @@ text = "Save
 "
 
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/CancelButton" to="." method="_on_cancel_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/SaveButton" to="." method="_on_save_button_pressed"]
