@@ -63,9 +63,62 @@ func _process(delta: float) -> void:
 			inventory.get_node("HBoxContainer/VBoxContainer").move_child(hotbar, 0)
 		else:
 			hotbar.reparent(get_node("Hotbar/MarginContainer"))
+	
 
 func _on_inventory_inv_slot_click(index: int) -> void:
 	selected_slot = index + hotbar.get_child_count()
 
 func _on_hotbar_slot_click(index: int) -> void:
 	selected_slot = index
+
+func get_inventory_data() -> Dictionary:
+	var inventory_data = {
+		"hotbar": [],
+		"main": []
+	}	
+	for i in range(hotbar.get_child_count()):
+		var slot: InventorySlot = hotbar.get_child(i)
+		if slot.get_child_count() > 0:
+			var item:InventoryItem = slot.get_child(0)
+			inventory_data["hotbar"].append(item.data.resource_path)
+		else:
+			inventory_data["hotbar"].append(null)
+	
+	for i in range(main.get_child_count()):
+		var slot:InventorySlot = main.get_child(i)
+		if slot.get_child_count() > 0:
+			var item:InventoryItem = slot.get_child(0)
+			inventory_data["main"].append(item.data.resource_path)
+		else:
+			inventory_data["main"].append(null)
+	print(inventory_data)
+	return inventory_data
+func load_inventory_data() -> void:
+	var inventory_data = WorldData.load.inventory
+	print(inventory_data)
+	# Clear existing items in hotbar and main inventory
+	for i in range(hotbar.get_child_count()):
+		var slot: InventorySlot = hotbar.get_child(i)
+		if slot.get_child_count() > 0:
+			slot.get_child(0).queue_free()  # Remove current item
+	
+	for i in range(main.get_child_count()):
+		var slot: InventorySlot = main.get_child(i)
+		if slot.get_child_count() > 0:
+			slot.get_child(0).queue_free()  # Remove current item
+
+	# Load items into hotbar
+	for i in range(len(inventory_data["hotbar"])):
+		var item_path = inventory_data["hotbar"][i]
+		if item_path != null:
+			var item = InventoryItem.new()
+			item.init(load(item_path))  # Load item from resource path
+			hotbar.get_child(i).add_child(item)
+
+	# Load items into main inventory
+	for i in range(len(inventory_data["main"])):
+		var item_path = inventory_data["main"][i]
+		if item_path != null:
+			var item = InventoryItem.new()
+			item.init(load(item_path))  # Load item from resource path
+			main.get_child(i).add_child(item)
