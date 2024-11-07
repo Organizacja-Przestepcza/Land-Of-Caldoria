@@ -31,6 +31,7 @@ func _ready() -> void:
 	var user_seed = WorldData.seed
 	if user_seed == -1:
 		h_noise.seed = randi()
+		WorldData.seed = h_noise.seed
 	else:
 		print("User seed: " + str(user_seed))
 		h_noise.seed = user_seed
