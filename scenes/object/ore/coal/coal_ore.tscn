@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://b7kgf53cnirsa"]
+
+[ext_resource type="Texture2D" uid="uid://dqd0oluh7gx4r" path="res://assets/textures/object/ore/coal_ore/coal_ore.png" id="1_sitcq"]
+
+[node name="coal_ore" type="StaticBody2D"]
+scale = Vector2(0.4, 0.4)
+collision_layer = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_sitcq")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(2.5, -5, -5, -5, -10, -5, -10, 0, -7.5, 2.5, 5, 2.5, 7.5, -2.5, 7.5, -5)
