@@ -34,6 +34,7 @@ folder_colors={
 "res://assets/": "yellow",
 "res://items/": "green",
 "res://scenes/player/": "pink",
+"res://scenes/ui/hud/": "pink",
 "res://themes/": "gray",
 "res://tilesets/": "gray"
 }
