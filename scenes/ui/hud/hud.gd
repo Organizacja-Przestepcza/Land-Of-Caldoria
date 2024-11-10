@@ -7,11 +7,19 @@ extends CanvasLayer
 var player: Player
 var hotbar_slot: InventorySlot
 @onready var containers: Array[GridContainer] = [hotbar, main]
+var frame: Theme = preload("res://themes/frame.tres")
+var game_state: State
+
+enum State {PLAYING, INVENTORY}
 
 func _ready() -> void:
 	player = get_parent()
-	add_item(ItemDB.items["bandage"], 1)
-	
+	hotbar_slot=hotbar.get_child(0)
+	hotbar_slot.theme = frame
+	add_item(ItemDB.items["bandage"], 3)
+	add_item(ItemDB.items["axe"], 1)
+	add_item(ItemDB.items["pickaxe"], 1)
+
 func get_slot_under_mouse() -> InventorySlot:
 	var mouse_pos = get_viewport().get_mouse_position()
 	for container in containers:
@@ -54,35 +62,61 @@ func add_item(item: Item, amount: int) -> void:
 			add_item(item, leftover)
 		
 func remove_item(slot: InventorySlot, amount: int) -> void:
-	if slot.get_child_count() > 0:
-		var item_at_index: InventoryItem = slot.get_child(0)
-		item_at_index.remove(amount)
+	if slot:
+		if slot.get_child_count() > 0:
+			var item_at_index: InventoryItem = slot.get_child(0)
+			item_at_index.remove(amount)
 
 func consume(slot: InventorySlot, amount: int) -> void:
-	if slot.get_child_count() > 0:
-		var item: InventoryItem = slot.get_child(0)
-		if item.data is Consumable:
-			player.effect_from_item(item.data)
-			item.remove(amount)
+	if slot:
+		if slot.get_child_count() > 0:
+			var item: InventoryItem = slot.get_child(0)
+			if item.data is Consumable:
+				player.effect_from_item(item.data)
+				item.remove(amount)
+ 
+func select_hotbar_slot(index: int):
+	hotbar_slot.theme = null
+	hotbar_slot=hotbar.get_child(index)
+	hotbar_slot.theme = frame
+
+func get_held_item() -> Item:
+	var inv_item = hotbar_slot.get_child(0)
+	if inv_item is InventoryItem:
+		return inv_item.data
+	return
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventKey:
-		if event.pressed and not event.echo:
-			match event.physical_keycode:
-				KEY_1: hotbar_slot=hotbar.get_child(0)
-				KEY_2: hotbar_slot=hotbar.get_child(1)
-				KEY_3: hotbar_slot=hotbar.get_child(2)
-				KEY_4: hotbar_slot=hotbar.get_child(3)
-				KEY_5: hotbar_slot=hotbar.get_child(4)
-				KEY_6: hotbar_slot=hotbar.get_child(5)
-		if event.is_action_pressed("drop_item"):
-			remove_item(get_slot_under_mouse(), 1)
-		elif event.is_action_pressed("interact"):
-			consume(get_slot_under_mouse(), 1)
-		elif event.is_action_pressed("gui_inventory"):
-			inventory.visible = !inventory.visible
-			if inventory.visible:
-				hotbar.reparent(inventory.get_node("HBoxContainer/VBoxContainer"))
-				inventory.get_node("HBoxContainer/VBoxContainer").move_child(hotbar, 0)
-			else:
-				hotbar.reparent(get_node("Hotbar/MarginContainer"))
+		match game_state:
+			State.PLAYING:
+				if event.is_action_pressed("attack", true):
+					player.attack()
+				elif event.is_action_pressed("drop_item"):
+					remove_item(hotbar_slot,1)
+				elif event.is_action_pressed("interact"):
+					consume(hotbar_slot,1)
+				elif event.is_action_pressed("gui_inventory"):
+					inventory.visible = true
+					hotbar.reparent(inventory.get_node("HBoxContainer/VBoxContainer"))
+					inventory.get_node("HBoxContainer/VBoxContainer").move_child(hotbar, 0)
+					game_state = State.INVENTORY
+				elif event.pressed and not event.echo:
+					match event.physical_keycode:
+						KEY_1: select_hotbar_slot(0)
+						KEY_2: select_hotbar_slot(1)
+						KEY_3: select_hotbar_slot(2)
+						KEY_4: select_hotbar_slot(3)
+						KEY_5: select_hotbar_slot(4)
+						KEY_6: select_hotbar_slot(5)
+				elif event.is_action_pressed("ui_text_backspace"):
+					print(self.position)
+			State.INVENTORY:
+				if event.is_action_pressed("drop_item"):
+					remove_item(get_slot_under_mouse(),1)
+				elif event.is_action_pressed("interact"):
+					consume(get_slot_under_mouse(),1)
+				elif event.is_action_pressed("gui_inventory"):
+					inventory.visible = false
+					hotbar.reparent(get_node("Hotbar/MarginContainer"))
+					game_state = State.PLAYING

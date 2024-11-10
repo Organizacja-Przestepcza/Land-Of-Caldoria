@@ -50,12 +50,6 @@ func _physics_process(delta):
 	move_and_slide()
 	play_animation()
 
-func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("ui_text_backspace"):
-		print(self.position)
-	if event.is_action_pressed("attack", true):
-		attack()
-
 func hit(value: int):
 	print("hit received, damage: ", value)
 	var healthbar: Health = hud.get_node("HealthBar")
@@ -116,11 +110,12 @@ func attack():
 	if hitbox.is_colliding():
 		var victim = hitbox.get_collider(0)
 		if victim is Mob:
-			if victim.take_damage(10) and victim.dropped_item != "":
-				hud.add_item(ItemDB.items[victim.dropped_item], 1)
+			if victim.take_damage(10) and victim.dropped_item:
+				hud.add_item(victim.dropped_item, 1)
 		if victim is Destroyable:
-			if victim.take_damage(10) and victim.dropped_item != "":
-				hud.add_item(ItemDB.items[victim.dropped_item], 1)
+			if victim.required_tool == hud.get_held_item() or victim.required_tool == null:
+				if victim.take_damage(10) and victim.dropped_item:
+					hud.add_item(victim.dropped_item, 1)
 
 func _on_death(cause: String) -> void:
 	get_tree().change_scene_to_packed(load("res://scenes/ui/screen_of_death.tscn"))
