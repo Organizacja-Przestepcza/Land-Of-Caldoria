@@ -41,7 +41,6 @@ text = "New Game"
 horizontal_alignment = 1
 
 [node name="NameField" type="LineEdit" parent="VBoxContainer"]
-unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 4
 placeholder_text = "Game name here..."
@@ -87,6 +86,5 @@ layout_mode = 2
 size_flags_vertical = 4
 text = "Create"
 
-[connection signal="text_changed" from="VBoxContainer/NameField" to="." method="_on_name_field_text_changed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/BackButton" to="." method="_on_back_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/NewGameButton" to="." method="_on_new_game_button_pressed"]

@@ -45,6 +45,9 @@ layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 max_text_lines = 3
+item_count = 2
+item_0/text = "save 1"
+item_1/text = "save 2"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
@@ -65,6 +68,4 @@ theme_override_font_sizes/font_size = 48
 text = "Load
 "
 
-[connection signal="item_selected" from="VBoxContainer/LoadList" to="." method="_on_load_list_item_selected"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/CancelButton" to="." method="_on_cancel_button_pressed"]
-[connection signal="pressed" from="VBoxContainer/HBoxContainer/LoadButton" to="." method="_on_load_button_pressed"]

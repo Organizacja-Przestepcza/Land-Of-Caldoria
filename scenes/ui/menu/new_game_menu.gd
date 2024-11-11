@@ -2,8 +2,6 @@ extends Control
 
 signal backbutton_pressed
 
-func _on_name_field_text_changed(new_text: String) -> void:
-	WorldData.world_name = %NameField.text
 
 func _on_back_button_pressed() -> void:
 	emit_signal("backbutton_pressed")
