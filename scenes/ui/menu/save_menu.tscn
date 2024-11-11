@@ -35,7 +35,8 @@ theme_override_font_sizes/font_size = 64
 text = "Save Game"
 horizontal_alignment = 1
 
-[node name="SaveEdit" type="LineEdit" parent="VBoxContainer"]
+[node name="SaveName" type="LineEdit" parent="VBoxContainer"]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(512, 0)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -50,9 +51,6 @@ size_flags_horizontal = 4
 size_flags_vertical = 3
 theme_override_font_sizes/font_size = 48
 max_text_lines = 3
-item_count = 2
-item_0/text = "save 1"
-item_1/text = "save 2"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
@@ -72,4 +70,7 @@ theme_override_font_sizes/font_size = 48
 text = "Save
 "
 
+[connection signal="text_changed" from="VBoxContainer/SaveName" to="." method="_on_save_name_text_changed"]
+[connection signal="empty_clicked" from="VBoxContainer/SavesList" to="." method="_on_saves_list_empty_clicked"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/CancelButton" to="." method="_on_cancel_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/SaveButton" to="." method="_on_save_button_pressed"]
