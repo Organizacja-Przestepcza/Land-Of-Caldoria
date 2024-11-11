@@ -1,5 +1,6 @@
-[gd_scene load_steps=7 format=3 uid="uid://dpk2ucm8f0jch"]
+[gd_scene load_steps=8 format=3 uid="uid://dpk2ucm8f0jch"]
 
+[ext_resource type="Script" path="res://scenes/npc/medic.gd" id="1_v2h4x"]
 [ext_resource type="Texture2D" uid="uid://dxybaa26haxtq" path="res://assets/textures/npc/medic/Medic_front.png" id="1_vlc5x"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_aqbcu"]
@@ -31,6 +32,7 @@ size = Vector2(24, 20)
 radius = 26.0768
 
 [node name="Medic" type="CharacterBody2D"]
+script = ExtResource("1_v2h4x")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_ihrm8")

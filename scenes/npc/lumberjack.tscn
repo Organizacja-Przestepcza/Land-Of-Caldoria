@@ -1,6 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://c81rwddnrgmnu"]
+[gd_scene load_steps=8 format=3 uid="uid://c81rwddnrgmnu"]
 
 [ext_resource type="Texture2D" uid="uid://duhs6mspgf7vm" path="res://assets/textures/npc/lumberjack/Lumberjack_front.png" id="1_una40"]
+[ext_resource type="Script" path="res://scenes/npc/lumberjack.gd" id="1_yxeg3"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_mekew"]
 atlas = ExtResource("1_una40")
@@ -30,6 +31,7 @@ animations = [{
 radius = 26.0768
 
 [node name="Lumberjack" type="CharacterBody2D"]
+script = ExtResource("1_yxeg3")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_da31x")

@@ -1,6 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://npgme5adxp70"]
+[gd_scene load_steps=8 format=3 uid="uid://npgme5adxp70"]
 
 [ext_resource type="Texture2D" uid="uid://dltocpyoaya2r" path="res://assets/textures/npc/blacksmith/Blacksmith.png" id="1_wggx3"]
+[ext_resource type="Script" path="res://scenes/npc/blacksmith.gd" id="1_xjvqe"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_40x7y"]
 atlas = ExtResource("1_wggx3")
@@ -31,6 +32,7 @@ size = Vector2(22, 20)
 radius = 26.0768
 
 [node name="Blacksmith" type="CharacterBody2D"]
+script = ExtResource("1_xjvqe")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_xfpg3")
