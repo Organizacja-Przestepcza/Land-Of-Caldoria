@@ -4,6 +4,7 @@ extends CanvasLayer
 @onready var inventory = $Inventory
 @onready var hotbar = $Hotbar/MarginContainer/Hotbar
 @onready var main = $Inventory/HBoxContainer/VBoxContainer/Main
+var inventory_keys = ["hotbar", "main", "armor"]
 var player: Player
 var hotbar_slot: InventorySlot
 @onready var containers: Array[GridContainer] = [hotbar, main]
@@ -83,56 +84,43 @@ func select_hotbar_slot(index: int):
 func get_inventory_data() -> Dictionary:
 	var inventory_data = {
 		"hotbar": [],
-		"main": []
+		"main": [],
+		"armor": []
 	}
-	for i in range(hotbar.get_child_count()):
-		var slot: InventorySlot = hotbar.get_child(i)
-		if slot.get_child_count() > 0:
-			var item:InventoryItem = slot.get_child(0)
-			inventory_data["hotbar"].append(item.data.resource_path)
-		else:
-			inventory_data["hotbar"].append(null)
-
-	for i in range(main.get_child_count()):
-		var slot:InventorySlot = main.get_child(i)
-		if slot.get_child_count() > 0:
-			var item:InventoryItem = slot.get_child(0)
-			inventory_data["main"].append(item.data.resource_path)
-		else:
-			inventory_data["main"].append(null)
-	print(inventory_data)
+	#var inventory_keys = inventory_data.keys()
+	for c in range(containers.size()):
+		for i in range(containers[c].get_child_count()):
+			var slot: InventorySlot = containers[c].get_child(i)
+			if slot.get_child_count() > 0:
+				var item:InventoryItem = slot.get_child(0)
+				
+				inventory_data[inventory_keys[c]].append([item.data.name,item.count])
+			else:
+				inventory_data[inventory_keys[c]].append(null)
 	return inventory_data
 
 func load_inventory_data() -> void:
 	var inventory_data = WorldData.load.inventory
 	print(inventory_data)
 	# Clear existing items in hotbar and main inventory
-	for i in range(hotbar.get_child_count()):
-		var slot: InventorySlot = hotbar.get_child(i)
-		if slot.get_child_count() > 0:
-			slot.get_child(0).queue_free()  # Remove current item
+	clean_inventory()
+	
+	#var inventory_keys = inventory_data.keys()
+	print(inventory_keys)
+	for c in range(containers.size()):
+		for i in range(containers[c].get_child_count()):
+			var item_path = inventory_data[inventory_keys[c]][i]
+			if item_path != null:
+				var item = InventoryItem.new(ItemDB.items[str(item_path[0]).to_lower().replace(" ","_")], item_path[1])
+				containers[c].get_child(i).add_child(item)
 
-	for i in range(main.get_child_count()):
-		var slot: InventorySlot = main.get_child(i)
-		if slot.get_child_count() > 0:
-			slot.get_child(0).queue_free()  # Remove current item
-
-	# Load items into hotbar
-	for i in range(len(inventory_data["hotbar"])):
-		var item_path = inventory_data["hotbar"][i]
-		if item_path != null:
-			var item = InventoryItem.new()
-			item.init(load(item_path))  # Load item from resource path
-			hotbar.get_child(i).add_child(item)
-
-	# Load items into main inventory
-	for i in range(len(inventory_data["main"])):
-		var item_path = inventory_data["main"][i]
-		if item_path != null:
-			var item = InventoryItem.new()
-			item.init(load(item_path))  # Load item from resource path
-			main.get_child(i).add_child(item)
-
+func clean_inventory() -> void:
+	for c in containers:
+		for i in range(c.get_child_count()):
+			var slot: InventorySlot = c.get_child(i)
+			if slot.get_child_count() > 0:
+				slot.get_child(0).queue_free()  # Remove current item
+			
 func get_held_item() -> Item:
 	var inv_item = hotbar_slot.get_child(0)
 	if inv_item is InventoryItem:
