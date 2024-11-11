@@ -1,0 +1,48 @@
+[gd_scene load_steps=7 format=3 uid="uid://c81rwddnrgmnu"]
+
+[ext_resource type="Texture2D" uid="uid://duhs6mspgf7vm" path="res://assets/textures/npc/lumberjack/Lumberjack_front.png" id="1_una40"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mekew"]
+atlas = ExtResource("1_una40")
+region = Rect2(0, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pfbnv"]
+atlas = ExtResource("1_una40")
+region = Rect2(32, 0, 32, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_da31x"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mekew")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pfbnv")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 1.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_t01jd"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ljvad"]
+radius = 26.0768
+
+[node name="Lumberjack" type="CharacterBody2D"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_da31x")
+animation = &"idle"
+frame = 1
+frame_progress = 0.435974
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 18)
+shape = SubResource("RectangleShape2D_t01jd")
+
+[node name="DetectionArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea"]
+position = Vector2(0, 18)
+shape = SubResource("CircleShape2D_ljvad")

@@ -1,0 +1,48 @@
+[gd_scene load_steps=7 format=3 uid="uid://dpk2ucm8f0jch"]
+
+[ext_resource type="Texture2D" uid="uid://dxybaa26haxtq" path="res://assets/textures/npc/medic/Medic_front.png" id="1_vlc5x"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aqbcu"]
+atlas = ExtResource("1_vlc5x")
+region = Rect2(0, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l51dj"]
+atlas = ExtResource("1_vlc5x")
+region = Rect2(32, 0, 32, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ihrm8"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_aqbcu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l51dj")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 1.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bn38x"]
+size = Vector2(24, 20)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_xhggb"]
+radius = 26.0768
+
+[node name="Medic" type="CharacterBody2D"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_ihrm8")
+animation = &"idle"
+frame_progress = 0.316217
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 19)
+shape = SubResource("RectangleShape2D_bn38x")
+
+[node name="DetectionArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea"]
+position = Vector2(0, 18)
+shape = SubResource("CircleShape2D_xhggb")
