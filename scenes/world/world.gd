@@ -31,12 +31,16 @@ func _ready() -> void:
 	var user_seed = WorldData.seed
 	if user_seed == -1:
 		h_noise.seed = randi()
+		WorldData.seed = h_noise.seed
 	else:
 		print("User seed: " + str(user_seed))
 		h_noise.seed = user_seed
 	o_noise.frequency = 0.02
 	h_noise.frequency = 0.0075
 	generate_world()
+	if WorldData.load:
+		$Player/Hud.load_inventory_data()
+		$Player.global_position = WorldData.load.player_global_position
 	Engine.time_scale = 1
 	
 func generate_world() -> void:
