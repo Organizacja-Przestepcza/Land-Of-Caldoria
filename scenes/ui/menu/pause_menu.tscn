@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://gna421381s1" path="res://scenes/ui/menu/load_menu.tscn" id="5_8jqla"]
 
 [node name="PauseMenu" type="CanvasLayer"]
+process_mode = 3
 scale = Vector2(0.4, 0.4)
 transform = Transform2D(0.4, 0, 0, 0.4, 0, 0)
 script = ExtResource("1_cjn31")

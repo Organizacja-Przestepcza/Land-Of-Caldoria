@@ -26,16 +26,18 @@ func _process(delta: float) -> void:
 
 
 func toggle_menu() -> void:
-	pause_game_toggle()
+	pause_toggle()
 	self.visible = !self.visible
 	hide_menus()
 
 
-func pause_game_toggle() -> void:
-	Engine.time_scale = 1 if Engine.time_scale == 0 else 0
+func pause_toggle() -> void:
+	get_tree().paused = !get_tree().paused
+	#Engine.time_scale = 1 if Engine.time_scale == 0 else 0
 
 signal quit_pressed
 func _on_quit_button_pressed() -> void:
+	pause_toggle()
 	get_tree().change_scene_to_file("res://scenes/start.tscn")
 
 func _on_options_button_pressed() -> void:
