@@ -4,6 +4,7 @@ extends CanvasLayer
 @onready var inventory = $Inventory
 @onready var hotbar = $Hotbar/MarginContainer/Hotbar
 @onready var main = $Inventory/HBoxContainer/VBoxContainer/Main
+var inventory_keys = ["hotbar", "main", "armor"]
 var player: Player
 var hotbar_slot: InventorySlot
 @onready var containers: Array[GridContainer] = [hotbar, main]
@@ -80,6 +81,46 @@ func select_hotbar_slot(index: int):
 	hotbar_slot=hotbar.get_child(index)
 	hotbar_slot.theme = frame
 
+func get_inventory_data() -> Dictionary:
+	var inventory_data = {
+		"hotbar": [],
+		"main": [],
+		"armor": []
+	}
+	#var inventory_keys = inventory_data.keys()
+	for c in range(containers.size()):
+		for i in range(containers[c].get_child_count()):
+			var slot: InventorySlot = containers[c].get_child(i)
+			if slot.get_child_count() > 0:
+				var item:InventoryItem = slot.get_child(0)
+				
+				inventory_data[inventory_keys[c]].append([item.data.name,item.count])
+			else:
+				inventory_data[inventory_keys[c]].append(null)
+	return inventory_data
+
+func load_inventory_data() -> void:
+	var inventory_data = WorldData.load.inventory
+	print(inventory_data)
+	# Clear existing items in hotbar and main inventory
+	clean_inventory()
+	
+	#var inventory_keys = inventory_data.keys()
+	print(inventory_keys)
+	for c in range(containers.size()):
+		for i in range(containers[c].get_child_count()):
+			var item_path = inventory_data[inventory_keys[c]][i]
+			if item_path != null:
+				var item = InventoryItem.new(ItemDB.items[str(item_path[0]).to_lower().replace(" ","_")], item_path[1])
+				containers[c].get_child(i).add_child(item)
+
+func clean_inventory() -> void:
+	for c in containers:
+		for i in range(c.get_child_count()):
+			var slot: InventorySlot = c.get_child(i)
+			if slot.get_child_count() > 0:
+				slot.get_child(0).queue_free()  # Remove current item
+			
 func get_held_item() -> Item:
 	var inv_item = hotbar_slot.get_child(0)
 	if inv_item is InventoryItem:
