@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="Tool" load_steps=2 format=3 uid="uid://6v2k2w3eidip"]
+
+[ext_resource type="Script" path="res://items/Tool.gd" id="1_irrfa"]
+
+[resource]
+script = ExtResource("1_irrfa")
+damage = 2
+durability = -1
+knockback = 1
+range = 1.0
+slot = 0
+name = "Hammer"
+weight = 3
+max_stack_size = 1
+description = "You can build with it"
