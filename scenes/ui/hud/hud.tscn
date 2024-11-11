@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://d26rkh5gvtfkh"]
+[gd_scene load_steps=5 format=3 uid="uid://d26rkh5gvtfkh"]
 
 [ext_resource type="Script" path="res://scenes/ui/hud/hud.gd" id="1_vbnoe"]
 [ext_resource type="PackedScene" uid="uid://c83lveoubd7vh" path="res://scenes/ui/hud/inventory/inventory.tscn" id="2_2o7xh"]
 [ext_resource type="PackedScene" uid="uid://b0bmpokyxvpu8" path="res://scenes/ui/hud/hotbar/hotbar.tscn" id="3_w082k"]
+[ext_resource type="PackedScene" uid="uid://rjqv2muvkkit" path="res://scenes/ui/hud/money/money_counter.tscn" id="4_gyu1k"]
 
 [node name="Hud" type="CanvasLayer"]
 script = ExtResource("1_vbnoe")
@@ -11,3 +12,5 @@ script = ExtResource("1_vbnoe")
 visible = false
 
 [node name="Hotbar" parent="." instance=ExtResource("3_w082k")]
+
+[node name="MoneyCounter" parent="." instance=ExtResource("4_gyu1k")]

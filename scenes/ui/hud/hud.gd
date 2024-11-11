@@ -4,6 +4,7 @@ extends CanvasLayer
 @onready var inventory = $Inventory
 @onready var hotbar = $Hotbar/MarginContainer/Hotbar
 @onready var main = $Inventory/HBoxContainer/VBoxContainer/Main
+
 var inventory_keys = ["hotbar", "main", "armor"]
 var player: Player
 var hotbar_slot: InventorySlot

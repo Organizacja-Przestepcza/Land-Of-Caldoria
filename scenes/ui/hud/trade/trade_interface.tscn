@@ -60,8 +60,6 @@ theme_override_constants/separation = 20
 [node name="SellList" type="ItemList" parent="TextureRect/VBoxContainer/HBoxContainer/SellContainer"]
 custom_minimum_size = Vector2(512, 350)
 layout_mode = 2
-item_count = 1
-item_0/text = "(5) wood log 5$/1"
 
 [node name="SellButton" type="Button" parent="TextureRect/VBoxContainer/HBoxContainer/SellContainer"]
 layout_mode = 2
@@ -79,8 +77,6 @@ theme_override_constants/separation = 20
 [node name="BuyList" type="ItemList" parent="TextureRect/VBoxContainer/HBoxContainer/BuyContainer"]
 custom_minimum_size = Vector2(512, 350)
 layout_mode = 2
-item_count = 1
-item_0/text = "(1) sword 100$/1"
 
 [node name="BuyButton" type="Button" parent="TextureRect/VBoxContainer/HBoxContainer/BuyContainer"]
 layout_mode = 2
