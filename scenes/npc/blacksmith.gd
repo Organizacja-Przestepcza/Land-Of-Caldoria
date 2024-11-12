@@ -1,6 +1,11 @@
 extends NPC
 
 func _ready() -> void: 
+	super()
 	health = 100
-	accepted_items = [ItemDB.items["pickaxe"],ItemDB.items["stone"],ItemDB.items["coal"],ItemDB.items["hammer"]]
-	value_multipliers = [0.5,1,0.5,4]
+	accepted_items = {
+		ItemDB.items["pickaxe"] : 0.5,
+		ItemDB.items["stone"] : 1,
+		ItemDB.items["coal"] : 0.5,
+		ItemDB.items["hammer"] : 0.4
+	}

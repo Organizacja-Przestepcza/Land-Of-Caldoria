@@ -119,3 +119,13 @@ func attack():
 
 func _on_death(cause: String) -> void:
 	get_tree().change_scene_to_packed(load("res://scenes/ui/screen_of_death.tscn"))
+
+func show_trade(npc: NPC) -> void:
+	get_tree().paused = true
+	$Hud/TradeInterface.visible = true
+	$Hud/TradeInterface.update_lists(npc)
+	await $Hud/TradeInterface/TextureRect/Button.pressed
+	hide_trade()
+func hide_trade() -> void:
+	$Hud/TradeInterface.visible = false
+	get_tree().paused = false
