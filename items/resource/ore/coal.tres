@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Item" load_steps=3 format=3 uid="uid://bcygqxoqnrrr7"]
+[gd_resource type="Resource" script_class="Item" load_steps=3 format=3 uid="uid://bgbvnnusc8p05"]
 
 [ext_resource type="Script" path="res://items/Item.gd" id="1_om7mp"]
 [ext_resource type="Texture2D" uid="uid://rsjpsh5s0t21" path="res://assets/textures/item/resource/coal/coal.png" id="2_0mobl"]
@@ -10,4 +10,4 @@ name = "coal"
 weight = 1
 texture = ExtResource("2_0mobl")
 max_stack_size = 4
-description = "R"
+description = "My xmas present"
