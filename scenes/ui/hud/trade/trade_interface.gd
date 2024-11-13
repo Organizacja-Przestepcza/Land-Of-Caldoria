@@ -12,6 +12,7 @@ func update_lists(npc:NPC) -> void:
 	for slot: InventorySlot in inventory.main.get_children(): 
 			var item: InventoryItem = slot.get_child(0) 
 			if item != null and npc.accepted_items.has(item.data): 
-				$TextureRect/VBoxContainer/HBoxContainer/SellContainer/SellList.add_item(item.data.name)
+				var price = item.data.value * npc.accepted_items[item.data]
+				$TextureRect/VBoxContainer/HBoxContainer/SellContainer/SellList.add_item(item.data.name +" Price: " + str(price))
 	for item: Item in npc.inventory:
-		$TextureRect/VBoxContainer/HBoxContainer/BuyContainer/BuyList.add_item(item.name)
+		$TextureRect/VBoxContainer/HBoxContainer/BuyContainer/BuyList.add_item(item.name + " Price: " + str(item.value))
