@@ -18,7 +18,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 WorldData="*res://scenes/world/world_data.gd"
-ItemDB="*res://items/item_db.gd"
+ItemLoader="*res://items/loader.gd"
 
 [display]
 

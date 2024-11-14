@@ -5,9 +5,9 @@ func _ready() -> void:
 	super()
 	health = 100
 	accepted_items = {
-		ItemDB.items["bandage"] : 0.5,
-		ItemDB.items["blueberry"] : 2,
-		ItemDB.items["knife"] : 3
+		ItemLoader.items["bandage"] : 0.5,
+		ItemLoader.items["blueberry"] : 2,
+		ItemLoader.items["knife"] : 3
 	}
 
 	

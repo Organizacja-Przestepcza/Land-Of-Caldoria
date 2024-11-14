@@ -1,5 +1,6 @@
 extends Node
 
+
 @export var items: Dictionary = {}
 
 func _ready() -> void:
@@ -24,4 +25,4 @@ func load_all_items(path: String):
 		printerr("Error: Couldn't open " + path)
 
 func name(n: String) -> Item:
-	return ItemDB.items[n]
+	return ItemLoader.items[n]

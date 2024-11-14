@@ -2,11 +2,9 @@ extends Control
 var inventory
 var player: Player
 @onready var hud : Hud = get_parent()
-var npc_inventory = [ItemDB.items["stone"]]
+var npc_inventory = [ItemLoader.items["stone"]]
 func _ready() -> void:
 	inventory = hud.get_node("Inventory")
-	var account = hud.get_node("MoneyCounter")
-	await get_tree().create_timer(1).timeout
 
 func update_lists(npc:NPC) -> void:
 	for slot: InventorySlot in inventory.main.get_children(): 
