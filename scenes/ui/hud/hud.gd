@@ -4,6 +4,7 @@ extends CanvasLayer
 @onready var inventory = $Inventory
 @onready var hotbar = $Hotbar/MarginContainer/Hotbar
 @onready var main = $Inventory/HBoxContainer/VBoxContainer/Main
+@onready var crafting = $Crafting
 var inventory_keys = ["hotbar", "main", "armor"]
 var player: Player
 var hotbar_slot: InventorySlot
@@ -20,7 +21,7 @@ func _ready() -> void:
 	add_item(ItemDB.items["bandage"], 3)
 	add_item(ItemDB.items["axe"], 1)
 	add_item(ItemDB.items["pickaxe"], 1)
-
+	crafting.open_crafting()
 func get_slot_under_mouse() -> InventorySlot:
 	var mouse_pos = get_viewport().get_mouse_position()
 	for container in containers:
@@ -161,3 +162,15 @@ func _input(event: InputEvent) -> void:
 					inventory.visible = false
 					hotbar.reparent(get_node("Hotbar/MarginContainer"))
 					game_state = State.PLAYING
+
+	
+func inventory_to_list() -> Dictionary:
+	var list: Dictionary
+	for c in containers:
+		for slot in c.get_children():
+			if !slot.get_child_count():
+				return list
+			var item:InventoryItem = slot.get_child(0)
+			if item:
+				list[item.data] = item.count
+	return list
