@@ -161,3 +161,7 @@ func _input(event: InputEvent) -> void:
 					inventory.visible = false
 					hotbar.reparent(get_node("Hotbar/MarginContainer"))
 					game_state = State.PLAYING
+func open_chest() -> void:
+	$Hotbar/MarginContainer/Hotbar.reparent($Chest/HBoxContainer/InventoryContainer)
+	$Inventory/HBoxContainer/VBoxContainer/Main.reparent($Chest/HBoxContainer/InventoryContainer)
+	
