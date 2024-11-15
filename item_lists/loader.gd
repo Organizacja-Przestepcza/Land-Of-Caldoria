@@ -25,3 +25,8 @@ func load_all_lists(path: String):
 			file_name = dir.get_next()
 	else:
 		printerr("Error: Couldn't open " + path)
+
+func byId(id: String) -> Dictionary:
+	if id in lists.keys():
+		return lists[id]
+	return {}

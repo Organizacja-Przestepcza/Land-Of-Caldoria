@@ -25,4 +25,6 @@ func load_all_items(path: String):
 		printerr("Error: Couldn't open " + path)
 
 func name(n: String) -> Item:
-	return ItemLoader.items[n]
+	if n in items.keys():
+		return items[n]
+	return null
