@@ -2,6 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://dltocpyoaya2r" path="res://assets/textures/npc/blacksmith/Blacksmith.png" id="1_wggx3"]
 [ext_resource type="Script" path="res://scenes/npc/blacksmith.gd" id="1_xjvqe"]
+[ext_resource type="PackedScene" uid="uid://bfj8c4rxmoj81" path="res://scenes/npc/detection_area.tscn" id="3_i3ydx"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_40x7y"]
 atlas = ExtResource("1_wggx3")
@@ -28,9 +29,6 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yvc0x"]
 size = Vector2(22, 20)
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_1qnn5"]
-radius = 26.0768
-
 [node name="Blacksmith" type="CharacterBody2D"]
 script = ExtResource("1_xjvqe")
 
@@ -43,8 +41,4 @@ frame_progress = 0.0125676
 position = Vector2(0, 18)
 shape = SubResource("RectangleShape2D_yvc0x")
 
-[node name="DetectionArea" type="Area2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea"]
-position = Vector2(0, 18)
-shape = SubResource("CircleShape2D_1qnn5")
+[node name="DetectionArea" parent="." instance=ExtResource("3_i3ydx")]

@@ -13,3 +13,4 @@ weight = 1
 texture = ExtResource("2_kddxw")
 max_stack_size = 8
 description = "Restores 5 health"
+value = 0
