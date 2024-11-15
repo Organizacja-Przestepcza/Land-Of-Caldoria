@@ -1,6 +1,8 @@
 extends Node
 
-var lists
+var lists : Dictionary = {
+	
+}
 
 func _ready() -> void:
 	load_all_lists("res://item_lists/")
@@ -14,11 +16,12 @@ func load_all_lists(path: String):
 			if dir.current_is_dir():
 				load_all_lists(dir.get_current_dir() +"/"+ file_name + "/")
 			else:
-				if file_name.get_extension() != "tres":
+				if file_name == "loader.gd":
 					file_name = dir.get_next()
 					continue
-				var item_list = load(path + file_name)
-				lists[item_list] = item_list
+				var script: GDScript = load(path + file_name)
+				var list: Resource = script.new()
+				lists[list.id] = list.items
 			file_name = dir.get_next()
 	else:
 		printerr("Error: Couldn't open " + path)
