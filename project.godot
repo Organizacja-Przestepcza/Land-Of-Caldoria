@@ -18,7 +18,8 @@ config/icon="res://icon.svg"
 [autoload]
 
 WorldData="*res://scenes/world/world_data.gd"
-ItemDB="*res://items/item_db.gd"
+ItemLoader="*res://items/loader.gd"
+ListLoader="*res://item_lists/loader.gd"
 
 [display]
 
@@ -33,6 +34,7 @@ project/assembly_name="Land Of Caldoria"
 
 folder_colors={
 "res://assets/": "yellow",
+"res://item_lists/": "teal",
 "res://items/": "green",
 "res://scenes/player/": "pink",
 "res://scenes/ui/hud/": "pink",
@@ -102,6 +104,8 @@ attack={
 
 2d_physics/layer_1="player"
 2d_physics/layer_2="objects"
+2d_physics/layer_4="mobs"
+2d_physics/layer_5="npc"
 
 [rendering]
 

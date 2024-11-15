@@ -41,6 +41,7 @@ func _ready() -> void:
 	if WorldData.load:
 		$Player/Hud.load_inventory_data()
 		$Player.global_position = WorldData.load.player_global_position
+
 	Engine.time_scale = 1
 	
 func generate_world() -> void:

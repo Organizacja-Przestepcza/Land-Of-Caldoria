@@ -1,13 +1,13 @@
 [gd_scene load_steps=3 format=3 uid="uid://b7kgf53cnirsa"]
 
 [ext_resource type="Texture2D" uid="uid://dqd0oluh7gx4r" path="res://assets/textures/object/ore/coal_ore/coal_ore.png" id="1_sitcq"]
-[ext_resource type="Script" path="res://scenes/object/ore/coal/coal.gd" id="2_nwvsl"]
+[ext_resource type="Script" path="res://scenes/object/ore/coal.gd" id="2_nwvsl"]
 
-[node name="coal_ore" type="StaticBody2D"]
+[node name="CoalOre" type="StaticBody2D"]
 scale = Vector2(0.4, 0.4)
 collision_layer = 2
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite" type="Sprite2D" parent="."]
 texture = ExtResource("1_sitcq")
 script = ExtResource("2_nwvsl")
 
