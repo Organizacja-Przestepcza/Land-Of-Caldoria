@@ -4,12 +4,13 @@ extends CanvasLayer
 @onready var inventory = $Inventory
 @onready var hotbar = $Hotbar/MarginContainer/Hotbar
 @onready var main = $Inventory/HBoxContainer/VBoxContainer/Main
+@onready var build_manager: BuildManager = $"../../BuildManager"
 var inventory_keys = ["hotbar", "main", "armor"]
 var player: Player
 var hotbar_slot: InventorySlot
 @onready var containers: Array[GridContainer] = [hotbar, main]
 var frame: Theme = preload("res://themes/frame.tres")
-var game_state: State
+var state: State
 
 enum State {PLAYING, INVENTORY}
 
@@ -20,6 +21,7 @@ func _ready() -> void:
 	add_item(ItemDB.items["bandage"], 3)
 	add_item(ItemDB.items["axe"], 1)
 	add_item(ItemDB.items["pickaxe"], 1)
+	add_item(ItemDB.items["hammer"], 1)
 
 func get_slot_under_mouse() -> InventorySlot:
 	var mouse_pos = get_viewport().get_mouse_position()
@@ -73,8 +75,8 @@ func consume(slot: InventorySlot, amount: int) -> void:
 		if slot.get_child_count() > 0:
 			var item: InventoryItem = slot.get_child(0)
 			if item.data is Consumable:
-				player.effect_from_item(item.data)
-				item.remove(amount)
+				if player.effect_from_item(item.data):
+					item.remove(amount)
  
 func select_hotbar_slot(index: int):
 	hotbar_slot.theme = null
@@ -127,21 +129,39 @@ func get_held_item() -> Item:
 		return inv_item.data
 	return
 
+
+func use_item() -> void:
+	var held_item = get_held_item()
+	if held_item is Consumable:
+		consume(hotbar_slot,1)
+	elif held_item == ItemDB.items["hammer"]:
+		build_manager.build()
+	elif held_item is Tool:
+		attack(held_item)
+
+func attack(tool: Tool):
+	var victim = await player.attack()
+	if victim is Mob:
+		if victim.take_damage(tool.damage) and victim.dropped_item:
+			add_item(victim.dropped_item, 1)
+	if victim is Destroyable:
+		if victim.required_tool == get_held_item() or victim.required_tool == null:
+			if victim.take_damage(tool.damage) and victim.dropped_item:
+				add_item(victim.dropped_item, 1)
+
 func _input(event: InputEvent) -> void:
 	if event is InputEventKey:
-		match game_state:
+		match state:
 			State.PLAYING:
-				if event.is_action_pressed("attack", true):
-					player.attack()
+				if event.is_action_pressed("use", true):
+					use_item()
 				elif event.is_action_pressed("drop_item"):
 					remove_item(hotbar_slot,1)
-				elif event.is_action_pressed("interact"):
-					consume(hotbar_slot,1)
 				elif event.is_action_pressed("gui_inventory"):
 					inventory.visible = true
 					hotbar.reparent(inventory.get_node("HBoxContainer/VBoxContainer"))
 					inventory.get_node("HBoxContainer/VBoxContainer").move_child(hotbar, 0)
-					game_state = State.INVENTORY
+					state = State.INVENTORY
 				elif event.pressed and not event.echo:
 					match event.physical_keycode:
 						KEY_1: select_hotbar_slot(0)
@@ -155,9 +175,9 @@ func _input(event: InputEvent) -> void:
 			State.INVENTORY:
 				if event.is_action_pressed("drop_item"):
 					remove_item(get_slot_under_mouse(),1)
-				elif event.is_action_pressed("interact"):
+				elif event.is_action_pressed("use"):
 					consume(get_slot_under_mouse(),1)
 				elif event.is_action_pressed("gui_inventory"):
 					inventory.visible = false
 					hotbar.reparent(get_node("Hotbar/MarginContainer"))
-					game_state = State.PLAYING
+					state = State.PLAYING

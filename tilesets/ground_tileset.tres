@@ -1,10 +1,10 @@
 [gd_resource type="TileSet" load_steps=5 format=3 uid="uid://2mtw8y1ywi02"]
 
-[ext_resource type="Texture2D" uid="uid://j0xvhotm7q2d" path="res://assets/textures/ground_tileset_32.png" id="1_2g160"]
-[ext_resource type="Texture2D" uid="uid://bipcprw7rrykq" path="res://assets/textures/water.png" id="2_rtfs1"]
+[ext_resource type="Texture2D" uid="uid://j0xvhotm7q2d" path="res://assets/textures/tilesets/ground_tileset_32.png" id="1_ssdb5"]
+[ext_resource type="Texture2D" uid="uid://bipcprw7rrykq" path="res://assets/textures/tilesets/water.png" id="2_lyk0f"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_7bppt"]
-texture = ExtResource("1_2g160")
+texture = ExtResource("1_ssdb5")
 texture_region_size = Vector2i(32, 32)
 0:0/0 = 0
 0:0/0/terrain_set = 0
@@ -1006,6 +1006,7 @@ texture_region_size = Vector2i(32, 32)
 10:12/0 = 0
 11:12/0 = 0
 0:13/0 = 0
+0:13/0/y_sort_origin = 1
 1:13/0 = 0
 2:13/0 = 0
 3:13/0 = 0
@@ -1026,6 +1027,7 @@ texture_region_size = Vector2i(32, 32)
 7:14/0 = 0
 8:14/0 = 0
 9:14/0 = 0
+9:14/0/y_sort_origin = 8
 10:14/0 = 0
 11:14/0 = 0
 0:15/0 = 0
@@ -1042,7 +1044,7 @@ texture_region_size = Vector2i(32, 32)
 11:15/0 = 0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_kurxq"]
-texture = ExtResource("2_rtfs1")
+texture = ExtResource("2_lyk0f")
 texture_region_size = Vector2i(32, 32)
 0:0/0 = 0
 

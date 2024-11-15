@@ -108,14 +108,7 @@ func attack():
 	hitbox.queue_free()
 	attack_animation.queue_free()
 	if hitbox.is_colliding():
-		var victim = hitbox.get_collider(0)
-		if victim is Mob:
-			if victim.take_damage(10) and victim.dropped_item:
-				hud.add_item(victim.dropped_item, 1)
-		if victim is Destroyable:
-			if victim.required_tool == hud.get_held_item() or victim.required_tool == null:
-				if victim.take_damage(10) and victim.dropped_item:
-					hud.add_item(victim.dropped_item, 1)
+		return hitbox.get_collider(0)
 
 func _on_death(cause: String) -> void:
 	get_tree().change_scene_to_packed(load("res://scenes/ui/screen_of_death.tscn"))
