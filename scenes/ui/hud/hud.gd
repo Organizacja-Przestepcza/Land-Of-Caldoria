@@ -4,6 +4,9 @@ extends CanvasLayer
 @onready var inventory = $Inventory
 @onready var hotbar = $Hotbar/MarginContainer/Hotbar
 @onready var main = $Inventory/HBoxContainer/VBoxContainer/Main
+
+@onready var crafting = $Crafting
+
 @onready var build_manager: BuildManager = $"../../BuildManager"
 var inventory_keys = ["hotbar", "main", "armor"]
 var player: Player
@@ -18,10 +21,9 @@ func _ready() -> void:
 	player = get_parent()
 	hotbar_slot=hotbar.get_child(0)
 	hotbar_slot.theme = frame
-	add_item(ItemDB.items["bandage"], 3)
-	add_item(ItemDB.items["axe"], 1)
-	add_item(ItemDB.items["pickaxe"], 1)
-	add_item(ItemDB.items["hammer"], 1)
+	add_item(ItemLoader.name("bandage"), 3)
+	add_item(ItemLoader.name("axe"), 1)
+	add_item(ItemLoader.name("pickaxe"), 1)
 
 func get_slot_under_mouse() -> InventorySlot:
 	var mouse_pos = get_viewport().get_mouse_position()
@@ -75,8 +77,8 @@ func consume(slot: InventorySlot, amount: int) -> void:
 		if slot.get_child_count() > 0:
 			var item: InventoryItem = slot.get_child(0)
 			if item.data is Consumable:
-				if player.effect_from_item(item.data):
-					item.remove(amount)
+				player.effect_from_item(item.data)
+				item.remove(amount)
  
 func select_hotbar_slot(index: int):
 	hotbar_slot.theme = null
@@ -113,7 +115,7 @@ func load_inventory_data() -> void:
 		for i in range(containers[c].get_child_count()):
 			var item_path = inventory_data[inventory_keys[c]][i]
 			if item_path != null:
-				var item = InventoryItem.new(ItemDB.items[str(item_path[0]).to_lower().replace(" ","_")], item_path[1])
+				var item = InventoryItem.new(ItemLoader.items[str(item_path[0]).to_lower().replace(" ","_")], item_path[1])
 				containers[c].get_child(i).add_child(item)
 
 func clean_inventory() -> void:
@@ -181,3 +183,15 @@ func _input(event: InputEvent) -> void:
 					inventory.visible = false
 					hotbar.reparent(get_node("Hotbar/MarginContainer"))
 					state = State.PLAYING
+
+	
+func inventory_to_list() -> Dictionary:
+	var list: Dictionary
+	for c in containers:
+		for slot in c.get_children():
+			if !slot.get_child_count():
+				return list
+			var item:InventoryItem = slot.get_child(0)
+			if item:
+				list[item.data] = item.count
+	return list

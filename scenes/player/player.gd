@@ -67,7 +67,7 @@ func attack():
 	if !can_attack:
 		return
 	can_attack=false
-	await get_tree().create_timer(attack_cooldown).timeout.connect(func(): can_attack=true)
+	get_tree().create_timer(attack_cooldown).timeout.connect(func(): can_attack=true)
 	var attack_animation: AnimatedSprite2D = attack_animation_scene.instantiate()
 	attack_animation.position.y += 8
 	var hitbox = ShapeCast2D.new()
@@ -112,3 +112,13 @@ func attack():
 
 func _on_death(cause: String) -> void:
 	get_tree().change_scene_to_packed(load("res://scenes/ui/screen_of_death.tscn"))
+
+func show_trade(npc: NPC) -> void:
+	get_tree().paused = true
+	$Hud/TradeInterface.visible = true
+	$Hud/TradeInterface.update_lists(npc)
+	await $Hud/TradeInterface/TextureRect/Button.pressed
+	hide_trade()
+func hide_trade() -> void:
+	$Hud/TradeInterface.visible = false
+	get_tree().paused = false
