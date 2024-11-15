@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://cix8u6lccl6pj"]
 
 [ext_resource type="Texture2D" uid="uid://djc6frjn8kex5" path="res://assets/textures/object/ore/iron _ore/iron_ore.png" id="1_ikcp3"]
-[ext_resource type="Script" path="res://scenes/object/ore/iron/iron.gd" id="2_5ju5c"]
+[ext_resource type="Script" path="res://scenes/object/ore/iron.gd" id="2_5ju5c"]
 
 [node name="iron_ore" type="StaticBody2D"]
 collision_layer = 2
