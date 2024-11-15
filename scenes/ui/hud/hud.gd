@@ -18,9 +18,9 @@ func _ready() -> void:
 	player = get_parent()
 	hotbar_slot=hotbar.get_child(0)
 	hotbar_slot.theme = frame
-	add_item(ItemLoader.items["bandage"], 3)
-	add_item(ItemLoader.items["axe"], 1)
-	add_item(ItemLoader.items["pickaxe"], 1)
+	add_item(ItemLoader.name("bandage"), 3)
+	add_item(ItemLoader.name("axe"), 1)
+	add_item(ItemLoader.name("pickaxe"), 1)
 
 func get_slot_under_mouse() -> InventorySlot:
 	var mouse_pos = get_viewport().get_mouse_position()
