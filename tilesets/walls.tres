@@ -1,6 +1,6 @@
-[gd_resource type="TileSet" load_steps=3 format=3 uid="uid://b35avtcrdovtw"]
+[gd_resource type="TileSet" load_steps=3 format=3 uid="uid://dc4bp7wyfxu4"]
 
-[ext_resource type="Texture2D" uid="uid://beh52kopxv7bk" path="res://assets/textures/walls_tileset_32.png" id="1_d2fxr"]
+[ext_resource type="Texture2D" uid="uid://beh52kopxv7bk" path="res://assets/textures/tilesets/walls_tileset_32.png" id="1_d2fxr"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_c07hx"]
 texture = ExtResource("1_d2fxr")
@@ -167,7 +167,6 @@ texture_region_size = Vector2i(32, 32)
 3:7/0/terrains_peering_bit/left_side = 1
 
 [resource]
-tile_size = Vector2i(32, 32)
 terrain_set_0/mode = 0
 terrain_set_0/terrain_0/name = "Wooden_Wall"
 terrain_set_0/terrain_0/color = Color(0.68777, 0.0103071, 0.425918, 1)

@@ -24,6 +24,7 @@ func _ready() -> void:
 	add_item(ItemLoader.name("bandage"), 3)
 	add_item(ItemLoader.name("axe"), 1)
 	add_item(ItemLoader.name("pickaxe"), 1)
+	add_item(ItemLoader.name("hammer"), 1)
 
 func get_slot_under_mouse() -> InventorySlot:
 	var mouse_pos = get_viewport().get_mouse_position()
@@ -136,7 +137,7 @@ func use_item() -> void:
 	var held_item = get_held_item()
 	if held_item is Consumable:
 		consume(hotbar_slot,1)
-	elif held_item == ItemDB.items["hammer"]:
+	elif held_item == ItemLoader.name("hammer"):
 		build_manager.build()
 	elif held_item is Tool:
 		attack(held_item)
