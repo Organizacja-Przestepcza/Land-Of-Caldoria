@@ -7,7 +7,8 @@ func _ready() -> void:
 	inventory = hud.get_node("Inventory")
 
 func update_lists(npc:NPC) -> void:
-	for slot: InventorySlot in inventory.main.get_children(): 
+	for slot: InventorySlot in inventory.main.get_children():
+		if slot.get_child_count() > 0: 
 			var item: InventoryItem = slot.get_child(0) 
 			if item != null and npc.accepted_items.has(item.data): 
 				var price = item.data.value * npc.accepted_items[item.data]
