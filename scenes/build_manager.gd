@@ -13,6 +13,5 @@ func build():
 		return
 	print(cell_pos)
 	walls.append(cell_pos)
-	BetterTerrain.add_terrain()
 	build_layer.set_cells_terrain_connect(walls,1,0)
 	#build_layer.set_cell(cell_pos,2,Vector2i(9,14))
