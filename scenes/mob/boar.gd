@@ -13,7 +13,7 @@ func _physics_process(delta: float) -> void:
 
 func _on_detection_area_body_entered(body: Node2D) -> void:
 	chase_player = true
-	$AnimatedSprite2D.play("moving_top")
+	$AnimatedSprite2D.play("walk")
 
 func _on_detection_area_body_exited(body: Node2D) -> void:
 	chase_player = false
@@ -21,4 +21,4 @@ func _on_detection_area_body_exited(body: Node2D) -> void:
 	
 func attack() -> void:
 	super()
-	$AnimatedSprite2D.play("attacking")
+	$AnimatedSprite2D.play("attack")
