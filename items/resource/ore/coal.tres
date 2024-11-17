@@ -10,4 +10,5 @@ name = "coal"
 weight = 1
 texture = ExtResource("2_0mobl")
 max_stack_size = 4
-description = "R"
+description = "My xmas present"
+value = 4

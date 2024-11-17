@@ -10,4 +10,5 @@ name = "Stone"
 weight = 1
 texture = ExtResource("2_v7t0r")
 max_stack_size = 4
-description = "R"
+description = "Rock & Roll"
+value = 2

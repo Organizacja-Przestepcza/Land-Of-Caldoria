@@ -1,0 +1,45 @@
+[gd_scene load_steps=8 format=3 uid="uid://npgme5adxp70"]
+
+[ext_resource type="Texture2D" uid="uid://dltocpyoaya2r" path="res://assets/textures/npc/blacksmith/Blacksmith.png" id="1_wggx3"]
+[ext_resource type="Script" path="res://scenes/npc/blacksmith.gd" id="1_xjvqe"]
+[ext_resource type="PackedScene" uid="uid://bfj8c4rxmoj81" path="res://scenes/npc/detection_area.tscn" id="3_i3ydx"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_40x7y"]
+atlas = ExtResource("1_wggx3")
+region = Rect2(0, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1se1l"]
+atlas = ExtResource("1_wggx3")
+region = Rect2(32, 0, 32, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_xfpg3"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_40x7y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1se1l")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 1.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yvc0x"]
+size = Vector2(22, 20)
+
+[node name="Blacksmith" type="CharacterBody2D"]
+collision_layer = 16
+script = ExtResource("1_xjvqe")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_xfpg3")
+animation = &"idle"
+frame_progress = 0.0125676
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 18)
+shape = SubResource("RectangleShape2D_yvc0x")
+
+[node name="DetectionArea" parent="." instance=ExtResource("3_i3ydx")]

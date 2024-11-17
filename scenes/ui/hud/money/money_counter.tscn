@@ -1,0 +1,27 @@
+[gd_scene load_steps=3 format=3 uid="uid://rjqv2muvkkit"]
+
+[ext_resource type="Texture2D" uid="uid://de6synqcsom3o" path="res://assets/textures/ui/hud/gold_coin.png" id="1_0tl4l"]
+[ext_resource type="Script" path="res://scenes/ui/hud/money/money_counter.gd" id="1_gggux"]
+
+[node name="MoneyCounter" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_gggux")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+offset_right = 54.0
+offset_bottom = 38.0
+
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+texture = ExtResource("1_0tl4l")
+metadata/_edit_use_anchors_ = true
+
+[node name="Label" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+text = "0"
