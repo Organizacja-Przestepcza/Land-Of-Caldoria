@@ -11,3 +11,4 @@ weight = 1
 texture = ExtResource("2_p2lj5")
 max_stack_size = 2
 description = "Beavers love them <3"
+value = 2

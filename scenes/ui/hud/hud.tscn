@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://scenes/ui/hud/hud.gd" id="1_vbnoe"]
 [ext_resource type="PackedScene" uid="uid://c83lveoubd7vh" path="res://scenes/ui/hud/inventory/inventory.tscn" id="2_2o7xh"]
 [ext_resource type="PackedScene" uid="uid://b0bmpokyxvpu8" path="res://scenes/ui/hud/hotbar/hotbar.tscn" id="3_w082k"]
-[ext_resource type="PackedScene" uid="uid://3pv4sb34k43p" path="res://scenes/ui/hud/chest/chest_menu.tscn" id="4_jsupn"]
+[ext_resource type="PackedScene" uid="uid://de7ljcthumfav" path="res://scenes/ui/hud/crafting/crafting.tscn" id="4_ivrvv"]
 
 [node name="Hud" type="CanvasLayer"]
 script = ExtResource("1_vbnoe")
@@ -14,3 +14,5 @@ visible = false
 [node name="Hotbar" parent="." instance=ExtResource("3_w082k")]
 
 [node name="Chest" parent="." instance=ExtResource("4_jsupn")]
+[node name="Crafting" parent="." instance=ExtResource("4_ivrvv")]
+visible = false

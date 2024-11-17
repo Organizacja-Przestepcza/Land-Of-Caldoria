@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" path="res://scenes/npc/medic.gd" id="1_v2h4x"]
 [ext_resource type="Texture2D" uid="uid://dxybaa26haxtq" path="res://assets/textures/npc/medic/Medic_front.png" id="1_vlc5x"]
+[ext_resource type="PackedScene" uid="uid://bfj8c4rxmoj81" path="res://scenes/npc/detection_area.tscn" id="3_nqkns"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_aqbcu"]
 atlas = ExtResource("1_vlc5x")
@@ -28,10 +29,8 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bn38x"]
 size = Vector2(24, 20)
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_xhggb"]
-radius = 26.0768
-
 [node name="Medic" type="CharacterBody2D"]
+collision_layer = 16
 script = ExtResource("1_v2h4x")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -43,8 +42,4 @@ frame_progress = 0.316217
 position = Vector2(0, 19)
 shape = SubResource("RectangleShape2D_bn38x")
 
-[node name="DetectionArea" type="Area2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea"]
-position = Vector2(0, 18)
-shape = SubResource("CircleShape2D_xhggb")
+[node name="DetectionArea" parent="." instance=ExtResource("3_nqkns")]

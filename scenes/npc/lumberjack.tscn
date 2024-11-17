@@ -2,6 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://duhs6mspgf7vm" path="res://assets/textures/npc/lumberjack/Lumberjack_front.png" id="1_una40"]
 [ext_resource type="Script" path="res://scenes/npc/lumberjack.gd" id="1_yxeg3"]
+[ext_resource type="PackedScene" uid="uid://bfj8c4rxmoj81" path="res://scenes/npc/detection_area.tscn" id="3_utvn6"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_mekew"]
 atlas = ExtResource("1_una40")
@@ -27,10 +28,8 @@ animations = [{
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_t01jd"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_ljvad"]
-radius = 26.0768
-
 [node name="Lumberjack" type="CharacterBody2D"]
+collision_layer = 16
 script = ExtResource("1_yxeg3")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -43,8 +42,4 @@ frame_progress = 0.435974
 position = Vector2(0, 18)
 shape = SubResource("RectangleShape2D_t01jd")
 
-[node name="DetectionArea" type="Area2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea"]
-position = Vector2(0, 18)
-shape = SubResource("CircleShape2D_ljvad")
+[node name="DetectionArea" parent="." instance=ExtResource("3_utvn6")]

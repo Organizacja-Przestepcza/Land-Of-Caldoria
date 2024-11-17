@@ -1,0 +1,80 @@
+[gd_scene load_steps=13 format=3 uid="uid://bo0ydrqsetcuu"]
+
+[ext_resource type="Script" path="res://scenes/mob/crab.gd" id="1_ersw6"]
+[ext_resource type="Texture2D" uid="uid://dihif2olxo83u" path="res://assets/textures/mob/crab/CrabMoving1.png" id="2_6dgns"]
+[ext_resource type="Texture2D" uid="uid://jxrfvhn4wpn" path="res://assets/textures/mob/crab/Crab_Attack1.png" id="2_ynre2"]
+[ext_resource type="Texture2D" uid="uid://bdkscjsn0cujr" path="res://assets/textures/mob/crab/CrabMoving2.png" id="3_07q73"]
+[ext_resource type="Texture2D" uid="uid://g73dk5rdsukw" path="res://assets/textures/mob/crab/Crab_Attack2.png" id="3_82kk7"]
+[ext_resource type="Texture2D" uid="uid://ktlf8b6avfbw" path="res://assets/textures/mob/crab/Crab_Attack3.png" id="4_0ns33"]
+[ext_resource type="Texture2D" uid="uid://dhs4tsb7jdmts" path="res://assets/textures/mob/crab/CrabMoving3.png" id="4_cdw5s"]
+[ext_resource type="Texture2D" uid="uid://dotf056wi6ug" path="res://assets/textures/mob/crab/CrabMoving4.png" id="5_3tidn"]
+[ext_resource type="Texture2D" uid="uid://ci6aa7bnkhnuh" path="res://assets/textures/mob/crab/Crab_Attack4.png" id="5_n57jg"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_bt3m1"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_ynre2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_82kk7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_0ns33")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_n57jg")
+}],
+"loop": true,
+"name": &"attacking",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_6dgns")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_07q73")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_cdw5s")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_3tidn")
+}],
+"loop": true,
+"name": &"moving_top",
+"speed": 10.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_efjds"]
+radius = 141.089
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_oix7d"]
+size = Vector2(25, 15.5)
+
+[node name="Crab" type="CharacterBody2D"]
+collision_layer = 8
+collision_mask = 3
+script = ExtResource("1_ersw6")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(6, -10)
+sprite_frames = SubResource("SpriteFrames_bt3m1")
+animation = &"attacking"
+
+[node name="DetectionArea" type="Area2D" parent="."]
+collision_layer = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea"]
+shape = SubResource("CircleShape2D_efjds")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -6.25)
+shape = SubResource("RectangleShape2D_oix7d")
+
+[connection signal="area_entered" from="DetectionArea" to="." method="_on_detection_area_area_entered"]
+[connection signal="area_entered" from="DetectionArea" to="." method="_on_area_2d_area_entered"]
+[connection signal="area_exited" from="DetectionArea" to="." method="_on_detection_area_area_exited"]
+[connection signal="body_entered" from="DetectionArea" to="." method="_on_detection_area_body_entered"]
+[connection signal="body_exited" from="DetectionArea" to="." method="_on_detection_area_body_exited"]

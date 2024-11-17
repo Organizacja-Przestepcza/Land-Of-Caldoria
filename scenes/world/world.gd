@@ -17,6 +17,11 @@ var source_water: int  = 1
 
 var mob_amount: int = 0
 
+var mob_types = {
+	"slime": "res://scenes/mob/slime.tscn",
+	"crab": "res://scenes/mob/crab.tscn"
+}
+
 var dirs: Dictionary = {"tree":"res://scenes/object/plant/tree/","stone":"res://scenes/object/ore/stone/"}
 var files: Dictionary = {"tree":DirAccess.get_files_at(dirs["tree"]), "stone": DirAccess.get_files_at(dirs["stone"])}
 
@@ -41,6 +46,7 @@ func _ready() -> void:
 	if WorldData.load:
 		$Player/Hud.load_inventory_data()
 		$Player.global_position = WorldData.load.player_global_position
+
 	Engine.time_scale = 1
 	
 func generate_world() -> void:
@@ -81,9 +87,18 @@ func generate_object(obj_name: String, pos: Vector2i) -> void:
 	obj.global_position = pos
 	self.add_child(obj)
 	
-func chance_spawn_mob(pos: Vector2i) -> void:
-	if mob_amount <= 4 and randi_range(0, 100) == 1:
-		var slime = load("res://scenes/mob/slime.tscn").instantiate()
-		slime.global_position = pos
-		add_child(slime)
-		mob_amount+=1
+func chance_spawn_mob(pos: Vector2) -> void:
+	if mob_amount <= 4 and randi_range(0, 100) <= 5:
+		var mob_name = choose_random_mob()
+		if mob_name != "":
+			var mob_scene = load(mob_types[mob_name])
+			if mob_scene:
+				var mob = mob_scene.instantiate()
+				mob.global_position = pos
+				add_child(mob)
+				mob_amount += 1
+				
+func choose_random_mob() -> String:
+	var mob_list = mob_types.keys()
+	var random_index = randi() % mob_list.size()
+	return mob_list[random_index]

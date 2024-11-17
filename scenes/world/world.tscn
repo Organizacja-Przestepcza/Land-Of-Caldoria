@@ -1,12 +1,17 @@
-[gd_scene load_steps=8 format=3 uid="uid://dsn7lp3w3rtus"]
+[gd_scene load_steps=13 format=3 uid="uid://dsn7lp3w3rtus"]
 
 [ext_resource type="Script" path="res://scenes/world/world.gd" id="1_0fdg7"]
-[ext_resource type="TileSet" uid="uid://2mtw8y1ywi02" path="res://tilesets/ground_tileset.tres" id="2_kr456"]
+[ext_resource type="TileSet" uid="uid://2mtw8y1ywi02" path="res://tilesets/main.tres" id="2_kr456"]
 [ext_resource type="PackedScene" uid="uid://byb1nycwprtqb" path="res://scenes/player/player.tscn" id="3_7odcl"]
+[ext_resource type="Script" path="res://scenes/build_manager.gd" id="3_e0qft"]
 [ext_resource type="PackedScene" uid="uid://d26rkh5gvtfkh" path="res://scenes/ui/hud/hud.tscn" id="4_voloi"]
 [ext_resource type="PackedScene" uid="uid://ddbr53ohn683s" path="res://scenes/ui/menu/pause_menu.tscn" id="5_l5u8x"]
 [ext_resource type="PackedScene" uid="uid://cyle35g3r7yjd" path="res://scenes/ui/hud/hunger/hunger_bar.tscn" id="6_sptr6"]
+[ext_resource type="PackedScene" uid="uid://cs0opcidf6hx4" path="res://scenes/ui/hud/trade/trade_interface.tscn" id="7_3v87f"]
 [ext_resource type="PackedScene" uid="uid://52kcruy75hex" path="res://scenes/ui/hud/health/health_bar.tscn" id="7_cav5h"]
+[ext_resource type="PackedScene" uid="uid://npgme5adxp70" path="res://scenes/npc/blacksmith.tscn" id="8_vukrm"]
+[ext_resource type="PackedScene" uid="uid://c81rwddnrgmnu" path="res://scenes/npc/lumberjack.tscn" id="9_pg82i"]
+[ext_resource type="PackedScene" uid="uid://dpk2ucm8f0jch" path="res://scenes/npc/medic.tscn" id="10_qvl3m"]
 
 [node name="World" type="Node2D"]
 y_sort_enabled = true
@@ -29,14 +34,16 @@ tile_set = ExtResource("2_kr456")
 z_index = -1
 tile_set = ExtResource("2_kr456")
 
-[node name="Stones" type="Node2D" parent="."]
+[node name="BuildLayer" type="TileMapLayer" parent="."]
+y_sort_enabled = true
+tile_set = ExtResource("2_kr456")
 
-[node name="Trees" type="Node2D" parent="."]
+[node name="BuildManager" type="Node2D" parent="."]
+visible = false
+script = ExtResource("3_e0qft")
 
 [node name="Player" parent="." instance=ExtResource("3_7odcl")]
 unique_name_in_owner = true
-modulate = Color(0.941176, 0.941176, 0.941176, 1)
-position = Vector2(-1, -7)
 
 [node name="Hud" parent="Player" instance=ExtResource("4_voloi")]
 
@@ -44,9 +51,21 @@ position = Vector2(-1, -7)
 
 [node name="HungerBar" parent="Player/Hud" instance=ExtResource("6_sptr6")]
 
+[node name="TradeInterface" parent="Player/Hud" instance=ExtResource("7_3v87f")]
+visible = false
+
 [node name="PauseMenu" parent="Player" instance=ExtResource("5_l5u8x")]
 scale = Vector2(1, 1)
 transform = Transform2D(1, 0, 0, 1, 0, 0)
+
+[node name="Blacksmith" parent="." instance=ExtResource("8_vukrm")]
+position = Vector2(160, -134)
+
+[node name="Lumberjack" parent="." instance=ExtResource("9_pg82i")]
+position = Vector2(-184, -122)
+
+[node name="Medic" parent="." instance=ExtResource("10_qvl3m")]
+position = Vector2(-116, 8)
 
 [connection signal="death" from="Player/Hud/HealthBar" to="Player" method="_on_death"]
 [connection signal="death" from="Player/Hud/HungerBar" to="Player" method="_on_death"]

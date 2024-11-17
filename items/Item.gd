@@ -8,3 +8,4 @@ extends Resource
 @export var texture: Texture2D
 @export var max_stack_size: int
 @export var description: String
+@export var value: int

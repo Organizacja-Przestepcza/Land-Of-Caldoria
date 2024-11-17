@@ -1,5 +1,6 @@
 extends Node
 
+
 @export var items: Dictionary = {}
 
 func _ready() -> void:
@@ -22,3 +23,8 @@ func load_all_items(path: String):
 			file_name = dir.get_next()
 	else:
 		printerr("Error: Couldn't open " + path)
+
+func name(n: String) -> Item:
+	if n in items.keys():
+		return items[n]
+	return null

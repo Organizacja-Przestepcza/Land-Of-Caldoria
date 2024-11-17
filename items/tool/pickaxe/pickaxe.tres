@@ -15,3 +15,4 @@ weight = 5
 texture = ExtResource("2_eqk08")
 max_stack_size = 1
 description = "PICK ME!"
+value = 20
