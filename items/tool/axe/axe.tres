@@ -5,7 +5,7 @@
 
 [resource]
 script = ExtResource("1_qqc8l")
-damage = 4
+damage = 5
 durability = 100
 knockback = 1
 range = 1.0

@@ -5,7 +5,8 @@ extends CanvasLayer
 @onready var hotbar = $Hotbar/MarginContainer/Hotbar
 @onready var main = $Inventory/HBoxContainer/VBoxContainer/Main
 
-@onready var crafting = $Crafting
+@onready var crafting: Crafting = $Crafting
+
 
 @onready var build_manager: BuildManager = $"../../BuildManager"
 var inventory_keys = ["hotbar", "main", "armor"]
@@ -183,6 +184,8 @@ func _input(event: InputEvent) -> void:
 					hotbar.reparent(inventory.get_node("HBoxContainer/VBoxContainer"))
 					inventory.get_node("HBoxContainer/VBoxContainer").move_child(hotbar, 0)
 					state = State.INVENTORY
+				elif event.is_action_pressed("crafting_menu"):
+					crafting.open_crafting()
 				elif event.pressed and not event.echo:
 					match event.physical_keycode:
 						KEY_1: select_hotbar_slot(0)

@@ -24,12 +24,13 @@ func update_lists(npc:NPC) -> void:
 func update_buy_list():
 	buy_list.clear()
 	for item: Item in curr_npc.inventory:
-		buy_list.add_item(item.name + " Amount: "+ str(curr_npc.inventory[item]) + " Price: " + str(item.value))
-		var d = ItemInList.new()
-		d.data = item
-		d.amount = curr_npc.inventory[item]
-		d.value = item.value
-		buy_list.set_item_metadata(buy_list.get_item_count() - 1, d)
+		if curr_npc.inventory[item] > 0:
+			buy_list.add_item(item.name + " Amount: "+ str(curr_npc.inventory[item]) + " Price: " + str(item.value))
+			var d = ItemInList.new()
+			d.data = item
+			d.amount = curr_npc.inventory[item]
+			d.value = item.value
+			buy_list.set_item_metadata(buy_list.get_item_count() - 1, d)
 	
 func update_sell_list():
 	sell_list.clear()
