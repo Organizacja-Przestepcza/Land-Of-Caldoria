@@ -201,13 +201,11 @@ func _input(event: InputEvent) -> void:
 				elif event.is_action_pressed("gui_inventory"):
 					inventory.visible = false
 					hotbar.reparent(get_node("Hotbar/MarginContainer"))
-					game_state = State.PLAYING
+					state = State.PLAYING
 func open_chest() -> void:
 	$Hotbar/MarginContainer/Hotbar.reparent($Chest/HBoxContainer/InventoryContainer)
 	$Inventory/HBoxContainer/VBoxContainer/Main.reparent($Chest/HBoxContainer/InventoryContainer)
 	
-					state = State.PLAYING
-
 	
 func inventory_to_list() -> Dictionary:
 	var list: Dictionary
