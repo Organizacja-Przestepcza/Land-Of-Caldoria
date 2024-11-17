@@ -307,7 +307,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"rest_left",
-"speed": 5.0
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -331,7 +331,7 @@ animations = [{
 radius = 127.035
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_oix7d"]
-size = Vector2(22.625, 15.6875)
+size = Vector2(82, 69.75)
 
 [node name="bear" type="CharacterBody2D"]
 collision_layer = 8
@@ -339,25 +339,21 @@ collision_mask = 3
 script = ExtResource("1_24x75")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(6, -10)
+position = Vector2(2.5, -3.8059)
+scale = Vector2(3.492, 3)
 sprite_frames = SubResource("SpriteFrames_bt3m1")
-animation = &"chasing_left"
-frame = 5
-speed_scale = 2.0
+animation = &"rest_right"
+speed_scale = 0.5
 
 [node name="DetectionArea" type="Area2D" parent="."]
 collision_layer = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea"]
-position = Vector2(2, 0)
 shape = SubResource("CircleShape2D_efjds")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(6, -7)
+position = Vector2(5, -10.125)
 shape = SubResource("RectangleShape2D_oix7d")
 
-[connection signal="area_entered" from="DetectionArea" to="." method="_on_detection_area_area_entered"]
-[connection signal="area_entered" from="DetectionArea" to="." method="_on_area_2d_area_entered"]
-[connection signal="area_exited" from="DetectionArea" to="." method="_on_detection_area_area_exited"]
 [connection signal="body_entered" from="DetectionArea" to="." method="_on_detection_area_body_entered"]
 [connection signal="body_exited" from="DetectionArea" to="." method="_on_detection_area_body_exited"]

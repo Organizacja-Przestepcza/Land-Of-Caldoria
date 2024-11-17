@@ -19,7 +19,8 @@ var mob_amount: int = 0
 
 var mob_types = {
 	"slime": "res://scenes/mob/slime.tscn",
-	"crab": "res://scenes/mob/crab.tscn"
+	"crab": "res://scenes/mob/crab.tscn",
+	"bear": "res://scenes/mob/bear.tscn"
 }
 
 var dirs: Dictionary = {"tree":"res://scenes/object/plant/tree/","stone":"res://scenes/object/ore/stone/"}
