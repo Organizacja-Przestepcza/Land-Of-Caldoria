@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://b50ew3ar0cmlr"]
+
+[ext_resource type="Texture2D" uid="uid://bpqi1r0d5btbk" path="res://assets/textures/object/furniture/furnace/furnace.png" id="1_djg2c"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ykafg"]
+size = Vector2(20, 21)
+
+[node name="Furnace" type="StaticBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_djg2c")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 1.5)
+shape = SubResource("RectangleShape2D_ykafg")
