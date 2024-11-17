@@ -7,12 +7,13 @@ extends CanvasLayer
 
 @onready var crafting = $Crafting
 
+@onready var build_manager: BuildManager = $"../../BuildManager"
 var inventory_keys = ["hotbar", "main", "armor"]
 var player: Player
 var hotbar_slot: InventorySlot
 @onready var containers: Array[GridContainer] = [hotbar, main]
 var frame: Theme = preload("res://themes/frame.tres")
-var game_state: State
+var state: State
 
 enum State {PLAYING, INVENTORY}
 
@@ -23,6 +24,7 @@ func _ready() -> void:
 	add_item(ItemLoader.name("bandage"), 3)
 	add_item(ItemLoader.name("axe"), 1)
 	add_item(ItemLoader.name("pickaxe"), 1)
+	add_item(ItemLoader.name("hammer"), 1)
 
 func get_slot_under_mouse() -> InventorySlot:
 	var mouse_pos = get_viewport().get_mouse_position()
@@ -52,6 +54,15 @@ func find_available_slot(itm: Item) -> InventorySlot:
 					return slot
 	return null
 
+func find_item(itm: Item) -> InventorySlot:
+	for container in containers:
+		for slot in container.get_children():
+			if not slot.get_child_count() == 0:
+				var item: InventoryItem = slot.get_child(0)
+				if item.data.name == itm.name:
+					return slot
+	return null
+
 func add_item(item: Item, amount: int) -> void:
 	var slot = find_available_slot(item)
 	if slot == null:
@@ -65,11 +76,20 @@ func add_item(item: Item, amount: int) -> void:
 		if leftover > 0:
 			add_item(item, leftover)
 		
-func remove_item(slot: InventorySlot, amount: int) -> void:
+func remove_item_in_slot(slot: InventorySlot, amount: int) -> int: #returns the number of not removed items
 	if slot:
 		if slot.get_child_count() > 0:
 			var item_at_index: InventoryItem = slot.get_child(0)
-			item_at_index.remove(amount)
+			var leftover: int = item_at_index.remove(amount)
+			return leftover
+	return 0
+
+func remove_item(itm: Item, amount: int):
+	while amount > 0:
+		var slot: InventorySlot = find_item(itm)
+		if slot:
+			var leftover = remove_item_in_slot(slot, amount)
+			amount = leftover
 
 func consume(slot: InventorySlot, amount: int) -> void:
 	if slot:
@@ -130,21 +150,39 @@ func get_held_item() -> Item:
 		return inv_item.data
 	return
 
+
+func use_item() -> void:
+	var held_item = get_held_item()
+	if held_item is Consumable:
+		consume(hotbar_slot,1)
+	elif held_item == ItemLoader.name("hammer"):
+		build_manager.build()
+	elif held_item is Tool:
+		attack(held_item)
+
+func attack(tool: Tool):
+	var victim = await player.attack()
+	if victim is Mob:
+		if victim.take_damage(tool.damage) and victim.dropped_item:
+			add_item(victim.dropped_item, 1)
+	if victim is Destroyable:
+		if victim.required_tool == get_held_item() or victim.required_tool == null:
+			if victim.take_damage(tool.damage) and victim.dropped_item:
+				add_item(victim.dropped_item, 1)
+
 func _input(event: InputEvent) -> void:
 	if event is InputEventKey:
-		match game_state:
+		match state:
 			State.PLAYING:
-				if event.is_action_pressed("attack", true):
-					player.attack()
+				if event.is_action_pressed("use", true):
+					use_item()
 				elif event.is_action_pressed("drop_item"):
-					remove_item(hotbar_slot,1)
-				elif event.is_action_pressed("interact"):
-					consume(hotbar_slot,1)
+					remove_item_in_slot(hotbar_slot,1)
 				elif event.is_action_pressed("gui_inventory"):
 					inventory.visible = true
 					hotbar.reparent(inventory.get_node("HBoxContainer/VBoxContainer"))
 					inventory.get_node("HBoxContainer/VBoxContainer").move_child(hotbar, 0)
-					game_state = State.INVENTORY
+					state = State.INVENTORY
 				elif event.pressed and not event.echo:
 					match event.physical_keycode:
 						KEY_1: select_hotbar_slot(0)
@@ -157,13 +195,13 @@ func _input(event: InputEvent) -> void:
 					print(self.position)
 			State.INVENTORY:
 				if event.is_action_pressed("drop_item"):
-					remove_item(get_slot_under_mouse(),1)
-				elif event.is_action_pressed("interact"):
+					remove_item_in_slot(get_slot_under_mouse(),1)
+				elif event.is_action_pressed("use"):
 					consume(get_slot_under_mouse(),1)
 				elif event.is_action_pressed("gui_inventory"):
 					inventory.visible = false
 					hotbar.reparent(get_node("Hotbar/MarginContainer"))
-					game_state = State.PLAYING
+					state = State.PLAYING
 
 	
 func inventory_to_list() -> Dictionary:
@@ -173,6 +211,6 @@ func inventory_to_list() -> Dictionary:
 			if !slot.get_child_count():
 				return list
 			var item:InventoryItem = slot.get_child(0)
-			if item:
+			if item and item.count > 0:
 				list[item.data] = item.count
 	return list

@@ -15,3 +15,4 @@ weight = 1
 texture = ExtResource("2_aifkk")
 max_stack_size = 1
 description = "Cut onions. NOT YOUR FINGERS!"
+value = 32

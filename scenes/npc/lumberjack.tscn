@@ -29,6 +29,7 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_t01jd"]
 
 [node name="Lumberjack" type="CharacterBody2D"]
+collision_layer = 16
 script = ExtResource("1_yxeg3")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]

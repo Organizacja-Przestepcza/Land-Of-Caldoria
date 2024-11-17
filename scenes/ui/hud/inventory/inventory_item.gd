@@ -49,14 +49,14 @@ func add(amount: int) -> int: ## If there are leftover items, returns their amou
 		display_count()
 	return 0
 
-func remove(amount: int):
-	if amount > count:
-		printerr("Error: Removing more items than available")
-	count -= amount
+func remove(amount: int) -> int: #returns the number of not removed items
+	var amount_to_remove = min(count, amount)
+	count -= amount_to_remove
 	if count <= 0:
 		self.queue_free()
-		return
+		return amount-amount_to_remove
 	display_count()
+	return 0
 
 func display_count() -> void:
 	if count > 1:
