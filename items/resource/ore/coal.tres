@@ -6,7 +6,7 @@
 [resource]
 script = ExtResource("1_om7mp")
 slot = 0
-name = "coal"
+name = "Coal"
 weight = 1
 texture = ExtResource("2_0mobl")
 max_stack_size = 4
