@@ -103,6 +103,8 @@ script = ExtResource("1_0ap38")
 position = Vector2(6, -10)
 sprite_frames = SubResource("SpriteFrames_bt3m1")
 animation = &"chasing"
+frame = 10
+frame_progress = 0.0643104
 
 [node name="DetectionArea" type="Area2D" parent="."]
 collision_layer = 4
