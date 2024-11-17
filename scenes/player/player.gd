@@ -116,9 +116,14 @@ func _on_death(cause: String) -> void:
 func show_trade(npc: NPC) -> void:
 	get_tree().paused = true
 	$Hud/TradeInterface.visible = true
+	$Hud/HealthBar.visible = false
+	$Hud/HungerBar.visible = false
 	$Hud/TradeInterface.update_lists(npc)
 	await $Hud/TradeInterface/TextureRect/Button.pressed
 	hide_trade()
+
 func hide_trade() -> void:
 	$Hud/TradeInterface.visible = false
+	$Hud/HealthBar.visible = true
+	$Hud/HungerBar.visible = true
 	get_tree().paused = false

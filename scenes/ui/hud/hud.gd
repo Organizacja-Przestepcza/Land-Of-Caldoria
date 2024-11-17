@@ -54,6 +54,15 @@ func find_available_slot(itm: Item) -> InventorySlot:
 					return slot
 	return null
 
+func find_item(itm: Item) -> InventorySlot:
+	for container in containers:
+		for slot in container.get_children():
+			if not slot.get_child_count() == 0:
+				var item: InventoryItem = slot.get_child(0)
+				if item.data.name == itm.name:
+					return slot
+	return null
+
 func add_item(item: Item, amount: int) -> void:
 	var slot = find_available_slot(item)
 	if slot == null:
@@ -67,11 +76,20 @@ func add_item(item: Item, amount: int) -> void:
 		if leftover > 0:
 			add_item(item, leftover)
 		
-func remove_item(slot: InventorySlot, amount: int) -> void:
+func remove_item_in_slot(slot: InventorySlot, amount: int) -> int: #returns the number of not removed items
 	if slot:
 		if slot.get_child_count() > 0:
 			var item_at_index: InventoryItem = slot.get_child(0)
-			item_at_index.remove(amount)
+			var leftover: int = item_at_index.remove(amount)
+			return leftover
+	return 0
+
+func remove_item(itm: Item, amount: int):
+	while amount > 0:
+		var slot: InventorySlot = find_item(itm)
+		if slot:
+			var leftover = remove_item_in_slot(slot, amount)
+			amount = leftover
 
 func consume(slot: InventorySlot, amount: int) -> void:
 	if slot:
@@ -159,7 +177,7 @@ func _input(event: InputEvent) -> void:
 				if event.is_action_pressed("use", true):
 					use_item()
 				elif event.is_action_pressed("drop_item"):
-					remove_item(hotbar_slot,1)
+					remove_item_in_slot(hotbar_slot,1)
 				elif event.is_action_pressed("gui_inventory"):
 					inventory.visible = true
 					hotbar.reparent(inventory.get_node("HBoxContainer/VBoxContainer"))
@@ -177,7 +195,7 @@ func _input(event: InputEvent) -> void:
 					print(self.position)
 			State.INVENTORY:
 				if event.is_action_pressed("drop_item"):
-					remove_item(get_slot_under_mouse(),1)
+					remove_item_in_slot(get_slot_under_mouse(),1)
 				elif event.is_action_pressed("use"):
 					consume(get_slot_under_mouse(),1)
 				elif event.is_action_pressed("gui_inventory"):
@@ -193,6 +211,6 @@ func inventory_to_list() -> Dictionary:
 			if !slot.get_child_count():
 				return list
 			var item:InventoryItem = slot.get_child(0)
-			if item:
+			if item and item.count > 0:
 				list[item.data] = item.count
 	return list

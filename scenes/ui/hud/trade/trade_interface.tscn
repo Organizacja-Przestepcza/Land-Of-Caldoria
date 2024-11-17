@@ -97,3 +97,8 @@ text = "Buy"
 [node name="BuyAllButton" type="Button" parent="TextureRect/VBoxContainer/HBoxContainer/BuyContainer"]
 layout_mode = 2
 text = "Buy All"
+
+[connection signal="pressed" from="TextureRect/VBoxContainer/HBoxContainer/SellContainer/SellButton" to="." method="_on_sell_button_pressed"]
+[connection signal="pressed" from="TextureRect/VBoxContainer/HBoxContainer/SellContainer/SellAllButton" to="." method="_on_sell_all_button_pressed"]
+[connection signal="pressed" from="TextureRect/VBoxContainer/HBoxContainer/BuyContainer/BuyButton" to="." method="_on_buy_button_pressed"]
+[connection signal="pressed" from="TextureRect/VBoxContainer/HBoxContainer/BuyContainer/BuyAllButton" to="." method="_on_buy_all_button_pressed"]

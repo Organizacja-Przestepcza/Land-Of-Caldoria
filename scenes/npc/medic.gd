@@ -9,5 +9,7 @@ func _ready() -> void:
 		ItemLoader.items["blueberry"] : 2,
 		ItemLoader.items["knife"] : 3
 	}
-
+	inventory = {
+		ItemLoader.name("bandage"): 2
+	}
 	
