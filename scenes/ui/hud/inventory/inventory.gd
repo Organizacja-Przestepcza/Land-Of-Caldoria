@@ -1,10 +1,13 @@
 extends Control
 
+@onready var hotbar: Control = $"../Hotbar/MarginContainer/Hotbar"
 @export var invSize: int = 24
 @export var slotSize: Vector2 = Vector2(64,64)
 
 @onready var main = $HBoxContainer/VBoxContainer/Main
 @onready var armor = $HBoxContainer/Armor
+
+@onready var hud: Hud = self.get_parent()
 
 
 
@@ -25,7 +28,15 @@ func _ready() -> void:
 	armor.add_child(armsSlot)
 	armor.add_child(legsSlot)
 	armor.add_child(feetSlot)
-	
+
+func open():
+	self.visible = true
+	hotbar.reparent(get_node("HBoxContainer/VBoxContainer"))
+	$HBoxContainer/VBoxContainer.move_child(hotbar, 0)
+
+func close():
+	self.visible = false
+	hotbar.reparent($"../Hotbar/MarginContainer")
 
 func _on_slot_clicked(event: InputEvent, slot) -> void:
 	if event is InputEventMouseButton and event.is_pressed() and event.button_index == MOUSE_BUTTON_LEFT:

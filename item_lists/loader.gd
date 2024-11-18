@@ -6,10 +6,14 @@ var lists_trade : Dictionary = {
 var crafting_recipes : Dictionary = {
 	
 }
-
+var build_recipes : Dictionary = {
+	
+}
 func _ready() -> void:
 	load_lists("res://item_lists/crafting")
 	load_lists("res://item_lists/trade")
+	load_lists("res://item_lists/building")
+
 
 func load_lists(path: String):
 	var files = DirAccess.get_files_at(path)

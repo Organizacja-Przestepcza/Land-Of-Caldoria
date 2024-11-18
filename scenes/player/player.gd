@@ -73,7 +73,7 @@ func attack():
 	var hitbox = ShapeCast2D.new()
 	hitbox.shape = RectangleShape2D.new()
 	hitbox.position = Vector2i(0,-16)
-	hitbox.max_results = 1
+	hitbox.max_results = 3
 	hitbox.collision_mask = 2+8
 	match facing:
 		Direction.Down:

@@ -61,7 +61,7 @@ script = ExtResource("1_ersw6")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(6, -10)
 sprite_frames = SubResource("SpriteFrames_bt3m1")
-animation = &"attacking"
+animation = &"moving_top"
 
 [node name="DetectionArea" type="Area2D" parent="."]
 collision_layer = 4
@@ -73,8 +73,8 @@ shape = SubResource("CircleShape2D_efjds")
 position = Vector2(0, -6.25)
 shape = SubResource("RectangleShape2D_oix7d")
 
-[connection signal="area_entered" from="DetectionArea" to="." method="_on_detection_area_area_entered"]
 [connection signal="area_entered" from="DetectionArea" to="." method="_on_area_2d_area_entered"]
+[connection signal="area_entered" from="DetectionArea" to="." method="_on_detection_area_area_entered"]
 [connection signal="area_exited" from="DetectionArea" to="." method="_on_detection_area_area_exited"]
 [connection signal="body_entered" from="DetectionArea" to="." method="_on_detection_area_body_entered"]
 [connection signal="body_exited" from="DetectionArea" to="." method="_on_detection_area_body_exited"]
