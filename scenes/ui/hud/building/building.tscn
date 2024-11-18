@@ -42,6 +42,9 @@ alignment = 1
 custom_minimum_size = Vector2(500, 250)
 layout_mode = 2
 size_flags_vertical = 3
+item_count = 2
+item_0/text = "Destroy"
+item_1/text = "Wall"
 
 [node name="ExitButton" type="Button" parent="."]
 layout_mode = 1
