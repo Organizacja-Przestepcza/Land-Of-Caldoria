@@ -13,11 +13,14 @@ class Ingredient:
 		item = itm
 		amount = amnt
 
-func open_crafting() -> void:
+func open() -> void:
 	self.visible = true
 	inventory = hud.inventory_to_list()
 	ingredients_list.clear()
 	update_recipe_list()
+	
+func close():
+	self.visible = false
 
 func update_recipe_list():
 	recipe_list.clear()
@@ -26,7 +29,7 @@ func update_recipe_list():
 		recipe_list.set_item_metadata(recipe_list.item_count-1,recipe)
 
 func _on_exit_button_pressed() -> void:
-	self.visible = false
+	close()
 
 func _on_recipe_list_item_selected(index: int) -> void:
 	update_ingredients_list(index)

@@ -1,14 +1,28 @@
 extends Control
+class_name BuildMenu
 
 @onready var hud: Hud = self.get_parent()
-@onready var inventory_list = $MarginContainer/CraftingContainer/InventoryContainer/InventoryList
-func open_building() -> void:
-	self.visible = true
-	var inventory: Dictionary = hud.inventory_to_list()
-	for item in inventory.keys():
-		inventory_list.add_item(item.name)
+@onready var build_list: ItemList = $MarginContainer/BuildingContainer/BuildList
+var selected_item: int
+var inventory: Dictionary
 
+func open() -> void:
+	self.visible = true
+	inventory = hud.inventory_to_list()
+	update_build_list()
+
+func close() -> void:
+	self.visible = false
+
+func update_build_list():
+	build_list.clear()
+	for recipe: BuildRecipe in ListLoader.build_recipes.values():
+		build_list.add_item(recipe.result)
+		build_list.set_item_metadata(build_list.item_count-1,recipe)
 
 func _on_exit_button_pressed() -> void:
-	self.visible = false
-	print("click")
+	close()
+
+
+func _on_build_list_item_selected(index: int) -> void:
+	selected_item = index

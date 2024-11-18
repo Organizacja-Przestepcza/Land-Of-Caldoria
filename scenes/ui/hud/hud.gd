@@ -4,6 +4,8 @@ extends CanvasLayer
 @onready var inventory = $Inventory
 @onready var hotbar = $Hotbar/MarginContainer/Hotbar
 @onready var main = $Inventory/HBoxContainer/VBoxContainer/Main
+@onready var pause_menu: PauseMenu = $"../PauseMenu"
+@onready var building_menu: BuildMenu = $BuildingMenu
 
 @onready var crafting: Crafting = $Crafting
 
@@ -15,7 +17,7 @@ var player: Player
 var hotbar_slot: InventorySlot
 @onready var containers: Array[GridContainer] = [hotbar, main]
 var frame: Theme = preload("res://themes/frame.tres")
-var state: State
+var state: State = State.PLAYING
 
 enum State {PLAYING, INVENTORY}
 
@@ -188,6 +190,9 @@ func pickup_loot_bag():
 		add_item(key,lootbag_in_range.items[key])
 	lootbag_in_range.queue_free()
 
+func open_build_menu():
+	pass
+
 func _input(event: InputEvent) -> void:
 	if event is InputEventKey:
 		match state:
@@ -198,13 +203,17 @@ func _input(event: InputEvent) -> void:
 					drop_item_in_slot(hotbar_slot,1)
 				elif event.is_action_pressed("interact"):
 					pickup_loot_bag()
+				elif event.is_action_pressed("build_menu"):
+					building_menu.open()
+					state = State.INVENTORY
 				elif event.is_action_pressed("gui_inventory"):
-					inventory.visible = true
-					hotbar.reparent(inventory.get_node("HBoxContainer/VBoxContainer"))
-					inventory.get_node("HBoxContainer/VBoxContainer").move_child(hotbar, 0)
+					inventory.open()
 					state = State.INVENTORY
 				elif event.is_action_pressed("crafting_menu"):
-					crafting.open_crafting()
+					crafting.open()
+					state = State.INVENTORY
+				elif event.is_action_pressed("ui_text_backspace"):
+					print(self.position)
 				elif event.pressed and not event.echo:
 					match event.physical_keycode:
 						KEY_1: select_hotbar_slot(0)
@@ -213,19 +222,24 @@ func _input(event: InputEvent) -> void:
 						KEY_4: select_hotbar_slot(3)
 						KEY_5: select_hotbar_slot(4)
 						KEY_6: select_hotbar_slot(5)
-				elif event.is_action_pressed("ui_text_backspace"):
-					print(self.position)
 			State.INVENTORY:
 				if event.is_action_pressed("drop_item"):
 					drop_item_in_slot(get_slot_under_mouse(),1)
 				elif event.is_action_pressed("use"):
 					consume(get_slot_under_mouse(),1)
-				elif event.is_action_pressed("gui_inventory"):
-					inventory.visible = false
-					hotbar.reparent(get_node("Hotbar/MarginContainer"))
-					state = State.PLAYING
+				elif event.is_action_pressed("crafting_menu"):
+					close_menus()
+				elif event.is_action_pressed("build_menu"):
+					close_menus()
+				elif event.is_action_pressed("gui_inventory") or event.is_action_pressed("ui_cancel"):
+					close_menus()
 
-	
+func close_menus():
+	inventory.close()
+	crafting.close()
+	building_menu.close()
+	state = State.PLAYING
+
 func inventory_to_list() -> Dictionary:
 	var list: Dictionary
 	for c in containers:

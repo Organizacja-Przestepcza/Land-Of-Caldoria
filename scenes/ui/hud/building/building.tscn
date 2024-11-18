@@ -1,16 +1,16 @@
 [gd_scene load_steps=3 format=3 uid="uid://3qegagme7w4c"]
 
-[ext_resource type="Script" path="res://scenes/ui/hud/crafting/crafting.gd" id="1_t1dj5"]
+[ext_resource type="Script" path="res://scenes/ui/hud/building/building.gd" id="1_veh8q"]
 [ext_resource type="Texture2D" uid="uid://dkmsxfnm2ad7s" path="res://assets/textures/ui/menu/bg_darkener.png" id="2_bq8tt"]
 
-[node name="Building" type="Control"]
+[node name="BuildingMenu" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_t1dj5")
+script = ExtResource("1_veh8q")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 1
@@ -38,41 +38,10 @@ layout_mode = 2
 theme_override_constants/separation = 50
 alignment = 1
 
-[node name="RecipeContainer" type="VBoxContainer" parent="MarginContainer/BuildingContainer"]
-layout_mode = 2
-theme_override_constants/separation = 15
-
-[node name="ButtonContainer" type="HBoxContainer" parent="MarginContainer/BuildingContainer/RecipeContainer"]
-layout_mode = 2
-theme_override_constants/separation = 15
-alignment = 2
-
-[node name="SortButton" type="Button" parent="MarginContainer/BuildingContainer/RecipeContainer/ButtonContainer"]
-layout_mode = 2
-text = "Sort"
-
-[node name="FilterButton" type="Button" parent="MarginContainer/BuildingContainer/RecipeContainer/ButtonContainer"]
-layout_mode = 2
-text = "Filter"
-
-[node name="RecipeList" type="ItemList" parent="MarginContainer/BuildingContainer/RecipeContainer"]
+[node name="BuildList" type="ItemList" parent="MarginContainer/BuildingContainer"]
 custom_minimum_size = Vector2(500, 250)
 layout_mode = 2
 size_flags_vertical = 3
-
-[node name="InventoryContainer" type="VBoxContainer" parent="MarginContainer/BuildingContainer"]
-layout_mode = 2
-theme_override_constants/separation = 15
-
-[node name="InventoryList" type="ItemList" parent="MarginContainer/BuildingContainer/InventoryContainer"]
-custom_minimum_size = Vector2(500, 250)
-layout_mode = 2
-size_flags_vertical = 3
-
-[node name="BuildButton" type="Button" parent="MarginContainer/BuildingContainer/InventoryContainer"]
-layout_mode = 2
-text = "Build
-"
 
 [node name="ExitButton" type="Button" parent="."]
 layout_mode = 1
@@ -86,4 +55,5 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 text = "x"
 
+[connection signal="item_selected" from="MarginContainer/BuildingContainer/BuildList" to="." method="_on_build_list_item_selected"]
 [connection signal="pressed" from="ExitButton" to="." method="_on_exit_button_pressed"]
