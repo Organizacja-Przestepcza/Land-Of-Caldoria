@@ -1,7 +1,7 @@
 extends Resource
 class_name SaveManager
 const SAVE_GAME_DIR = "user://save/"
-var hud: Hud
+#var hud: Hud
 
 func create_save_data() -> SaveData:
 	var s = SaveData.new()
@@ -11,6 +11,7 @@ func create_save_data() -> SaveData:
 	s.seed = WorldData.seed
 	s.size = WorldData.size
 	s.time = Time.get_datetime_string_from_system()
+	s.buildings = WorldData.player.get_parent().get_node("BuildLayer").tile_map_data
 	return s
 
 func save(name:String) -> String:

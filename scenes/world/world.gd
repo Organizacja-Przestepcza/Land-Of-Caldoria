@@ -1,4 +1,5 @@
 extends Node2D
+class_name World
 
 var h_noise: FastNoiseLite # height noise
 var o_noise: FastNoiseLite # objects noise
@@ -20,7 +21,6 @@ var mob_amount: int = 0
 var mob_types = {
 	"slime": "res://scenes/mob/slime.tscn",
 	"crab": "res://scenes/mob/crab.tscn",
-	"wolf": "res://scenes/mob/wolf.tscn",
 	"boar": "res://scenes/mob/boar.tscn",
 }
 
@@ -45,10 +45,12 @@ func _ready() -> void:
 	o_noise.frequency = 0.02
 	h_noise.frequency = 0.0075
 	generate_world()
+	$BuildLayer.tile_map_data = $Village/Buildings.tile_map_data
+	$Village/Buildings.clear()
 	if WorldData.load:
 		$Player/Hud.load_inventory_data()
 		$Player.global_position = WorldData.load.player_global_position
-
+		$BuildLayer.tile_map_data = WorldData.load.buildings
 	Engine.time_scale = 1
 	
 func generate_world() -> void:

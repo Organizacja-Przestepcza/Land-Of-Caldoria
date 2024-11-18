@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://begi2nd3mnpyg"]
+[gd_scene load_steps=23 format=3 uid="uid://bxat0e8jrp8jo"]
 
 [ext_resource type="Script" path="res://scenes/mob/boar.gd" id="1_xlvok"]
 [ext_resource type="Texture2D" uid="uid://c0mpgnoxuvess" path="res://assets/textures/mob/boar/MiniBoar.png" id="2_ukve7"]
@@ -91,7 +91,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"attack",
-"speed": 5.0
+"speed": 8.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -108,7 +108,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"dead",
-"speed": 5.0
+"speed": 8.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -125,7 +125,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"idle",
-"speed": 5.0
+"speed": 4.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -142,7 +142,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"walk",
-"speed": 5.0
+"speed": 8.0
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_efjds"]
@@ -158,8 +158,9 @@ script = ExtResource("1_xlvok")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(6, -10)
+scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_bt3m1")
-animation = &"walk"
+animation = &"idle"
 
 [node name="DetectionArea" type="Area2D" parent="."]
 collision_layer = 4

@@ -7,6 +7,7 @@ extends CanvasLayer
 
 @onready var crafting: Crafting = $Crafting
 
+var lootbag_in_range: LootBag
 
 @onready var build_manager: BuildManager = $"../../BuildManager"
 var inventory_keys = ["hotbar", "main", "armor"]
@@ -84,6 +85,17 @@ func remove_item_in_slot(slot: InventorySlot, amount: int) -> int: #returns the 
 			var leftover: int = item_at_index.remove(amount)
 			return leftover
 	return 0
+
+func drop_item_in_slot(slot: InventorySlot, amount: int):
+	if slot:
+		if slot.get_child_count() > 0:
+			var item: InventoryItem = slot.get_child(0)
+			var lootbag_tscn = load("res://scenes/object/loot_bag.tscn")
+			var lootbag: LootBag = lootbag_tscn.instantiate()
+			lootbag.position = player.position
+			lootbag.items[item.data] = amount
+			player.get_parent().add_child(lootbag)
+			item.remove(amount)
 
 func remove_item(itm: Item, amount: int):
 	while amount > 0:
@@ -171,6 +183,11 @@ func attack(tool: Tool):
 			if victim.take_damage(tool.damage) and victim.dropped_item:
 				add_item(victim.dropped_item, 1)
 
+func pickup_loot_bag():
+	for key in lootbag_in_range.items.keys():
+		add_item(key,lootbag_in_range.items[key])
+	lootbag_in_range.queue_free()
+
 func _input(event: InputEvent) -> void:
 	if event is InputEventKey:
 		match state:
@@ -178,7 +195,9 @@ func _input(event: InputEvent) -> void:
 				if event.is_action_pressed("use", true):
 					use_item()
 				elif event.is_action_pressed("drop_item"):
-					remove_item_in_slot(hotbar_slot,1)
+					drop_item_in_slot(hotbar_slot,1)
+				elif event.is_action_pressed("interact"):
+					pickup_loot_bag()
 				elif event.is_action_pressed("gui_inventory"):
 					inventory.visible = true
 					hotbar.reparent(inventory.get_node("HBoxContainer/VBoxContainer"))
@@ -198,7 +217,7 @@ func _input(event: InputEvent) -> void:
 					print(self.position)
 			State.INVENTORY:
 				if event.is_action_pressed("drop_item"):
-					remove_item_in_slot(get_slot_under_mouse(),1)
+					drop_item_in_slot(get_slot_under_mouse(),1)
 				elif event.is_action_pressed("use"):
 					consume(get_slot_under_mouse(),1)
 				elif event.is_action_pressed("gui_inventory"):

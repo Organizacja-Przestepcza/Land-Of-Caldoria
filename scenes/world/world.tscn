@@ -20,27 +20,29 @@ scale = Vector2(0.5, 0.5)
 script = ExtResource("1_0fdg7")
 
 [node name="WaterLayer" type="TileMapLayer" parent="."]
-z_index = -2
+z_index = -3
 tile_set = ExtResource("2_kr456")
 
 [node name="SandLayer" type="TileMapLayer" parent="."]
-z_index = -1
+z_index = -2
 tile_set = ExtResource("2_kr456")
 
 [node name="GroundLayer" type="TileMapLayer" parent="."]
-z_index = -1
+z_index = -2
 tile_set = ExtResource("2_kr456")
 
 [node name="GrassLayer" type="TileMapLayer" parent="."]
-z_index = -1
+z_index = -2
 tile_set = ExtResource("2_kr456")
 
 [node name="BuildLayer" type="TileMapLayer" parent="."]
 y_sort_enabled = true
 tile_set = ExtResource("2_kr456")
 
-[node name="Node2D" parent="." instance=ExtResource("13_8l646")]
+[node name="Village" parent="." instance=ExtResource("13_8l646")]
 z_index = -1
+y_sort_enabled = true
+position = Vector2(-6, -4)
 
 [node name="BuildManager" type="Node2D" parent="."]
 visible = false

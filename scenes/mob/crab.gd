@@ -2,8 +2,8 @@ extends Enemy
 
 var chase_player = false
 func _ready() -> void:
-	health = 20
-	speed = 30
+	health = 10
+	speed = 40
 	strength = 5
 	player = get_parent().get_node("%Player")
 
@@ -22,3 +22,4 @@ func _on_detection_area_body_exited(body: Node2D) -> void:
 func attack() -> void:
 	super()
 	$AnimatedSprite2D.play("attacking")
+	$AnimatedSprite2D.animation_looped.connect(func (): $AnimatedSprite2D.play("moving_top"))

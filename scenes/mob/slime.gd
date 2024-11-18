@@ -10,6 +10,7 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	if chase_player:
 		move_towards_player(player, delta)
+		$AnimatedSprite2D.flip_h= velocity.x < 0
 
 func _on_detection_area_body_entered(body: Node2D) -> void:
 	chase_player = true
