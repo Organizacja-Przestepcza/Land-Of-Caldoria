@@ -186,9 +186,10 @@ func attack(tool: Tool):
 				add_item(victim.dropped_item, 1)
 
 func pickup_loot_bag():
-	for key in lootbag_in_range.items.keys():
-		add_item(key,lootbag_in_range.items[key])
-	lootbag_in_range.queue_free()
+	if lootbag_in_range:
+		for key in lootbag_in_range.items.keys():
+			add_item(key,lootbag_in_range.items[key])
+		lootbag_in_range.queue_free()
 
 func open_build_menu():
 	pass

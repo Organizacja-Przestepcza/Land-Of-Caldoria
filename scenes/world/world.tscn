@@ -6,7 +6,7 @@
 [ext_resource type="Script" path="res://scenes/build_manager.gd" id="3_e0qft"]
 [ext_resource type="PackedScene" uid="uid://d26rkh5gvtfkh" path="res://scenes/ui/hud/hud.tscn" id="4_voloi"]
 [ext_resource type="PackedScene" uid="uid://ddbr53ohn683s" path="res://scenes/ui/menu/pause_menu.tscn" id="5_l5u8x"]
-[ext_resource type="PackedScene" uid="uid://cyle35g3r7yjd" path="res://scenes/ui/hud/hunger/hunger_bar.tscn" id="6_sptr6"]
+[ext_resource type="PackedScene" path="res://scenes/ui/hud/hunger/hunger_bar.tscn" id="6_sptr6"]
 [ext_resource type="PackedScene" uid="uid://cs0opcidf6hx4" path="res://scenes/ui/hud/trade/trade_interface.tscn" id="7_3v87f"]
 [ext_resource type="PackedScene" uid="uid://52kcruy75hex" path="res://scenes/ui/hud/health/health_bar.tscn" id="7_cav5h"]
 [ext_resource type="PackedScene" uid="uid://npgme5adxp70" path="res://scenes/npc/blacksmith.tscn" id="8_vukrm"]
