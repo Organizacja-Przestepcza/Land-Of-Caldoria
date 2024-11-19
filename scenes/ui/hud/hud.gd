@@ -10,6 +10,7 @@ extends CanvasLayer
 @onready var crafting: Crafting = $Crafting
 
 var lootbag_in_range: LootBag
+var nearest_interactable: Node2D
 
 @onready var build_manager: BuildManager = $"../../BuildManager"
 var inventory_keys = ["hotbar", "main", "armor"]
@@ -206,13 +207,10 @@ func _input(event: InputEvent) -> void:
 					pickup_loot_bag()
 				elif event.is_action_pressed("build_menu"):
 					building_menu.open()
-					state = State.INVENTORY
 				elif event.is_action_pressed("gui_inventory"):
 					inventory.open()
-					state = State.INVENTORY
 				elif event.is_action_pressed("crafting_menu"):
 					crafting.open()
-					state = State.INVENTORY
 				elif event.is_action_pressed("ui_text_backspace"):
 					print(self.position)
 				elif event.pressed and not event.echo:

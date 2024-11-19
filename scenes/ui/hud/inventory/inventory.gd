@@ -31,12 +31,14 @@ func _ready() -> void:
 
 func open():
 	self.visible = true
+	hud.state = hud.State.INVENTORY
 	hotbar.reparent(get_node("HBoxContainer/VBoxContainer"))
 	$HBoxContainer/VBoxContainer.move_child(hotbar, 0)
 
 func close():
 	self.visible = false
 	hotbar.reparent($"../Hotbar/MarginContainer")
+	hud.state = hud.State.PLAYING
 
 func _on_slot_clicked(event: InputEvent, slot) -> void:
 	if event is InputEventMouseButton and event.is_pressed() and event.button_index == MOUSE_BUTTON_LEFT:

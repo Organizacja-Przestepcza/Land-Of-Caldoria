@@ -8,11 +8,13 @@ var inventory: Dictionary
 
 func open() -> void:
 	self.visible = true
+	hud.state = hud.State.INVENTORY
 	inventory = hud.inventory_to_list()
 	#update_build_list()
 
 func close() -> void:
 	self.visible = false
+	hud.state = hud.State.PLAYING
 
 func update_build_list():
 	build_list.clear()

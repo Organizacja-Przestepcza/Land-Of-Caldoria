@@ -15,11 +15,13 @@ class Ingredient:
 
 func open() -> void:
 	self.visible = true
+	hud.state = hud.State.INVENTORY
 	inventory = hud.inventory_to_list()
 	ingredients_list.clear()
 	update_recipe_list()
 	
 func close():
+	hud.state = hud.State.PLAYING
 	self.visible = false
 
 func update_recipe_list():
@@ -46,7 +48,7 @@ func _on_craft_button_pressed() -> void:
 	if item_count > 0:
 		for i in range(item_count):
 			var ingredient: Ingredient = ingredients_list.get_item_metadata(i)
-			if ingredient.item not in inventory.keys() or inventory[ingredient.item] != ingredient.amount:
+			if ingredient.item not in inventory.keys() or inventory[ingredient.item] < ingredient.amount:
 				print("not crafting")
 				return
 		for i in range(item_count):
@@ -55,3 +57,4 @@ func _on_craft_button_pressed() -> void:
 		var t = recipe_list.get_selected_items()
 		var recipe = recipe_list.get_item_metadata(t[0])
 		hud.add_item(recipe.result,recipe.amount)
+		inventory = hud.inventory_to_list()
