@@ -36,5 +36,7 @@ text = "Stats"
 horizontal_alignment = 1
 
 [node name="HealthBar" parent="VBoxContainer" instance=ExtResource("2_w83kx")]
+layout_mode = 2
 
 [node name="Hunger" parent="VBoxContainer" instance=ExtResource("3_r1i5f")]
+layout_mode = 2

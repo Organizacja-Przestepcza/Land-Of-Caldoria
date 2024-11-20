@@ -53,6 +53,7 @@ script = ExtResource("3_e0qft")
 
 [node name="Player" parent="." instance=ExtResource("3_7odcl")]
 unique_name_in_owner = true
+speed = 40
 
 [node name="Hud" parent="Player" instance=ExtResource("4_voloi")]
 unique_name_in_owner = true
