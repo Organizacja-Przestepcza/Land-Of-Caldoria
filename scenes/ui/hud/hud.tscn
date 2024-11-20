@@ -16,3 +16,6 @@ layout_mode = 2
 
 [node name="HungerBar" parent="VBoxContainer" instance=ExtResource("4_vnnwy")]
 layout_mode = 2
+
+[connection signal="death" from="VBoxContainer/HealthBar" to="." method="_on_death"]
+[connection signal="death" from="VBoxContainer/HungerBar" to="." method="_on_death"]

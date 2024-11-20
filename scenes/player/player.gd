@@ -119,9 +119,6 @@ func get_victim():
 	if hitbox.is_colliding():
 		return hitbox.get_collider(0)
 
-func _on_death(cause: String) -> void:
-	get_tree().change_scene_to_packed(load("res://scenes/ui/screen_of_death.tscn"))
-
 func use_item() -> void:
 	var held_item = hotbar.get_held_item()
 	if held_item is Consumable:
