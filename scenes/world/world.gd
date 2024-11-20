@@ -50,7 +50,7 @@ func _ready() -> void:
 		$Player.global_position = WorldData.load.player_global_position
 		$BuildLayer.tile_map_data = WorldData.load.buildings
 	Engine.time_scale = 1
-	
+
 func generate_world() -> void:
 	var map_size: int = WorldData.size
 	var map_range: Array = range(-map_size/2, map_size/2)
@@ -81,14 +81,14 @@ func generate_world() -> void:
 	sand_layer.set_cells_terrain_connect(tiles_sand, 0, terrain_sand)
 	ground_layer.set_cells_terrain_connect(tiles_ground, 0, terrain_ground)
 	grass_layer.set_cells_terrain_connect(tiles_grass, 0, terrain_grass)
-	
+
 func generate_object(obj_name: String, pos: Vector2i) -> void:
 	var f = files[obj_name] # takes the file array for given object
 	var rand_obj = f[randi_range(0,f.size()-1)]
 	var obj = load(dirs[obj_name] + rand_obj).instantiate()
 	obj.global_position = pos
 	self.add_child(obj)
-	
+
 func chance_spawn_mob(pos: Vector2) -> void:
 	if mob_amount <= 4 and randi_range(0, 100) <= 5:
 		var mob_name = choose_random_mob()
@@ -99,7 +99,7 @@ func chance_spawn_mob(pos: Vector2) -> void:
 				mob.global_position = pos
 				add_child(mob)
 				mob_amount += 1
-				
+
 func choose_random_mob() -> String:
 	var mob_list = mob_types.keys()
 	var random_index = randi() % mob_list.size()
