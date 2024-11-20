@@ -2,8 +2,18 @@ class_name Player
 extends CharacterBody2D
 
 @export var speed = 40
+
+@onready var interface: CanvasLayer = $Interface
+@onready var hud: Hud = $Hud
+@onready var hotbar: Hotbar = $Interface/Hotbar
+@onready var build_manager: BuildManager = $"../BuildManager"
+@onready var inventory: Inventory = $Interface/Inventory
+@onready var health_bar: Health = hud.get_node("VBoxContainer/HealthBar")
+@onready var hunger_bar: Hunger = hud.get_node("VBoxContainer/HungerBar")
+
+
 var facing: Direction = Direction.Down
-@onready var hud = $Hud
+
 var health = 100
 var hunger = 100
 var attack_animation_scene = preload("res://scenes/player/attack_animation.tscn")
@@ -11,6 +21,8 @@ var attack_animation_scene = preload("res://scenes/player/attack_animation.tscn"
 var reach = 30
 var can_attack: bool = true
 var attack_cooldown: float = 0.5
+
+var nearest_interactable
 
 enum Direction {Down, Up, Right, Left}
 
@@ -52,18 +64,15 @@ func _physics_process(delta):
 
 func hit(value: int):
 	print("hit received, damage: ", value)
-	var healthbar: Health = hud.get_node("HealthBar")
-	healthbar.modify_health(-value)
+	health_bar.modify_health(-value)
 
 func effect_from_item(item: Consumable):
 	if item.hunger_value != 0:
-		var hungerbar: Hunger = hud.get_node("HungerBar")
-		hungerbar.modify_hunger(item.hunger_value)
+		hunger_bar.modify_hunger(item.hunger_value)
 	if item.health_value != 0:
-		var healthbar: Health = hud.get_node("HealthBar")
-		healthbar.modify_health(item.health_value)
+		health_bar.modify_health(item.health_value)
 
-func attack():
+func get_victim(): 
 	if !can_attack:
 		return
 	can_attack=false
@@ -113,17 +122,34 @@ func attack():
 func _on_death(cause: String) -> void:
 	get_tree().change_scene_to_packed(load("res://scenes/ui/screen_of_death.tscn"))
 
-func show_trade(npc: NPC) -> void:
-	get_tree().paused = true
-	$Hud/TradeInterface.visible = true
-	$Hud/HealthBar.visible = false
-	$Hud/HungerBar.visible = false
-	$Hud/TradeInterface.update_lists(npc)
-	await $Hud/TradeInterface/TextureRect/Button.pressed
-	hide_trade()
+func use_item() -> void:
+	var held_item = hotbar.get_held_item()
+	if held_item is Consumable:
+		consume(held_item,1)
+	elif held_item == ItemLoader.name("hammer"):
+		build_manager.build()
+	elif held_item is Tool:
+		attack(held_item)
 
-func hide_trade() -> void:
-	$Hud/TradeInterface.visible = false
-	$Hud/HealthBar.visible = true
-	$Hud/HungerBar.visible = true
-	get_tree().paused = false
+func interact():
+	if nearest_interactable is LootBag:
+		for key in nearest_interactable.items.keys():
+			inventory.add_item(key,nearest_interactable.items[key])
+		nearest_interactable.queue_free()
+	elif nearest_interactable is NPC:
+		interface.get_node("Trading").open()
+
+func attack(tool: Tool):
+	var victim = await get_victim()
+	if victim is Mob:
+		if victim.take_damage(tool.damage) and victim.dropped_item:
+			inventory.add_item(victim.dropped_item, 1)
+	if victim is Destroyable:
+		if victim.required_tool == hotbar.get_held_item() or victim.required_tool == null:
+			if victim.take_damage(tool.damage) and victim.dropped_item:
+				inventory.add_item(victim.dropped_item, 1)
+
+func consume(item: Item, amount: int) -> void:
+	if item is Consumable:
+		effect_from_item(item)
+		item.remove(amount)

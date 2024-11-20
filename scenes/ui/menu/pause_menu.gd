@@ -1,6 +1,8 @@
 extends CanvasLayer
 class_name PauseMenu
-@onready var hud: Hud = $"../Hud"
+@onready var game: Node = $"../Game"
+
+
 
 
 func set_initial_menu_state() -> void:
@@ -24,7 +26,7 @@ func _ready() -> void:
 
 
 func _process(delta: float) -> void:
-	if hud.state == hud.State.PLAYING and Input.is_action_just_pressed("ui_cancel"):
+	if game.state == game.State.PLAYING and Input.is_action_just_pressed("ui_cancel"):
 		toggle_menu()
 
 

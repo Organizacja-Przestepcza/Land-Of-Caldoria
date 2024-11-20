@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://de7ljcthumfav"]
 
-[ext_resource type="Script" path="res://scenes/ui/hud/crafting/crafting.gd" id="1_1qgxw"]
+[ext_resource type="Script" path="res://scenes/systems/crafting/crafting.gd" id="1_1qgxw"]
 [ext_resource type="Texture2D" uid="uid://dkmsxfnm2ad7s" path="res://assets/textures/ui/menu/bg_darkener.png" id="2_skcoa"]
 
 [node name="Crafting" type="Control"]
