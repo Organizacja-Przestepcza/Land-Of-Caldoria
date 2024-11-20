@@ -2,9 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://byk1r33uwp30o" path="res://assets/textures/object/bag.png" id="1_84qmv"]
 [ext_resource type="Script" path="res://scenes/object/loot_bag.gd" id="1_iqknj"]
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_2jp6k"]
-radius = 26.0768
+[ext_resource type="PackedScene" path="res://scenes/interactable_area.tscn" id="3_d5g74"]
 
 [node name="LootBag" type="Node2D"]
 script = ExtResource("1_iqknj")
@@ -12,8 +10,5 @@ script = ExtResource("1_iqknj")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_84qmv")
 
-[node name="DetectionArea" type="Area2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea"]
-position = Vector2(1, 4)
-shape = SubResource("CircleShape2D_2jp6k")
+[node name="InteractableArea" parent="." instance=ExtResource("3_d5g74")]
+position = Vector2(0, -14)

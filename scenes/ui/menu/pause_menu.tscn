@@ -70,15 +70,12 @@ theme_override_font_sizes/font_size = 48
 text = "Quit"
 
 [node name="OptionMenu" parent="." instance=ExtResource("3_awxyc")]
-unique_name_in_owner = true
 visible = false
 
 [node name="SaveMenu" parent="." instance=ExtResource("4_yadad")]
-unique_name_in_owner = true
 visible = false
 
 [node name="LoadMenu" parent="." instance=ExtResource("5_8jqla")]
-unique_name_in_owner = true
 visible = false
 
 [connection signal="pressed" from="TextureRect/VBoxContainer/ContinueButton" to="." method="toggle_menu"]

@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://dmasf4uhgm1x8"]
 
-[ext_resource type="Script" path="res://scenes/ui/hud/furnace/furnace.gd" id="1_c8uos"]
+[ext_resource type="Script" path="res://scenes/systems/furnace/furnace.gd" id="1_c8uos"]
 [ext_resource type="Texture2D" uid="uid://dkmsxfnm2ad7s" path="res://assets/textures/ui/menu/bg_darkener.png" id="1_nqw3x"]
 
 [node name="Furnace" type="Control"]

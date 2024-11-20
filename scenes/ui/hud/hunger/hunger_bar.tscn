@@ -3,10 +3,13 @@
 [ext_resource type="Texture2D" uid="uid://c070hiwvmn20" path="res://assets/textures/ui/hud/hunger/hunger.png" id="1_be2pv"]
 [ext_resource type="Script" path="res://scenes/ui/hud/hunger/hunger_bar.gd" id="1_f0u64"]
 
-[node name="Hunger" type="CanvasLayer"]
+[node name="Hunger" type="Control"]
+layout_mode = 3
+anchors_preset = 0
 script = ExtResource("1_f0u64")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
 anchors_preset = -1
 anchor_right = 0.142361
 anchor_bottom = 0.0493827

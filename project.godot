@@ -20,6 +20,7 @@ config/icon="res://icon.svg"
 WorldData="*res://scenes/world/world_data.gd"
 ItemLoader="*res://items/loader.gd"
 ListLoader="*res://item_lists/loader.gd"
+BetterTerrain="*res://addons/better-terrain/BetterTerrain.gd"
 
 [display]
 
@@ -30,6 +31,10 @@ window/stretch/aspect="expand"
 
 project/assembly_name="Land Of Caldoria"
 
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/better-terrain/plugin.cfg", "res://addons/gaea/plugin.cfg")
+
 [file_customization]
 
 folder_colors={
@@ -37,6 +42,7 @@ folder_colors={
 "res://item_lists/": "teal",
 "res://items/": "green",
 "res://scenes/player/": "pink",
+"res://scenes/systems/": "blue",
 "res://scenes/ui/hud/": "pink",
 "res://themes/": "gray",
 "res://tilesets/": "gray"

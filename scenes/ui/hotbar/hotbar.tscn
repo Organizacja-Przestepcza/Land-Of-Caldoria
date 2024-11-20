@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://b0bmpokyxvpu8"]
 
-[ext_resource type="Script" path="res://scenes/ui/hud/hotbar/hotbar.gd" id="1_xsdbp"]
+[ext_resource type="Script" path="res://scenes/ui/hotbar/hotbar.gd" id="1_xsdbp"]
 
 [node name="Hotbar" type="Control"]
 custom_minimum_size = Vector2(256, 74)

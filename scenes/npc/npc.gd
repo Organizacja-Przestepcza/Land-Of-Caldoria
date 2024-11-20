@@ -6,8 +6,4 @@ var health : int
 var accepted_items: Dictionary
 @onready var detection_area:Area2D = get_node("DetectionArea")
 func _ready() -> void:
-	var err = 	detection_area.body_entered.connect(on_body_entered)
-	print(err)
-func on_body_entered(body) -> void:
-	if body is Player:
-		body.show_trade(self)
+	add_child(load("res://scenes/interactable_area.tscn").instantiate())
