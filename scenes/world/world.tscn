@@ -17,7 +17,7 @@
 [ext_resource type="PackedScene" uid="uid://b0bmpokyxvpu8" path="res://scenes/ui/hotbar/hotbar.tscn" id="14_jyvf2"]
 [ext_resource type="Script" path="res://scenes/player/input.gd" id="15_4m4gw"]
 
-[node name="World" type="Node2D"]
+[node name="World2" type="Node2D"]
 y_sort_enabled = true
 scale = Vector2(0.5, 0.5)
 script = ExtResource("1_0fdg7")

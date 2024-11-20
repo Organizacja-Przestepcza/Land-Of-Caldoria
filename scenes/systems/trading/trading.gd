@@ -2,7 +2,7 @@ extends Control
 class_name Trading
 @onready var inventory: Inventory = $"../Inventory"
 
-var player: Player
+@onready var player: Player = %Player
 
 @onready var buy_list: ItemList = $TextureRect/VBoxContainer/HBoxContainer/BuyContainer/BuyList
 @onready var sell_list: ItemList = $TextureRect/VBoxContainer/HBoxContainer/SellContainer/SellList
