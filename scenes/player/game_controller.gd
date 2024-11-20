@@ -23,13 +23,10 @@ func _input(event: InputEvent) -> void:
 					player.interact()
 				elif event.is_action_pressed("build_menu"):
 					building.open()
-					state = State.INVENTORY
 				elif event.is_action_pressed("gui_inventory"):
 					inventory.open()
-					state = State.INVENTORY
 				elif event.is_action_pressed("crafting_menu"):
 					crafting.open()
-					state = State.INVENTORY
 				elif event.is_action_pressed("ui_text_backspace"):
 					print(self.position)
 				elif event.pressed and not event.echo:
@@ -42,7 +39,7 @@ func _input(event: InputEvent) -> void:
 						KEY_6: hotbar.select_slot(5)
 			State.INVENTORY:
 				if event.is_action_pressed("drop_item"):
-					inventory.drop_item_in_slot(inventory.get_slot_under_mouse(),1)
+					inventory.drop_item_in_slot(get_slot_under_mouse(),1)
 				elif event.is_action_pressed("use"):
 					var slot = inventory.get_slot_under_mouse()
 					if slot and slot.get_child_count() > 0:
