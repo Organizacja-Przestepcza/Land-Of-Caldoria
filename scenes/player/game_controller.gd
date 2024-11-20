@@ -1,4 +1,6 @@
 extends Node
+class_name Game
+
 var state: State = State.PLAYING
 @onready var trading: Trading = $"../Interface/Trading"
 @onready var building: BuildMenu = $"../Interface/Building"

@@ -17,13 +17,16 @@ class ItemInList:
 
 func open() -> void:
 	if player.nearest_interactable is NPC:
+		%Game.state = Game.State.INVENTORY
 		get_tree().paused = true
 		self.visible = true
 		update_lists(player.nearest_interactable)
 		
 func close() -> void:
+	%Game.state = Game.State.PLAYING
 	get_tree().paused = false
 	self.visible = false
+	
 func update_lists(npc:NPC) -> void:
 	curr_npc = npc
 	update_buy_list()

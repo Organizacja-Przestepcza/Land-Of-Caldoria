@@ -11,3 +11,4 @@ script = ExtResource("1_iqknj")
 texture = ExtResource("1_84qmv")
 
 [node name="InteractableArea" parent="." instance=ExtResource("3_d5g74")]
+position = Vector2(0, -14)

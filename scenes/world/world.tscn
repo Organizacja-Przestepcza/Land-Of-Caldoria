@@ -15,7 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://d3nf6i6pjjd5n" path="res://scenes/village.tscn" id="13_8l646"]
 [ext_resource type="PackedScene" uid="uid://de7ljcthumfav" path="res://scenes/systems/crafting/crafting.tscn" id="13_dbry5"]
 [ext_resource type="PackedScene" uid="uid://b0bmpokyxvpu8" path="res://scenes/ui/hotbar/hotbar.tscn" id="14_jyvf2"]
-[ext_resource type="Script" path="res://scenes/player/input.gd" id="15_4m4gw"]
+[ext_resource type="Script" path="res://scenes/player/game_controller.gd" id="15_4m4gw"]
 
 [node name="World2" type="Node2D"]
 y_sort_enabled = true
@@ -78,6 +78,8 @@ visible = false
 [node name="Hotbar" parent="Player/Interface" instance=ExtResource("14_jyvf2")]
 
 [node name="Game" type="Node" parent="Player"]
+unique_name_in_owner = true
+process_mode = 3
 script = ExtResource("15_4m4gw")
 
 [node name="Blacksmith" parent="." instance=ExtResource("8_vukrm")]
