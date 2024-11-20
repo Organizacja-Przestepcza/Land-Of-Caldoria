@@ -1,20 +1,11 @@
-extends Control
+extends Interface
 class_name BuildMenu
 
 @onready var build_list: ItemList = $MarginContainer/BuildingContainer/BuildList
 @onready var inventory: Inventory = $"../Inventory"
 var selected_item: int = 0
 
-
 var inventory_list
-
-func open() -> void:
-	self.visible = true
-	inventory_list = inventory.to_list()
-	#update_build_list()
-
-func close() -> void:
-	self.visible = false
 
 func update_build_list():
 	build_list.clear()

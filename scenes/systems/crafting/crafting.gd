@@ -1,4 +1,4 @@
-extends Control
+extends Interface
 class_name Crafting
 @onready var inventory: Inventory = $"../Inventory"
 
@@ -14,13 +14,8 @@ class Ingredient:
 		amount = amnt
 
 func open() -> void:
-	self.visible = true
-	inventory_list = inventory.to_list()
-	ingredients_list.clear()
+	super()
 	update_recipe_list()
-	
-func close():
-	self.visible = false
 
 func update_recipe_list():
 	recipe_list.clear()

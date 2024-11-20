@@ -50,8 +50,11 @@ func _input(event: InputEvent) -> void:
 					close_menus()
 				elif event.is_action_pressed("build_menu"):
 					close_menus()
-				elif event.is_action_pressed("gui_inventory") or event.is_action_pressed("ui_cancel"):
+				elif event.is_action_pressed("gui_inventory"):
 					close_menus()
+				elif event.is_action_pressed("ui_cancel"):
+					close_menus()
+					%PauseMenu.toggle()
 
 func get_slot_under_mouse() -> InventorySlot:
 	var mouse_pos = get_viewport().get_mouse_position()
@@ -65,4 +68,4 @@ func close_menus():
 	inventory.close()
 	crafting.close()
 	building.close()
-	state = State.PLAYING
+	trading.close()

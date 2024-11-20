@@ -1,10 +1,9 @@
 extends Control
 class_name Inventory
-@onready var hotbar: Control = get_parent().get_node("Hotbar/MarginContainer/Hotbar")
 @export var invSize: int = 24
 @export var slotSize: Vector2 = Vector2(64,64)
-
 @onready var player: Player = %Player
+@onready var hotbar: GridContainer = %Hotbar/MarginContainer/Hotbar
 @onready var main = $HBoxContainer/VBoxContainer/Main
 @onready var armor = $HBoxContainer/Armor
 @onready var containers: Array[GridContainer] = [hotbar, main]
@@ -42,10 +41,11 @@ func open():
 
 func close():
 	self.visible = false
-	hotbar.reparent($"../Hotbar/MarginContainer")
+	hotbar.reparent(%Hotbar/MarginContainer)
 
 func find_available_slot(itm: Item) -> InventorySlot:
 	for container in containers:
+		print(container)
 		for slot in container.get_children():
 			if slot.get_child_count() == 0:
 				return slot

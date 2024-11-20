@@ -17,7 +17,7 @@
 [ext_resource type="PackedScene" uid="uid://b0bmpokyxvpu8" path="res://scenes/ui/hotbar/hotbar.tscn" id="14_jyvf2"]
 [ext_resource type="Script" path="res://scenes/player/game_controller.gd" id="15_4m4gw"]
 
-[node name="World2" type="Node2D"]
+[node name="World" type="Node2D"]
 y_sort_enabled = true
 scale = Vector2(0.5, 0.5)
 script = ExtResource("1_0fdg7")
@@ -55,8 +55,16 @@ script = ExtResource("3_e0qft")
 unique_name_in_owner = true
 
 [node name="Hud" parent="Player" instance=ExtResource("4_voloi")]
+unique_name_in_owner = true
+
+[node name="Hotbar" parent="Player/Hud" instance=ExtResource("14_jyvf2")]
+unique_name_in_owner = true
+offset_left = -0.000152588
+offset_right = 0.00012207
+offset_bottom = -0.000305176
 
 [node name="PauseMenu" parent="Player" instance=ExtResource("5_l5u8x")]
+unique_name_in_owner = true
 process_mode = 3
 scale = Vector2(1, 1)
 transform = Transform2D(1, 0, 0, 1, 0, 0)
@@ -74,8 +82,6 @@ visible = false
 
 [node name="Crafting" parent="Player/Interface" instance=ExtResource("13_dbry5")]
 visible = false
-
-[node name="Hotbar" parent="Player/Interface" instance=ExtResource("14_jyvf2")]
 
 [node name="Game" type="Node" parent="Player"]
 unique_name_in_owner = true
