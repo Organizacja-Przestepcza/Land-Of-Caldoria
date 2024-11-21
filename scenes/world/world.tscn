@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://dsn7lp3w3rtus"]
+[gd_scene load_steps=17 format=3 uid="uid://dsn7lp3w3rtus"]
 
 [ext_resource type="Script" path="res://scenes/world/world.gd" id="1_0fdg7"]
 [ext_resource type="TileSet" uid="uid://d0pha3g0yk4g8" path="res://tilesets/main.tres" id="2_kr456"]
@@ -6,14 +6,16 @@
 [ext_resource type="Script" path="res://scenes/build_manager.gd" id="3_e0qft"]
 [ext_resource type="PackedScene" uid="uid://d26rkh5gvtfkh" path="res://scenes/ui/hud/hud.tscn" id="4_voloi"]
 [ext_resource type="PackedScene" uid="uid://ddbr53ohn683s" path="res://scenes/ui/menu/pause_menu.tscn" id="5_l5u8x"]
-[ext_resource type="PackedScene" uid="uid://cyle35g3r7yjd" path="res://scenes/ui/hud/hunger/hunger_bar.tscn" id="6_sptr6"]
-[ext_resource type="PackedScene" uid="uid://cs0opcidf6hx4" path="res://scenes/ui/hud/trade/trade_interface.tscn" id="7_3v87f"]
-[ext_resource type="PackedScene" uid="uid://52kcruy75hex" path="res://scenes/ui/hud/health/health_bar.tscn" id="7_cav5h"]
+[ext_resource type="PackedScene" uid="uid://cs0opcidf6hx4" path="res://scenes/systems/trading/trading.tscn" id="7_3v87f"]
 [ext_resource type="PackedScene" uid="uid://npgme5adxp70" path="res://scenes/npc/blacksmith.tscn" id="8_vukrm"]
 [ext_resource type="PackedScene" uid="uid://c81rwddnrgmnu" path="res://scenes/npc/lumberjack.tscn" id="9_pg82i"]
-[ext_resource type="PackedScene" uid="uid://3qegagme7w4c" path="res://scenes/ui/hud/building/building.tscn" id="10_ajmgv"]
+[ext_resource type="PackedScene" uid="uid://c83lveoubd7vh" path="res://scenes/ui/inventory/inventory.tscn" id="10_0o5oa"]
+[ext_resource type="PackedScene" uid="uid://3qegagme7w4c" path="res://scenes/systems/building/building.tscn" id="10_ajmgv"]
 [ext_resource type="PackedScene" uid="uid://dpk2ucm8f0jch" path="res://scenes/npc/medic.tscn" id="10_qvl3m"]
 [ext_resource type="PackedScene" uid="uid://d3nf6i6pjjd5n" path="res://scenes/village.tscn" id="13_8l646"]
+[ext_resource type="PackedScene" uid="uid://de7ljcthumfav" path="res://scenes/systems/crafting/crafting.tscn" id="13_dbry5"]
+[ext_resource type="PackedScene" uid="uid://b0bmpokyxvpu8" path="res://scenes/ui/hotbar/hotbar.tscn" id="14_jyvf2"]
+[ext_resource type="Script" path="res://scenes/player/game_controller.gd" id="15_4m4gw"]
 
 [node name="World" type="Node2D"]
 y_sort_enabled = true
@@ -36,15 +38,14 @@ tile_set = ExtResource("2_kr456")
 z_index = -2
 tile_set = ExtResource("2_kr456")
 
-[node name="TileMapLayer" type="TileMapLayer" parent="."]
-
 [node name="BuildLayer" type="TileMapLayer" parent="."]
 y_sort_enabled = true
 tile_set = ExtResource("2_kr456")
 
 [node name="Village" parent="." instance=ExtResource("13_8l646")]
 z_index = -1
-position = Vector2(-2, -8)
+y_sort_enabled = true
+position = Vector2(-6, -4)
 
 [node name="BuildManager" type="Node2D" parent="."]
 visible = false
@@ -54,21 +55,38 @@ script = ExtResource("3_e0qft")
 unique_name_in_owner = true
 
 [node name="Hud" parent="Player" instance=ExtResource("4_voloi")]
+unique_name_in_owner = true
 
-[node name="HealthBar" parent="Player/Hud" instance=ExtResource("7_cav5h")]
-
-[node name="HungerBar" parent="Player/Hud" instance=ExtResource("6_sptr6")]
-
-[node name="TradeInterface" parent="Player/Hud" instance=ExtResource("7_3v87f")]
-visible = false
-
-[node name="BuildingMenu" parent="Player/Hud" instance=ExtResource("10_ajmgv")]
-visible = false
+[node name="Hotbar" parent="Player/Hud" instance=ExtResource("14_jyvf2")]
+unique_name_in_owner = true
+offset_left = -0.000152588
+offset_right = 0.00012207
+offset_bottom = -0.000305176
 
 [node name="PauseMenu" parent="Player" instance=ExtResource("5_l5u8x")]
+unique_name_in_owner = true
 process_mode = 3
 scale = Vector2(1, 1)
 transform = Transform2D(1, 0, 0, 1, 0, 0)
+
+[node name="Interface" type="CanvasLayer" parent="Player"]
+
+[node name="Inventory" parent="Player/Interface" instance=ExtResource("10_0o5oa")]
+visible = false
+
+[node name="Trading" parent="Player/Interface" instance=ExtResource("7_3v87f")]
+visible = false
+
+[node name="Building" parent="Player/Interface" instance=ExtResource("10_ajmgv")]
+visible = false
+
+[node name="Crafting" parent="Player/Interface" instance=ExtResource("13_dbry5")]
+visible = false
+
+[node name="Game" type="Node" parent="Player"]
+unique_name_in_owner = true
+process_mode = 3
+script = ExtResource("15_4m4gw")
 
 [node name="Blacksmith" parent="." instance=ExtResource("8_vukrm")]
 position = Vector2(180, -224)
@@ -78,6 +96,3 @@ position = Vector2(-228, -62)
 
 [node name="Medic" parent="." instance=ExtResource("10_qvl3m")]
 position = Vector2(76, -120)
-
-[connection signal="death" from="Player/Hud/HealthBar" to="Player" method="_on_death"]
-[connection signal="death" from="Player/Hud/HungerBar" to="Player" method="_on_death"]

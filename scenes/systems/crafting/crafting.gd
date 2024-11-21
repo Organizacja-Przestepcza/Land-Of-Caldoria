@@ -1,10 +1,10 @@
-extends Control
+extends Interface
 class_name Crafting
+@onready var inventory: Inventory = $"../Inventory"
 
-@onready var hud: Hud = self.get_parent()
 @onready var ingredients_list: ItemList = $MarginContainer/CraftingContainer/IngredientsContainer/IngredientsList
 @onready var recipe_list: ItemList = $MarginContainer/CraftingContainer/RecipeContainer/RecipeList
-var inventory: Dictionary
+var inventory_list: Dictionary
 
 class Ingredient:
 	var item: Item
@@ -14,15 +14,8 @@ class Ingredient:
 		amount = amnt
 
 func open() -> void:
-	self.visible = true
-	hud.state = hud.State.INVENTORY
-	inventory = hud.inventory_to_list()
-	ingredients_list.clear()
+	super()
 	update_recipe_list()
-	
-func close():
-	hud.state = hud.State.PLAYING
-	self.visible = false
 
 func update_recipe_list():
 	recipe_list.clear()
@@ -48,15 +41,12 @@ func _on_craft_button_pressed() -> void:
 	if item_count > 0:
 		for i in range(item_count):
 			var ingredient: Ingredient = ingredients_list.get_item_metadata(i)
-			if ingredient.item not in inventory.keys() or inventory[ingredient.item] < ingredient.amount:
+			if ingredient.item not in inventory_list.keys() or inventory_list[ingredient.item] != ingredient.amount:
 				print("not crafting")
 				return
 		for i in range(item_count):
 			var ingredient: Ingredient = ingredients_list.get_item_metadata(i)
-			hud.remove_item(ingredient.item,ingredient.amount)
-			print(inventory[ingredient.item])
-			inventory[ingredient.item] -= ingredient.amount
-			print(inventory[ingredient.item])
+			inventory.remove_item(ingredient.item,ingredient.amount)
 		var t = recipe_list.get_selected_items()
 		var recipe = recipe_list.get_item_metadata(t[0])
-		hud.add_item(recipe.result,recipe.amount)
+		inventory.add_item(recipe.result,recipe.amount)

@@ -1,7 +1,9 @@
-extends Control
-var inventory
-var player: Player
-@onready var hud : Hud = get_parent()
+extends Interface
+class_name Trading
+@onready var inventory: Inventory = $"../Inventory"
+
+@onready var player: Player = %Player
+
 @onready var buy_list: ItemList = $TextureRect/VBoxContainer/HBoxContainer/BuyContainer/BuyList
 @onready var sell_list: ItemList = $TextureRect/VBoxContainer/HBoxContainer/SellContainer/SellList
 @onready var money_counter: Money = $TextureRect/VBoxContainer/MoneyCounter
@@ -13,8 +15,15 @@ class ItemInList:
 	var amount: int
 	var value: int
 
-func _ready() -> void:
-	inventory = hud.get_node("Inventory")
+func open() -> void:
+	if player.nearest_interactable is NPC:
+		super()
+		%Hud.hide()
+		update_lists(player.nearest_interactable)
+		
+func close() -> void:
+	super()
+	%Hud.show()
 
 func update_lists(npc:NPC) -> void:
 	curr_npc = npc
@@ -34,7 +43,7 @@ func update_buy_list():
 	
 func update_sell_list():
 	sell_list.clear()
-	var inv = hud.inventory_to_list()
+	var inv = inventory.to_list()
 	for item in inv.keys():
 		if curr_npc.accepted_items.has(item): 
 			var price = item.value * curr_npc.accepted_items[item]
@@ -49,7 +58,7 @@ func _on_sell_button_pressed() -> void:
 	var selected_items = sell_list.get_selected_items()
 	if selected_items:
 		var selected_item: ItemInList = sell_list.get_item_metadata(selected_items[0])
-		hud.remove_item(selected_item.data,1)
+		inventory.remove_item(selected_item.data,1)
 		money_counter.add(selected_item.value)
 		update_sell_list()
 
@@ -57,7 +66,7 @@ func _on_sell_all_button_pressed() -> void:
 	var selected_items = sell_list.get_selected_items()
 	if selected_items:
 		var selected_item: ItemInList = sell_list.get_item_metadata(selected_items[0])
-		hud.remove_item(selected_item.data,selected_item.amount)
+		inventory.remove_item(selected_item.data,selected_item.amount)
 		money_counter.add(selected_item.value * selected_item.amount)
 		update_sell_list()
 
@@ -69,7 +78,7 @@ func _on_buy_button_pressed() -> void:
 			return
 		money_counter.remove(selected_item.value)
 		curr_npc.inventory[selected_item.data] -= 1
-		hud.add_item(selected_item.data,1)
+		inventory.add_item(selected_item.data,1)
 		update_buy_list()
 
 
@@ -81,5 +90,5 @@ func _on_buy_all_button_pressed() -> void:
 			return
 		money_counter.remove(selected_item.value)
 		curr_npc.inventory[selected_item.data] -= selected_item.amount
-		hud.add_item(selected_item.data,selected_item.amount)
+		inventory.add_item(selected_item.data,selected_item.amount)
 		update_buy_list()

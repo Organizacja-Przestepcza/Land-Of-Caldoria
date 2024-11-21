@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://3qegagme7w4c"]
 
-[ext_resource type="Script" path="res://scenes/ui/hud/building/building.gd" id="1_veh8q"]
+[ext_resource type="Script" path="res://scenes/systems/building/building.gd" id="1_veh8q"]
 [ext_resource type="Texture2D" uid="uid://dkmsxfnm2ad7s" path="res://assets/textures/ui/menu/bg_darkener.png" id="2_bq8tt"]
 
 [node name="BuildingMenu" type="Control"]

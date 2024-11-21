@@ -1,4 +1,4 @@
-extends CanvasLayer
+extends Control
 class_name Hunger
 
 var hunger: int
@@ -9,7 +9,7 @@ signal death(cause: String)
 var player: Player
 
 func _ready() -> void:
-	player = get_parent().get_parent()
+	player = get_tree().current_scene.get_node("Player")
 	hunger = player.hunger
 
 func _process(delta):

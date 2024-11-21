@@ -1,20 +1,11 @@
-extends Control
+extends Interface
 class_name BuildMenu
 
-@onready var hud: Hud = self.get_parent()
 @onready var build_list: ItemList = $MarginContainer/BuildingContainer/BuildList
+@onready var inventory: Inventory = $"../Inventory"
 var selected_item: int = 0
-var inventory: Dictionary
 
-func open() -> void:
-	self.visible = true
-	hud.state = hud.State.INVENTORY
-	inventory = hud.inventory_to_list()
-	#update_build_list()
-
-func close() -> void:
-	self.visible = false
-	hud.state = hud.State.PLAYING
+var inventory_list
 
 func update_build_list():
 	build_list.clear()

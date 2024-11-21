@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=3 uid="uid://cs0opcidf6hx4"]
 
-[ext_resource type="Script" path="res://scenes/ui/hud/trade/trade_interface.gd" id="1_8cxbq"]
+[ext_resource type="Script" path="res://scenes/systems/trading/trading.gd" id="1_8cxbq"]
 [ext_resource type="Texture2D" uid="uid://dkmsxfnm2ad7s" path="res://assets/textures/ui/menu/bg_darkener.png" id="1_esq2t"]
-[ext_resource type="PackedScene" uid="uid://rjqv2muvkkit" path="res://scenes/ui/hud/money/money_counter.tscn" id="3_o6c8d"]
+[ext_resource type="PackedScene" uid="uid://rjqv2muvkkit" path="res://scenes/ui/money/money_counter.tscn" id="3_o6c8d"]
 
 [node name="TradeInterface" type="Control"]
 process_mode = 3
@@ -98,6 +98,7 @@ text = "Buy"
 layout_mode = 2
 text = "Buy All"
 
+[connection signal="pressed" from="TextureRect/Button" to="." method="close"]
 [connection signal="pressed" from="TextureRect/VBoxContainer/HBoxContainer/SellContainer/SellButton" to="." method="_on_sell_button_pressed"]
 [connection signal="pressed" from="TextureRect/VBoxContainer/HBoxContainer/SellContainer/SellAllButton" to="." method="_on_sell_all_button_pressed"]
 [connection signal="pressed" from="TextureRect/VBoxContainer/HBoxContainer/BuyContainer/BuyButton" to="." method="_on_buy_button_pressed"]
