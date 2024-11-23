@@ -35,7 +35,7 @@ theme_override_constants/margin_bottom = 25
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
 layout_mode = 2
-theme_override_constants/separation = 25
+theme_override_constants/separation = 10
 
 [node name="HeaderLabel" type="Label" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -136,26 +136,30 @@ horizontal_alignment = 1
 layout_mode = 2
 text = "Level:"
 
+[node name="PointsLabel" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Avaliable points:"
+
 [node name="StregnthContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 
 [node name="StrengthLabel" type="Label" parent="MarginContainer/VBoxContainer/StregnthContainer"]
 layout_mode = 2
-text = "Stregnth:"
+text = "Strength:"
 
 [node name="Button" type="Button" parent="MarginContainer/VBoxContainer/StregnthContainer"]
 layout_mode = 2
 size_flags_horizontal = 10
 text = "Upgrade"
 
-[node name="DexterityContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+[node name="EnduranceContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="DexterityLabel" type="Label" parent="MarginContainer/VBoxContainer/DexterityContainer"]
+[node name="EnduranceLabel" type="Label" parent="MarginContainer/VBoxContainer/EnduranceContainer"]
 layout_mode = 2
-text = "Dexterity:"
+text = "Endurance:"
 
-[node name="Button" type="Button" parent="MarginContainer/VBoxContainer/DexterityContainer"]
+[node name="Button" type="Button" parent="MarginContainer/VBoxContainer/EnduranceContainer"]
 layout_mode = 2
 size_flags_horizontal = 10
 text = "Upgrade"
@@ -168,6 +172,30 @@ layout_mode = 2
 text = "Intelligence:"
 
 [node name="Button" type="Button" parent="MarginContainer/VBoxContainer/IntelligenceContainer"]
+layout_mode = 2
+size_flags_horizontal = 10
+text = "Upgrade"
+
+[node name="AgilityContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="AgilityLabel" type="Label" parent="MarginContainer/VBoxContainer/AgilityContainer"]
+layout_mode = 2
+text = "Agility:"
+
+[node name="Button" type="Button" parent="MarginContainer/VBoxContainer/AgilityContainer"]
+layout_mode = 2
+size_flags_horizontal = 10
+text = "Upgrade"
+
+[node name="LuckContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="LuckLabel" type="Label" parent="MarginContainer/VBoxContainer/LuckContainer"]
+layout_mode = 2
+text = "Luck:"
+
+[node name="Button" type="Button" parent="MarginContainer/VBoxContainer/LuckContainer"]
 layout_mode = 2
 size_flags_horizontal = 10
 text = "Upgrade"

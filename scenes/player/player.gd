@@ -1,7 +1,13 @@
 class_name Player
 extends CharacterBody2D
 
-@export var speed = 40
+@export var speed = 80
+@export var strength = 1
+@export var endurance = 1
+@export var intelligence = 1
+@export var agility = 1
+@export var luck = 1
+@export var skill_points = 0
 
 @onready var interface: CanvasLayer = $Interface
 @onready var hud: Hud = $Hud
