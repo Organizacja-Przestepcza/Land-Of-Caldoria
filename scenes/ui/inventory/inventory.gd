@@ -151,7 +151,10 @@ func to_list() -> Dictionary:
 				return list
 			var item:InventoryItem = slot.get_child(0)
 			if item and item.count > 0:
-				list[item.data] = item.count
+				if list.has(item.data):
+					list[item.data] += item.count
+				else:
+					list[item.data] = item.count
 	return list
 	
 func get_item_in_slot(slot: InventorySlot) -> Item:
