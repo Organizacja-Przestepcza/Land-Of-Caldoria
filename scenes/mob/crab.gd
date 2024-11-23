@@ -4,6 +4,7 @@ var chase_player = false
 func _ready() -> void:
 	health = 10
 	speed = 40
+	exp = 5
 	strength = 5
 	player = get_parent().get_node("%Player")
 

@@ -1,4 +1,5 @@
 extends Interface
+class_name Stats
 @onready var player: Player = %Player
 @onready var hud: Hud = %Hud
 @onready var health_bar: ProgressBar = $MarginContainer/VBoxContainer/HealthContainer/HealthBar
