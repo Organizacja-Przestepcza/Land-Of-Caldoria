@@ -8,6 +8,7 @@ var state: State = State.PLAYING
 @onready var hotbar: Hotbar = $"../Interface/Hotbar"
 @onready var inventory: Inventory = $"../Interface/Inventory"
 @onready var player: Player = %Player
+@onready var stats: Control = $"../Interface/Stats"
 
 enum State {PLAYING, INVENTORY}
 
@@ -30,6 +31,8 @@ func _input(event: InputEvent) -> void:
 				elif event.is_action_pressed("crafting_menu"):
 					crafting.open()
 					state = State.INVENTORY
+				elif event.is_action_pressed("ui_stats"):
+					stats.open()
 				elif event.is_action_pressed("ui_text_backspace"):
 					print(self.position)
 				elif event.pressed and not event.echo:
@@ -55,6 +58,7 @@ func _input(event: InputEvent) -> void:
 				elif event.is_action_pressed("ui_cancel"):
 					close_menus()
 					%PauseMenu.toggle()
+				
 
 func get_slot_under_mouse() -> InventorySlot:
 	var mouse_pos = get_viewport().get_mouse_position()
@@ -69,3 +73,4 @@ func close_menus():
 	crafting.close()
 	building.close()
 	trading.close()
+	stats.open()

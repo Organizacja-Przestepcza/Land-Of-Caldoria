@@ -16,6 +16,7 @@ var facing: Direction = Direction.Down
 
 var health = 100
 var hunger = 100
+var exp = 0
 var attack_animation_scene = preload("res://scenes/player/attack_animation.tscn")
 
 var reach = 30

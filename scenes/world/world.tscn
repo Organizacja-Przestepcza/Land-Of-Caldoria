@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://dsn7lp3w3rtus"]
+[gd_scene load_steps=18 format=3 uid="uid://dsn7lp3w3rtus"]
 
 [ext_resource type="Script" path="res://scenes/world/world.gd" id="1_0fdg7"]
 [ext_resource type="TileSet" uid="uid://d0pha3g0yk4g8" path="res://tilesets/main.tres" id="2_kr456"]
@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://c83lveoubd7vh" path="res://scenes/ui/inventory/inventory.tscn" id="10_0o5oa"]
 [ext_resource type="PackedScene" uid="uid://3qegagme7w4c" path="res://scenes/systems/building/building.tscn" id="10_ajmgv"]
 [ext_resource type="PackedScene" uid="uid://dpk2ucm8f0jch" path="res://scenes/npc/medic.tscn" id="10_qvl3m"]
+[ext_resource type="PackedScene" uid="uid://0v860522ctv3" path="res://scenes/ui/stats/stats.tscn" id="13_0wk66"]
 [ext_resource type="PackedScene" uid="uid://d3nf6i6pjjd5n" path="res://scenes/village.tscn" id="13_8l646"]
 [ext_resource type="PackedScene" uid="uid://de7ljcthumfav" path="res://scenes/systems/crafting/crafting.tscn" id="13_dbry5"]
 [ext_resource type="PackedScene" uid="uid://b0bmpokyxvpu8" path="res://scenes/ui/hotbar/hotbar.tscn" id="14_jyvf2"]
@@ -81,6 +82,9 @@ visible = false
 visible = false
 
 [node name="Crafting" parent="Player/Interface" instance=ExtResource("13_dbry5")]
+visible = false
+
+[node name="Stats" parent="Player/Interface" instance=ExtResource("13_0wk66")]
 visible = false
 
 [node name="Game" type="Node" parent="Player"]
