@@ -7,7 +7,7 @@
 [ext_resource type="Script" path="res://addons/gaea/tile_info/tilemap_tile_info.gd" id="5_fhr0w"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_h4te1"]
-seed = -1286049764
+seed = 1
 
 [sub_resource type="Resource" id="Resource_56f0v"]
 resource_name = "0"
@@ -81,7 +81,6 @@ resource_name = "Settings"
 script = ExtResource("2_5diri")
 tiles = Array[ExtResource("3_goyon")]([SubResource("Resource_jc7p6"), SubResource("Resource_bf6od"), SubResource("Resource_c6a50"), SubResource("Resource_clwsu")])
 noise = SubResource("FastNoiseLite_h4te1")
-infinite = false
-world_size = Vector2i(64, 64)
+infinite = true
 falloff_enabled = false
 modifiers = Array[ExtResource("1_4i30r")]([])
