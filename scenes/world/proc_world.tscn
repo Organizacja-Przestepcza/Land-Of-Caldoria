@@ -36,12 +36,11 @@ seed = 1
 script = ExtResource("4_0eh1f")
 generator = NodePath("..")
 actor = NodePath("../../Player")
-loading_radius = Vector2i(1, 0)
 
-[node name="BetterTerrainGaeaRenderer" type="Node" parent="." node_paths=PackedStringArray("tile_map_layers", "generator")]
+[node name="BetterTerrainGaeaRenderer" type="Node" parent="NoiseGenerator" node_paths=PackedStringArray("tile_map_layers", "generator")]
 script = ExtResource("3_b1o34")
-tile_map_layers = [NodePath("../WaterLayer"), NodePath("../SandLayer"), NodePath("../GroundLayer"), NodePath("../GrassLayer")]
-generator = NodePath("../NoiseGenerator")
+tile_map_layers = [NodePath("../../WaterLayer"), NodePath("../../SandLayer"), NodePath("../../GroundLayer"), NodePath("../../GrassLayer")]
+generator = NodePath("..")
 
 [node name="WaterLayer" type="TileMapLayer" parent="."]
 z_index = -3
