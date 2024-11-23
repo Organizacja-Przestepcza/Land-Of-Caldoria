@@ -1,7 +1,7 @@
 extends Node2D
 class_name BuildManager
 
-@onready var building_menu: BuildMenu = $"../Player/Hud/BuildingMenu"
+@onready var building_menu: BuildMenu = $"../Player/Interface/Building"
 @onready var build_layer: TileMapLayer = $"../BuildLayer"
 
 var walls: Array = []

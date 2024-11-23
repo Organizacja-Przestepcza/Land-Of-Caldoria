@@ -5,7 +5,7 @@ extends CharacterBody2D
 
 @onready var interface: CanvasLayer = $Interface
 @onready var hud: Hud = $Hud
-@onready var hotbar: Hotbar = $Interface/Hotbar
+@onready var hotbar: Hotbar = %Hotbar
 @onready var build_manager: BuildManager = $"../BuildManager"
 @onready var inventory: Inventory = $Interface/Inventory
 @onready var health_bar: Health = hud.get_node("VBoxContainer/HealthBar")
@@ -126,7 +126,7 @@ func get_victim():
 func use_item() -> void:
 	var held_item = hotbar.get_held_item()
 	if held_item is Consumable:
-		consume(held_item,1)
+		consume(hotbar.selected_slot.get_child(0),1)
 	elif held_item == ItemLoader.name("hammer"):
 		build_manager.build()
 	elif held_item is Tool:
@@ -150,7 +150,7 @@ func attack(tool: Tool):
 			if victim.take_damage(tool.damage) and victim.dropped_item:
 				inventory.add_item(victim.dropped_item, 1)
 
-func consume(item: Item, amount: int) -> void:
-	if item is Consumable:
-		effect_from_item(item)
+func consume(item: InventoryItem, amount: int) -> void:
+	if item.data is Consumable:
+		effect_from_item(item.data)
 		item.remove(amount)

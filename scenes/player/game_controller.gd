@@ -5,7 +5,7 @@ var state: State = State.PLAYING
 @onready var trading: Trading = $"../Interface/Trading"
 @onready var building: BuildMenu = $"../Interface/Building"
 @onready var crafting: Crafting = $"../Interface/Crafting"
-@onready var hotbar: Hotbar = $"../Interface/Hotbar"
+@onready var hotbar: Hotbar = %Hotbar
 @onready var inventory: Inventory = $"../Interface/Inventory"
 @onready var player: Player = %Player
 @onready var stats: Control = $"../Interface/Stats"
@@ -24,10 +24,8 @@ func _input(event: InputEvent) -> void:
 					player.interact()
 				elif event.is_action_pressed("build_menu"):
 					building.open()
-					state = State.INVENTORY
 				elif event.is_action_pressed("gui_inventory"):
 					inventory.open()
-					state = State.INVENTORY
 				elif event.is_action_pressed("crafting_menu"):
 					crafting.open()
 					state = State.INVENTORY
@@ -46,10 +44,14 @@ func _input(event: InputEvent) -> void:
 						KEY_6: hotbar.select_slot(5)
 			State.INVENTORY:
 				if event.is_action_pressed("drop_item"):
-					inventory.drop_item_in_slot(inventory.get_slot_under_mouse(),1)
+					inventory.drop_item_in_slot(get_slot_under_mouse(),1)
 				elif event.is_action_pressed("use"):
-					var item = inventory.get_item_in_slot(get_slot_under_mouse())
-					player.consume(item,1)
+					var slot = inventory.get_slot_under_mouse()
+					if slot and slot.get_child_count() > 0:
+						var item = slot.get_child(0)
+						if item is InventoryItem:
+							player.consume(item,1)
+					
 				elif event.is_action_pressed("crafting_menu"):
 					close_menus()
 				elif event.is_action_pressed("build_menu"):
