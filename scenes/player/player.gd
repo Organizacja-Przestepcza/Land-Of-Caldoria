@@ -5,11 +5,9 @@ extends CharacterBody2D
 
 @onready var interface: CanvasLayer = $Interface
 @onready var hud: Hud = $Hud
-<<<<<<< Updated upstream
+
 @onready var hotbar: Hotbar = %Hotbar
-=======
-@onready var hotbar: Hotbar = $Hud/Hotbar
->>>>>>> Stashed changes
+
 @onready var build_manager: BuildManager = $"../BuildManager"
 @onready var inventory: Inventory = $Interface/Inventory
 @onready var health_bar: Health = hud.get_node("VBoxContainer/HealthBar")
@@ -148,10 +146,11 @@ func interact():
 func attack(tool: Tool):
 	var victim = await get_victim()
 	if victim is Mob:
-		if victim.take_damage(tool.damage) and victim.dropped_item:
-			inventory.add_item(victim.dropped_item, 1)
-			var total_exp = victim.exp + roundi((victim.exp * level)/10)
-			stats.add_exp(victim.exp)
+		if victim.take_damage(tool.damage):
+			var total_exp = victim.exp + roundi(((victim.exp * level)/10)-1)
+			stats.add_exp(total_exp)
+			if victim.dropped_item:
+				inventory.add_item(victim.dropped_item, 1)
 	if victim is Destroyable:
 		if victim.required_tool == hotbar.get_held_item() or victim.required_tool == null:
 			if victim.take_damage(tool.damage) and victim.dropped_item:

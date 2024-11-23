@@ -1,6 +1,6 @@
 extends Control
 class_name Hunger
-@onready var player: Player = %Player
+@onready var player: Player =  $"../../.."
 var hunger_decrease_rate = 10.0
 var hunger_timer = 0.0
 @onready var hunger_bar: ProgressBar = %HungerProgressBar 

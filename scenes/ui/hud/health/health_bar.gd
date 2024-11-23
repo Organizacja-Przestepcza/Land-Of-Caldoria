@@ -2,7 +2,7 @@ extends Control
 class_name Health
 @onready var health_bar: ProgressBar = %HealthProgressBar
 signal death(cause: String)
-@onready var player: Player = %Player
+@onready var player: Player = $"../../.."
 
 func _ready() -> void:
 	player = get_tree().current_scene.get_node("Player")

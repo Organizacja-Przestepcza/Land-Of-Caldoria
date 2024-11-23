@@ -43,7 +43,7 @@ func add_exp(amount) -> void:
 		level_up()
 		
 func level_up() -> void:
-	player.exp -= last_treshold
+	player.exp -= next_treshold
 	player.level += 1 
 	level_label.text = "Level: " + str(player.level)
 	last_treshold = next_treshold

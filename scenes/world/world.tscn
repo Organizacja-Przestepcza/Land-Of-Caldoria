@@ -75,6 +75,8 @@ process_mode = 3
 
 [node name="Inventory" parent="Player/Interface" instance=ExtResource("10_0o5oa")]
 visible = false
+invSize = null
+slotSize = null
 
 [node name="Trading" parent="Player/Interface" instance=ExtResource("7_3v87f")]
 visible = false
