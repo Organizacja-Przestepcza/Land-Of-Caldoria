@@ -71,6 +71,7 @@ scale = Vector2(1, 1)
 transform = Transform2D(1, 0, 0, 1, 0, 0)
 
 [node name="Interface" type="CanvasLayer" parent="Player"]
+process_mode = 3
 
 [node name="Inventory" parent="Player/Interface" instance=ExtResource("10_0o5oa")]
 visible = false

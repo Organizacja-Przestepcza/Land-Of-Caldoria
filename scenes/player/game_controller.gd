@@ -33,6 +33,7 @@ func _input(event: InputEvent) -> void:
 					state = State.INVENTORY
 				elif event.is_action_pressed("ui_stats"):
 					stats.open()
+					state = State.INVENTORY
 				elif event.is_action_pressed("ui_text_backspace"):
 					print(self.position)
 				elif event.pressed and not event.echo:
@@ -73,4 +74,4 @@ func close_menus():
 	crafting.close()
 	building.close()
 	trading.close()
-	stats.open()
+	stats.close()

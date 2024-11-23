@@ -14,9 +14,12 @@ extends CharacterBody2D
 
 var facing: Direction = Direction.Down
 
+var max_health = 100
 var health = 100
+var max_hunger = 100
 var hunger = 100
 var exp = 0
+var level = 1
 var attack_animation_scene = preload("res://scenes/player/attack_animation.tscn")
 
 var reach = 30
