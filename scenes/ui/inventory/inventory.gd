@@ -45,7 +45,6 @@ func close():
 
 func find_available_slot(itm: Item) -> InventorySlot:
 	for container in containers:
-		print(container)
 		for slot in container.get_children():
 			if slot.get_child_count() == 0:
 				return slot
@@ -66,7 +65,6 @@ func find_item(itm: Item) -> InventorySlot:
 
 func add_item(item: Item, amount: int) -> void:
 	var slot = find_available_slot(item)
-	print(slot)
 	if slot == null:
 		return
 	if slot.get_child_count() == 0:

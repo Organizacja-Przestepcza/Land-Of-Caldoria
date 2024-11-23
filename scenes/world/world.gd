@@ -43,8 +43,6 @@ func _ready() -> void:
 	o_noise.frequency = 0.02
 	h_noise.frequency = 0.0075
 	generate_world()
-	#$BuildLayer.tile_map_data = $Village/Buildings.tile_map_data
-	$Village/Buildings.clear()
 	if WorldData.load:
 		$Player/Hud.load_inventory_data()
 		$Player.global_position = WorldData.load.player_global_position
