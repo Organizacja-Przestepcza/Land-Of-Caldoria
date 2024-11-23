@@ -88,7 +88,7 @@ func _get_actors_position() -> Vector2i:
 	# getting actors positions
 	var actor_position := Vector2.ZERO
 	if actor != null:
-		actor_position = actor.position # changed from global position, cause it doesnt work
+		actor_position = actor.global_position
 
 	var map_position := generator.global_to_map(actor_position)
 	var chunk_position := generator.map_to_chunk(map_position)

@@ -28,7 +28,7 @@ func _input(event: InputEvent) -> void:
 				elif event.is_action_pressed("crafting_menu"):
 					crafting.open()
 				elif event.is_action_pressed("ui_text_backspace"):
-					print(self.position)
+					print(%Player.position)
 				elif event.pressed and not event.echo:
 					match event.physical_keycode:
 						KEY_1: hotbar.select_slot(0)

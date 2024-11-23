@@ -1,11 +1,10 @@
-[gd_scene load_steps=18 format=3 uid="uid://bevwwvcr2fdsa"]
+[gd_scene load_steps=19 format=3 uid="uid://bevwwvcr2fdsa"]
 
 [ext_resource type="Script" path="res://scenes/world/proc_world.gd" id="1_75342"]
 [ext_resource type="TileSet" uid="uid://d0pha3g0yk4g8" path="res://tilesets/main.tres" id="2_gbw1p"]
 [ext_resource type="Script" path="res://addons/gaea/generators/2D/noise_generator/noise_generator.gd" id="2_vv2tn"]
 [ext_resource type="Resource" uid="uid://dmxmmyikn85ln" path="res://scenes/world/gaea_settings.tres" id="3_3in7x"]
 [ext_resource type="Script" path="res://addons/better-terrain-in-gaea/better_terrain_gaea_renderer.gd" id="3_b1o34"]
-[ext_resource type="Script" path="res://addons/gaea/others/threaded_chunk_loader_2d.gd" id="4_0eh1f"]
 [ext_resource type="Script" path="res://scenes/build_manager.gd" id="4_26fgq"]
 [ext_resource type="PackedScene" uid="uid://byb1nycwprtqb" path="res://scenes/player/player.tscn" id="5_j0bro"]
 [ext_resource type="PackedScene" uid="uid://d26rkh5gvtfkh" path="res://scenes/ui/hud/hud.tscn" id="6_ai4l1"]
@@ -18,28 +17,28 @@
 [ext_resource type="Script" path="res://scenes/player/game_controller.gd" id="13_xk8dt"]
 [ext_resource type="PackedScene" uid="uid://npgme5adxp70" path="res://scenes/npc/blacksmith.tscn" id="17_tkbm6"]
 
+[sub_resource type="Gradient" id="Gradient_frlg5"]
+offsets = PackedFloat32Array(0, 0.532468, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0.112202, 0.730707, 0.439799, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_khxsa"]
+gradient = SubResource("Gradient_frlg5")
+
 [node name="World" type="Node2D"]
 y_sort_enabled = true
-scale = Vector2(0.5, 0.5)
 script = ExtResource("1_75342")
 
 [node name="NoiseGenerator" type="Node" parent="."]
 script = ExtResource("2_vv2tn")
 settings = ExtResource("3_3in7x")
-chunk_size = Vector2i(8, 8)
 tile_size = Vector2i(32, 32)
 generate_on_ready = false
 random_seed = false
 seed = 1
 
-[node name="ThreadedChunkLoader2D" type="Node2D" parent="NoiseGenerator" node_paths=PackedStringArray("generator", "actor")]
-script = ExtResource("4_0eh1f")
-generator = NodePath("..")
-actor = NodePath("../../Player")
-
 [node name="BetterTerrainGaeaRenderer" type="Node" parent="NoiseGenerator" node_paths=PackedStringArray("tile_map_layers", "generator")]
 script = ExtResource("3_b1o34")
-tile_map_layers = [NodePath("../../WaterLayer"), NodePath("../../SandLayer"), NodePath("../../GroundLayer"), NodePath("../../GrassLayer")]
+tile_map_layers = [NodePath("../../WaterLayer"), NodePath("../../SandLayer"), NodePath("../../GroundLayer"), NodePath("../../GrassLayer"), NodePath("../../ObjectLayer")]
 generator = NodePath("..")
 
 [node name="WaterLayer" type="TileMapLayer" parent="."]
@@ -58,7 +57,7 @@ tile_set = ExtResource("2_gbw1p")
 z_index = -2
 tile_set = ExtResource("2_gbw1p")
 
-[node name="BuildLayer" type="TileMapLayer" parent="."]
+[node name="ObjectLayer" type="TileMapLayer" parent="."]
 y_sort_enabled = true
 tile_set = ExtResource("2_gbw1p")
 
@@ -68,9 +67,8 @@ script = ExtResource("4_26fgq")
 
 [node name="Player" parent="." instance=ExtResource("5_j0bro")]
 unique_name_in_owner = true
-platform_floor_layers = 4294967279
-platform_wall_layers = 16
-speed = 200
+position = Vector2(256, 256)
+speed = 80
 
 [node name="Hud" parent="Player" instance=ExtResource("6_ai4l1")]
 unique_name_in_owner = true
@@ -109,3 +107,18 @@ script = ExtResource("13_xk8dt")
 
 [node name="Blacksmith" parent="." instance=ExtResource("17_tkbm6")]
 position = Vector2(352, 128)
+
+[node name="LoadingScreen" type="CanvasLayer" parent="."]
+
+[node name="TextureRect" type="TextureRect" parent="LoadingScreen"]
+visible = false
+z_index = 10
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture1D_khxsa")
+metadata/_edit_use_anchors_ = true
+
+[connection signal="chunk_rendered" from="NoiseGenerator/BetterTerrainGaeaRenderer" to="." method="_on_rendered"]
