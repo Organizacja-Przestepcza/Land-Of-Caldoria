@@ -33,7 +33,7 @@ project/assembly_name="Land Of Caldoria"
 
 [editor_plugins]
 
-enabled=PackedStringArray()
+enabled=PackedStringArray("res://addons/better-terrain/plugin.cfg", "res://addons/gaea/plugin.cfg")
 
 [file_customization]
 
