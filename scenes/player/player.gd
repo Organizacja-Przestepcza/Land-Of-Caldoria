@@ -1,21 +1,34 @@
 class_name Player
 extends CharacterBody2D
 
-@export var speed = 40
+@export var speed = 80
+@export var strength = 1
+@export var endurance = 1
+@export var intelligence = 1
+@export var agility = 1
+@export var luck = 1
+@export var skill_points = 0
 
 @onready var interface: CanvasLayer = $Interface
 @onready var hud: Hud = $Hud
+
 @onready var hotbar: Hotbar = %Hotbar
+
 @onready var build_manager: BuildManager = $"../BuildManager"
 @onready var inventory: Inventory = $Interface/Inventory
 @onready var health_bar: Health = hud.get_node("VBoxContainer/HealthBar")
 @onready var hunger_bar: Hunger = hud.get_node("VBoxContainer/HungerBar")
+@onready var stats: Stats = $Interface/Stats
 
 
 var facing: Direction = Direction.Down
 
+var max_health = 100
 var health = 100
+var max_hunger = 100
 var hunger = 100
+var exp = 0
+var level = 1
 var attack_animation_scene = preload("res://scenes/player/attack_animation.tscn")
 
 var reach = 30
@@ -139,8 +152,11 @@ func interact():
 func attack(tool: Tool):
 	var victim = await get_victim()
 	if victim is Mob:
-		if victim.take_damage(tool.damage) and victim.dropped_item:
-			inventory.add_item(victim.dropped_item, 1)
+		if victim.take_damage(tool.damage):
+			var total_exp = victim.exp + roundi(((victim.exp * level)/10)-1)
+			stats.add_exp(total_exp)
+			if victim.dropped_item:
+				inventory.add_item(victim.dropped_item, 1)
 	if victim is Destroyable:
 		if victim.required_tool == hotbar.get_held_item() or victim.required_tool == null:
 			if victim.take_damage(tool.damage) and victim.dropped_item:

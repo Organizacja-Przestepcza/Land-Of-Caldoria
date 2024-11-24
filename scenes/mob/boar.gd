@@ -4,6 +4,7 @@ var chase_player = false
 func _ready() -> void:
 	health = 30
 	speed = 30
+	exp = 10
 	strength = 10
 	player = get_parent().get_node("%Player")
 	$AnimatedSprite2D.play("idle")

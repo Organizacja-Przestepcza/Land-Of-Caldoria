@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://byk1r33uwp30o" path="res://assets/textures/object/bag.png" id="1_84qmv"]
 [ext_resource type="Script" path="res://scenes/object/loot_bag.gd" id="1_iqknj"]
-[ext_resource type="PackedScene" path="res://scenes/interactable_area.tscn" id="3_d5g74"]
+[ext_resource type="PackedScene" uid="uid://fdx8ye7rulig" path="res://scenes/interactable_area.tscn" id="3_d5g74"]
 
 [node name="LootBag" type="Node2D"]
 script = ExtResource("1_iqknj")
