@@ -26,5 +26,5 @@ func load_all_items(path: String):
 
 func name(n: String) -> Item:
 	if n in items.keys():
-		return items[n]
+		return items[n.to_lower().replace(" ", "_")]
 	return null

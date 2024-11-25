@@ -5,11 +5,12 @@ var state: State = State.PLAYING
 @onready var trading: Trading = $"../Interface/Trading"
 @onready var building: BuildMenu = $"../Interface/Building"
 @onready var crafting: Crafting = $"../Interface/Crafting"
+@onready var console: Console = $"../Interface/Console"
 @onready var hotbar: Hotbar = %Hotbar
 @onready var inventory: Inventory = $"../Interface/Inventory"
 @onready var player: Player = %Player
 
-enum State {PLAYING, INVENTORY}
+enum State {PLAYING, INVENTORY, CONSOLE}
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventKey and not event.echo:
@@ -37,6 +38,7 @@ func _input(event: InputEvent) -> void:
 						KEY_4: hotbar.select_slot(3)
 						KEY_5: hotbar.select_slot(4)
 						KEY_6: hotbar.select_slot(5)
+						KEY_QUOTELEFT: console.open()
 			State.INVENTORY:
 				if event.is_action_pressed("drop_item"):
 					inventory.drop_item_in_slot(get_slot_under_mouse(),1)
@@ -55,6 +57,12 @@ func _input(event: InputEvent) -> void:
 					close_menus()
 				elif event.is_action_pressed("ui_cancel"):
 					close_menus()
+					%PauseMenu.toggle()
+			State.CONSOLE:
+				if event.pressed and event.physical_keycode == KEY_QUOTELEFT:
+					console.close()
+				elif event.is_action_pressed("ui_cancel"):
+					console.close()
 					%PauseMenu.toggle()
 
 func get_slot_under_mouse() -> InventorySlot:

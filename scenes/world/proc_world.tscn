@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://bevwwvcr2fdsa"]
+[gd_scene load_steps=20 format=3 uid="uid://bevwwvcr2fdsa"]
 
 [ext_resource type="Script" path="res://scenes/world/proc_world.gd" id="1_75342"]
 [ext_resource type="TileSet" uid="uid://d0pha3g0yk4g8" path="res://tilesets/main.tres" id="2_gbw1p"]
@@ -15,6 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://ddbr53ohn683s" path="res://scenes/ui/menu/pause_menu.tscn" id="11_ot3us"]
 [ext_resource type="PackedScene" uid="uid://de7ljcthumfav" path="res://scenes/systems/crafting/crafting.tscn" id="12_wsaqj"]
 [ext_resource type="Script" path="res://scenes/player/game_controller.gd" id="13_xk8dt"]
+[ext_resource type="PackedScene" uid="uid://xxmv67orn38r" path="res://scenes/player/console.tscn" id="15_jbsup"]
 [ext_resource type="PackedScene" uid="uid://npgme5adxp70" path="res://scenes/npc/blacksmith.tscn" id="17_tkbm6"]
 
 [sub_resource type="Gradient" id="Gradient_frlg5"]
@@ -98,6 +99,9 @@ visible = false
 visible = false
 
 [node name="Crafting" parent="Player/Interface" instance=ExtResource("12_wsaqj")]
+visible = false
+
+[node name="Console" parent="Player/Interface" instance=ExtResource("15_jbsup")]
 visible = false
 
 [node name="Game" type="Node" parent="Player"]

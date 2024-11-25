@@ -30,7 +30,9 @@ func _input(event: InputEvent) -> void:
 	if event is InputEventKey:
 		if event.keycode == KEY_BACKSPACE and event.echo == false and event.pressed == true:
 			var chunk = noise_generator.map_to_chunk(noise_generator.global_to_map(player.position))
-			print("player is in: ", chunk)
+			print("---")
+			print("Player is in: ", chunk)
+			print("Chunk boundaries ",get_chunk_boundaries(chunk).position, " - ", get_chunk_boundaries(chunk).end)
 			print("---")
 
 func _on_rendered(chunk_position: Vector2i) -> void:
@@ -77,10 +79,9 @@ func generate_finite_world() -> void:
 			chance_spawn_mob(Vector2i(32*x+16,32*y+16))
 	
 func generate_objects(chunk_pos: Vector2i):
-	var x = chunk_pos.x
-	var y = chunk_pos.y
-
-	var pos = Vector2i((x*32)+16,(y*32)+16)
+	var pos = chunk_to_map(chunk_pos)
+	for x in pos.x:
+		pass
 	#if h_noise_val > 0.1 and o_noise_val > 0 and y % randi_range(2,5) == x % randi_range(2,5):
 		#build_layer.set_cell(Vector2i(x,y), 2, Vector2i(0, 0), randi_range(1,7))
 	#if h_noise_val > -0.05 and o_noise_val < -0.1 and y % randi_range(2,5) == x % randi_range(2,5):
@@ -133,6 +134,12 @@ func chunk_to_map(chunk_pos: Vector2i) -> Vector2i:
 	var pos = chunk_pos*noise_generator.chunk_size
 	return pos
 
+func get_chunk_boundaries(chunk_pos: Vector2i) -> Rect2i:
+	var start_point = chunk_to_global(chunk_pos)
+	var size: Vector2i
+	size.x = noise_generator.chunk_size.x * noise_generator.tile_size.x - 1
+	size.y = noise_generator.chunk_size.y * noise_generator.tile_size.y - 1
+	return Rect2i(start_point,size)
 
 func _first_chunk_rendered(chunk_position: Vector2i) -> void:
 	$LoadingScreen.hide()
