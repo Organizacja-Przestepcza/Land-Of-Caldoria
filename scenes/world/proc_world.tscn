@@ -69,7 +69,6 @@ script = ExtResource("4_26fgq")
 [node name="Player" parent="." instance=ExtResource("5_j0bro")]
 unique_name_in_owner = true
 position = Vector2(256, 256)
-camera_zoom = Vector2(0.2, 0.2)
 
 [node name="Hud" parent="Player" instance=ExtResource("6_ai4l1")]
 unique_name_in_owner = true
@@ -122,6 +121,5 @@ grow_vertical = 2
 texture = SubResource("GradientTexture1D_khxsa")
 metadata/_edit_use_anchors_ = true
 
-[connection signal="chunk_erased" from="NoiseGenerator" to="." method="_on_chunk_erased"]
-[connection signal="chunk_generation_finished" from="NoiseGenerator" to="." method="_on_chunk_generation_finished"]
 [connection signal="chunk_rendered" from="NoiseGenerator/BetterTerrainGaeaRenderer" to="." method="_on_chunk_rendered"]
+[connection signal="chunk_rendered" from="NoiseGenerator/BetterTerrainGaeaRenderer" to="." method="_first_chunk_rendered"]

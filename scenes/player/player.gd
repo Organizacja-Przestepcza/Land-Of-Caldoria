@@ -2,7 +2,7 @@ class_name Player
 extends CharacterBody2D
 
 @export var speed = 80
-@export var camera_zoom = Vector2(3,3)
+@export var camera_zoom = Vector2(2,2)
 @onready var interface: CanvasLayer = $Interface
 @onready var hud: Hud = $Hud
 @onready var hotbar: Hotbar = %Hotbar

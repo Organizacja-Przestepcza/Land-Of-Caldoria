@@ -18,6 +18,7 @@ func _ready() -> void:
 		player.position = Vector2i(0,0)
 		generate_finite_world()
 	else:
+		$LoadingScreen.show()
 		noise_generator.set_seed(user_seed)
 		var chunk_loader: ThreadedChunkLoader2D = ThreadedChunkLoader2D.new()
 		chunk_loader.actor = player
@@ -65,18 +66,21 @@ func generate_finite_world() -> void:
 				object_layer.set_cell(Vector2i(x,y), 2, Vector2i(0, 0), randi_range(1,7))
 			if h_noise_val > -0.05 and y % randi_range(2,5) == x % randi_range(2,5):
 				object_layer.set_cell(Vector2i(x,y), 4, Vector2i(0, 0), 1)
-			
-			if h_noise_val > 0.03:
-				chance_spawn_mob(Vector2i(32*x+16,32*y+16))
 	BetterTerrain.set_cells(sand_layer,sand_cells,2)
 	BetterTerrain.set_cells(ground_layer,ground_cells,3)
 	BetterTerrain.set_cells(grass_layer,grass_cells,1)
 	BetterTerrain.update_terrain_cells(sand_layer,sand_cells)
 	BetterTerrain.update_terrain_cells(grass_layer,grass_cells)
 	BetterTerrain.update_terrain_cells(ground_layer,ground_cells)
+	for x in map_range:
+		for y in map_range:
+			chance_spawn_mob(Vector2i(32*x+16,32*y+16))
 	
-#func generate_objects():
-	#var pos = Vector2i((x*32)+16,(y*32)+16)
+func generate_objects(chunk_pos: Vector2i):
+	var x = chunk_pos.x
+	var y = chunk_pos.y
+
+	var pos = Vector2i((x*32)+16,(y*32)+16)
 	#if h_noise_val > 0.1 and o_noise_val > 0 and y % randi_range(2,5) == x % randi_range(2,5):
 		#build_layer.set_cell(Vector2i(x,y), 2, Vector2i(0, 0), randi_range(1,7))
 	#if h_noise_val > -0.05 and o_noise_val < -0.1 and y % randi_range(2,5) == x % randi_range(2,5):
@@ -97,20 +101,18 @@ var mob_types = {
 
 func chance_spawn_mob(pos: Vector2) -> void:
 	randomize()
-	if randi_range(0, 1000) <= 3:
-		var mob_name = choose_random_mob()
-		var mob = mob_types[mob_name].instantiate()
-		mob.global_position = pos
-		add_child(mob)
+	var tile_pos = ground_layer.local_to_map(pos)
+	if not ground_layer.get_cell_source_id(tile_pos) == -1:
+		if randi_range(0, 1000) <= 2:
+			var mob_name = choose_random_mob()
+			var mob = mob_types[mob_name].instantiate()
+			mob.global_position = pos
+			add_child(mob)
 
 func choose_random_mob() -> String:
 	var mob_list = mob_types.keys()
 	var random_index = randi() % mob_list.size()
 	return mob_list[random_index]
-
-func _on_chunk_erased(chunk_position: Vector2i) -> void:
-	pass # Replace with function body.
-
 
 func _on_chunk_rendered(chunk_position: Vector2i) -> void:
 	#print(chunk_position)
@@ -121,14 +123,18 @@ func _on_chunk_rendered(chunk_position: Vector2i) -> void:
 				var x = pos.x + 32 * chunk_x
 				var y = pos.y + 32 * chunk_y
 				var mob_pos = Vector2i(x,y)
-				var tile_pos = ground_layer.local_to_map(mob_pos)
-				if not ground_layer.get_cell_source_id(tile_pos) == -1:
-					chance_spawn_mob(mob_pos)
+				chance_spawn_mob(mob_pos)
 			
 func chunk_to_global(chunk_pos: Vector2i) -> Vector2i:
 	var pos = chunk_pos*noise_generator.chunk_size*noise_generator.tile_size
 	return pos
 
+func chunk_to_map(chunk_pos: Vector2i) -> Vector2i:
+	var pos = chunk_pos*noise_generator.chunk_size
+	return pos
 
-func _on_chunk_generation_finished(chunk_position: Vector2i) -> void:
-	pass
+
+func _first_chunk_rendered(chunk_position: Vector2i) -> void:
+	$LoadingScreen.hide()
+	print("chunk loaded")
+	terrain_renderer.chunk_rendered.disconnect(_first_chunk_rendered)
