@@ -43,7 +43,6 @@ func close():
 
 func find_available_slot(itm: Item) -> InventorySlot:
 	for container in containers:
-		print(container)
 		for slot in container.get_children():
 			if slot.get_child_count() == 0:
 				return slot
@@ -64,10 +63,15 @@ func find_item(itm: Item) -> InventorySlot:
 
 func add_item(item: Item, amount: int) -> void:
 	var slot = find_available_slot(item)
-	print(slot)
 	if slot == null:
 		return
-	if slot.get_child_count() == 0:
+	if amount > item.max_stack_size:
+		pass
+	if slot.get_child_count() == 0 and amount > item.max_stack_size:
+		var inv_item = InventoryItem.new(item, item.max_stack_size)
+		slot.add_child(inv_item)
+		add_item(item,amount-item.max_stack_size)
+	elif slot.get_child_count() == 0:
 		var inv_item = InventoryItem.new(item, amount)
 		slot.add_child(inv_item)
 	else:
@@ -151,7 +155,10 @@ func to_list() -> Dictionary:
 				return list
 			var item:InventoryItem = slot.get_child(0)
 			if item and item.count > 0:
-				list[item.data] = item.count
+				if list.has(item.data):
+					list[item.data] += item.count
+				else:
+					list[item.data] = item.count
 	return list
 	
 func get_item_in_slot(slot: InventorySlot) -> Item:

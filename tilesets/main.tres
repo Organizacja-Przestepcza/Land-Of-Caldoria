@@ -1,999 +1,1165 @@
-[gd_resource type="TileSet" load_steps=9 format=3 uid="uid://d0pha3g0yk4g8"]
+[gd_resource type="TileSet" load_steps=24 format=3 uid="uid://d0pha3g0yk4g8"]
 
 [ext_resource type="Texture2D" uid="uid://j0xvhotm7q2d" path="res://assets/textures/tilesets/ground_tileset_32.png" id="1_sa0ub"]
 [ext_resource type="Texture2D" uid="uid://bipcprw7rrykq" path="res://assets/textures/tilesets/water.png" id="2_48o0x"]
+[ext_resource type="PackedScene" uid="uid://co4rbbidq8odq" path="res://scenes/object/plant/tree/tree_1.tscn" id="3_puuko"]
+[ext_resource type="PackedScene" uid="uid://b0t557dst46s0" path="res://scenes/object/plant/tree/tree_2.tscn" id="4_0tnp1"]
+[ext_resource type="Texture2D" uid="uid://dfl5uioj6qy8s" path="res://assets/textures/tilesets/ruins.png" id="4_j1p4q"]
+
 [ext_resource type="Texture2D" uid="uid://ceqf820jaaxqk" path="res://assets/textures/tilesets/walls_tileset_32x64.png" id="4_nb15j"]
+[ext_resource type="PackedScene" uid="uid://jmxh2crmhmr0" path="res://scenes/object/plant/tree/tree_3.tscn" id="5_ph3wh"]
+[ext_resource type="PackedScene" uid="uid://d1vc3r7ysydls" path="res://scenes/object/plant/tree/tree_4.tscn" id="6_nkhep"]
+[ext_resource type="PackedScene" uid="uid://mcv7cy71yiix" path="res://scenes/object/plant/tree/tree_5.tscn" id="7_togi8"]
+[ext_resource type="PackedScene" uid="uid://do0mgar75c81b" path="res://scenes/object/plant/tree/tree_6.tscn" id="8_4me3o"]
+[ext_resource type="PackedScene" uid="uid://dcbb038jx8fxu" path="res://scenes/object/plant/bush/bush_blueberry.tscn" id="9_433bx"]
+[ext_resource type="PackedScene" uid="uid://d30y7r8jbuhks" path="res://scenes/object/ore/stone/stone_1.tscn" id="11_wp1cl"]
+[ext_resource type="PackedScene" uid="uid://bs4i13d63rlmv" path="res://scenes/object/ore/stone/stone_2.tscn" id="12_a10sh"]
+[ext_resource type="PackedScene" uid="uid://dogxypalihf1n" path="res://scenes/object/ore/stone/stone_3.tscn" id="13_ykky7"]
+[ext_resource type="PackedScene" uid="uid://r676xfcfj0hg" path="res://scenes/object/ore/stone/stone_4.tscn" id="14_yl6vc"]
+[ext_resource type="PackedScene" uid="uid://bf6msv0efjgt4" path="res://scenes/object/ore/stone/stone_5.tscn" id="15_fbbga"]
+[ext_resource type="PackedScene" uid="uid://dr35ikyrrpmhi" path="res://scenes/object/furniture/chest/chest.tscn" id="18_tskbb"]
+[ext_resource type="PackedScene" uid="uid://b50ew3ar0cmlr" path="res://scenes/object/furniture/furnace/furnace.tscn" id="19_vrtvl"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_7bppt"]
+resource_name = "ground"
 texture = ExtResource("1_sa0ub")
 texture_region_size = Vector2i(32, 32)
 0:0/0 = 0
-0:0/0/terrain_set = 0
-0:0/0/terrain = 0
-0:0/0/terrains_peering_bit/bottom_side = 0
+0:0/0/metadata/_better_terrain = {
+4: [1],
+"symmetry": 0,
+"type": 1
+}
 1:0/0 = 0
-1:0/0/terrain_set = 0
-1:0/0/terrain = 0
-1:0/0/terrains_peering_bit/right_side = 0
-1:0/0/terrains_peering_bit/bottom_side = 0
+1:0/0/metadata/_better_terrain = {
+0: [1],
+4: [1],
+"type": 1
+}
 2:0/0 = 0
-2:0/0/terrain_set = 0
-2:0/0/terrain = 0
-2:0/0/terrains_peering_bit/right_side = 0
-2:0/0/terrains_peering_bit/bottom_side = 0
-2:0/0/terrains_peering_bit/left_side = 0
+2:0/0/metadata/_better_terrain = {
+0: [1],
+4: [1],
+8: [1],
+"type": 1
+}
 3:0/0 = 0
-3:0/0/terrain_set = 0
-3:0/0/terrain = 0
-3:0/0/terrains_peering_bit/bottom_side = 0
-3:0/0/terrains_peering_bit/left_side = 0
+3:0/0/metadata/_better_terrain = {
+4: [1],
+8: [1],
+"type": 1
+}
 4:0/0 = 0
-4:0/0/terrain_set = 0
-4:0/0/terrain = 0
-4:0/0/terrains_peering_bit/right_side = 0
-4:0/0/terrains_peering_bit/bottom_side = 0
-4:0/0/terrains_peering_bit/left_side = 0
-4:0/0/terrains_peering_bit/top_left_corner = 0
-4:0/0/terrains_peering_bit/top_side = 0
+4:0/0/metadata/_better_terrain = {
+0: [1],
+4: [1],
+8: [1],
+11: [1],
+12: [1],
+"type": 1
+}
 5:0/0 = 0
-5:0/0/terrain_set = 0
-5:0/0/terrain = 0
-5:0/0/terrains_peering_bit/right_side = 0
-5:0/0/terrains_peering_bit/bottom_right_corner = 0
-5:0/0/terrains_peering_bit/bottom_side = 0
-5:0/0/terrains_peering_bit/left_side = 0
+5:0/0/metadata/_better_terrain = {
+0: [1],
+3: [1],
+4: [1],
+8: [1],
+"type": 1
+}
 6:0/0 = 0
-6:0/0/terrain_set = 0
-6:0/0/terrain = 0
-6:0/0/terrains_peering_bit/right_side = 0
-6:0/0/terrains_peering_bit/bottom_side = 0
-6:0/0/terrains_peering_bit/bottom_left_corner = 0
-6:0/0/terrains_peering_bit/left_side = 0
+6:0/0/metadata/_better_terrain = {
+0: [1],
+4: [1],
+7: [1],
+8: [1],
+"type": 1
+}
 7:0/0 = 0
-7:0/0/terrain_set = 0
-7:0/0/terrain = 0
-7:0/0/terrains_peering_bit/right_side = 0
-7:0/0/terrains_peering_bit/bottom_side = 0
-7:0/0/terrains_peering_bit/left_side = 0
-7:0/0/terrains_peering_bit/top_side = 0
-7:0/0/terrains_peering_bit/top_right_corner = 0
+7:0/0/metadata/_better_terrain = {
+0: [1],
+4: [1],
+8: [1],
+12: [1],
+15: [1],
+"type": 1
+}
 8:0/0 = 0
-8:0/0/terrain_set = 0
-8:0/0/terrain = 0
-8:0/0/terrains_peering_bit/right_side = 0
-8:0/0/terrains_peering_bit/bottom_right_corner = 0
-8:0/0/terrains_peering_bit/bottom_side = 0
+8:0/0/metadata/_better_terrain = {
+0: [1],
+3: [1],
+4: [1],
+"type": 1
+}
 9:0/0 = 0
-9:0/0/terrain_set = 0
-9:0/0/terrain = 0
-9:0/0/terrains_peering_bit/right_side = 0
-9:0/0/terrains_peering_bit/bottom_right_corner = 0
-9:0/0/terrains_peering_bit/bottom_side = 0
-9:0/0/terrains_peering_bit/bottom_left_corner = 0
-9:0/0/terrains_peering_bit/left_side = 0
-9:0/0/terrains_peering_bit/top_side = 0
+9:0/0/metadata/_better_terrain = {
+0: [1],
+3: [1],
+4: [1],
+7: [1],
+8: [1],
+12: [1],
+"type": 1
+}
 10:0/0 = 0
-10:0/0/terrain_set = 0
-10:0/0/terrain = 0
-10:0/0/terrains_peering_bit/right_side = 0
-10:0/0/terrains_peering_bit/bottom_right_corner = 0
-10:0/0/terrains_peering_bit/bottom_side = 0
-10:0/0/terrains_peering_bit/bottom_left_corner = 0
-10:0/0/terrains_peering_bit/left_side = 0
+10:0/0/metadata/_better_terrain = {
+0: [1],
+3: [1],
+4: [1],
+7: [1],
+8: [1],
+"type": 1
+}
 11:0/0 = 0
-11:0/0/terrain_set = 0
-11:0/0/terrain = 0
-11:0/0/terrains_peering_bit/bottom_side = 0
-11:0/0/terrains_peering_bit/bottom_left_corner = 0
-11:0/0/terrains_peering_bit/left_side = 0
+11:0/0/metadata/_better_terrain = {
+4: [1],
+7: [1],
+8: [1],
+"type": 1
+}
 0:1/0 = 0
-0:1/0/terrain_set = 0
-0:1/0/terrain = 0
-0:1/0/terrains_peering_bit/bottom_side = 0
-0:1/0/terrains_peering_bit/top_side = 0
+0:1/0/metadata/_better_terrain = {
+4: [1],
+12: [1],
+"symmetry": 0,
+"type": 1
+}
 1:1/0 = 0
-1:1/0/terrain_set = 0
-1:1/0/terrain = 0
-1:1/0/terrains_peering_bit/right_side = 0
-1:1/0/terrains_peering_bit/bottom_side = 0
-1:1/0/terrains_peering_bit/top_side = 0
+1:1/0/metadata/_better_terrain = {
+0: [1],
+4: [1],
+12: [1],
+"symmetry": 0,
+"type": 1
+}
 2:1/0 = 0
-2:1/0/terrain_set = 0
-2:1/0/terrain = 0
-2:1/0/terrains_peering_bit/right_side = 0
-2:1/0/terrains_peering_bit/bottom_side = 0
-2:1/0/terrains_peering_bit/left_side = 0
-2:1/0/terrains_peering_bit/top_side = 0
+2:1/0/metadata/_better_terrain = {
+0: [1],
+4: [1],
+8: [1],
+12: [1],
+"symmetry": 0,
+"type": 1
+}
 3:1/0 = 0
-3:1/0/terrain_set = 0
-3:1/0/terrain = 0
-3:1/0/terrains_peering_bit/bottom_side = 0
-3:1/0/terrains_peering_bit/left_side = 0
-3:1/0/terrains_peering_bit/top_side = 0
+3:1/0/metadata/_better_terrain = {
+4: [1],
+8: [1],
+12: [1],
+"symmetry": 0,
+"type": 1
+}
 4:1/0 = 0
-4:1/0/terrain_set = 0
-4:1/0/terrain = 0
-4:1/0/terrains_peering_bit/right_side = 0
-4:1/0/terrains_peering_bit/bottom_right_corner = 0
-4:1/0/terrains_peering_bit/bottom_side = 0
-4:1/0/terrains_peering_bit/top_side = 0
+4:1/0/metadata/_better_terrain = {
+0: [1],
+3: [1],
+4: [1],
+12: [1],
+"symmetry": 0,
+"type": 1
+}
 5:1/0 = 0
-5:1/0/terrain_set = 0
-5:1/0/terrain = 0
-5:1/0/terrains_peering_bit/right_side = 0
-5:1/0/terrains_peering_bit/bottom_right_corner = 0
-5:1/0/terrains_peering_bit/bottom_side = 0
-5:1/0/terrains_peering_bit/bottom_left_corner = 0
-5:1/0/terrains_peering_bit/left_side = 0
-5:1/0/terrains_peering_bit/top_side = 0
-5:1/0/terrains_peering_bit/top_right_corner = 0
+5:1/0/metadata/_better_terrain = {
+0: [1],
+3: [1],
+4: [1],
+7: [1],
+8: [1],
+12: [1],
+15: [1],
+"symmetry": 0,
+"type": 1
+}
 6:1/0 = 0
-6:1/0/terrain_set = 0
-6:1/0/terrain = 0
-6:1/0/terrains_peering_bit/right_side = 0
-6:1/0/terrains_peering_bit/bottom_right_corner = 0
-6:1/0/terrains_peering_bit/bottom_side = 0
-6:1/0/terrains_peering_bit/bottom_left_corner = 0
-6:1/0/terrains_peering_bit/left_side = 0
-6:1/0/terrains_peering_bit/top_left_corner = 0
-6:1/0/terrains_peering_bit/top_side = 0
+6:1/0/metadata/_better_terrain = {
+0: [1],
+3: [1],
+4: [1],
+7: [1],
+8: [1],
+11: [1],
+12: [1],
+"type": 1
+}
 7:1/0 = 0
-7:1/0/terrain_set = 0
-7:1/0/terrain = 0
-7:1/0/terrains_peering_bit/bottom_side = 0
-7:1/0/terrains_peering_bit/bottom_left_corner = 0
-7:1/0/terrains_peering_bit/left_side = 0
-7:1/0/terrains_peering_bit/top_side = 0
+7:1/0/metadata/_better_terrain = {
+4: [1],
+7: [1],
+8: [1],
+12: [1],
+"type": 1
+}
 8:1/0 = 0
-8:1/0/terrain_set = 0
-8:1/0/terrain = 0
-8:1/0/terrains_peering_bit/right_side = 0
-8:1/0/terrains_peering_bit/bottom_right_corner = 0
-8:1/0/terrains_peering_bit/bottom_side = 0
-8:1/0/terrains_peering_bit/top_side = 0
-8:1/0/terrains_peering_bit/top_right_corner = 0
+8:1/0/metadata/_better_terrain = {
+0: [1],
+3: [1],
+4: [1],
+12: [1],
+15: [1],
+"type": 1
+}
 9:1/0 = 0
-9:1/0/terrain_set = 0
-9:1/0/terrain = 0
-9:1/0/terrains_peering_bit/right_side = 0
-9:1/0/terrains_peering_bit/bottom_side = 0
-9:1/0/terrains_peering_bit/bottom_left_corner = 0
-9:1/0/terrains_peering_bit/left_side = 0
-9:1/0/terrains_peering_bit/top_side = 0
-9:1/0/terrains_peering_bit/top_right_corner = 0
+9:1/0/metadata/_better_terrain = {
+0: [1],
+4: [1],
+7: [1],
+8: [1],
+12: [1],
+15: [1],
+"type": 1
+}
 11:1/0 = 0
-11:1/0/terrain_set = 0
-11:1/0/terrain = 0
-11:1/0/terrains_peering_bit/right_side = 0
-11:1/0/terrains_peering_bit/bottom_side = 0
-11:1/0/terrains_peering_bit/bottom_left_corner = 0
-11:1/0/terrains_peering_bit/left_side = 0
-11:1/0/terrains_peering_bit/top_left_corner = 0
-11:1/0/terrains_peering_bit/top_side = 0
+11:1/0/metadata/_better_terrain = {
+0: [1],
+4: [1],
+7: [1],
+8: [1],
+11: [1],
+12: [1],
+"type": 1
+}
 0:2/0 = 0
-0:2/0/terrain_set = 0
-0:2/0/terrain = 0
-0:2/0/terrains_peering_bit/top_side = 0
+0:2/0/metadata/_better_terrain = {
+12: [1],
+"type": 1
+}
 1:2/0 = 0
-1:2/0/terrain_set = 0
-1:2/0/terrain = 0
-1:2/0/terrains_peering_bit/right_side = 0
-1:2/0/terrains_peering_bit/top_side = 0
+1:2/0/metadata/_better_terrain = {
+0: [1],
+12: [1],
+"type": 1
+}
 2:2/0 = 0
-2:2/0/terrain_set = 0
-2:2/0/terrain = 0
-2:2/0/terrains_peering_bit/right_side = 0
-2:2/0/terrains_peering_bit/left_side = 0
-2:2/0/terrains_peering_bit/top_side = 0
+2:2/0/metadata/_better_terrain = {
+0: [1],
+8: [1],
+12: [1],
+"type": 1
+}
 3:2/0 = 0
-3:2/0/terrain_set = 0
-3:2/0/terrain = 0
-3:2/0/terrains_peering_bit/left_side = 0
-3:2/0/terrains_peering_bit/top_side = 0
+3:2/0/metadata/_better_terrain = {
+8: [1],
+12: [1],
+"type": 1
+}
 4:2/0 = 0
-4:2/0/terrain_set = 0
-4:2/0/terrain = 0
-4:2/0/terrains_peering_bit/right_side = 0
-4:2/0/terrains_peering_bit/bottom_side = 0
-4:2/0/terrains_peering_bit/top_side = 0
-4:2/0/terrains_peering_bit/top_right_corner = 0
+4:2/0/metadata/_better_terrain = {
+0: [1],
+4: [1],
+12: [1],
+15: [1],
+"type": 1
+}
 5:2/0 = 0
-5:2/0/terrain_set = 0
-5:2/0/terrain = 0
-5:2/0/terrains_peering_bit/right_side = 0
-5:2/0/terrains_peering_bit/bottom_right_corner = 0
-5:2/0/terrains_peering_bit/bottom_side = 0
-5:2/0/terrains_peering_bit/left_side = 0
-5:2/0/terrains_peering_bit/top_left_corner = 0
-5:2/0/terrains_peering_bit/top_side = 0
-5:2/0/terrains_peering_bit/top_right_corner = 0
+5:2/0/metadata/_better_terrain = {
+0: [1],
+3: [1],
+4: [1],
+8: [1],
+11: [1],
+12: [1],
+15: [1],
+"type": 1
+}
 6:2/0 = 0
-6:2/0/terrain_set = 0
-6:2/0/terrain = 0
-6:2/0/terrains_peering_bit/right_side = 0
-6:2/0/terrains_peering_bit/bottom_side = 0
-6:2/0/terrains_peering_bit/bottom_left_corner = 0
-6:2/0/terrains_peering_bit/left_side = 0
-6:2/0/terrains_peering_bit/top_left_corner = 0
-6:2/0/terrains_peering_bit/top_side = 0
-6:2/0/terrains_peering_bit/top_right_corner = 0
+6:2/0/metadata/_better_terrain = {
+0: [1],
+4: [1],
+7: [1],
+8: [1],
+11: [1],
+12: [1],
+15: [1],
+"type": 1
+}
 7:2/0 = 0
-7:2/0/terrain_set = 0
-7:2/0/terrain = 0
-7:2/0/terrains_peering_bit/bottom_side = 0
-7:2/0/terrains_peering_bit/left_side = 0
-7:2/0/terrains_peering_bit/top_left_corner = 0
-7:2/0/terrains_peering_bit/top_side = 0
+7:2/0/metadata/_better_terrain = {
+4: [1],
+8: [1],
+11: [1],
+12: [1],
+"type": 1
+}
 8:2/0 = 0
-8:2/0/terrain_set = 0
-8:2/0/terrain = 0
-8:2/0/terrains_peering_bit/right_side = 0
-8:2/0/terrains_peering_bit/bottom_right_corner = 0
-8:2/0/terrains_peering_bit/bottom_side = 0
-8:2/0/terrains_peering_bit/left_side = 0
-8:2/0/terrains_peering_bit/top_side = 0
-8:2/0/terrains_peering_bit/top_right_corner = 0
+8:2/0/metadata/_better_terrain = {
+0: [1],
+3: [1],
+4: [1],
+8: [1],
+12: [1],
+15: [1],
+"type": 1
+}
 9:2/0 = 0
-9:2/0/terrain_set = 0
-9:2/0/terrain = 0
-9:2/0/terrains_peering_bit/right_side = 0
-9:2/0/terrains_peering_bit/bottom_right_corner = 0
-9:2/0/terrains_peering_bit/bottom_side = 0
-9:2/0/terrains_peering_bit/bottom_left_corner = 0
-9:2/0/terrains_peering_bit/left_side = 0
-9:2/0/terrains_peering_bit/top_left_corner = 0
-9:2/0/terrains_peering_bit/top_side = 0
-9:2/0/terrains_peering_bit/top_right_corner = 0
+9:2/0/metadata/_better_terrain = {
+0: [1],
+3: [1],
+4: [1],
+7: [1],
+8: [1],
+11: [1],
+12: [1],
+15: [1],
+"type": 1
+}
 10:2/0 = 0
-10:2/0/terrain_set = 0
-10:2/0/terrain = 0
-10:2/0/terrains_peering_bit/right_side = 0
-10:2/0/terrains_peering_bit/bottom_right_corner = 0
-10:2/0/terrains_peering_bit/bottom_side = 0
-10:2/0/terrains_peering_bit/left_side = 0
-10:2/0/terrains_peering_bit/top_left_corner = 0
-10:2/0/terrains_peering_bit/top_side = 0
+10:2/0/metadata/_better_terrain = {
+0: [1],
+3: [1],
+4: [1],
+8: [1],
+11: [1],
+12: [1],
+"type": 1
+}
 11:2/0 = 0
-11:2/0/terrain_set = 0
-11:2/0/terrain = 0
-11:2/0/terrains_peering_bit/bottom_side = 0
-11:2/0/terrains_peering_bit/bottom_left_corner = 0
-11:2/0/terrains_peering_bit/left_side = 0
-11:2/0/terrains_peering_bit/top_left_corner = 0
-11:2/0/terrains_peering_bit/top_side = 0
+11:2/0/metadata/_better_terrain = {
+4: [1],
+7: [1],
+8: [1],
+11: [1],
+12: [1],
+"type": 1
+}
 0:3/0 = 0
-0:3/0/terrain_set = 0
-0:3/0/terrain = 0
+0:3/0/metadata/_better_terrain = {
+"type": 1
+}
 1:3/0 = 0
-1:3/0/terrain_set = 0
-1:3/0/terrain = 0
-1:3/0/terrains_peering_bit/right_side = 0
+1:3/0/metadata/_better_terrain = {
+0: [1],
+"type": 1
+}
 2:3/0 = 0
-2:3/0/terrain_set = 0
-2:3/0/terrain = 0
-2:3/0/terrains_peering_bit/right_side = 0
-2:3/0/terrains_peering_bit/left_side = 0
+2:3/0/metadata/_better_terrain = {
+0: [1],
+8: [1],
+"type": 1
+}
 3:3/0 = 0
-3:3/0/terrain_set = 0
-3:3/0/terrain = 0
-3:3/0/terrains_peering_bit/left_side = 0
+3:3/0/metadata/_better_terrain = {
+8: [1],
+"type": 1
+}
 4:3/0 = 0
-4:3/0/terrain_set = 0
-4:3/0/terrain = 0
-4:3/0/terrains_peering_bit/right_side = 0
-4:3/0/terrains_peering_bit/bottom_side = 0
-4:3/0/terrains_peering_bit/bottom_left_corner = 0
-4:3/0/terrains_peering_bit/left_side = 0
-4:3/0/terrains_peering_bit/top_side = 0
+4:3/0/metadata/_better_terrain = {
+0: [1],
+4: [1],
+7: [1],
+8: [1],
+12: [1],
+"type": 1
+}
 5:3/0 = 0
-5:3/0/terrain_set = 0
-5:3/0/terrain = 0
-5:3/0/terrains_peering_bit/right_side = 0
-5:3/0/terrains_peering_bit/left_side = 0
-5:3/0/terrains_peering_bit/top_side = 0
-5:3/0/terrains_peering_bit/top_right_corner = 0
+5:3/0/metadata/_better_terrain = {
+0: [1],
+8: [1],
+12: [1],
+15: [1],
+"type": 1
+}
 6:3/0 = 0
-6:3/0/terrain_set = 0
-6:3/0/terrain = 0
-6:3/0/terrains_peering_bit/right_side = 0
-6:3/0/terrains_peering_bit/left_side = 0
-6:3/0/terrains_peering_bit/top_left_corner = 0
-6:3/0/terrains_peering_bit/top_side = 0
+6:3/0/metadata/_better_terrain = {
+0: [1],
+8: [1],
+11: [1],
+12: [1],
+"type": 1
+}
 7:3/0 = 0
-7:3/0/terrain_set = 0
-7:3/0/terrain = 0
-7:3/0/terrains_peering_bit/right_side = 0
-7:3/0/terrains_peering_bit/bottom_right_corner = 0
-7:3/0/terrains_peering_bit/bottom_side = 0
-7:3/0/terrains_peering_bit/left_side = 0
-7:3/0/terrains_peering_bit/top_side = 0
+7:3/0/metadata/_better_terrain = {
+0: [1],
+3: [1],
+4: [1],
+8: [1],
+12: [1],
+"type": 1
+}
 8:3/0 = 0
-8:3/0/terrain_set = 0
-8:3/0/terrain = 0
-8:3/0/terrains_peering_bit/right_side = 0
-8:3/0/terrains_peering_bit/top_side = 0
-8:3/0/terrains_peering_bit/top_right_corner = 0
+8:3/0/metadata/_better_terrain = {
+0: [1],
+12: [1],
+15: [1],
+"type": 1
+}
 9:3/0 = 0
-9:3/0/terrain_set = 0
-9:3/0/terrain = 0
-9:3/0/terrains_peering_bit/right_side = 0
-9:3/0/terrains_peering_bit/left_side = 0
-9:3/0/terrains_peering_bit/top_left_corner = 0
-9:3/0/terrains_peering_bit/top_side = 0
-9:3/0/terrains_peering_bit/top_right_corner = 0
+9:3/0/metadata/_better_terrain = {
+0: [1],
+8: [1],
+11: [1],
+12: [1],
+15: [1],
+"type": 1
+}
 10:3/0 = 0
-10:3/0/terrain_set = 0
-10:3/0/terrain = 0
-10:3/0/terrains_peering_bit/right_side = 0
-10:3/0/terrains_peering_bit/bottom_side = 0
-10:3/0/terrains_peering_bit/left_side = 0
-10:3/0/terrains_peering_bit/top_left_corner = 0
-10:3/0/terrains_peering_bit/top_side = 0
-10:3/0/terrains_peering_bit/top_right_corner = 0
+10:3/0/metadata/_better_terrain = {
+0: [1],
+4: [1],
+8: [1],
+11: [1],
+12: [1],
+15: [1],
+"type": 1
+}
 11:3/0 = 0
-11:3/0/terrain_set = 0
-11:3/0/terrain = 0
-11:3/0/terrains_peering_bit/left_side = 0
-11:3/0/terrains_peering_bit/top_left_corner = 0
-11:3/0/terrains_peering_bit/top_side = 0
+11:3/0/metadata/_better_terrain = {
+8: [1],
+11: [1],
+12: [1],
+"type": 1
+}
 0:4/0 = 0
-0:4/0/terrain_set = 0
-0:4/0/terrain = 1
-0:4/0/terrains_peering_bit/bottom_side = 1
+0:4/0/metadata/_better_terrain = {
+4: [3],
+"type": 3
+}
 1:4/0 = 0
-1:4/0/terrain_set = 0
-1:4/0/terrain = 1
-1:4/0/terrains_peering_bit/right_side = 1
-1:4/0/terrains_peering_bit/bottom_side = 1
+1:4/0/metadata/_better_terrain = {
+0: [3],
+4: [3],
+"type": 3
+}
 2:4/0 = 0
-2:4/0/terrain_set = 0
-2:4/0/terrain = 1
-2:4/0/terrains_peering_bit/right_side = 1
-2:4/0/terrains_peering_bit/bottom_side = 1
-2:4/0/terrains_peering_bit/left_side = 1
+2:4/0/metadata/_better_terrain = {
+0: [3],
+4: [3],
+8: [3],
+"type": 3
+}
 3:4/0 = 0
-3:4/0/terrain_set = 0
-3:4/0/terrain = 1
-3:4/0/terrains_peering_bit/bottom_side = 1
-3:4/0/terrains_peering_bit/left_side = 1
+3:4/0/metadata/_better_terrain = {
+4: [3],
+8: [3],
+"type": 3
+}
 4:4/0 = 0
-4:4/0/terrain_set = 0
-4:4/0/terrain = 1
-4:4/0/terrains_peering_bit/right_side = 1
-4:4/0/terrains_peering_bit/bottom_side = 1
-4:4/0/terrains_peering_bit/left_side = 1
-4:4/0/terrains_peering_bit/top_left_corner = 1
-4:4/0/terrains_peering_bit/top_side = 1
+4:4/0/metadata/_better_terrain = {
+0: [3],
+4: [3],
+8: [3],
+11: [3],
+12: [3],
+"type": 3
+}
 5:4/0 = 0
-5:4/0/terrain_set = 0
-5:4/0/terrain = 1
-5:4/0/terrains_peering_bit/right_side = 1
-5:4/0/terrains_peering_bit/bottom_right_corner = 1
-5:4/0/terrains_peering_bit/bottom_side = 1
-5:4/0/terrains_peering_bit/left_side = 1
+5:4/0/metadata/_better_terrain = {
+0: [3],
+3: [3],
+4: [3],
+8: [3],
+"type": 3
+}
 6:4/0 = 0
-6:4/0/terrain_set = 0
-6:4/0/terrain = 1
-6:4/0/terrains_peering_bit/right_side = 1
-6:4/0/terrains_peering_bit/bottom_side = 1
-6:4/0/terrains_peering_bit/bottom_left_corner = 1
-6:4/0/terrains_peering_bit/left_side = 1
+6:4/0/metadata/_better_terrain = {
+0: [3],
+4: [3],
+7: [3],
+8: [3],
+"type": 3
+}
 7:4/0 = 0
-7:4/0/terrain_set = 0
-7:4/0/terrain = 1
-7:4/0/terrains_peering_bit/right_side = 1
-7:4/0/terrains_peering_bit/bottom_side = 1
-7:4/0/terrains_peering_bit/left_side = 1
-7:4/0/terrains_peering_bit/top_side = 1
-7:4/0/terrains_peering_bit/top_right_corner = 1
+7:4/0/metadata/_better_terrain = {
+0: [3],
+4: [3],
+8: [3],
+12: [3],
+15: [3],
+"type": 3
+}
 8:4/0 = 0
-8:4/0/terrain_set = 0
-8:4/0/terrain = 1
-8:4/0/terrains_peering_bit/right_side = 1
-8:4/0/terrains_peering_bit/bottom_right_corner = 1
-8:4/0/terrains_peering_bit/bottom_side = 1
+8:4/0/metadata/_better_terrain = {
+0: [3],
+3: [3],
+4: [3],
+"type": 3
+}
 9:4/0 = 0
-9:4/0/terrain_set = 0
-9:4/0/terrain = 1
-9:4/0/terrains_peering_bit/right_side = 1
-9:4/0/terrains_peering_bit/bottom_right_corner = 1
-9:4/0/terrains_peering_bit/bottom_side = 1
-9:4/0/terrains_peering_bit/bottom_left_corner = 1
-9:4/0/terrains_peering_bit/left_side = 1
-9:4/0/terrains_peering_bit/top_side = 1
+9:4/0/metadata/_better_terrain = {
+0: [3],
+3: [3],
+4: [3],
+7: [3],
+8: [3],
+12: [3],
+"type": 3
+}
 10:4/0 = 0
-10:4/0/terrain_set = 0
-10:4/0/terrain = 1
-10:4/0/terrains_peering_bit/right_side = 1
-10:4/0/terrains_peering_bit/bottom_right_corner = 1
-10:4/0/terrains_peering_bit/bottom_side = 1
-10:4/0/terrains_peering_bit/bottom_left_corner = 1
-10:4/0/terrains_peering_bit/left_side = 1
+10:4/0/metadata/_better_terrain = {
+0: [3],
+3: [3],
+4: [3],
+7: [3],
+8: [3],
+"type": 3
+}
 11:4/0 = 0
-11:4/0/terrain_set = 0
-11:4/0/terrain = 1
-11:4/0/terrains_peering_bit/bottom_side = 1
-11:4/0/terrains_peering_bit/bottom_left_corner = 1
-11:4/0/terrains_peering_bit/left_side = 1
+11:4/0/metadata/_better_terrain = {
+4: [3],
+7: [3],
+8: [3],
+"type": 3
+}
 0:5/0 = 0
-0:5/0/terrain_set = 0
-0:5/0/terrain = 1
-0:5/0/terrains_peering_bit/bottom_side = 1
-0:5/0/terrains_peering_bit/top_side = 1
+0:5/0/metadata/_better_terrain = {
+4: [3],
+12: [3],
+"type": 3
+}
 1:5/0 = 0
-1:5/0/terrain_set = 0
-1:5/0/terrain = 1
-1:5/0/terrains_peering_bit/right_side = 1
-1:5/0/terrains_peering_bit/bottom_side = 1
-1:5/0/terrains_peering_bit/top_side = 1
+1:5/0/metadata/_better_terrain = {
+0: [3],
+4: [3],
+12: [3],
+"type": 3
+}
 2:5/0 = 0
-2:5/0/terrain_set = 0
-2:5/0/terrain = 1
-2:5/0/terrains_peering_bit/right_side = 1
-2:5/0/terrains_peering_bit/bottom_side = 1
-2:5/0/terrains_peering_bit/left_side = 1
-2:5/0/terrains_peering_bit/top_side = 1
+2:5/0/metadata/_better_terrain = {
+0: [3],
+4: [3],
+8: [3],
+12: [3],
+"type": 3
+}
 3:5/0 = 0
-3:5/0/terrain_set = 0
-3:5/0/terrain = 1
-3:5/0/terrains_peering_bit/bottom_side = 1
-3:5/0/terrains_peering_bit/left_side = 1
-3:5/0/terrains_peering_bit/top_side = 1
+3:5/0/metadata/_better_terrain = {
+4: [3],
+8: [3],
+12: [3],
+"type": 3
+}
 4:5/0 = 0
-4:5/0/terrain_set = 0
-4:5/0/terrain = 1
-4:5/0/terrains_peering_bit/right_side = 1
-4:5/0/terrains_peering_bit/bottom_right_corner = 1
-4:5/0/terrains_peering_bit/bottom_side = 1
-4:5/0/terrains_peering_bit/top_side = 1
+4:5/0/metadata/_better_terrain = {
+0: [3],
+3: [3],
+4: [3],
+12: [3],
+"type": 3
+}
 5:5/0 = 0
-5:5/0/terrain_set = 0
-5:5/0/terrain = 1
-5:5/0/terrains_peering_bit/right_side = 1
-5:5/0/terrains_peering_bit/bottom_right_corner = 1
-5:5/0/terrains_peering_bit/bottom_side = 1
-5:5/0/terrains_peering_bit/bottom_left_corner = 1
-5:5/0/terrains_peering_bit/left_side = 1
-5:5/0/terrains_peering_bit/top_side = 1
-5:5/0/terrains_peering_bit/top_right_corner = 1
+5:5/0/metadata/_better_terrain = {
+0: [3],
+3: [3],
+4: [3],
+7: [3],
+8: [3],
+12: [3],
+15: [3],
+"type": 3
+}
 6:5/0 = 0
-6:5/0/terrain_set = 0
-6:5/0/terrain = 1
-6:5/0/terrains_peering_bit/right_side = 1
-6:5/0/terrains_peering_bit/bottom_right_corner = 1
-6:5/0/terrains_peering_bit/bottom_side = 1
-6:5/0/terrains_peering_bit/bottom_left_corner = 1
-6:5/0/terrains_peering_bit/left_side = 1
-6:5/0/terrains_peering_bit/top_left_corner = 1
-6:5/0/terrains_peering_bit/top_side = 1
+6:5/0/metadata/_better_terrain = {
+0: [3],
+3: [3],
+4: [3],
+7: [3],
+8: [3],
+11: [3],
+12: [3],
+"type": 3
+}
 7:5/0 = 0
-7:5/0/terrain_set = 0
-7:5/0/terrain = 1
-7:5/0/terrains_peering_bit/bottom_side = 1
-7:5/0/terrains_peering_bit/bottom_left_corner = 1
-7:5/0/terrains_peering_bit/left_side = 1
-7:5/0/terrains_peering_bit/top_side = 1
+7:5/0/metadata/_better_terrain = {
+4: [3],
+7: [3],
+8: [3],
+12: [3],
+"type": 3
+}
 8:5/0 = 0
-8:5/0/terrain_set = 0
-8:5/0/terrain = 1
-8:5/0/terrains_peering_bit/right_side = 1
-8:5/0/terrains_peering_bit/bottom_right_corner = 1
-8:5/0/terrains_peering_bit/bottom_side = 1
-8:5/0/terrains_peering_bit/top_side = 1
-8:5/0/terrains_peering_bit/top_right_corner = 1
+8:5/0/metadata/_better_terrain = {
+0: [3],
+3: [3],
+4: [3],
+12: [3],
+15: [3],
+"type": 3
+}
 9:5/0 = 0
-9:5/0/terrain_set = 0
-9:5/0/terrain = 1
-9:5/0/terrains_peering_bit/right_side = 1
-9:5/0/terrains_peering_bit/bottom_side = 1
-9:5/0/terrains_peering_bit/bottom_left_corner = 1
-9:5/0/terrains_peering_bit/left_side = 1
-9:5/0/terrains_peering_bit/top_side = 1
-9:5/0/terrains_peering_bit/top_right_corner = 1
+9:5/0/metadata/_better_terrain = {
+0: [3],
+4: [3],
+7: [3],
+8: [3],
+12: [3],
+15: [3],
+"type": 3
+}
 11:5/0 = 0
-11:5/0/terrain_set = 0
-11:5/0/terrain = 1
-11:5/0/terrains_peering_bit/right_side = 1
-11:5/0/terrains_peering_bit/bottom_side = 1
-11:5/0/terrains_peering_bit/bottom_left_corner = 1
-11:5/0/terrains_peering_bit/left_side = 1
-11:5/0/terrains_peering_bit/top_left_corner = 1
-11:5/0/terrains_peering_bit/top_side = 1
+11:5/0/metadata/_better_terrain = {
+0: [3],
+4: [3],
+7: [3],
+8: [3],
+11: [3],
+12: [3],
+"type": 3
+}
 0:6/0 = 0
-0:6/0/terrain_set = 0
-0:6/0/terrain = 1
-0:6/0/terrains_peering_bit/top_side = 1
+0:6/0/metadata/_better_terrain = {
+12: [3],
+"type": 3
+}
 1:6/0 = 0
-1:6/0/terrain_set = 0
-1:6/0/terrain = 1
-1:6/0/terrains_peering_bit/right_side = 1
-1:6/0/terrains_peering_bit/top_side = 1
+1:6/0/metadata/_better_terrain = {
+0: [3],
+12: [3],
+"type": 3
+}
 2:6/0 = 0
-2:6/0/terrain_set = 0
-2:6/0/terrain = 1
-2:6/0/terrains_peering_bit/right_side = 1
-2:6/0/terrains_peering_bit/left_side = 1
-2:6/0/terrains_peering_bit/top_side = 1
+2:6/0/metadata/_better_terrain = {
+0: [3],
+8: [3],
+12: [3],
+"type": 3
+}
 3:6/0 = 0
-3:6/0/terrain_set = 0
-3:6/0/terrain = 1
-3:6/0/terrains_peering_bit/left_side = 1
-3:6/0/terrains_peering_bit/top_side = 1
+3:6/0/metadata/_better_terrain = {
+8: [3],
+12: [3],
+"type": 3
+}
 4:6/0 = 0
-4:6/0/terrain_set = 0
-4:6/0/terrain = 1
-4:6/0/terrains_peering_bit/right_side = 1
-4:6/0/terrains_peering_bit/bottom_side = 1
-4:6/0/terrains_peering_bit/top_side = 1
-4:6/0/terrains_peering_bit/top_right_corner = 1
+4:6/0/metadata/_better_terrain = {
+0: [3],
+4: [3],
+12: [3],
+15: [3],
+"type": 3
+}
 5:6/0 = 0
-5:6/0/terrain_set = 0
-5:6/0/terrain = 1
-5:6/0/terrains_peering_bit/right_side = 1
-5:6/0/terrains_peering_bit/bottom_right_corner = 1
-5:6/0/terrains_peering_bit/bottom_side = 1
-5:6/0/terrains_peering_bit/left_side = 1
-5:6/0/terrains_peering_bit/top_left_corner = 1
-5:6/0/terrains_peering_bit/top_side = 1
-5:6/0/terrains_peering_bit/top_right_corner = 1
+5:6/0/metadata/_better_terrain = {
+0: [3],
+3: [3],
+4: [3],
+8: [3],
+11: [3],
+12: [3],
+15: [3],
+"type": 3
+}
 6:6/0 = 0
-6:6/0/terrain_set = 0
-6:6/0/terrain = 1
-6:6/0/terrains_peering_bit/right_side = 1
-6:6/0/terrains_peering_bit/bottom_side = 1
-6:6/0/terrains_peering_bit/bottom_left_corner = 1
-6:6/0/terrains_peering_bit/left_side = 1
-6:6/0/terrains_peering_bit/top_left_corner = 1
-6:6/0/terrains_peering_bit/top_side = 1
-6:6/0/terrains_peering_bit/top_right_corner = 1
+6:6/0/metadata/_better_terrain = {
+0: [3],
+4: [3],
+7: [3],
+8: [3],
+11: [3],
+12: [3],
+15: [3],
+"type": 3
+}
 7:6/0 = 0
-7:6/0/terrain_set = 0
-7:6/0/terrain = 1
-7:6/0/terrains_peering_bit/bottom_side = 1
-7:6/0/terrains_peering_bit/left_side = 1
-7:6/0/terrains_peering_bit/top_left_corner = 1
-7:6/0/terrains_peering_bit/top_side = 1
+7:6/0/metadata/_better_terrain = {
+4: [3],
+8: [3],
+11: [3],
+12: [3],
+"type": 3
+}
 8:6/0 = 0
-8:6/0/terrain_set = 0
-8:6/0/terrain = 1
-8:6/0/terrains_peering_bit/right_side = 1
-8:6/0/terrains_peering_bit/bottom_right_corner = 1
-8:6/0/terrains_peering_bit/bottom_side = 1
-8:6/0/terrains_peering_bit/left_side = 1
-8:6/0/terrains_peering_bit/top_side = 1
-8:6/0/terrains_peering_bit/top_right_corner = 1
+8:6/0/metadata/_better_terrain = {
+0: [3],
+3: [3],
+4: [3],
+8: [3],
+12: [3],
+15: [3],
+"type": 3
+}
 9:6/0 = 0
-9:6/0/terrain_set = 0
-9:6/0/terrain = 1
-9:6/0/terrains_peering_bit/right_side = 1
-9:6/0/terrains_peering_bit/bottom_right_corner = 1
-9:6/0/terrains_peering_bit/bottom_side = 1
-9:6/0/terrains_peering_bit/bottom_left_corner = 1
-9:6/0/terrains_peering_bit/left_side = 1
-9:6/0/terrains_peering_bit/top_left_corner = 1
-9:6/0/terrains_peering_bit/top_side = 1
-9:6/0/terrains_peering_bit/top_right_corner = 1
+9:6/0/metadata/_better_terrain = {
+0: [3],
+3: [3],
+4: [3],
+7: [3],
+8: [3],
+11: [3],
+12: [3],
+15: [3],
+"type": 3
+}
 10:6/0 = 0
-10:6/0/terrain_set = 0
-10:6/0/terrain = 1
-10:6/0/terrains_peering_bit/right_side = 1
-10:6/0/terrains_peering_bit/bottom_right_corner = 1
-10:6/0/terrains_peering_bit/bottom_side = 1
-10:6/0/terrains_peering_bit/left_side = 1
-10:6/0/terrains_peering_bit/top_left_corner = 1
-10:6/0/terrains_peering_bit/top_side = 1
+10:6/0/metadata/_better_terrain = {
+0: [3],
+3: [3],
+4: [3],
+8: [3],
+11: [3],
+12: [3],
+"type": 3
+}
 11:6/0 = 0
-11:6/0/terrain_set = 0
-11:6/0/terrain = 1
-11:6/0/terrains_peering_bit/bottom_side = 1
-11:6/0/terrains_peering_bit/bottom_left_corner = 1
-11:6/0/terrains_peering_bit/left_side = 1
-11:6/0/terrains_peering_bit/top_left_corner = 1
-11:6/0/terrains_peering_bit/top_side = 1
+11:6/0/metadata/_better_terrain = {
+4: [3],
+7: [3],
+8: [3],
+11: [3],
+12: [3],
+"type": 3
+}
 0:7/0 = 0
-0:7/0/terrain_set = 0
-0:7/0/terrain = 1
+0:7/0/metadata/_better_terrain = {
+"type": 3
+}
 1:7/0 = 0
-1:7/0/terrain_set = 0
-1:7/0/terrain = 1
-1:7/0/terrains_peering_bit/right_side = 1
+1:7/0/metadata/_better_terrain = {
+0: [3],
+"type": 3
+}
 2:7/0 = 0
-2:7/0/terrain_set = 0
-2:7/0/terrain = 1
-2:7/0/terrains_peering_bit/right_side = 1
-2:7/0/terrains_peering_bit/left_side = 1
+2:7/0/metadata/_better_terrain = {
+0: [3],
+8: [3],
+"type": 3
+}
 3:7/0 = 0
-3:7/0/terrain_set = 0
-3:7/0/terrain = 1
-3:7/0/terrains_peering_bit/left_side = 1
+3:7/0/metadata/_better_terrain = {
+8: [3],
+"type": 3
+}
 4:7/0 = 0
-4:7/0/terrain_set = 0
-4:7/0/terrain = 1
-4:7/0/terrains_peering_bit/right_side = 1
-4:7/0/terrains_peering_bit/bottom_side = 1
-4:7/0/terrains_peering_bit/bottom_left_corner = 1
-4:7/0/terrains_peering_bit/left_side = 1
-4:7/0/terrains_peering_bit/top_side = 1
+4:7/0/metadata/_better_terrain = {
+0: [3],
+4: [3],
+7: [3],
+8: [3],
+12: [3],
+"type": 3
+}
 5:7/0 = 0
-5:7/0/terrain_set = 0
-5:7/0/terrain = 1
-5:7/0/terrains_peering_bit/right_side = 1
-5:7/0/terrains_peering_bit/left_side = 1
-5:7/0/terrains_peering_bit/top_side = 1
-5:7/0/terrains_peering_bit/top_right_corner = 1
+5:7/0/metadata/_better_terrain = {
+0: [3],
+8: [3],
+12: [3],
+15: [3],
+"type": 3
+}
 6:7/0 = 0
-6:7/0/terrain_set = 0
-6:7/0/terrain = 1
-6:7/0/terrains_peering_bit/right_side = 1
-6:7/0/terrains_peering_bit/left_side = 1
-6:7/0/terrains_peering_bit/top_left_corner = 1
-6:7/0/terrains_peering_bit/top_side = 1
+6:7/0/metadata/_better_terrain = {
+0: [3],
+8: [3],
+11: [3],
+12: [3],
+"type": 3
+}
 7:7/0 = 0
-7:7/0/terrain_set = 0
-7:7/0/terrain = 1
-7:7/0/terrains_peering_bit/right_side = 1
-7:7/0/terrains_peering_bit/bottom_right_corner = 1
-7:7/0/terrains_peering_bit/bottom_side = 1
-7:7/0/terrains_peering_bit/left_side = 1
-7:7/0/terrains_peering_bit/top_side = 1
+7:7/0/metadata/_better_terrain = {
+0: [3],
+3: [3],
+4: [3],
+8: [3],
+12: [3],
+15: [3],
+"type": 3
+}
 8:7/0 = 0
-8:7/0/terrain_set = 0
-8:7/0/terrain = 1
-8:7/0/terrains_peering_bit/right_side = 1
-8:7/0/terrains_peering_bit/top_side = 1
-8:7/0/terrains_peering_bit/top_right_corner = 1
+8:7/0/metadata/_better_terrain = {
+0: [3],
+12: [3],
+15: [3],
+"type": 3
+}
 9:7/0 = 0
-9:7/0/terrain_set = 0
-9:7/0/terrain = 1
-9:7/0/terrains_peering_bit/right_side = 1
-9:7/0/terrains_peering_bit/left_side = 1
-9:7/0/terrains_peering_bit/top_left_corner = 1
-9:7/0/terrains_peering_bit/top_side = 1
-9:7/0/terrains_peering_bit/top_right_corner = 1
+9:7/0/metadata/_better_terrain = {
+0: [3],
+8: [3],
+11: [3],
+12: [3],
+15: [3],
+"type": 3
+}
 10:7/0 = 0
-10:7/0/terrain_set = 0
-10:7/0/terrain = 1
-10:7/0/terrains_peering_bit/right_side = 1
-10:7/0/terrains_peering_bit/bottom_side = 1
-10:7/0/terrains_peering_bit/left_side = 1
-10:7/0/terrains_peering_bit/top_left_corner = 1
-10:7/0/terrains_peering_bit/top_side = 1
-10:7/0/terrains_peering_bit/top_right_corner = 1
+10:7/0/metadata/_better_terrain = {
+0: [3],
+4: [3],
+8: [3],
+11: [3],
+12: [3],
+15: [3],
+"type": 3
+}
 11:7/0 = 0
-11:7/0/terrain_set = 0
-11:7/0/terrain = 1
-11:7/0/terrains_peering_bit/left_side = 1
-11:7/0/terrains_peering_bit/top_left_corner = 1
-11:7/0/terrains_peering_bit/top_side = 1
+11:7/0/metadata/_better_terrain = {
+8: [3],
+11: [3],
+12: [3],
+"type": 3
+}
 0:8/0 = 0
-0:8/0/terrain_set = 0
-0:8/0/terrain = 2
-0:8/0/terrains_peering_bit/bottom_side = 2
+0:8/0/metadata/_better_terrain = {
+4: [2],
+"type": 2
+}
 1:8/0 = 0
-1:8/0/terrain_set = 0
-1:8/0/terrain = 2
-1:8/0/terrains_peering_bit/right_side = 2
-1:8/0/terrains_peering_bit/bottom_side = 2
+1:8/0/metadata/_better_terrain = {
+0: [2],
+4: [2],
+"type": 2
+}
 2:8/0 = 0
-2:8/0/terrain_set = 0
-2:8/0/terrain = 2
-2:8/0/terrains_peering_bit/right_side = 2
-2:8/0/terrains_peering_bit/bottom_side = 2
-2:8/0/terrains_peering_bit/left_side = 2
+2:8/0/metadata/_better_terrain = {
+0: [2],
+4: [2],
+8: [2],
+"type": 2
+}
 3:8/0 = 0
-3:8/0/terrain_set = 0
-3:8/0/terrain = 2
-3:8/0/terrains_peering_bit/bottom_side = 2
-3:8/0/terrains_peering_bit/left_side = 2
+3:8/0/metadata/_better_terrain = {
+4: [2],
+8: [2],
+"type": 2
+}
 4:8/0 = 0
-4:8/0/terrain_set = 0
-4:8/0/terrain = 2
-4:8/0/terrains_peering_bit/right_side = 2
-4:8/0/terrains_peering_bit/bottom_side = 2
-4:8/0/terrains_peering_bit/left_side = 2
-4:8/0/terrains_peering_bit/top_left_corner = 2
-4:8/0/terrains_peering_bit/top_side = 2
+4:8/0/metadata/_better_terrain = {
+0: [2],
+4: [2],
+8: [2],
+11: [2],
+12: [2],
+"type": 2
+}
 5:8/0 = 0
-5:8/0/terrain_set = 0
-5:8/0/terrain = 2
-5:8/0/terrains_peering_bit/right_side = 2
-5:8/0/terrains_peering_bit/bottom_right_corner = 2
-5:8/0/terrains_peering_bit/bottom_side = 2
-5:8/0/terrains_peering_bit/left_side = 2
+5:8/0/metadata/_better_terrain = {
+0: [2],
+3: [2],
+4: [2],
+8: [2],
+"type": 2
+}
 6:8/0 = 0
-6:8/0/terrain_set = 0
-6:8/0/terrain = 2
-6:8/0/terrains_peering_bit/right_side = 2
-6:8/0/terrains_peering_bit/bottom_side = 2
-6:8/0/terrains_peering_bit/bottom_left_corner = 2
-6:8/0/terrains_peering_bit/left_side = 2
+6:8/0/metadata/_better_terrain = {
+0: [2],
+4: [2],
+7: [2],
+8: [2],
+"type": 2
+}
 7:8/0 = 0
-7:8/0/terrain_set = 0
-7:8/0/terrain = 2
-7:8/0/terrains_peering_bit/right_side = 2
-7:8/0/terrains_peering_bit/bottom_side = 2
-7:8/0/terrains_peering_bit/left_side = 2
-7:8/0/terrains_peering_bit/top_side = 2
-7:8/0/terrains_peering_bit/top_right_corner = 2
+7:8/0/metadata/_better_terrain = {
+0: [2],
+4: [2],
+8: [2],
+12: [2],
+15: [2],
+"type": 2
+}
 8:8/0 = 0
-8:8/0/terrain_set = 0
-8:8/0/terrain = 2
-8:8/0/terrains_peering_bit/right_side = 2
-8:8/0/terrains_peering_bit/bottom_right_corner = 2
-8:8/0/terrains_peering_bit/bottom_side = 2
+8:8/0/metadata/_better_terrain = {
+0: [2],
+3: [2],
+4: [2],
+"type": 2
+}
 9:8/0 = 0
-9:8/0/terrain_set = 0
-9:8/0/terrain = 2
-9:8/0/terrains_peering_bit/right_side = 2
-9:8/0/terrains_peering_bit/bottom_right_corner = 2
-9:8/0/terrains_peering_bit/bottom_side = 2
-9:8/0/terrains_peering_bit/bottom_left_corner = 2
-9:8/0/terrains_peering_bit/left_side = 2
-9:8/0/terrains_peering_bit/top_side = 2
+9:8/0/metadata/_better_terrain = {
+0: [2],
+3: [2],
+4: [2],
+7: [2],
+8: [2],
+12: [2],
+"type": 2
+}
 10:8/0 = 0
-10:8/0/terrain_set = 0
-10:8/0/terrain = 2
-10:8/0/terrains_peering_bit/right_side = 2
-10:8/0/terrains_peering_bit/bottom_right_corner = 2
-10:8/0/terrains_peering_bit/bottom_side = 2
-10:8/0/terrains_peering_bit/bottom_left_corner = 2
-10:8/0/terrains_peering_bit/left_side = 2
+10:8/0/metadata/_better_terrain = {
+0: [2],
+3: [2],
+4: [2],
+7: [2],
+8: [2],
+"type": 2
+}
 11:8/0 = 0
-11:8/0/terrain_set = 0
-11:8/0/terrain = 2
-11:8/0/terrains_peering_bit/bottom_side = 2
-11:8/0/terrains_peering_bit/bottom_left_corner = 2
-11:8/0/terrains_peering_bit/left_side = 2
+11:8/0/metadata/_better_terrain = {
+4: [2],
+7: [2],
+8: [2],
+"type": 2
+}
 0:9/0 = 0
-0:9/0/terrain_set = 0
-0:9/0/terrain = 2
-0:9/0/terrains_peering_bit/bottom_side = 2
-0:9/0/terrains_peering_bit/top_side = 2
+0:9/0/metadata/_better_terrain = {
+4: [2],
+12: [2],
+"type": 2
+}
 1:9/0 = 0
-1:9/0/terrain_set = 0
-1:9/0/terrain = 2
-1:9/0/terrains_peering_bit/right_side = 2
-1:9/0/terrains_peering_bit/bottom_side = 2
-1:9/0/terrains_peering_bit/top_side = 2
+1:9/0/metadata/_better_terrain = {
+0: [2],
+4: [2],
+12: [2],
+"type": 2
+}
 2:9/0 = 0
-2:9/0/terrain_set = 0
-2:9/0/terrain = 2
-2:9/0/terrains_peering_bit/right_side = 2
-2:9/0/terrains_peering_bit/bottom_side = 2
-2:9/0/terrains_peering_bit/left_side = 2
-2:9/0/terrains_peering_bit/top_side = 2
+2:9/0/metadata/_better_terrain = {
+0: [2],
+4: [2],
+8: [2],
+12: [2],
+"type": 2
+}
 3:9/0 = 0
-3:9/0/terrain_set = 0
-3:9/0/terrain = 2
-3:9/0/terrains_peering_bit/bottom_side = 2
-3:9/0/terrains_peering_bit/left_side = 2
-3:9/0/terrains_peering_bit/top_side = 2
+3:9/0/metadata/_better_terrain = {
+4: [2],
+8: [2],
+12: [2],
+"type": 2
+}
 4:9/0 = 0
-4:9/0/terrain_set = 0
-4:9/0/terrain = 2
-4:9/0/terrains_peering_bit/right_side = 2
-4:9/0/terrains_peering_bit/bottom_right_corner = 2
-4:9/0/terrains_peering_bit/bottom_side = 2
-4:9/0/terrains_peering_bit/top_side = 2
+4:9/0/metadata/_better_terrain = {
+0: [2],
+3: [2],
+4: [2],
+12: [2],
+"type": 2
+}
 5:9/0 = 0
-5:9/0/terrain_set = 0
-5:9/0/terrain = 2
-5:9/0/terrains_peering_bit/right_side = 2
-5:9/0/terrains_peering_bit/bottom_right_corner = 2
-5:9/0/terrains_peering_bit/bottom_side = 2
-5:9/0/terrains_peering_bit/bottom_left_corner = 2
-5:9/0/terrains_peering_bit/left_side = 2
-5:9/0/terrains_peering_bit/top_side = 2
-5:9/0/terrains_peering_bit/top_right_corner = 2
+5:9/0/metadata/_better_terrain = {
+0: [2],
+3: [2],
+4: [2],
+7: [2],
+8: [2],
+12: [2],
+15: [2],
+"type": 2
+}
 6:9/0 = 0
-6:9/0/terrain_set = 0
-6:9/0/terrain = 2
-6:9/0/terrains_peering_bit/right_side = 2
-6:9/0/terrains_peering_bit/bottom_right_corner = 2
-6:9/0/terrains_peering_bit/bottom_side = 2
-6:9/0/terrains_peering_bit/bottom_left_corner = 2
-6:9/0/terrains_peering_bit/left_side = 2
-6:9/0/terrains_peering_bit/top_left_corner = 2
-6:9/0/terrains_peering_bit/top_side = 2
+6:9/0/metadata/_better_terrain = {
+0: [2],
+3: [2],
+4: [2],
+7: [2],
+8: [2],
+11: [2],
+12: [2],
+"type": 2
+}
 7:9/0 = 0
-7:9/0/terrain_set = 0
-7:9/0/terrain = 2
-7:9/0/terrains_peering_bit/bottom_side = 2
-7:9/0/terrains_peering_bit/bottom_left_corner = 2
-7:9/0/terrains_peering_bit/left_side = 2
-7:9/0/terrains_peering_bit/top_side = 2
+7:9/0/metadata/_better_terrain = {
+4: [2],
+7: [2],
+8: [2],
+12: [2],
+"type": 2
+}
 8:9/0 = 0
-8:9/0/terrain_set = 0
-8:9/0/terrain = 2
-8:9/0/terrains_peering_bit/right_side = 2
-8:9/0/terrains_peering_bit/bottom_right_corner = 2
-8:9/0/terrains_peering_bit/bottom_side = 2
-8:9/0/terrains_peering_bit/top_side = 2
-8:9/0/terrains_peering_bit/top_right_corner = 2
+8:9/0/metadata/_better_terrain = {
+0: [2],
+3: [2],
+4: [2],
+12: [2],
+15: [2],
+"type": 2
+}
 9:9/0 = 0
-9:9/0/terrain_set = 0
-9:9/0/terrain = 2
-9:9/0/terrains_peering_bit/right_side = 2
-9:9/0/terrains_peering_bit/bottom_side = 2
-9:9/0/terrains_peering_bit/bottom_left_corner = 2
-9:9/0/terrains_peering_bit/left_side = 2
-9:9/0/terrains_peering_bit/top_side = 2
-9:9/0/terrains_peering_bit/top_right_corner = 2
+9:9/0/metadata/_better_terrain = {
+0: [2],
+4: [2],
+7: [2],
+8: [2],
+12: [2],
+15: [2],
+"type": 2
+}
 11:9/0 = 0
-11:9/0/terrain_set = 0
-11:9/0/terrain = 2
-11:9/0/terrains_peering_bit/right_side = 2
-11:9/0/terrains_peering_bit/bottom_side = 2
-11:9/0/terrains_peering_bit/bottom_left_corner = 2
-11:9/0/terrains_peering_bit/left_side = 2
-11:9/0/terrains_peering_bit/top_left_corner = 2
-11:9/0/terrains_peering_bit/top_side = 2
+11:9/0/metadata/_better_terrain = {
+0: [2],
+4: [2],
+7: [2],
+8: [2],
+11: [2],
+12: [2],
+"type": 2
+}
 0:10/0 = 0
-0:10/0/terrain_set = 0
-0:10/0/terrain = 2
-0:10/0/terrains_peering_bit/top_side = 2
+0:10/0/metadata/_better_terrain = {
+12: [2],
+"type": 2
+}
 1:10/0 = 0
-1:10/0/terrain_set = 0
-1:10/0/terrain = 2
-1:10/0/terrains_peering_bit/right_side = 2
-1:10/0/terrains_peering_bit/top_side = 2
+1:10/0/metadata/_better_terrain = {
+0: [2],
+12: [2],
+"type": 2
+}
 2:10/0 = 0
-2:10/0/terrain_set = 0
-2:10/0/terrain = 2
-2:10/0/terrains_peering_bit/right_side = 2
-2:10/0/terrains_peering_bit/left_side = 2
-2:10/0/terrains_peering_bit/top_side = 2
+2:10/0/metadata/_better_terrain = {
+0: [2],
+8: [2],
+12: [2],
+"type": 2
+}
 3:10/0 = 0
-3:10/0/terrain_set = 0
-3:10/0/terrain = 2
-3:10/0/terrains_peering_bit/left_side = 2
-3:10/0/terrains_peering_bit/top_side = 2
+3:10/0/metadata/_better_terrain = {
+8: [2],
+12: [2],
+"type": 2
+}
 4:10/0 = 0
-4:10/0/terrain_set = 0
-4:10/0/terrain = 2
-4:10/0/terrains_peering_bit/right_side = 2
-4:10/0/terrains_peering_bit/bottom_side = 2
-4:10/0/terrains_peering_bit/top_side = 2
-4:10/0/terrains_peering_bit/top_right_corner = 2
+4:10/0/metadata/_better_terrain = {
+0: [2],
+4: [2],
+12: [2],
+15: [2],
+"type": 2
+}
 5:10/0 = 0
-5:10/0/terrain_set = 0
-5:10/0/terrain = 2
-5:10/0/terrains_peering_bit/right_side = 2
-5:10/0/terrains_peering_bit/bottom_right_corner = 2
-5:10/0/terrains_peering_bit/bottom_side = 2
-5:10/0/terrains_peering_bit/left_side = 2
-5:10/0/terrains_peering_bit/top_left_corner = 2
-5:10/0/terrains_peering_bit/top_side = 2
-5:10/0/terrains_peering_bit/top_right_corner = 2
+5:10/0/metadata/_better_terrain = {
+0: [2],
+3: [2],
+4: [2],
+8: [2],
+11: [2],
+12: [2],
+15: [2],
+"type": 2
+}
 6:10/0 = 0
-6:10/0/terrain_set = 0
-6:10/0/terrain = 2
-6:10/0/terrains_peering_bit/right_side = 2
-6:10/0/terrains_peering_bit/bottom_side = 2
-6:10/0/terrains_peering_bit/bottom_left_corner = 2
-6:10/0/terrains_peering_bit/left_side = 2
-6:10/0/terrains_peering_bit/top_left_corner = 2
-6:10/0/terrains_peering_bit/top_side = 2
-6:10/0/terrains_peering_bit/top_right_corner = 2
+6:10/0/metadata/_better_terrain = {
+0: [2],
+4: [2],
+7: [2],
+8: [2],
+11: [2],
+12: [2],
+15: [2],
+"type": 2
+}
 7:10/0 = 0
-7:10/0/terrain_set = 0
-7:10/0/terrain = 2
-7:10/0/terrains_peering_bit/bottom_side = 2
-7:10/0/terrains_peering_bit/left_side = 2
-7:10/0/terrains_peering_bit/top_left_corner = 2
-7:10/0/terrains_peering_bit/top_side = 2
+7:10/0/metadata/_better_terrain = {
+4: [2],
+8: [2],
+11: [2],
+12: [2],
+"type": 2
+}
 8:10/0 = 0
-8:10/0/terrain_set = 0
-8:10/0/terrain = 2
-8:10/0/terrains_peering_bit/right_side = 2
-8:10/0/terrains_peering_bit/bottom_right_corner = 2
-8:10/0/terrains_peering_bit/bottom_side = 2
-8:10/0/terrains_peering_bit/left_side = 2
-8:10/0/terrains_peering_bit/top_side = 2
-8:10/0/terrains_peering_bit/top_right_corner = 2
+8:10/0/metadata/_better_terrain = {
+0: [2],
+3: [2],
+4: [2],
+8: [2],
+12: [2],
+15: [2],
+"type": 2
+}
 9:10/0 = 0
-9:10/0/terrain_set = 0
-9:10/0/terrain = 2
-9:10/0/terrains_peering_bit/right_side = 2
-9:10/0/terrains_peering_bit/bottom_right_corner = 2
-9:10/0/terrains_peering_bit/bottom_side = 2
-9:10/0/terrains_peering_bit/bottom_left_corner = 2
-9:10/0/terrains_peering_bit/left_side = 2
-9:10/0/terrains_peering_bit/top_left_corner = 2
-9:10/0/terrains_peering_bit/top_side = 2
-9:10/0/terrains_peering_bit/top_right_corner = 2
+9:10/0/metadata/_better_terrain = {
+0: [2],
+3: [2],
+4: [2],
+7: [2],
+8: [2],
+11: [2],
+12: [2],
+15: [2],
+"type": 2
+}
 10:10/0 = 0
-10:10/0/terrain_set = 0
-10:10/0/terrain = 2
-10:10/0/terrains_peering_bit/right_side = 2
-10:10/0/terrains_peering_bit/bottom_right_corner = 2
-10:10/0/terrains_peering_bit/bottom_side = 2
-10:10/0/terrains_peering_bit/left_side = 2
-10:10/0/terrains_peering_bit/top_left_corner = 2
-10:10/0/terrains_peering_bit/top_side = 2
+10:10/0/metadata/_better_terrain = {
+0: [2],
+3: [2],
+4: [2],
+8: [2],
+11: [2],
+12: [2],
+"type": 2
+}
 11:10/0 = 0
-11:10/0/terrain_set = 0
-11:10/0/terrain = 2
-11:10/0/terrains_peering_bit/bottom_side = 2
-11:10/0/terrains_peering_bit/bottom_left_corner = 2
-11:10/0/terrains_peering_bit/left_side = 2
-11:10/0/terrains_peering_bit/top_left_corner = 2
-11:10/0/terrains_peering_bit/top_side = 2
+11:10/0/metadata/_better_terrain = {
+4: [2],
+7: [2],
+8: [2],
+11: [2],
+12: [2],
+"type": 2
+}
 0:11/0 = 0
-0:11/0/terrain_set = 0
-0:11/0/terrain = 2
+0:11/0/metadata/_better_terrain = {
+"type": 2
+}
 1:11/0 = 0
-1:11/0/terrain_set = 0
-1:11/0/terrain = 2
-1:11/0/terrains_peering_bit/right_side = 2
+1:11/0/metadata/_better_terrain = {
+0: [2],
+"type": 2
+}
 2:11/0 = 0
-2:11/0/terrain_set = 0
-2:11/0/terrain = 2
-2:11/0/terrains_peering_bit/right_side = 2
-2:11/0/terrains_peering_bit/left_side = 2
+2:11/0/metadata/_better_terrain = {
+0: [2],
+8: [2],
+"type": 2
+}
 3:11/0 = 0
-3:11/0/terrain_set = 0
-3:11/0/terrain = 2
-3:11/0/terrains_peering_bit/left_side = 2
+3:11/0/metadata/_better_terrain = {
+8: [2],
+"type": 2
+}
 4:11/0 = 0
-4:11/0/terrain_set = 0
-4:11/0/terrain = 2
-4:11/0/terrains_peering_bit/right_side = 2
-4:11/0/terrains_peering_bit/bottom_side = 2
-4:11/0/terrains_peering_bit/bottom_left_corner = 2
-4:11/0/terrains_peering_bit/left_side = 2
-4:11/0/terrains_peering_bit/top_side = 2
+4:11/0/metadata/_better_terrain = {
+0: [2],
+4: [2],
+7: [2],
+8: [2],
+12: [2],
+"type": 2
+}
 5:11/0 = 0
-5:11/0/terrain_set = 0
-5:11/0/terrain = 2
-5:11/0/terrains_peering_bit/right_side = 2
-5:11/0/terrains_peering_bit/left_side = 2
-5:11/0/terrains_peering_bit/top_side = 2
-5:11/0/terrains_peering_bit/top_right_corner = 2
+5:11/0/metadata/_better_terrain = {
+0: [2],
+8: [2],
+12: [2],
+15: [2],
+"type": 2
+}
 6:11/0 = 0
-6:11/0/terrain_set = 0
-6:11/0/terrain = 2
-6:11/0/terrains_peering_bit/right_side = 2
-6:11/0/terrains_peering_bit/left_side = 2
-6:11/0/terrains_peering_bit/top_left_corner = 2
-6:11/0/terrains_peering_bit/top_side = 2
+6:11/0/metadata/_better_terrain = {
+0: [2],
+8: [2],
+11: [2],
+12: [2],
+"type": 2
+}
 7:11/0 = 0
-7:11/0/terrain_set = 0
-7:11/0/terrain = 2
-7:11/0/terrains_peering_bit/right_side = 2
-7:11/0/terrains_peering_bit/bottom_right_corner = 2
-7:11/0/terrains_peering_bit/bottom_side = 2
-7:11/0/terrains_peering_bit/left_side = 2
-7:11/0/terrains_peering_bit/top_side = 2
+7:11/0/metadata/_better_terrain = {
+0: [2],
+3: [2],
+4: [2],
+8: [2],
+12: [2],
+"type": 2
+}
 8:11/0 = 0
-8:11/0/terrain_set = 0
-8:11/0/terrain = 2
-8:11/0/terrains_peering_bit/right_side = 2
-8:11/0/terrains_peering_bit/top_side = 2
-8:11/0/terrains_peering_bit/top_right_corner = 2
+8:11/0/metadata/_better_terrain = {
+0: [2],
+12: [2],
+15: [2],
+"type": 2
+}
 9:11/0 = 0
-9:11/0/terrain_set = 0
-9:11/0/terrain = 2
-9:11/0/terrains_peering_bit/right_side = 2
-9:11/0/terrains_peering_bit/left_side = 2
-9:11/0/terrains_peering_bit/top_left_corner = 2
-9:11/0/terrains_peering_bit/top_side = 2
-9:11/0/terrains_peering_bit/top_right_corner = 2
+9:11/0/metadata/_better_terrain = {
+0: [2],
+8: [2],
+11: [2],
+12: [2],
+15: [2],
+"type": 2
+}
 10:11/0 = 0
-10:11/0/terrain_set = 0
-10:11/0/terrain = 2
-10:11/0/terrains_peering_bit/right_side = 2
-10:11/0/terrains_peering_bit/bottom_side = 2
-10:11/0/terrains_peering_bit/left_side = 2
-10:11/0/terrains_peering_bit/top_left_corner = 2
-10:11/0/terrains_peering_bit/top_side = 2
-10:11/0/terrains_peering_bit/top_right_corner = 2
+10:11/0/metadata/_better_terrain = {
+0: [2],
+4: [2],
+8: [2],
+11: [2],
+12: [2],
+15: [2],
+"type": 2
+}
 11:11/0 = 0
-11:11/0/terrain_set = 0
-11:11/0/terrain = 2
-11:11/0/terrains_peering_bit/left_side = 2
-11:11/0/terrains_peering_bit/top_left_corner = 2
-11:11/0/terrains_peering_bit/top_side = 2
+11:11/0/metadata/_better_terrain = {
+8: [2],
+11: [2],
+12: [2],
+"type": 2
+}
 0:12/0 = 0
 1:12/0 = 0
 2:12/0 = 0
@@ -1045,413 +1211,406 @@ texture_region_size = Vector2i(32, 32)
 11:15/0 = 0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_kurxq"]
+resource_name = "water"
 texture = ExtResource("2_48o0x")
 texture_region_size = Vector2i(32, 32)
 0:0/0 = 0
 
+
+[sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_ln6n1"]
+resource_name = "plant"
+scenes/1/scene = ExtResource("3_puuko")
+scenes/2/scene = ExtResource("4_0tnp1")
+scenes/3/scene = ExtResource("5_ph3wh")
+scenes/4/scene = ExtResource("6_nkhep")
+scenes/5/scene = ExtResource("7_togi8")
+scenes/6/scene = ExtResource("8_4me3o")
+scenes/7/scene = ExtResource("9_433bx")
 [sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_ffra7"]
 
+
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_wlael"]
+resource_name = "wall"
 texture = ExtResource("4_nb15j")
 texture_region_size = Vector2i(32, 64)
 0:0/0 = 0
 0:0/0/texture_origin = Vector2i(0, 16)
-0:0/0/terrain_set = 1
-0:0/0/terrain = 0
 0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-12, -8, 12, -8, 12, 16, -12, 16)
-0:0/0/terrains_peering_bit/bottom_side = 0
 0:0/0/metadata/_better_terrain = {
+4: [0],
+"symmetry": 0,
 "type": 0
 }
 1:0/0 = 0
 1:0/0/texture_origin = Vector2i(0, 16)
-1:0/0/terrain_set = 1
-1:0/0/terrain = 0
 1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-12, -8, 16, -8, 16, 11, 12, 11, 12, 16, -12, 16)
-1:0/0/terrains_peering_bit/right_side = 0
-1:0/0/terrains_peering_bit/bottom_side = 0
 1:0/0/metadata/_better_terrain = {
+0: [0],
+4: [0],
+"symmetry": 0,
 "type": 0
 }
 2:0/0 = 0
 2:0/0/texture_origin = Vector2i(0, 16)
-2:0/0/terrain_set = 1
-2:0/0/terrain = 0
 2:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -8, 16, -8, 16, 11, 12, 11, 12, 16, -12, 16, -12, 11, -16, 11)
-2:0/0/terrains_peering_bit/right_side = 0
-2:0/0/terrains_peering_bit/bottom_side = 0
-2:0/0/terrains_peering_bit/left_side = 0
 2:0/0/metadata/_better_terrain = {
+0: [0],
+4: [0],
+8: [0],
+"symmetry": 0,
 "type": 0
 }
 3:0/0 = 0
 3:0/0/texture_origin = Vector2i(0, 16)
-3:0/0/terrain_set = 1
-3:0/0/terrain = 0
 3:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(12, -8, -16, -8, -16, 11, -12, 11, -12, 16, 12, 16)
-3:0/0/terrains_peering_bit/bottom_side = 0
-3:0/0/terrains_peering_bit/left_side = 0
 3:0/0/metadata/_better_terrain = {
+4: [0],
+8: [0],
+"symmetry": 0,
 "type": 0
 }
 4:0/0 = 0
 4:0/0/texture_origin = Vector2i(0, 16)
-4:0/0/terrain_set = 1
-4:0/0/terrain = 0
 4:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-12, -16, 12, -16, 12, -8, 16, -8, 16, 11, 12, 11, 12, 16, -12, 16)
-4:0/0/terrains_peering_bit/right_side = 0
-4:0/0/terrains_peering_bit/bottom_side = 0
-4:0/0/terrains_peering_bit/top_side = 0
 4:0/0/metadata/_better_terrain = {
+0: [0],
+4: [0],
+12: [0],
+"symmetry": 0,
 "type": 0
 }
 5:0/0 = 0
 5:0/0/texture_origin = Vector2i(0, 16)
-5:0/0/terrain_set = 1
-5:0/0/terrain = 0
 5:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(12, -16, -12, -16, -12, -8, -16, -8, -16, 11, -12, 11, -12, 16, 12, 16)
-5:0/0/terrains_peering_bit/bottom_side = 0
-5:0/0/terrains_peering_bit/left_side = 0
-5:0/0/terrains_peering_bit/top_side = 0
 5:0/0/metadata/_better_terrain = {
+4: [0],
+8: [0],
+12: [0],
+"symmetry": 0,
 "type": 0
 }
 0:1/0 = 0
 0:1/0/texture_origin = Vector2i(0, 16)
-0:1/0/terrain_set = 1
-0:1/0/terrain = 0
 0:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-12, -16, 12, -16, 12, 16, -12, 16)
-0:1/0/terrains_peering_bit/bottom_side = 0
-0:1/0/terrains_peering_bit/top_side = 0
 0:1/0/metadata/_better_terrain = {
+4: [0],
+12: [0],
+"symmetry": 0,
 "type": 0
 }
 1:1/0 = 0
 1:1/0/texture_origin = Vector2i(0, 16)
-1:1/0/terrain_set = 1
-1:1/0/terrain = 0
 1:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-12, -16, 12, -16, 12, -8, 16, -8, 16, 11, 12, 11, 12, 16, -12, 16)
-1:1/0/terrains_peering_bit/right_side = 0
-1:1/0/terrains_peering_bit/bottom_side = 0
-1:1/0/terrains_peering_bit/top_side = 0
-1:1/0/terrains_peering_bit/top_right_corner = 0
 1:1/0/metadata/_better_terrain = {
+0: [0],
+4: [0],
+12: [0],
+15: [0],
+"symmetry": 0,
 "type": 0
 }
 2:1/0 = 0
 2:1/0/texture_origin = Vector2i(0, 16)
-2:1/0/terrain_set = 1
-2:1/0/terrain = 0
 2:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -8, -12, -8, -12, -16, 12, -16, 11.856, -8, 16, -8, 16, 11, 12, 11, 12, 16, -12, 16, -12, 11, -16, 11)
-2:1/0/terrains_peering_bit/right_side = 0
-2:1/0/terrains_peering_bit/bottom_side = 0
-2:1/0/terrains_peering_bit/left_side = 0
-2:1/0/terrains_peering_bit/top_left_corner = 0
-2:1/0/terrains_peering_bit/top_side = 0
-2:1/0/terrains_peering_bit/top_right_corner = 0
 2:1/0/metadata/_better_terrain = {
+0: [0],
+4: [0],
+8: [0],
+11: [0],
+12: [0],
+15: [0],
+"symmetry": 0,
 "type": 0
 }
 3:1/0 = 0
 3:1/0/texture_origin = Vector2i(0, 16)
-3:1/0/terrain_set = 1
-3:1/0/terrain = 0
 3:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(12, -16, -12, -16, -12, -8, -16, -8, -16, 11, -12, 11, -12, 16, 12, 16)
-3:1/0/terrains_peering_bit/bottom_side = 0
-3:1/0/terrains_peering_bit/left_side = 0
-3:1/0/terrains_peering_bit/top_left_corner = 0
-3:1/0/terrains_peering_bit/top_side = 0
 3:1/0/metadata/_better_terrain = {
+4: [0],
+8: [0],
+11: [0],
+12: [0],
+"symmetry": 0,
 "type": 0
 }
 4:1/0 = 0
 4:1/0/texture_origin = Vector2i(0, 16)
-4:1/0/terrain_set = 1
-4:1/0/terrain = 0
 4:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-12, -16, 12, -16, 12, 16, -12, 16)
-4:1/0/terrains_peering_bit/bottom_side = 0
-4:1/0/terrains_peering_bit/top_side = 0
-4:1/0/terrains_peering_bit/top_right_corner = 0
 4:1/0/metadata/_better_terrain = {
+4: [0],
+12: [0],
+15: [0],
+"symmetry": 0,
 "type": 0
 }
 5:1/0 = 0
 5:1/0/texture_origin = Vector2i(0, 16)
-5:1/0/terrain_set = 1
-5:1/0/terrain = 0
 5:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-12, -16, 12, -16, 12, 16, -12, 16)
-5:1/0/terrains_peering_bit/bottom_side = 0
-5:1/0/terrains_peering_bit/top_left_corner = 0
-5:1/0/terrains_peering_bit/top_side = 0
 5:1/0/metadata/_better_terrain = {
+4: [0],
+11: [0],
+12: [0],
+"symmetry": 0,
 "type": 0
 }
 6:1/0 = 0
 6:1/0/texture_origin = Vector2i(0, 16)
-6:1/0/terrain_set = 1
-6:1/0/terrain = 0
 6:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -8, -12, -8, -12, -16, 12, -16, 11.856, -8, 16, -8, 16, 11, 12, 11, 12, 16, -12, 16, -12, 11, -16, 11)
-6:1/0/terrains_peering_bit/right_side = 0
-6:1/0/terrains_peering_bit/bottom_side = 0
-6:1/0/terrains_peering_bit/left_side = 0
-6:1/0/terrains_peering_bit/top_side = 0
-6:1/0/terrains_peering_bit/top_right_corner = 0
 6:1/0/metadata/_better_terrain = {
+0: [0],
+4: [0],
+8: [0],
+12: [0],
+15: [0],
+"symmetry": 0,
 "type": 0
 }
 7:1/0 = 0
 7:1/0/texture_origin = Vector2i(0, 16)
-7:1/0/terrain_set = 1
-7:1/0/terrain = 0
 7:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -8, -12, -8, -12, -16, 12, -16, 11.856, -8, 16, -8, 16, 11, 12, 11, 12, 16, -12, 16, -12, 11, -16, 11)
-7:1/0/terrains_peering_bit/right_side = 0
-7:1/0/terrains_peering_bit/bottom_side = 0
-7:1/0/terrains_peering_bit/left_side = 0
-7:1/0/terrains_peering_bit/top_left_corner = 0
-7:1/0/terrains_peering_bit/top_side = 0
 7:1/0/metadata/_better_terrain = {
+0: [0],
+4: [0],
+8: [0],
+11: [0],
+12: [0],
+"symmetry": 0,
 "type": 0
 }
 8:1/0 = 0
 8:1/0/texture_origin = Vector2i(0, 16)
-8:1/0/terrain_set = 1
-8:1/0/terrain = 0
 8:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -8, -12, -8, -12, -16, 12, -16, 11.856, -8, 16, -8, 16, 11, 12, 11, 12, 16, -12, 16, -12, 11, -16, 11)
-8:1/0/terrains_peering_bit/right_side = 0
-8:1/0/terrains_peering_bit/bottom_side = 0
-8:1/0/terrains_peering_bit/left_side = 0
-8:1/0/terrains_peering_bit/top_side = 0
 8:1/0/metadata/_better_terrain = {
+0: [0],
+4: [0],
+8: [0],
+12: [0],
+"symmetry": 0,
 "type": 0
 }
 0:2/0 = 0
 0:2/0/texture_origin = Vector2i(0, 16)
-0:2/0/terrain_set = 1
-0:2/0/terrain = 0
 0:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-12, -16, 12, -16, 12, 11, -12, 11)
-0:2/0/terrains_peering_bit/top_side = 0
 0:2/0/metadata/_better_terrain = {
+12: [0],
+"symmetry": 0,
 "type": 0
 }
 1:2/0 = 0
 1:2/0/texture_origin = Vector2i(0, 16)
-1:2/0/terrain_set = 1
-1:2/0/terrain = 0
 1:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-12, -16, 12, -16, 12, -8, 16, -8, 16, 11, -12, 11)
-1:2/0/terrains_peering_bit/right_side = 0
-1:2/0/terrains_peering_bit/top_side = 0
-1:2/0/terrains_peering_bit/top_right_corner = 0
 1:2/0/metadata/_better_terrain = {
+0: [0],
+12: [0],
+15: [0],
+"symmetry": 0,
 "type": 0
 }
 2:2/0 = 0
 2:2/0/texture_origin = Vector2i(0, 16)
-2:2/0/terrain_set = 1
-2:2/0/terrain = 0
 2:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -8, -12, -8, -12, -16, 12, -16, 12, -8, 16, -8, 16, 11, -16, 11)
-2:2/0/terrains_peering_bit/right_side = 0
-2:2/0/terrains_peering_bit/left_side = 0
-2:2/0/terrains_peering_bit/top_left_corner = 0
-2:2/0/terrains_peering_bit/top_side = 0
-2:2/0/terrains_peering_bit/top_right_corner = 0
 2:2/0/metadata/_better_terrain = {
+0: [0],
+8: [0],
+11: [0],
+12: [0],
+15: [0],
+"symmetry": 0,
 "type": 0
 }
 3:2/0 = 0
 3:2/0/texture_origin = Vector2i(0, 16)
-3:2/0/terrain_set = 1
-3:2/0/terrain = 0
 3:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(12, -16, -12, -16, -12, -8, -16, -8, -16, 11, 12, 11)
-3:2/0/terrains_peering_bit/left_side = 0
-3:2/0/terrains_peering_bit/top_left_corner = 0
-3:2/0/terrains_peering_bit/top_side = 0
 3:2/0/metadata/_better_terrain = {
+8: [0],
+11: [0],
+12: [0],
 "type": 0
 }
 4:2/0 = 0
 4:2/0/texture_origin = Vector2i(0, 16)
-4:2/0/terrain_set = 1
-4:2/0/terrain = 0
 4:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-12, -16, 12, -16, 12, -8, 16, -8, 16, 11, -12, 11)
-4:2/0/terrains_peering_bit/right_side = 0
-4:2/0/terrains_peering_bit/top_side = 0
 4:2/0/metadata/_better_terrain = {
+0: [0],
+12: [0],
+"symmetry": 0,
 "type": 0
 }
 5:2/0 = 0
 5:2/0/texture_origin = Vector2i(0, 16)
-5:2/0/terrain_set = 1
-5:2/0/terrain = 0
 5:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(12, -16, -12, -16, -12, -8, -16, -8, -16, 11, 12, 11)
-5:2/0/terrains_peering_bit/left_side = 0
-5:2/0/terrains_peering_bit/top_side = 0
 5:2/0/metadata/_better_terrain = {
+8: [0],
+12: [0],
+"symmetry": 0,
 "type": 0
 }
 6:2/0 = 0
 6:2/0/texture_origin = Vector2i(0, 16)
-6:2/0/terrain_set = 1
-6:2/0/terrain = 0
 6:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-12, -16, 12, -16, 12, -8, 16, -8, 16, 11, -12, 11)
-6:2/0/terrains_peering_bit/right_side = 0
-6:2/0/terrains_peering_bit/top_left_corner = 0
-6:2/0/terrains_peering_bit/top_side = 0
-6:2/0/terrains_peering_bit/top_right_corner = 0
 6:2/0/metadata/_better_terrain = {
+0: [0],
+11: [0],
+12: [0],
+15: [0],
+"symmetry": 0,
 "type": 0
 }
 7:2/0 = 0
 7:2/0/texture_origin = Vector2i(0, 16)
-7:2/0/terrain_set = 1
-7:2/0/terrain = 0
 7:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(12, -16, -12, -16, -12, -8, -16, -8, -16, 11, 12, 11)
-7:2/0/terrains_peering_bit/left_side = 0
-7:2/0/terrains_peering_bit/top_left_corner = 0
-7:2/0/terrains_peering_bit/top_side = 0
-7:2/0/terrains_peering_bit/top_right_corner = 0
 7:2/0/metadata/_better_terrain = {
+8: [0],
+11: [0],
+12: [0],
+15: [0],
+"symmetry": 0,
 "type": 0
 }
 8:2/0 = 0
 8:2/0/texture_origin = Vector2i(0, 16)
-8:2/0/terrain_set = 1
-8:2/0/terrain = 0
 8:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-12, -16, 12, -16, 12, -8, 16, -8, 16, 11, -12, 11)
-8:2/0/terrains_peering_bit/right_side = 0
-8:2/0/terrains_peering_bit/top_left_corner = 0
-8:2/0/terrains_peering_bit/top_side = 0
 8:2/0/metadata/_better_terrain = {
+0: [0],
+11: [0],
+12: [0],
+"symmetry": 0,
 "type": 0
 }
 8:3/0 = 0
 8:3/0/texture_origin = Vector2i(0, 16)
-8:3/0/terrain_set = 1
-8:3/0/terrain = 0
 8:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-12, -16, 12, -16, 12, 11, -12, 11)
-8:3/0/terrains_peering_bit/top_left_corner = 0
-8:3/0/terrains_peering_bit/top_side = 0
-8:3/0/terrains_peering_bit/top_right_corner = 0
 8:3/0/metadata/_better_terrain = {
+11: [0],
+12: [0],
+15: [0],
+"symmetry": 0,
 "type": 0
 }
 9:3/0 = 0
 9:3/0/texture_origin = Vector2i(0, 16)
-9:3/0/terrain_set = 1
-9:3/0/terrain = 0
 9:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-12, -16, 12, -16, 12, 11, -12, 11)
-9:3/0/terrains_peering_bit/top_side = 0
-9:3/0/terrains_peering_bit/top_right_corner = 0
 9:3/0/metadata/_better_terrain = {
+12: [0],
+15: [0],
+"symmetry": 0,
 "type": 0
 }
 9:2/0 = 0
 9:2/0/texture_origin = Vector2i(0, 16)
-9:2/0/terrain_set = 1
-9:2/0/terrain = 0
 9:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(12, -16, -12, -16, -12, -8, -16, -8, -16, 11, 12, 11)
-9:2/0/terrains_peering_bit/left_side = 0
-9:2/0/terrains_peering_bit/top_side = 0
-9:2/0/terrains_peering_bit/top_right_corner = 0
 9:2/0/metadata/_better_terrain = {
+8: [0],
+12: [0],
+15: [0],
+"symmetry": 0,
 "type": 0
 }
 7:3/0 = 0
 7:3/0/texture_origin = Vector2i(0, 16)
-7:3/0/terrain_set = 1
-7:3/0/terrain = 0
 7:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-12, -16, 12, -16, 12, 11, -12, 11)
-7:3/0/terrains_peering_bit/top_left_corner = 0
-7:3/0/terrains_peering_bit/top_side = 0
 7:3/0/metadata/_better_terrain = {
+11: [0],
+12: [0],
+"symmetry": 0,
 "type": 0
 }
 6:3/0 = 0
 6:3/0/texture_origin = Vector2i(0, 16)
-6:3/0/terrain_set = 1
-6:3/0/terrain = 0
 6:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -8, -12, -8, -12, -16, 12, -16, 12, -8, 16, -8, 16, 11, -16, 11)
-6:3/0/terrains_peering_bit/right_side = 0
-6:3/0/terrains_peering_bit/left_side = 0
-6:3/0/terrains_peering_bit/top_side = 0
-6:3/0/terrains_peering_bit/top_right_corner = 0
 6:3/0/metadata/_better_terrain = {
+0: [0],
+8: [0],
+12: [0],
+15: [0],
+"symmetry": 0,
 "type": 0
 }
 5:3/0 = 0
 5:3/0/texture_origin = Vector2i(0, 16)
-5:3/0/terrain_set = 1
-5:3/0/terrain = 0
 5:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -8, -12, -8, -12, -16, 12, -16, 12, -8, 16, -8, 16, 11, -16, 11)
-5:3/0/terrains_peering_bit/right_side = 0
-5:3/0/terrains_peering_bit/left_side = 0
-5:3/0/terrains_peering_bit/top_left_corner = 0
-5:3/0/terrains_peering_bit/top_side = 0
 5:3/0/metadata/_better_terrain = {
+0: [0],
+8: [0],
+11: [0],
+12: [0],
+"symmetry": 0,
 "type": 0
 }
 4:3/0 = 0
 4:3/0/texture_origin = Vector2i(0, 16)
-4:3/0/terrain_set = 1
-4:3/0/terrain = 0
 4:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -8, -12, -8, -12, -16, 12, -16, 12, -8, 16, -8, 16, 11, -16, 11)
-4:3/0/terrains_peering_bit/right_side = 0
-4:3/0/terrains_peering_bit/left_side = 0
-4:3/0/terrains_peering_bit/top_side = 0
 4:3/0/metadata/_better_terrain = {
+0: [0],
+8: [0],
+12: [0],
+"symmetry": 0,
 "type": 0
 }
 3:3/0 = 0
 3:3/0/texture_origin = Vector2i(0, 16)
-3:3/0/terrain_set = 1
-3:3/0/terrain = 0
 3:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(12, -8, -16, -8, -16, 11, 12, 11)
-3:3/0/terrains_peering_bit/left_side = 0
 3:3/0/metadata/_better_terrain = {
+8: [0],
+"symmetry": 0,
 "type": 0
 }
 2:3/0 = 0
 2:3/0/texture_origin = Vector2i(0, 16)
-2:3/0/terrain_set = 1
-2:3/0/terrain = 0
 2:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -8, 16, -8, 16, 11, -16, 11)
-2:3/0/terrains_peering_bit/right_side = 0
-2:3/0/terrains_peering_bit/left_side = 0
 2:3/0/metadata/_better_terrain = {
+0: [0],
+8: [0],
+"symmetry": 0,
 "type": 0
 }
 1:3/0 = 0
 1:3/0/texture_origin = Vector2i(0, 16)
-1:3/0/terrain_set = 1
-1:3/0/terrain = 0
 1:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-12, -8, 16, -8, 16, 11, -12, 11)
-1:3/0/terrains_peering_bit/right_side = 0
 1:3/0/metadata/_better_terrain = {
+0: [0],
+"symmetry": 0,
 "type": 0
 }
 0:3/0 = 0
 0:3/0/texture_origin = Vector2i(0, 16)
-0:3/0/terrain_set = 1
-0:3/0/terrain = 0
 0:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-12, -8, 12, -8, 12, 11, -12, 11)
 0:3/0/metadata/_better_terrain = {
+"symmetry": 0,
 "type": 0
 }
 6:0/0 = 0
 6:0/0/texture_origin = Vector2i(0, 16)
-6:0/0/terrain_set = 1
-6:0/0/terrain = 0
-6:0/0/terrains_peering_bit/right_side = 0
-6:0/0/terrains_peering_bit/bottom_side = 0
-6:0/0/terrains_peering_bit/top_left_corner = 0
-6:0/0/terrains_peering_bit/top_side = 0
+6:0/0/metadata/_better_terrain = {
+0: [0],
+4: [0],
+11: [0],
+12: [0],
+"symmetry": 0,
+"type": 0
+}
 7:0/0 = 0
 7:0/0/texture_origin = Vector2i(0, 16)
-7:0/0/terrain_set = 1
-7:0/0/terrain = 0
-7:0/0/terrains_peering_bit/bottom_side = 0
-7:0/0/terrains_peering_bit/left_side = 0
-7:0/0/terrains_peering_bit/top_side = 0
-7:0/0/terrains_peering_bit/top_right_corner = 0
+7:0/0/metadata/_better_terrain = {
+4: [0],
+8: [0],
+12: [0],
+15: [0],
+"type": 0
+}
+
+[sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_4d2k2"]
+resource_name = "ore"
+scenes/1/scene = ExtResource("11_wp1cl")
+scenes/2/scene = ExtResource("12_a10sh")
+scenes/3/scene = ExtResource("13_ykky7")
+scenes/4/scene = ExtResource("14_yl6vc")
+scenes/5/scene = ExtResource("15_fbbga")
+
+[sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_3jd21"]
+resource_name = "furniture"
+scenes/1/scene = ExtResource("18_tskbb")
+scenes/2/scene = ExtResource("19_vrtvl")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_5xls2"]
 texture_region_size = Vector2i(32, 32)
@@ -1736,20 +1895,7 @@ texture_region_size = Vector2i(32, 32)
 [resource]
 tile_size = Vector2i(32, 32)
 physics_layer_0/collision_layer = 2
-terrain_set_0/mode = 0
-terrain_set_0/terrain_0/name = "grass"
-terrain_set_0/terrain_0/color = Color(0.5, 0.34375, 0.25, 1)
-terrain_set_0/terrain_1/name = "dirt"
-terrain_set_0/terrain_1/color = Color(0.501961, 0.141176, 0.25098, 1)
-terrain_set_0/terrain_2/name = "sand"
-terrain_set_0/terrain_2/color = Color(0.470588, 0.839216, 0.25098, 1)
-terrain_set_0/terrain_3/name = "clay"
-terrain_set_0/terrain_3/color = Color(0.375, 0.5, 0.25, 1)
-terrain_set_1/mode = 0
-terrain_set_1/terrain_0/name = "wooden_wall"
-terrain_set_1/terrain_0/color = Color(0.692368, 0.0866157, 0.324209, 1)
-terrain_set_1/terrain_1/name = "dark_brick_wall"
-terrain_set_1/terrain_1/color = Color(0.248858, 0.516569, 0.133029, 1)
+
 terrain_set_2/mode = 0
 terrain_set_2/terrain_0/name = "ruins1"
 terrain_set_2/terrain_0/color = Color(0.5, 0.34375, 0.25, 1)
@@ -1759,16 +1905,30 @@ terrain_set_2/terrain_2/name = "ruins3"
 terrain_set_2/terrain_2/color = Color(0.46875, 0.5, 0.25, 1)
 sources/0 = SubResource("TileSetAtlasSource_7bppt")
 sources/1 = SubResource("TileSetAtlasSource_kurxq")
+sources/2 = SubResource("TileSetScenesCollectionSource_ln6n1")
 sources/3 = SubResource("TileSetAtlasSource_wlael")
-sources/2 = SubResource("TileSetScenesCollectionSource_ffra7")
-sources/4 = SubResource("TileSetAtlasSource_5xls2")
+sources/4 = SubResource("TileSetScenesCollectionSource_4d2k2")
+sources/5 = SubResource("TileSetScenesCollectionSource_3jd21")
+sources/6 = SubResource("TileSetAtlasSource_5xls2")
+
 metadata/_better_terrain = {
 "decoration": ["Decoration", Color(0.411765, 0.411765, 0.411765, 1), 3, [], {
 "path": "res://addons/better-terrain/icons/Decoration.svg"
 }],
 "terrains": [["walls", Color(0.997059, 0.537199, 0.131364, 1), 0, [], {
-"coord": Vector2i(0, 0),
+"coord": Vector2i(0, 3),
 "source_id": 3
+}], ["grass", Color(0.0555021, 0.806107, 0.437725, 1), 0, [], {
+"coord": Vector2i(0, 3),
+"source_id": 0
+}], ["sand", Color(0.2, 0.113725, 0.0196078, 1), 0, [], {
+"coord": Vector2i(0, 11),
+"source_id": 0
+}], ["dirt", Color(0.815686, 0.623529, 0.113725, 1), 0, [], {
+"coord": Vector2i(0, 7),
+"source_id": 0
+}], ["sfdsdf", Color(0.661571, 0.351367, 0.405286, 1), 0, [], {
+"path": ""
 }]],
 "version": "0.2"
 }

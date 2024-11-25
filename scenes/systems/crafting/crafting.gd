@@ -42,12 +42,14 @@ func _on_craft_button_pressed() -> void:
 	if item_count > 0:
 		for i in range(item_count):
 			var ingredient: Ingredient = ingredients_list.get_item_metadata(i)
-			if ingredient.item not in inventory_list.keys() or inventory_list[ingredient.item] != ingredient.amount:
+			if ingredient.item not in inventory_list.keys() or inventory_list[ingredient.item] < ingredient.amount:
 				print("not crafting")
 				return
 		for i in range(item_count):
 			var ingredient: Ingredient = ingredients_list.get_item_metadata(i)
 			inventory.remove_item(ingredient.item,ingredient.amount)
+			inventory_list[ingredient.item] -= ingredient.count
 		var t = recipe_list.get_selected_items()
 		var recipe = recipe_list.get_item_metadata(t[0])
 		inventory.add_item(recipe.result,recipe.amount)
+		inventory_list = inventory.to_list()

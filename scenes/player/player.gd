@@ -2,13 +2,13 @@ class_name Player
 extends CharacterBody2D
 
 @export var speed = 80
+@export var camera_zoom = Vector2(2,2)
 @export var strength = 1
 @export var endurance = 1
 @export var intelligence = 1
 @export var agility = 1
 @export var luck = 1
 @export var skill_points = 0
-
 @onready var interface: CanvasLayer = $Interface
 @onready var hud: Hud = $Hud
 
@@ -38,6 +38,9 @@ var attack_cooldown: float = 0.5
 var nearest_interactable
 
 enum Direction {Down, Up, Right, Left}
+
+func _ready() -> void:
+	$Camera2D.zoom = camera_zoom
 
 func get_input():
 	var input_direction = Input.get_vector("move_left", "move_right", "move_up", "move_down")
