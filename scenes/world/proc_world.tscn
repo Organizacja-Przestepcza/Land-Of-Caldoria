@@ -29,6 +29,7 @@ y_sort_enabled = true
 script = ExtResource("1_75342")
 
 [node name="NoiseGenerator" type="Node" parent="."]
+unique_name_in_owner = true
 script = ExtResource("2_vv2tn")
 settings = ExtResource("3_3in7x")
 tile_size = Vector2i(32, 32)
@@ -68,6 +69,7 @@ script = ExtResource("4_26fgq")
 [node name="Player" parent="." instance=ExtResource("5_j0bro")]
 unique_name_in_owner = true
 position = Vector2(256, 256)
+camera_zoom = Vector2(0.2, 0.2)
 
 [node name="Hud" parent="Player" instance=ExtResource("6_ai4l1")]
 unique_name_in_owner = true

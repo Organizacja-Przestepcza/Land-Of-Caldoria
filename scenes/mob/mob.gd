@@ -2,8 +2,18 @@ extends CharacterBody2D
 class_name Mob
 
 var player: Player
+@onready var noise_generator: NoiseGenerator = $"../%NoiseGenerator"
 var health: int 
-var dropped_item: String
+var dropped_item: Item
+
+func _ready() -> void:
+	noise_generator.chunk_erased.connect(despawn)
+
+func despawn(chunk_position):
+	var dist_to_player = self.global_position.distance_squared_to(player.global_position)
+	if dist_to_player > 3000000:
+		noise_generator.chunk_erased.disconnect(despawn)
+		queue_free()
 
 func take_damage(damage: int) -> bool: # returns true if the object was destroyed
 	health = health - damage

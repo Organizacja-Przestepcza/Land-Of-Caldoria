@@ -101,7 +101,6 @@ func chance_spawn_mob(pos: Vector2) -> void:
 		var mob_name = choose_random_mob()
 		var mob = mob_types[mob_name].instantiate()
 		mob.global_position = pos
-		print(pos)
 		add_child(mob)
 
 func choose_random_mob() -> String:
