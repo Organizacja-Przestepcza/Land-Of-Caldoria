@@ -96,11 +96,12 @@ var mob_types = {
 }
 
 func chance_spawn_mob(pos: Vector2) -> void:
-	print(pos)
-	if randi_range(0, 100) <= 3:
+	randomize()
+	if randi_range(0, 1000) <= 3:
 		var mob_name = choose_random_mob()
 		var mob = mob_types[mob_name].instantiate()
 		mob.global_position = pos
+		print(pos)
 		add_child(mob)
 
 func choose_random_mob() -> String:
@@ -113,14 +114,17 @@ func _on_chunk_erased(chunk_position: Vector2i) -> void:
 
 
 func _on_chunk_rendered(chunk_position: Vector2i) -> void:
-	var pos: Vector2i = chunk_to_global(chunk_position)
-	for chunk in range(noise_generator.chunk_size.x):
-		var x = pos.x + 32 * chunk
-		var y = pos.y + 32 * chunk
-		var mob_pos = Vector2i(x,y)
-		if not ground_layer.get_cell_source_id(pos) == -1:
-			#print(mob_pos)
-			chance_spawn_mob(mob_pos)
+	#print(chunk_position)
+	if abs(chunk_position.x) > 0 and abs(chunk_position.y) > 0:
+		var pos: Vector2i = chunk_to_global(chunk_position)
+		for chunk_x in range(noise_generator.chunk_size.x):
+			for chunk_y in range(noise_generator.chunk_size.y):
+				var x = pos.x + 32 * chunk_x
+				var y = pos.y + 32 * chunk_y
+				var mob_pos = Vector2i(x,y)
+				var tile_pos = ground_layer.local_to_map(mob_pos)
+				if not ground_layer.get_cell_source_id(tile_pos) == -1:
+					chance_spawn_mob(mob_pos)
 			
 func chunk_to_global(chunk_pos: Vector2i) -> Vector2i:
 	var pos = chunk_pos*noise_generator.chunk_size*noise_generator.tile_size
@@ -128,5 +132,4 @@ func chunk_to_global(chunk_pos: Vector2i) -> Vector2i:
 
 
 func _on_chunk_generation_finished(chunk_position: Vector2i) -> void:
-
-	print(chunk_position)
+	pass
