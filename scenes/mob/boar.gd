@@ -1,9 +1,11 @@
 extends Enemy
 
 var chase_player = false
+
 func _ready() -> void:
+	super()
 	health = 30
-	speed = 30
+	speed = 50
 	exp = 10
 	strength = 10
 	player = get_parent().get_node("%Player")

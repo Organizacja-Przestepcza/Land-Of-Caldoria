@@ -298,14 +298,13 @@ collision_mask = 2
 script = ExtResource("1_g8p60")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(0, -25)
+position = Vector2(0, -23)
 sprite_frames = SubResource("SpriteFrames_j11y6")
 animation = &"walk_down"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -2)
 shape = SubResource("RectangleShape2D_6ipx2")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(0, -25)
-zoom = Vector2(5, 5)
+position = Vector2(0, -23)
+zoom = Vector2(3, 3)
