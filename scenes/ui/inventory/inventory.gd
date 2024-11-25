@@ -1,4 +1,4 @@
-extends Interface
+extends Control
 class_name Inventory
 @export var invSize: int = 24
 @export var slotSize: Vector2 = Vector2(64,64)
@@ -35,12 +35,10 @@ func _ready() -> void:
 	
 	
 func open():
-	super()
 	hotbar.reparent(get_node("HBoxContainer/VBoxContainer"))
 	$HBoxContainer/VBoxContainer.move_child(hotbar, 0)
 
 func close():
-	super()
 	hotbar.reparent(%Hotbar/MarginContainer)
 
 func find_available_slot(itm: Item) -> InventorySlot:

@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://dsn7lp3w3rtus"]
+[gd_scene load_steps=19 format=3 uid="uid://dsn7lp3w3rtus"]
 
 [ext_resource type="Script" path="res://scenes/world/world.gd" id="1_0fdg7"]
 [ext_resource type="TileSet" uid="uid://d0pha3g0yk4g8" path="res://tilesets/main.tres" id="2_kr456"]
@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://c83lveoubd7vh" path="res://scenes/ui/inventory/inventory.tscn" id="10_0o5oa"]
 [ext_resource type="PackedScene" uid="uid://3qegagme7w4c" path="res://scenes/systems/building/building.tscn" id="10_ajmgv"]
 [ext_resource type="PackedScene" uid="uid://dpk2ucm8f0jch" path="res://scenes/npc/medic.tscn" id="10_qvl3m"]
+[ext_resource type="Script" path="res://scenes/world/tabs.gd" id="10_sgcbq"]
 [ext_resource type="PackedScene" uid="uid://0v860522ctv3" path="res://scenes/ui/stats/stats.tscn" id="13_0wk66"]
 [ext_resource type="PackedScene" uid="uid://d3nf6i6pjjd5n" path="res://scenes/village.tscn" id="13_8l646"]
 [ext_resource type="PackedScene" uid="uid://de7ljcthumfav" path="res://scenes/systems/crafting/crafting.tscn" id="13_dbry5"]
@@ -73,22 +74,42 @@ transform = Transform2D(1, 0, 0, 1, 0, 0)
 [node name="Interface" type="CanvasLayer" parent="Player"]
 process_mode = 3
 
-[node name="Inventory" parent="Player/Interface" instance=ExtResource("10_0o5oa")]
-visible = false
-invSize = null
-slotSize = null
-
 [node name="Trading" parent="Player/Interface" instance=ExtResource("7_3v87f")]
 visible = false
 
-[node name="Building" parent="Player/Interface" instance=ExtResource("10_ajmgv")]
+[node name="Tabs" type="TabContainer" parent="Player/Interface"]
+unique_name_in_owner = true
 visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+current_tab = 0
+script = ExtResource("10_sgcbq")
 
-[node name="Crafting" parent="Player/Interface" instance=ExtResource("13_dbry5")]
-visible = false
+[node name="Inventory" parent="Player/Interface/Tabs" instance=ExtResource("10_0o5oa")]
+unique_name_in_owner = true
+layout_mode = 2
+metadata/_tab_index = 0
 
-[node name="Stats" parent="Player/Interface" instance=ExtResource("13_0wk66")]
+[node name="Crafting" parent="Player/Interface/Tabs" instance=ExtResource("13_dbry5")]
+unique_name_in_owner = true
 visible = false
+layout_mode = 2
+metadata/_tab_index = 1
+
+[node name="Building" parent="Player/Interface/Tabs" instance=ExtResource("10_ajmgv")]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+metadata/_tab_index = 2
+
+[node name="Stats" parent="Player/Interface/Tabs" instance=ExtResource("13_0wk66")]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+metadata/_tab_index = 3
 
 [node name="Game" type="Node" parent="Player"]
 unique_name_in_owner = true
@@ -103,3 +124,5 @@ position = Vector2(-228, -62)
 
 [node name="Medic" parent="." instance=ExtResource("10_qvl3m")]
 position = Vector2(76, -120)
+
+[connection signal="tab_changed" from="Player/Interface/Tabs" to="Player/Interface/Tabs" method="_on_tab_changed"]

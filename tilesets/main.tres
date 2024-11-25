@@ -1,8 +1,7 @@
-[gd_resource type="TileSet" load_steps=10 format=3 uid="uid://d0pha3g0yk4g8"]
+[gd_resource type="TileSet" load_steps=9 format=3 uid="uid://d0pha3g0yk4g8"]
 
 [ext_resource type="Texture2D" uid="uid://j0xvhotm7q2d" path="res://assets/textures/tilesets/ground_tileset_32.png" id="1_sa0ub"]
 [ext_resource type="Texture2D" uid="uid://bipcprw7rrykq" path="res://assets/textures/tilesets/water.png" id="2_48o0x"]
-[ext_resource type="Texture2D" uid="uid://dfl5uioj6qy8s" path="res://assets/textures/tilesets/ruins.png" id="4_j1p4q"]
 [ext_resource type="Texture2D" uid="uid://ceqf820jaaxqk" path="res://assets/textures/tilesets/walls_tileset_32x64.png" id="4_nb15j"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_7bppt"]
@@ -1455,7 +1454,6 @@ texture_region_size = Vector2i(32, 64)
 7:0/0/terrains_peering_bit/top_right_corner = 0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_5xls2"]
-texture = ExtResource("4_j1p4q")
 texture_region_size = Vector2i(32, 32)
 0:0/0 = 0
 1:0/0 = 0

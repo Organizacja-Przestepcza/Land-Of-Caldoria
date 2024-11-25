@@ -15,10 +15,10 @@ extends CharacterBody2D
 @onready var hotbar: Hotbar = %Hotbar
 
 @onready var build_manager: BuildManager = $"../BuildManager"
-@onready var inventory: Inventory = $Interface/Inventory
+@onready var inventory: Inventory = %Inventory
 @onready var health_bar: Health = hud.get_node("VBoxContainer/HealthBar")
 @onready var hunger_bar: Hunger = hud.get_node("VBoxContainer/HungerBar")
-@onready var stats: Stats = $Interface/Stats
+@onready var stats: Stats = %Stats
 
 
 var facing: Direction = Direction.Down

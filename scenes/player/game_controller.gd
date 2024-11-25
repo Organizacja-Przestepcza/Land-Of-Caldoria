@@ -3,12 +3,13 @@ class_name Game
 
 var state: State = State.PLAYING
 @onready var trading: Trading = $"../Interface/Trading"
-@onready var building: BuildMenu = $"../Interface/Building"
-@onready var crafting: Crafting = $"../Interface/Crafting"
+@onready var building: BuildMenu = %Building
+@onready var crafting: Crafting = %Crafting
 @onready var hotbar: Hotbar = %Hotbar
-@onready var inventory: Inventory = $"../Interface/Inventory"
+@onready var inventory: Inventory = %Inventory
 @onready var player: Player = %Player
-@onready var stats: Control = $"../Interface/Stats"
+@onready var stats: Control = %Stats
+@onready var tabs: TabContainer = %Tabs
 
 enum State {PLAYING, INVENTORY}
 
@@ -23,14 +24,14 @@ func _input(event: InputEvent) -> void:
 				elif event.is_action_pressed("interact"):
 					player.interact()
 				elif event.is_action_pressed("build_menu"):
-					building.open()
+					tabs.open(2)
 				elif event.is_action_pressed("gui_inventory"):
-					inventory.open()
+					tabs.open(0)
 				elif event.is_action_pressed("crafting_menu"):
-					crafting.open()
+					tabs.open(1)
 					state = State.INVENTORY
 				elif event.is_action_pressed("ui_stats"):
-					stats.open()
+					tabs.open(3)
 					state = State.INVENTORY
 				elif event.is_action_pressed("ui_text_backspace"):
 					print(self.position)
@@ -72,8 +73,4 @@ func get_slot_under_mouse() -> InventorySlot:
 	return null  # No slot found under mouse
 
 func close_menus():
-	inventory.close()
-	crafting.close()
-	building.close()
-	trading.close()
-	stats.close()
+	tabs.close()

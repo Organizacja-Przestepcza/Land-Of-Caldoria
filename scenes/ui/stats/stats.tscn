@@ -1,6 +1,5 @@
-[gd_scene load_steps=3 format=3 uid="uid://0v860522ctv3"]
+[gd_scene load_steps=2 format=3 uid="uid://0v860522ctv3"]
 
-[ext_resource type="Texture2D" uid="uid://dkmsxfnm2ad7s" path="res://assets/textures/ui/menu/bg_darkener.png" id="1_1m5ke"]
 [ext_resource type="Script" path="res://scenes/ui/stats/stats.gd" id="1_x0rac"]
 
 [node name="Stats" type="Control"]
@@ -11,15 +10,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_x0rac")
-
-[node name="TextureRect" type="TextureRect" parent="."]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("1_1m5ke")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1

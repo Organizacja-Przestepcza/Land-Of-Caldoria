@@ -1,4 +1,4 @@
-extends Interface
+extends Control
 class_name Stats
 @onready var player: Player = %Player
 @onready var hud: Hud = %Hud
@@ -24,7 +24,6 @@ func _ready() -> void:
 	level_label.text = "Level: " + str(player.level)
 
 func open() -> void:
-	super()
 	set_stats()
 
 func set_stats() -> void:
