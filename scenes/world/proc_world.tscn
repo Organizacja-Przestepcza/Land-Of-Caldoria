@@ -61,6 +61,19 @@ tile_set = ExtResource("2_gbw1p")
 y_sort_enabled = true
 tile_set = ExtResource("2_gbw1p")
 
+[node name="LoadingScreen" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="TextureRect" type="TextureRect" parent="LoadingScreen"]
+z_index = 10
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture1D_khxsa")
+metadata/_edit_use_anchors_ = true
+
 [node name="BuildManager" type="Node2D" parent="."]
 visible = false
 script = ExtResource("4_26fgq")
@@ -68,7 +81,7 @@ script = ExtResource("4_26fgq")
 [node name="Player" parent="." instance=ExtResource("5_j0bro")]
 unique_name_in_owner = true
 position = Vector2(256, 256)
-speed = 80
+camera_zoom = Vector2(1, 1)
 
 [node name="Hud" parent="Player" instance=ExtResource("6_ai4l1")]
 unique_name_in_owner = true
@@ -108,17 +121,6 @@ script = ExtResource("13_xk8dt")
 [node name="Blacksmith" parent="." instance=ExtResource("17_tkbm6")]
 position = Vector2(352, 128)
 
-[node name="LoadingScreen" type="CanvasLayer" parent="."]
-
-[node name="TextureRect" type="TextureRect" parent="LoadingScreen"]
-visible = false
-z_index = 10
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = SubResource("GradientTexture1D_khxsa")
-metadata/_edit_use_anchors_ = true
-
-[connection signal="chunk_rendered" from="NoiseGenerator/BetterTerrainGaeaRenderer" to="." method="_on_rendered"]
+[connection signal="chunk_erased" from="NoiseGenerator" to="." method="_on_chunk_erased"]
+[connection signal="chunk_generation_finished" from="NoiseGenerator" to="." method="_on_chunk_generation_finished"]
+[connection signal="chunk_rendered" from="NoiseGenerator/BetterTerrainGaeaRenderer" to="." method="_on_chunk_rendered"]

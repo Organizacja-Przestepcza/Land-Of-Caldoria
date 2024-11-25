@@ -12,7 +12,7 @@ var state: State = State.PLAYING
 enum State {PLAYING, INVENTORY}
 
 func _input(event: InputEvent) -> void:
-	if event is InputEventKey:
+	if event is InputEventKey and not event.echo:
 		match state:
 			State.PLAYING:
 				if event.is_action_pressed("use", true):
@@ -29,7 +29,7 @@ func _input(event: InputEvent) -> void:
 					crafting.open()
 				elif event.is_action_pressed("ui_text_backspace"):
 					print(%Player.position)
-				elif event.pressed and not event.echo:
+				elif event.pressed:
 					match event.physical_keycode:
 						KEY_1: hotbar.select_slot(0)
 						KEY_2: hotbar.select_slot(1)

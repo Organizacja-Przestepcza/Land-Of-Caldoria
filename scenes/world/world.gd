@@ -74,8 +74,8 @@ func generate_world() -> void:
 				var bush = load("res://scenes/object/plant/bush/bush_blueberry.tscn").instantiate()
 				bush.global_position = pos
 				self.add_child(bush)
-			if h_noise_val > 0.03:
-				chance_spawn_mob(pos)
+			#if h_noise_val > 0.03:
+			chance_spawn_mob(pos)
 	sand_layer.set_cells_terrain_connect(tiles_sand, 0, terrain_sand)
 	ground_layer.set_cells_terrain_connect(tiles_ground, 0, terrain_ground)
 	grass_layer.set_cells_terrain_connect(tiles_grass, 0, terrain_grass)
@@ -88,7 +88,8 @@ func generate_object(obj_name: String, pos: Vector2i) -> void:
 	self.add_child(obj)
 
 func chance_spawn_mob(pos: Vector2) -> void:
-	if mob_amount <= 4 and randi_range(0, 100) <= 5:
+	print("a")
+	if mob_amount <= 4: #and randi_range(0, 100) <= 5:
 		var mob_name = choose_random_mob()
 		if mob_name != "":
 			var mob_scene = load(mob_types[mob_name])
