@@ -6,6 +6,7 @@ func _ready() -> void:
 	super()
 	health = 10
 	speed = 100
+	exp = 5
 	strength = 5
 	player = get_parent().get_node("%Player")
 

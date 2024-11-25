@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://bxat0e8jrp8jo"]
+[gd_scene load_steps=23 format=3 uid="uid://d3yqywloojm6v"]
 
 [ext_resource type="Script" path="res://scenes/mob/boar.gd" id="1_xlvok"]
 [ext_resource type="Texture2D" uid="uid://c0mpgnoxuvess" path="res://assets/textures/mob/boar/MiniBoar.png" id="2_ukve7"]

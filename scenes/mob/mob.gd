@@ -5,6 +5,7 @@ var player: Player
 @onready var noise_generator: NoiseGenerator = $"../%NoiseGenerator"
 var health: int 
 var dropped_item: Item
+var exp: int
 
 func _ready() -> void:
 	noise_generator.chunk_erased.connect(despawn)
@@ -14,6 +15,7 @@ func despawn(chunk_position):
 	if dist_to_player > 3000000:
 		noise_generator.chunk_erased.disconnect(despawn)
 		queue_free()
+
 
 func take_damage(damage: int) -> bool: # returns true if the object was destroyed
 	health = health - damage

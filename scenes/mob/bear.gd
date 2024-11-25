@@ -1,13 +1,11 @@
 extends Enemy
 
 var chase_player = false
-
 func _ready() -> void:
-	super()
-	health = 30
-	speed = 50
-	exp = 10
-	strength = 10
+	health = 40
+	speed = 30
+	exp = 20
+	strength = 15
 	player = get_parent().get_node("%Player")
 	$AnimatedSprite2D.play("idle")
 
