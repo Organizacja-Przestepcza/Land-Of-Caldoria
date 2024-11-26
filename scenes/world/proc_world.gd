@@ -13,7 +13,8 @@ class_name ProcWorld
 var h_noise: FastNoiseLite # height noise
 var user_seed = WorldData.seed
 
-var tiles_data: Dictionary = {}
+var object_tiles: Dictionary = {}
+enum ObjType {NATURAL,MANMADE}
 
 func _ready() -> void:
 	if WorldData.size > 0:
@@ -40,7 +41,7 @@ func _input(event: InputEvent) -> void:
 			print("Chunk boundaries ",get_chunk_boundaries(chunk).position, " - ", get_chunk_boundaries(chunk).end)
 			print("---")
 
-func generate_finite_world() -> void:
+func generate_finite_world() -> void: # old world generation
 	h_noise = FastNoiseLite.new()
 	if user_seed == -1:
 		h_noise.seed = randi()
@@ -82,15 +83,26 @@ func generate_finite_world() -> void:
 	
 func generate_objects(chunk_pos: Vector2i):
 	var pos = chunk_to_map(chunk_pos)
+	object_tiles[chunk_pos] = {}
+	var dic: Dictionary
 	for x in range(pos.x,pos.x+noise_generator.chunk_size.x):
 		for y in range(pos.y,pos.y+noise_generator.chunk_size.y):
 			var h_noise_val: float = noise_generator.settings.noise.get_noise_2d(x,y)
+			var tile_pos = Vector2i(x,y)
 			if h_noise_val > 0.1 and y % randi_range(2,5) == x % randi_range(2,5) and randi_range(0,100) < 30:
-				object_layer.set_cell(Vector2i(x,y), 0, Vector2i(0, 0), randi_range(1,7))
+				object_layer.set_cell(tile_pos, 0, Vector2i(0, 0), randi_range(1,7))
+				object_tiles[chunk_pos][tile_pos] = {
+					"type": ObjType.NATURAL,
+					"source": 0,
+					"id": object_layer.get_cell_alternative_tile(tile_pos) # change to atlas coords if the tile is not from scene collection
+				}
 			if h_noise_val > -0.05 and y % randi_range(2,5) == x % randi_range(2,5) and randi_range(0,100) < 15:
-				object_layer.set_cell(Vector2i(x,y), 1, Vector2i(0, 0), randi_range(1,5))
-			if h_noise_val > 0.12 and y % randi_range(2,5) == x % randi_range(2,5):
-				pass
+				object_layer.set_cell(tile_pos, 1, Vector2i(0, 0), randi_range(1,5))
+				object_tiles[chunk_pos][tile_pos] = {
+					"type": ObjType.NATURAL,
+					"source": 1,
+					"id": object_layer.get_cell_alternative_tile(tile_pos) # change to atlas coords if the tile is not from scene collection
+				}
 		#var bush = load("res://scenes/object/plant/bush/bush_blueberry.tscn").instantiate()
 		#bush.global_position = pos
 		#self.add_child(bush)

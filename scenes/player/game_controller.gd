@@ -9,7 +9,7 @@ var state: State = State.PLAYING
 @onready var hotbar: Hotbar = %Hotbar
 @onready var inventory: Inventory = $"../Interface/Inventory"
 @onready var player: Player = %Player
-@onready var stats: Control = $"../Interface/Stats"
+@onready var stats: Stats = $"../Interface/Stats"
 
 enum State {PLAYING, INVENTORY, CONSOLE}
 
