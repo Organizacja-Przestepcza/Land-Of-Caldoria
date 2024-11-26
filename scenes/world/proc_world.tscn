@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://bevwwvcr2fdsa"]
+[gd_scene load_steps=22 format=3 uid="uid://bevwwvcr2fdsa"]
 
 [ext_resource type="Script" path="res://scenes/world/proc_world.gd" id="1_75342"]
 [ext_resource type="TileSet" uid="uid://d0pha3g0yk4g8" path="res://tilesets/main.tres" id="2_gbw1p"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" path="res://scenes/build_manager.gd" id="4_26fgq"]
 [ext_resource type="PackedScene" uid="uid://byb1nycwprtqb" path="res://scenes/player/player.tscn" id="5_j0bro"]
 [ext_resource type="PackedScene" uid="uid://d26rkh5gvtfkh" path="res://scenes/ui/hud/hud.tscn" id="6_ai4l1"]
+[ext_resource type="TileSet" uid="uid://bxtngbogylqfb" path="res://tilesets/objects.tres" id="6_ei8fs"]
 [ext_resource type="PackedScene" uid="uid://b0bmpokyxvpu8" path="res://scenes/ui/hotbar/hotbar.tscn" id="7_ibjah"]
 [ext_resource type="PackedScene" uid="uid://c83lveoubd7vh" path="res://scenes/ui/inventory/inventory.tscn" id="9_dkgoy"]
 [ext_resource type="PackedScene" uid="uid://cs0opcidf6hx4" path="res://scenes/systems/trading/trading.tscn" id="9_ynbql"]
@@ -16,6 +17,7 @@
 [ext_resource type="PackedScene" uid="uid://de7ljcthumfav" path="res://scenes/systems/crafting/crafting.tscn" id="12_wsaqj"]
 [ext_resource type="Script" path="res://scenes/player/game_controller.gd" id="13_xk8dt"]
 [ext_resource type="PackedScene" uid="uid://xxmv67orn38r" path="res://scenes/player/console.tscn" id="15_jbsup"]
+[ext_resource type="PackedScene" uid="uid://0v860522ctv3" path="res://scenes/ui/stats/stats.tscn" id="16_rytd0"]
 [ext_resource type="PackedScene" uid="uid://npgme5adxp70" path="res://scenes/npc/blacksmith.tscn" id="17_tkbm6"]
 
 [sub_resource type="Gradient" id="Gradient_frlg5"]
@@ -36,11 +38,10 @@ settings = ExtResource("3_3in7x")
 tile_size = Vector2i(32, 32)
 generate_on_ready = false
 random_seed = false
-seed = 1
 
 [node name="BetterTerrainGaeaRenderer" type="Node" parent="NoiseGenerator" node_paths=PackedStringArray("tile_map_layers", "generator")]
 script = ExtResource("3_b1o34")
-tile_map_layers = [NodePath("../../WaterLayer"), NodePath("../../SandLayer"), NodePath("../../GroundLayer"), NodePath("../../GrassLayer"), NodePath("../../ObjectLayer")]
+tile_map_layers = [NodePath("../../WaterLayer"), NodePath("../../SandLayer"), NodePath("../../GroundLayer"), NodePath("../../GrassLayer")]
 generator = NodePath("..")
 
 [node name="WaterLayer" type="TileMapLayer" parent="."]
@@ -61,7 +62,7 @@ tile_set = ExtResource("2_gbw1p")
 
 [node name="ObjectLayer" type="TileMapLayer" parent="."]
 y_sort_enabled = true
-tile_set = ExtResource("2_gbw1p")
+tile_set = ExtResource("6_ei8fs")
 
 [node name="BuildManager" type="Node2D" parent="."]
 visible = false
@@ -69,6 +70,7 @@ script = ExtResource("4_26fgq")
 
 [node name="Player" parent="." instance=ExtResource("5_j0bro")]
 unique_name_in_owner = true
+camera_zoom = Vector2(0.2, 0.2)
 
 [node name="Hud" parent="Player" instance=ExtResource("6_ai4l1")]
 unique_name_in_owner = true
@@ -101,6 +103,9 @@ visible = false
 visible = false
 
 [node name="Console" parent="Player/Interface" instance=ExtResource("15_jbsup")]
+visible = false
+
+[node name="Stats" parent="Player/Interface" instance=ExtResource("16_rytd0")]
 visible = false
 
 [node name="Game" type="Node" parent="Player"]

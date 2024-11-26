@@ -13,14 +13,19 @@ class_name ProcWorld
 var h_noise: FastNoiseLite # height noise
 var user_seed = WorldData.seed
 
+var tiles_data: Dictionary = {}
+
 func _ready() -> void:
 	if WorldData.size > 0:
 		player.position = Vector2i(0,0)
 		generate_finite_world()
 	else:
 		$LoadingScreen.show()
-		noise_generator.set_seed(user_seed)
+		if user_seed == -1:
+			user_seed = randi()
+		noise_generator.settings.noise.seed = user_seed
 		var chunk_loader: ThreadedChunkLoader2D = ThreadedChunkLoader2D.new()
+		chunk_loader.unload_chunks = false
 		chunk_loader.actor = player
 		chunk_loader.generator = noise_generator
 		noise_generator.add_child(chunk_loader)
@@ -34,9 +39,6 @@ func _input(event: InputEvent) -> void:
 			print("Player is in: ", chunk)
 			print("Chunk boundaries ",get_chunk_boundaries(chunk).position, " - ", get_chunk_boundaries(chunk).end)
 			print("---")
-
-func _on_rendered(chunk_position: Vector2i) -> void:
-	$LoadingScreen.visible = false
 
 func generate_finite_world() -> void:
 	h_noise = FastNoiseLite.new()
@@ -80,18 +82,18 @@ func generate_finite_world() -> void:
 	
 func generate_objects(chunk_pos: Vector2i):
 	var pos = chunk_to_map(chunk_pos)
-	for x in pos.x:
-		pass
-	#if h_noise_val > 0.1 and o_noise_val > 0 and y % randi_range(2,5) == x % randi_range(2,5):
-		#build_layer.set_cell(Vector2i(x,y), 2, Vector2i(0, 0), randi_range(1,7))
-	#if h_noise_val > -0.05 and o_noise_val < -0.1 and y % randi_range(2,5) == x % randi_range(2,5):
-		#build_layer.set_cell(Vector2i(x,y), 4, Vector2i(0, 0), 1)
-	#if h_noise_val > 0.12 and o_noise_val < 0 and o_noise_val > -0.1 and y % randi_range(2,5) == x % randi_range(2,5):
+	for x in range(pos.x,pos.x+noise_generator.chunk_size.x):
+		for y in range(pos.y,pos.y+noise_generator.chunk_size.y):
+			var h_noise_val: float = noise_generator.settings.noise.get_noise_2d(x,y)
+			if h_noise_val > 0.1 and y % randi_range(2,5) == x % randi_range(2,5) and randi_range(0,100) < 30:
+				object_layer.set_cell(Vector2i(x,y), 0, Vector2i(0, 0), randi_range(1,7))
+			if h_noise_val > -0.05 and y % randi_range(2,5) == x % randi_range(2,5) and randi_range(0,100) < 15:
+				object_layer.set_cell(Vector2i(x,y), 1, Vector2i(0, 0), randi_range(1,5))
+			if h_noise_val > 0.12 and y % randi_range(2,5) == x % randi_range(2,5):
+				pass
 		#var bush = load("res://scenes/object/plant/bush/bush_blueberry.tscn").instantiate()
 		#bush.global_position = pos
 		#self.add_child(bush)
-	#if h_noise_val > 0.03:
-		#chance_spawn_mob(pos)
 #
 
 var mob_types = {
@@ -115,17 +117,7 @@ func choose_random_mob() -> String:
 	var random_index = randi() % mob_list.size()
 	return mob_list[random_index]
 
-func _on_chunk_rendered(chunk_position: Vector2i) -> void:
-	#print(chunk_position)
-	if abs(chunk_position.x) > 0 and abs(chunk_position.y) > 0:
-		var pos: Vector2i = chunk_to_global(chunk_position)
-		for chunk_x in range(noise_generator.chunk_size.x):
-			for chunk_y in range(noise_generator.chunk_size.y):
-				var x = pos.x + 32 * chunk_x
-				var y = pos.y + 32 * chunk_y
-				var mob_pos = Vector2i(x,y)
-				chance_spawn_mob(mob_pos)
-			
+
 func chunk_to_global(chunk_pos: Vector2i) -> Vector2i:
 	var pos = chunk_pos*noise_generator.chunk_size*noise_generator.tile_size
 	return pos
@@ -143,5 +135,16 @@ func get_chunk_boundaries(chunk_pos: Vector2i) -> Rect2i:
 
 func _first_chunk_rendered(chunk_position: Vector2i) -> void:
 	$LoadingScreen.hide()
-	print("chunk loaded")
 	terrain_renderer.chunk_rendered.disconnect(_first_chunk_rendered)
+
+func _on_chunk_rendered(chunk_position: Vector2i) -> void:
+	#print(chunk_position)
+	if abs(chunk_position.x) > 0 or abs(chunk_position.y) > 0:
+		generate_objects(chunk_position)
+		var pos: Vector2i = chunk_to_global(chunk_position)
+		for chunk_x in range(noise_generator.chunk_size.x):
+			for chunk_y in range(noise_generator.chunk_size.y):
+				var x = pos.x + noise_generator.tile_size.x * chunk_x
+				var y = pos.y + noise_generator.tile_size.y * chunk_y
+				var mob_pos = Vector2i(x,y)
+				chance_spawn_mob(mob_pos)

@@ -7,15 +7,15 @@ class_name BuildManager
 var walls: Array = []
 
 func build():
-	print("Hammer time")
 	var mouse_pos = get_local_mouse_position()
 	var cell_pos = build_layer.local_to_map(mouse_pos)
 	if building_menu.selected_item == 0:
 		BetterTerrain.set_cell(build_layer,cell_pos,-1)
 	elif building_menu.selected_item == 1:
-		if cell_pos in walls:
-			return
-		BetterTerrain.set_cell(build_layer,cell_pos,0)
+		#if cell_pos in walls:
+			#return
+		print("Hammer time")
+		BetterTerrain.set_cell(build_layer,cell_pos,3)
 	BetterTerrain.update_terrain_cell(build_layer, cell_pos)
 	#build_layer.set_cells_terrain_connect(walls,1,0)
 		
