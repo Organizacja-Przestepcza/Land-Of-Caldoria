@@ -13,9 +13,6 @@ class_name ProcWorld
 var h_noise: FastNoiseLite # height noise
 var user_seed = WorldData.seed
 
-var village_scene = preload("res://scenes/village.tscn")
-var active_buildings: Array = []
-
 func _ready() -> void:
 	if WorldData.size > 0:
 		player.position = Vector2i(0,0)
@@ -98,7 +95,16 @@ func generate_objects(chunk_pos: Vector2i):
 		#chance_spawn_mob(pos)
 #
 
-var mob_types = {
+
+var village_scene = preload("res://scenes/village.tscn")
+var active_buildings: Array = []
+
+const building_types = {
+	"village": "res://scenes/village.tscn",
+	"ruins": "res://scenes/ruins.tscn"
+}
+
+const mob_types = {
 	"slime": "res://scenes/mob/slime.tscn",
 	"crab": "res://scenes/mob/crab.tscn",
 	"boar": "res://scenes/mob/boar.tscn",
@@ -111,17 +117,25 @@ func is_valid_building_position(pos: Vector2i) -> bool:
 		if (pos.distance_to(other_pos) < 5000):
 			return false
 	return true
+	
+func choose_random_building() -> String:
+	var building_list = building_types.keys();
+	var random_index = randi() % building_list.size()
+	return building_list[random_index]
 
 func chance_spawn_building(pos: Vector2i) -> void:
 	randomize()
 	var tile_pos = ground_layer.local_to_map(pos)
-	if is_valid_building_position(pos):
-		if randi_range(0, 10000) <= 10 and not ground_layer.get_cell_source_id(tile_pos) == -1:
-			var village = village_scene.instantiate()
-			village.z_index = -1;
-			village.position = pos
-			add_child(village)
-			active_buildings.append(pos)
+	if not ground_layer.get_cell_source_id(tile_pos) == -1:
+		if randi_range(0, 10000) <= 10 and is_valid_building_position(pos):
+			var building_name = choose_random_building()
+			var building_scene = load(building_types[building_name])
+			if building_scene:
+				var building = building_scene.instantiate()
+				building.z_index = -1;
+				building.position = pos
+				add_child(building)
+				active_buildings.append(pos)
 		
 
 func chance_spawn_mob(pos: Vector2) -> void:
@@ -130,9 +144,11 @@ func chance_spawn_mob(pos: Vector2) -> void:
 	if not ground_layer.get_cell_source_id(tile_pos) == -1:
 		if randi_range(0, 1000) <= 2:
 			var mob_name = choose_random_mob()
-			var mob = mob_types[mob_name].instantiate()
-			mob.global_position = pos
-			add_child(mob)
+			var mob_scene = load(mob_types[mob_name])
+			if mob_scene:
+				var mob = mob_scene.instantiate()
+				mob.global_position = pos
+				add_child(mob)
 
 func choose_random_mob() -> String:
 	var mob_list = mob_types.keys()
@@ -148,7 +164,7 @@ func _on_chunk_rendered(chunk_position: Vector2i) -> void:
 				var x = pos.x + 32 * chunk_x
 				var y = pos.y + 32 * chunk_y
 				var mob_pos = Vector2i(x,y)
-				#chance_spawn_mob(mob_pos)
+				chance_spawn_mob(mob_pos)
 				chance_spawn_building(pos)
 			
 func chunk_to_global(chunk_pos: Vector2i) -> Vector2i:
