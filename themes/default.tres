@@ -1,4 +1,14 @@
-[gd_resource type="Theme" format=3 uid="uid://ceqm84uqlgmkn"]
+[gd_resource type="Theme" load_steps=3 format=3 uid="uid://ceqm84uqlgmkn"]
+
+[ext_resource type="Texture2D" uid="uid://ds3mgcms8weff" path="res://assets/textures/ui/menu/button_normal.png" id="1_7kj3h"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_8ofpy"]
+content_margin_left = 10.0
+content_margin_top = 10.0
+content_margin_right = 10.0
+content_margin_bottom = 10.0
+texture = ExtResource("1_7kj3h")
 
 [resource]
 default_font_size = 48
+Button/styles/normal = SubResource("StyleBoxTexture_8ofpy")
