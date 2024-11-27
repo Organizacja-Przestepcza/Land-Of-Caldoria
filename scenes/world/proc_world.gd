@@ -13,6 +13,9 @@ class_name ProcWorld
 var h_noise: FastNoiseLite # height noise
 var user_seed = WorldData.seed
 
+var village_scene = preload("res://scenes/village.tscn")
+var active_buildings: Array = []
+
 func _ready() -> void:
 	if WorldData.size > 0:
 		player.position = Vector2i(0,0)
@@ -76,7 +79,8 @@ func generate_finite_world() -> void:
 	BetterTerrain.update_terrain_cells(ground_layer,ground_cells)
 	for x in map_range:
 		for y in map_range:
-			chance_spawn_mob(Vector2i(32*x+16,32*y+16))
+			var pos = Vector2i(32*x+16,32*y+16)
+			#chance_spawn_mob(pos)
 	
 func generate_objects(chunk_pos: Vector2i):
 	var pos = chunk_to_map(chunk_pos)
@@ -95,10 +99,30 @@ func generate_objects(chunk_pos: Vector2i):
 #
 
 var mob_types = {
-	"slime": preload("res://scenes/mob/slime.tscn"),
-	"crab": preload("res://scenes/mob/crab.tscn"),
-	"boar": preload("res://scenes/mob/boar.tscn"),
+	"slime": "res://scenes/mob/slime.tscn",
+	"crab": "res://scenes/mob/crab.tscn",
+	"boar": "res://scenes/mob/boar.tscn",
+	"bear": "res://scenes/mob/bear.tscn",
+	"wolf": "res://scenes/mob/wolf.tscn"
 }
+
+func is_valid_building_position(pos: Vector2i) -> bool:
+	for other_pos in active_buildings:
+		if (pos.distance_to(other_pos) < 5000):
+			return false
+	return true
+
+func chance_spawn_building(pos: Vector2i) -> void:
+	randomize()
+	var tile_pos = ground_layer.local_to_map(pos)
+	if is_valid_building_position(pos):
+		if randi_range(0, 10000) <= 10 and not ground_layer.get_cell_source_id(tile_pos) == -1:
+			var village = village_scene.instantiate()
+			village.z_index = -1;
+			village.position = pos
+			add_child(village)
+			active_buildings.append(pos)
+		
 
 func chance_spawn_mob(pos: Vector2) -> void:
 	randomize()
@@ -124,7 +148,8 @@ func _on_chunk_rendered(chunk_position: Vector2i) -> void:
 				var x = pos.x + 32 * chunk_x
 				var y = pos.y + 32 * chunk_y
 				var mob_pos = Vector2i(x,y)
-				chance_spawn_mob(mob_pos)
+				#chance_spawn_mob(mob_pos)
+				chance_spawn_building(pos)
 			
 func chunk_to_global(chunk_pos: Vector2i) -> Vector2i:
 	var pos = chunk_pos*noise_generator.chunk_size*noise_generator.tile_size
