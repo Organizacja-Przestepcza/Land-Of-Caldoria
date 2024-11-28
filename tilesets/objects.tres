@@ -1,4 +1,4 @@
-[gd_resource type="TileSet" load_steps=22 format=3 uid="uid://bxtngbogylqfb"]
+[gd_resource type="TileSet" load_steps=22 format=3 uid="uid://c0kbetfmoa8hb"]
 
 [ext_resource type="PackedScene" uid="uid://co4rbbidq8odq" path="res://scenes/object/plant/tree/tree_1.tscn" id="3_mmxfu"]
 [ext_resource type="PackedScene" uid="uid://b0t557dst46s0" path="res://scenes/object/plant/tree/tree_2.tscn" id="4_f3enp"]
@@ -539,9 +539,7 @@ texture_region_size = Vector2i(32, 32)
 4:9/0 = 0
 5:9/0 = 0
 7:9/0 = 0
-7:9/0/terrain = 0
 8:9/0 = 0
-8:9/0/terrain = 0
 9:9/0 = 0
 10:9/0 = 0
 11:9/0 = 0
@@ -556,9 +554,7 @@ texture_region_size = Vector2i(32, 32)
 5:10/0 = 0
 6:10/0 = 0
 7:10/0 = 0
-7:10/0/terrain = 0
 8:10/0 = 0
-8:10/0/terrain = 0
 9:10/0 = 0
 10:10/0 = 0
 11:10/0 = 0
@@ -571,11 +567,8 @@ texture_region_size = Vector2i(32, 32)
 4:11/0 = 0
 5:11/0 = 0
 6:11/0 = 0
-6:11/0/terrain = 0
 7:11/0 = 0
-7:11/0/terrain = 0
 8:11/0 = 0
-8:11/0/terrain = 0
 9:11/0 = 0
 10:11/0 = 0
 11:11/0 = 0

@@ -89,6 +89,8 @@ func generate_objects(chunk_pos: Vector2i):
 		for y in range(pos.y,pos.y+noise_generator.chunk_size.y):
 			var h_noise_val: float = noise_generator.settings.noise.get_noise_2d(x,y)
 			var tile_pos = Vector2i(x,y)
+			if object_layer.get_cell_source_id(tile_pos) != -1:
+				continue
 			if h_noise_val > 0.1 and y % randi_range(2,5) == x % randi_range(2,5) and randi_range(0,100) < 30:
 				object_layer.set_cell(tile_pos, 0, Vector2i(0, 0), randi_range(1,7))
 				object_tiles[chunk_pos][tile_pos] = {
