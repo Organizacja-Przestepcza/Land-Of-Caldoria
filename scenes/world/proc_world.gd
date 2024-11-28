@@ -23,6 +23,7 @@ func _ready() -> void:
 		var chunk_loader: ThreadedChunkLoader2D = ThreadedChunkLoader2D.new()
 		chunk_loader.actor = player
 		chunk_loader.generator = noise_generator
+		chunk_loader.unload_chunks = false
 		noise_generator.add_child(chunk_loader)
 	get_tree().paused = false
 

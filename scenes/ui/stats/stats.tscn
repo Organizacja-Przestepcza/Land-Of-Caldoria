@@ -11,37 +11,42 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_x0rac")
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
 theme_override_constants/margin_left = 50
 theme_override_constants/margin_top = 25
 theme_override_constants/margin_right = 50
 theme_override_constants/margin_bottom = 25
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer/MarginContainer"]
 layout_mode = 2
+size_flags_horizontal = 3
 theme_override_constants/separation = 10
 
-[node name="HeaderLabel" type="Label" parent="MarginContainer/VBoxContainer"]
+[node name="HeaderLabel" type="Label" parent="ScrollContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 64
 text = "Stats"
 horizontal_alignment = 1
 
-[node name="HealthContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+[node name="HealthContainer" type="HBoxContainer" parent="ScrollContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/HealthContainer"]
+[node name="Label" type="Label" parent="ScrollContainer/MarginContainer/VBoxContainer/HealthContainer"]
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 text = "Health:"
 
-[node name="HealthBar" type="ProgressBar" parent="MarginContainer/VBoxContainer/HealthContainer"]
+[node name="HealthBar" type="ProgressBar" parent="ScrollContainer/MarginContainer/VBoxContainer/HealthContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
@@ -49,7 +54,7 @@ step = 1.0
 value = 50.0
 show_percentage = false
 
-[node name="HealthLabel" type="Label" parent="MarginContainer/VBoxContainer/HealthContainer/HealthBar"]
+[node name="HealthLabel" type="Label" parent="ScrollContainer/MarginContainer/VBoxContainer/HealthContainer/HealthBar"]
 layout_mode = 1
 anchors_preset = 14
 anchor_top = 0.5
@@ -63,15 +68,15 @@ text = "50
 "
 horizontal_alignment = 1
 
-[node name="HungerContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+[node name="HungerContainer" type="HBoxContainer" parent="ScrollContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/HungerContainer"]
+[node name="Label" type="Label" parent="ScrollContainer/MarginContainer/VBoxContainer/HungerContainer"]
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 text = "Hunger:"
 
-[node name="HungerBar" type="ProgressBar" parent="MarginContainer/VBoxContainer/HungerContainer"]
+[node name="HungerBar" type="ProgressBar" parent="ScrollContainer/MarginContainer/VBoxContainer/HungerContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
@@ -79,7 +84,7 @@ step = 1.0
 value = 50.0
 show_percentage = false
 
-[node name="HungerLabel" type="Label" parent="MarginContainer/VBoxContainer/HungerContainer/HungerBar"]
+[node name="HungerLabel" type="Label" parent="ScrollContainer/MarginContainer/VBoxContainer/HungerContainer/HungerBar"]
 layout_mode = 1
 anchors_preset = 14
 anchor_top = 0.5
@@ -93,22 +98,22 @@ text = "50
 "
 horizontal_alignment = 1
 
-[node name="ExpContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+[node name="ExpContainer" type="HBoxContainer" parent="ScrollContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/ExpContainer"]
+[node name="Label" type="Label" parent="ScrollContainer/MarginContainer/VBoxContainer/ExpContainer"]
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 text = "Exp:"
 
-[node name="ExpBar" type="ProgressBar" parent="MarginContainer/VBoxContainer/ExpContainer"]
+[node name="ExpBar" type="ProgressBar" parent="ScrollContainer/MarginContainer/VBoxContainer/ExpContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
 value = 35.0
 show_percentage = false
 
-[node name="ExpLabel" type="Label" parent="MarginContainer/VBoxContainer/ExpContainer/ExpBar"]
+[node name="ExpLabel" type="Label" parent="ScrollContainer/MarginContainer/VBoxContainer/ExpContainer/ExpBar"]
 layout_mode = 1
 anchors_preset = 14
 anchor_top = 0.5
@@ -122,70 +127,84 @@ text = "35
 "
 horizontal_alignment = 1
 
-[node name="LevelLabel" type="Label" parent="MarginContainer/VBoxContainer"]
+[node name="Divider" type="Control" parent="ScrollContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ScrollContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="LevelLabel" type="Label" parent="ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
 text = "Level:"
 
-[node name="PointsLabel" type="Label" parent="MarginContainer/VBoxContainer"]
+[node name="PointsLabel" type="Label" parent="ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
-text = "Avaliable points:"
+size_flags_horizontal = 3
+text = "Available points:"
 
-[node name="StregnthContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+[node name="StregnthContainer" type="HBoxContainer" parent="ScrollContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="StrengthLabel" type="Label" parent="MarginContainer/VBoxContainer/StregnthContainer"]
+[node name="StrengthLabel" type="Label" parent="ScrollContainer/MarginContainer/VBoxContainer/StregnthContainer"]
 layout_mode = 2
 text = "Strength:"
 
-[node name="Button" type="Button" parent="MarginContainer/VBoxContainer/StregnthContainer"]
+[node name="StrengthButton" type="Button" parent="ScrollContainer/MarginContainer/VBoxContainer/StregnthContainer"]
 layout_mode = 2
 size_flags_horizontal = 10
 text = "Upgrade"
 
-[node name="EnduranceContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+[node name="EnduranceContainer" type="HBoxContainer" parent="ScrollContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="EnduranceLabel" type="Label" parent="MarginContainer/VBoxContainer/EnduranceContainer"]
+[node name="EnduranceLabel" type="Label" parent="ScrollContainer/MarginContainer/VBoxContainer/EnduranceContainer"]
 layout_mode = 2
 text = "Endurance:"
 
-[node name="Button" type="Button" parent="MarginContainer/VBoxContainer/EnduranceContainer"]
+[node name="EnduranceButton" type="Button" parent="ScrollContainer/MarginContainer/VBoxContainer/EnduranceContainer"]
 layout_mode = 2
 size_flags_horizontal = 10
 text = "Upgrade"
 
-[node name="IntelligenceContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+[node name="IntelligenceContainer" type="HBoxContainer" parent="ScrollContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="IntelligenceLabel" type="Label" parent="MarginContainer/VBoxContainer/IntelligenceContainer"]
+[node name="IntelligenceLabel" type="Label" parent="ScrollContainer/MarginContainer/VBoxContainer/IntelligenceContainer"]
 layout_mode = 2
 text = "Intelligence:"
 
-[node name="Button" type="Button" parent="MarginContainer/VBoxContainer/IntelligenceContainer"]
+[node name="IntelligenceButton" type="Button" parent="ScrollContainer/MarginContainer/VBoxContainer/IntelligenceContainer"]
 layout_mode = 2
 size_flags_horizontal = 10
 text = "Upgrade"
 
-[node name="AgilityContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+[node name="AgilityContainer" type="HBoxContainer" parent="ScrollContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="AgilityLabel" type="Label" parent="MarginContainer/VBoxContainer/AgilityContainer"]
+[node name="AgilityLabel" type="Label" parent="ScrollContainer/MarginContainer/VBoxContainer/AgilityContainer"]
 layout_mode = 2
 text = "Agility:"
 
-[node name="Button" type="Button" parent="MarginContainer/VBoxContainer/AgilityContainer"]
+[node name="AgilityButton" type="Button" parent="ScrollContainer/MarginContainer/VBoxContainer/AgilityContainer"]
 layout_mode = 2
 size_flags_horizontal = 10
 text = "Upgrade"
 
-[node name="LuckContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+[node name="LuckContainer" type="HBoxContainer" parent="ScrollContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="LuckLabel" type="Label" parent="MarginContainer/VBoxContainer/LuckContainer"]
+[node name="LuckLabel" type="Label" parent="ScrollContainer/MarginContainer/VBoxContainer/LuckContainer"]
 layout_mode = 2
 text = "Luck:"
 
-[node name="Button" type="Button" parent="MarginContainer/VBoxContainer/LuckContainer"]
+[node name="LuckButton" type="Button" parent="ScrollContainer/MarginContainer/VBoxContainer/LuckContainer"]
 layout_mode = 2
 size_flags_horizontal = 10
 text = "Upgrade"
+
+[connection signal="pressed" from="ScrollContainer/MarginContainer/VBoxContainer/StregnthContainer/StrengthButton" to="." method="_on_button_pressed" binds= ["strength"]]
+[connection signal="pressed" from="ScrollContainer/MarginContainer/VBoxContainer/EnduranceContainer/EnduranceButton" to="." method="_on_button_pressed" binds= ["endurance"]]
+[connection signal="pressed" from="ScrollContainer/MarginContainer/VBoxContainer/IntelligenceContainer/IntelligenceButton" to="." method="_on_button_pressed" binds= ["intelligence"]]
+[connection signal="pressed" from="ScrollContainer/MarginContainer/VBoxContainer/AgilityContainer/AgilityButton" to="." method="_on_button_pressed" binds= ["agility"]]
+[connection signal="pressed" from="ScrollContainer/MarginContainer/VBoxContainer/LuckContainer/LuckButton" to="." method="_on_button_pressed" binds= ["luck"]]

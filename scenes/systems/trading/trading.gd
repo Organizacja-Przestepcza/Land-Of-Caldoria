@@ -1,6 +1,6 @@
 extends Interface
 class_name Trading
-@onready var inventory: Inventory = $"../Inventory"
+@onready var inventory: Inventory = %Inventory
 
 @onready var player: Player = %Player
 
