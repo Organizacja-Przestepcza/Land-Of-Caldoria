@@ -19,7 +19,10 @@ func build():
 			if type != ProcWorld.ObjType.MANMADE:
 				return
 	if building_menu.selected_item == 0:
-		var chunk_d: Dictionary = world.object_tiles[chunk]
+		var chunk_d = world.object_tiles.get(chunk)
+		if not chunk_d is Dictionary:
+			world.object_tiles[chunk] = {}
+			chunk_d = world.object_tiles.get(chunk)
 		if chunk_d.erase(cell_pos):
 			BetterTerrain.set_cell(build_layer,cell_pos,-1)
 			BetterTerrain.update_terrain_cell(build_layer, cell_pos)
@@ -27,9 +30,12 @@ func build():
 		#if cell_pos in walls:
 			#return
 		print("Hammer time")
-		var chunk_d: Dictionary = world.object_tiles[chunk]
+		var chunk_d = world.object_tiles.get(chunk)
+		if not chunk_d is Dictionary:
+			world.object_tiles[chunk] = {}
+			chunk_d = world.object_tiles.get(chunk)
 		if not chunk_d.has(cell_pos):
-			BetterTerrain.set_cell(build_layer,cell_pos,3)
+			BetterTerrain.set_cell(build_layer,cell_pos,0)
 			BetterTerrain.update_terrain_cell(build_layer, cell_pos)
 			var atlas = build_layer.get_cell_atlas_coords(cell_pos)
 			chunk_d[cell_pos] = {
@@ -37,5 +43,3 @@ func build():
 				"source": 3,
 				"atlas": atlas
 			}
-	#build_layer.set_cells_terrain_connect(walls,1,0)
-		
