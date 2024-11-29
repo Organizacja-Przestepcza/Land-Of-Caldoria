@@ -186,9 +186,6 @@ func delete_object_at(pos: Vector2i):
 	if object_tiles.has(chunk):
 		object_tiles[chunk].erase(pos)
 
-func _first_chunk_rendered(chunk_position: Vector2i) -> void:
-	pass
-
 func generate_mobs_on_chunk(chunk_position: Vector2i):
 	var pos: Vector2i = chunk_to_global(chunk_position)
 	for tile_x in range(noise_generator.chunk_size.x):

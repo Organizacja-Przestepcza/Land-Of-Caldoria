@@ -154,5 +154,6 @@ texture = SubResource("GradientTexture1D_khxsa")
 metadata/_edit_use_anchors_ = true
 
 [connection signal="chunk_erased" from="NoiseGenerator" to="." method="_on_noise_generator_chunk_erased"]
+[connection signal="chunk_rendered" from="NoiseGenerator/ThreadedBetterTerrainGaeaRenderer" to="." method="_on_chunk_rendered"]
 [connection signal="grid_rendered" from="NoiseGenerator/ThreadedBetterTerrainGaeaRenderer" to="." method="_on_grid_rendered"]
 [connection signal="tab_changed" from="Player/Interface/Tabs" to="Player/Interface/Tabs" method="_on_tab_changed"]
