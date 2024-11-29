@@ -11,6 +11,7 @@ func create_save_data() -> SaveData:
 	s.seed = WorldData.seed
 	s.size = WorldData.size
 	s.time = Time.get_datetime_string_from_system()
+	world.save_loaded_chunks_objects()
 	s.objects = world.object_tiles.duplicate(true)
 	return s
 

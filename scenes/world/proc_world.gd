@@ -11,7 +11,7 @@ class_name ProcWorld
 @onready var terrain_renderer: ThreadedBetterTerrainGaeaRenderer = $NoiseGenerator/ThreadedBetterTerrainGaeaRenderer
 @onready var player: Player = %Player
 var chunk_loader: ChunkLoader
-var h_noise: FastNoiseLite # height noise
+var h_noise: FastNoiseLite ## height noise
 var user_seed = WorldData.seed
 
 var object_tiles: Dictionary = {}
@@ -22,6 +22,7 @@ func _ready() -> void:
 	if user_seed == -1:
 		user_seed = randi()
 	noise_generator.settings.noise.seed = user_seed
+	WorldData.seed = user_seed
 	chunk_loader = ChunkLoader.new()
 	#chunk_loader.unload_chunks = false
 	chunk_loader.loading_radius = Vector2i(1,1)
@@ -44,8 +45,10 @@ func _input(event: InputEvent) -> void:
 			print("Player is in: ", chunk)
 			print("Chunk boundaries ",get_chunk_boundaries(chunk).position, " - ", get_chunk_boundaries(chunk).end)
 			print("---")
-
-func generate_finite_world() -> void: # old world generation
+			
+## old world generation
+## @deprecated
+func generate_finite_world() -> void: 
 	h_noise = FastNoiseLite.new()
 	if user_seed == -1:
 		h_noise.seed = randi()
@@ -91,10 +94,8 @@ func load_objects(chunk_pos: Vector2i):
 		print("Nothing to load, returning")
 		return
 	var chunk_d: Dictionary = object_tiles[chunk_pos]
-	if chunk_pos == Vector2i.LEFT: print("Chunk: ", chunk_d.keys())
 	for tile_pos: Vector2i in chunk_d.keys():
 		var tile_data: Dictionary = chunk_d[tile_pos]
-		if chunk_pos == Vector2i.LEFT: print(tile_pos, " - ", tile_data)
 		object_layer.set_cell(tile_pos, tile_data["source"], tile_data["atlas_coords"], tile_data["alt_tile"])
 
 func generate_objects(chunk_pos: Vector2i):
@@ -170,11 +171,24 @@ func unload_objects(chunk_pos: Vector2i):
 		if not object_layer.get_cell_atlas_coords(tile_pos) == Vector2i(-1,-1): # dirty fix for overwriting of saved tiles
 			object_tiles[chunk_pos][tile_pos]["atlas_coords"] = object_layer.get_cell_atlas_coords(tile_pos)
 		object_layer.set_cell(tile_pos)
-	#print(chunk_pos)
+
+## Saves objects from chunks in loading radius into the [member object_tiles]
+func save_loaded_chunks_objects():
+	print(object_tiles.keys())
+	for chunk_pos in chunk_loader._get_required_chunks(chunk_loader._get_actors_position()):
+		var chunk_pos_i = Vector2i(chunk_pos)
+		if not object_tiles.keys().has(chunk_pos_i):
+			continue
+		for tile_pos in object_tiles[chunk_pos_i].keys():
+			object_tiles[chunk_pos_i][tile_pos]["atlas_coords"] = object_layer.get_cell_atlas_coords(tile_pos)
+
+func delete_object_at(pos: Vector2i):
+	var chunk = noise_generator.map_to_chunk(pos)
+	if object_tiles.has(chunk):
+		object_tiles[chunk].erase(pos)
 
 func _first_chunk_rendered(chunk_position: Vector2i) -> void:
-	$LoadingScreen.hide()
-	terrain_renderer.chunk_rendered.disconnect(_first_chunk_rendered)
+	pass
 
 func generate_mobs_on_chunk(chunk_position: Vector2i):
 	var pos: Vector2i = chunk_to_global(chunk_position)
@@ -203,3 +217,8 @@ func _on_chunk_changed(chunk_position: Vector2i): # this function could probably
 		var is_changed_chunk_required = chunk_loader._get_required_chunks(chunk_position).has(chunk_position)
 		if not chunk_loader._get_required_chunks(chunk_position).has(chunk): # if chunk is not required
 			unload_objects(chunk)
+
+
+func _on_grid_rendered() -> void:
+	$LoadingScreen.hide()
+	terrain_renderer.grid_rendered.disconnect(_on_grid_rendered)

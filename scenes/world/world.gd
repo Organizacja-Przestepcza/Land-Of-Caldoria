@@ -1,5 +1,6 @@
 extends Node2D
 class_name World
+## @deprecated: Use [ProcWorld] instead.
 
 var h_noise: FastNoiseLite # height noise
 var o_noise: FastNoiseLite # objects noise

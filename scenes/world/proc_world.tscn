@@ -72,7 +72,6 @@ script = ExtResource("4_26fgq")
 
 [node name="Player" parent="." instance=ExtResource("5_j0bro")]
 unique_name_in_owner = true
-camera_zoom = Vector2(0.8, 0.8)
 
 [node name="Hud" parent="Player" instance=ExtResource("6_ai4l1")]
 unique_name_in_owner = true
@@ -119,7 +118,6 @@ script = ExtResource("13_xk8dt")
 position = Vector2(352, 128)
 
 [node name="LoadingScreen" type="CanvasLayer" parent="."]
-visible = false
 
 [node name="TextureRect" type="TextureRect" parent="LoadingScreen"]
 z_index = 10
@@ -134,3 +132,4 @@ metadata/_edit_use_anchors_ = true
 [connection signal="chunk_erased" from="NoiseGenerator" to="." method="_on_noise_generator_chunk_erased"]
 [connection signal="chunk_rendered" from="NoiseGenerator/ThreadedBetterTerrainGaeaRenderer" to="." method="_on_chunk_rendered"]
 [connection signal="chunk_rendered" from="NoiseGenerator/ThreadedBetterTerrainGaeaRenderer" to="." method="_first_chunk_rendered"]
+[connection signal="grid_rendered" from="NoiseGenerator/ThreadedBetterTerrainGaeaRenderer" to="." method="_on_grid_rendered"]
