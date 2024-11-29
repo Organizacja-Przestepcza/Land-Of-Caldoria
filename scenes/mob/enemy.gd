@@ -2,7 +2,7 @@ extends Mob
 class_name Enemy
 var speed: int
 var strength: int
-var bounce_force: int = 100
+var bounce_force: int = 300
 
 func move_towards_player(target, delta) -> void:
 	if target == null:
