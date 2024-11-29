@@ -2,13 +2,6 @@ extends CanvasLayer
 class_name PauseMenu
 @onready var game: Node = $"../Game"
 
-
-
-
-func set_initial_menu_state() -> void:
-	self.visible = false
-	hide_menus()
-
 func hide_menus() -> void:
 	$TextureRect.visible = true
 	$OptionMenu.visible = false
@@ -17,12 +10,11 @@ func hide_menus() -> void:
 
 func show_menu(menu_node: Node) -> void:
 	hide_menus()
-	self.visible = true
 	menu_node.visible = true
 	$TextureRect.visible = false
 
 func _ready() -> void:
-	set_initial_menu_state()
+	hide_menus()
 
 
 func _process(delta: float) -> void:
@@ -35,8 +27,10 @@ func toggle() -> void:
 	self.visible = !self.visible
 	hide_menus()
 
+
 func _on_quit_button_pressed() -> void:
 	get_tree().paused = false
+	WorldData.seed = -1
 	get_tree().change_scene_to_file("res://scenes/start.tscn")
 
 func _on_options_button_pressed() -> void:

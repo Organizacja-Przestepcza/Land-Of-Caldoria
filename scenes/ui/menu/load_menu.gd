@@ -1,15 +1,14 @@
 extends Control
-var saves = []
+
 func _ready() -> void:
 	$VBoxContainer/HBoxContainer/LoadButton.disabled = true
-	saves = SaveManager.load_all()
 	display_saves()
 
 	
 func display_saves() -> void:
 	$VBoxContainer/LoadList.clear()
-
-	for save: String in saves:
+	SaveManager.load_all()
+	for save: String in SaveManager.saves:
 		$VBoxContainer/LoadList.add_item(save.trim_suffix(".tres"))
 
 func _on_cancel_button_pressed() -> void:
@@ -29,8 +28,8 @@ func _on_load_button_pressed() -> void:
 	WorldData.size = load_data.size
 	WorldData.world_name = load_data.world_name
 	WorldData.load = load_data
-		
-	get_tree().change_scene_to_packed(load("res://scenes/world/world.tscn"))
+	
+	get_tree().change_scene_to_packed(load("res://scenes/world/proc_world.tscn"))
 
 
 func _on_load_list_item_selected(index: int) -> void:

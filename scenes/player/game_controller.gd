@@ -3,18 +3,22 @@ class_name Game
 
 var state: State = State.PLAYING
 @onready var trading: Trading = $"../Interface/Trading"
-@onready var building: BuildMenu = $"../Interface/Building"
-@onready var crafting: Crafting = $"../Interface/Crafting"
+
+@onready var building: BuildMenu = %Building
+@onready var crafting: Crafting = %Crafting
+
 @onready var console: Console = $"../Interface/Console"
+
 @onready var hotbar: Hotbar = %Hotbar
-@onready var inventory: Inventory = $"../Interface/Inventory"
+@onready var inventory: Inventory = %Inventory
 @onready var player: Player = %Player
-@onready var stats: Control = $"../Interface/Stats"
+@onready var stats: Control = %Stats
+@onready var tabs: TabContainer = %Tabs
 
 enum State {PLAYING, INVENTORY, CONSOLE}
 
 func _input(event: InputEvent) -> void:
-	if event is InputEventKey and not event.echo:
+	if event is InputEventKey and not event.echo and get_tree().paused == false:
 		match state:
 			State.PLAYING:
 				if event.is_action_pressed("use", true):
@@ -24,14 +28,14 @@ func _input(event: InputEvent) -> void:
 				elif event.is_action_pressed("interact"):
 					player.interact()
 				elif event.is_action_pressed("build_menu"):
-					building.open()
+					tabs.open(2)
 				elif event.is_action_pressed("gui_inventory"):
-					inventory.open()
+					tabs.open(0)
 				elif event.is_action_pressed("crafting_menu"):
-					crafting.open()
+					tabs.open(1)
 					state = State.INVENTORY
 				elif event.is_action_pressed("ui_stats"):
-					stats.open()
+					tabs.open(3)
 					state = State.INVENTORY
 				elif event.is_action_pressed("ui_text_backspace"):
 					print(%Player.position)
@@ -46,9 +50,11 @@ func _input(event: InputEvent) -> void:
 						KEY_QUOTELEFT: console.open()
 			State.INVENTORY:
 				if event.is_action_pressed("drop_item"):
-					inventory.drop_item_in_slot(get_slot_under_mouse(),1)
+					var slot = get_slot_under_mouse()
+					if slot:
+						inventory.drop_item_in_slot(slot,1)
 				elif event.is_action_pressed("use"):
-					var slot = inventory.get_slot_under_mouse()
+					var slot = get_slot_under_mouse()
 					if slot and slot.get_child_count() > 0:
 						var item = slot.get_child(0)
 						if item is InventoryItem:
@@ -80,8 +86,4 @@ func get_slot_under_mouse() -> InventorySlot:
 	return null  # No slot found under mouse
 
 func close_menus():
-	inventory.close()
-	crafting.close()
-	building.close()
-	trading.close()
-	stats.close()
+	tabs.close()
