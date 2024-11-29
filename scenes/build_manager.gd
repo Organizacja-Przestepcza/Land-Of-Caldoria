@@ -1,7 +1,7 @@
 extends Node2D
 class_name BuildManager
 
-@onready var building_menu: BuildMenu = $"../Player/Interface/Building"
+@onready var build_menu: BuildMenu = %Building
 @onready var build_layer: TileMapLayer = $"../ObjectLayer"
 @onready var world: ProcWorld = $".."
 
@@ -18,7 +18,7 @@ func build():
 			var type = world.object_tiles[chunk][cell_pos]["type"]
 			if not type == ProcWorld.ObjType.MANMADE:
 				return
-	if building_menu.selected_item == 0:
+	if build_menu.selected_item == 0:
 		var chunk_d = world.object_tiles.get(chunk)
 		if not chunk_d is Dictionary:
 			world.object_tiles[chunk] = {}
@@ -26,7 +26,7 @@ func build():
 		if chunk_d.erase(cell_pos):
 			BetterTerrain.set_cell(build_layer,cell_pos,-1)
 			BetterTerrain.update_terrain_cell(build_layer, cell_pos)
-	elif building_menu.selected_item == 1:
+	elif build_menu.selected_item == 1:
 		#if cell_pos in walls:
 			#return
 		print("Hammer time")

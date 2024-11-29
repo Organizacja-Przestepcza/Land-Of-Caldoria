@@ -50,9 +50,11 @@ func _input(event: InputEvent) -> void:
 						KEY_QUOTELEFT: console.open()
 			State.INVENTORY:
 				if event.is_action_pressed("drop_item"):
-					inventory.drop_item_in_slot(get_slot_under_mouse(),1)
+					var slot = get_slot_under_mouse()
+					if slot:
+						inventory.drop_item_in_slot(slot,1)
 				elif event.is_action_pressed("use"):
-					var slot = inventory.get_slot_under_mouse()
+					var slot = get_slot_under_mouse()
 					if slot and slot.get_child_count() > 0:
 						var item = slot.get_child(0)
 						if item is InventoryItem:

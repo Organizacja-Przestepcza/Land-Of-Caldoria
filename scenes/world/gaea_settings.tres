@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="NoiseGeneratorSettings" load_steps=19 format=3 uid="uid://t1mnu6camyxa"]
+[gd_resource type="Resource" script_class="NoiseGeneratorSettings" load_steps=19 format=3 uid="uid://dmxmmyikn85ln"]
 
 [ext_resource type="Script" path="res://addons/gaea/modifiers/2D/modifier_2d.gd" id="1_4i30r"]
 [ext_resource type="Script" path="res://addons/gaea/generators/2D/noise_generator/noise_generator_settings.gd" id="2_5diri"]
