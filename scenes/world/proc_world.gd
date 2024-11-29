@@ -23,12 +23,16 @@ func _ready() -> void:
 		user_seed = randi()
 	noise_generator.settings.noise.seed = user_seed
 	chunk_loader = ChunkLoader.new()
-	chunk_loader.unload_chunks = false
-	chunk_loader.loading_radius = Vector2i(2,2)
+	#chunk_loader.unload_chunks = false
+	chunk_loader.loading_radius = Vector2i(1,1)
 	chunk_loader.actor = player
 	chunk_loader.update_rate = 100
 	chunk_loader.generator = noise_generator
 	chunk_loader.connect("chunk_changed", _on_chunk_changed)
+	if WorldData.load:
+		player.inventory.load_data()
+		player.global_position = WorldData.load.player_global_position
+		object_tiles = WorldData.load.objects
 	noise_generator.add_child(chunk_loader)
 	get_tree().paused = false
 
@@ -87,11 +91,11 @@ func load_objects(chunk_pos: Vector2i):
 		print("Nothing to load, returning")
 		return
 	var chunk_d: Dictionary = object_tiles[chunk_pos]
+	if chunk_pos == Vector2i.LEFT: print("Chunk: ", chunk_d.keys())
 	for tile_pos: Vector2i in chunk_d.keys():
 		var tile_data: Dictionary = chunk_d[tile_pos]
-		object_layer.set_cell(tile_pos, tile_data.get("source", -1), tile_data.get("atlas_coords", Vector2i.ZERO), tile_data.get("alt_tile", 0))
-		if tile_data["source"] == 3:
-			print(tile_data.get("atlas_coords", -1))
+		if chunk_pos == Vector2i.LEFT: print(tile_pos, " - ", tile_data)
+		object_layer.set_cell(tile_pos, tile_data["source"], tile_data["atlas_coords"], tile_data["alt_tile"])
 
 func generate_objects(chunk_pos: Vector2i):
 	if not object_tiles.has(chunk_pos):
@@ -163,9 +167,10 @@ func unload_objects(chunk_pos: Vector2i):
 		object_tiles[chunk_pos] = {}
 		return
 	for tile_pos in object_tiles[chunk_pos].keys():
-		object_tiles[chunk_pos][tile_pos]["atlas_coords"] = object_layer.get_cell_atlas_coords(tile_pos)
+		if not object_layer.get_cell_atlas_coords(tile_pos) == Vector2i(-1,-1): # dirty fix for overwriting of saved tiles
+			object_tiles[chunk_pos][tile_pos]["atlas_coords"] = object_layer.get_cell_atlas_coords(tile_pos)
 		object_layer.set_cell(tile_pos)
-	print(chunk_pos)
+	#print(chunk_pos)
 
 func _first_chunk_rendered(chunk_position: Vector2i) -> void:
 	$LoadingScreen.hide()
@@ -193,8 +198,8 @@ func _on_chunk_rendered(chunk_position: Vector2i) -> void:
 func _on_noise_generator_chunk_erased(chunk_position: Vector2i) -> void:
 	pass#print(chunk_position, " erased")
 
-func _on_chunk_changed(chunk_position: Vector2i):
-	for chunk in object_tiles.keys():
+func _on_chunk_changed(chunk_position: Vector2i): # this function could probably be done better, so it unloads just unloaded chunks
+	for chunk in object_tiles.keys(): 
 		var is_changed_chunk_required = chunk_loader._get_required_chunks(chunk_position).has(chunk_position)
 		if not chunk_loader._get_required_chunks(chunk_position).has(chunk): # if chunk is not required
 			unload_objects(chunk)

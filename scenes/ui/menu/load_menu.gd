@@ -30,7 +30,7 @@ func _on_load_button_pressed() -> void:
 	WorldData.world_name = load_data.world_name
 	WorldData.load = load_data
 	
-	get_tree().change_scene_to_packed(load("res://scenes/world/world.tscn"))
+	get_tree().change_scene_to_packed(load("res://scenes/world/proc_world.tscn"))
 
 
 func _on_load_list_item_selected(index: int) -> void:
