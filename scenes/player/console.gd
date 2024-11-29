@@ -3,7 +3,7 @@ class_name Console
 
 @onready var line_edit: LineEdit = $LineEdit
 @onready var player: Player = %Player
-@onready var inventory: Inventory = $"../Inventory"
+@onready var inventory: Inventory = %Inventory
 var last_state
 var history: PackedStringArray
 var history_index: int = 0
