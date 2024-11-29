@@ -4,8 +4,8 @@
 [ext_resource type="TileSet" uid="uid://d0pha3g0yk4g8" path="res://tilesets/main.tres" id="2_gbw1p"]
 [ext_resource type="Script" path="res://addons/gaea/generators/2D/noise_generator/noise_generator.gd" id="2_vv2tn"]
 [ext_resource type="Resource" uid="uid://dmxmmyikn85ln" path="res://scenes/world/gaea_settings.tres" id="3_3in7x"]
-[ext_resource type="Script" path="res://addons/better-terrain-in-gaea/better_terrain_gaea_renderer.gd" id="3_b1o34"]
 [ext_resource type="Script" path="res://scenes/build_manager.gd" id="4_26fgq"]
+[ext_resource type="Script" path="res://scenes/player/threaded_better_terrain_gaea_renderer.gd" id="5_bdqx5"]
 [ext_resource type="PackedScene" uid="uid://byb1nycwprtqb" path="res://scenes/player/player.tscn" id="5_j0bro"]
 [ext_resource type="PackedScene" uid="uid://d26rkh5gvtfkh" path="res://scenes/ui/hud/hud.tscn" id="6_ai4l1"]
 [ext_resource type="TileSet" uid="uid://cseicm0e8ig5g" path="res://tilesets/objects.tres" id="6_ei8fs"]
@@ -39,8 +39,8 @@ tile_size = Vector2i(32, 32)
 generate_on_ready = false
 random_seed = false
 
-[node name="BetterTerrainGaeaRenderer" type="Node" parent="NoiseGenerator" node_paths=PackedStringArray("tile_map_layers", "generator")]
-script = ExtResource("3_b1o34")
+[node name="ThreadedBetterTerrainGaeaRenderer" type="Node" parent="NoiseGenerator" node_paths=PackedStringArray("tile_map_layers", "generator")]
+script = ExtResource("5_bdqx5")
 tile_map_layers = [NodePath("../../WaterLayer"), NodePath("../../SandLayer"), NodePath("../../GroundLayer"), NodePath("../../GrassLayer")]
 generator = NodePath("..")
 
@@ -60,6 +60,8 @@ tile_set = ExtResource("2_gbw1p")
 z_index = -2
 tile_set = ExtResource("2_gbw1p")
 
+[node name="FloorLayer" type="TileMapLayer" parent="."]
+
 [node name="ObjectLayer" type="TileMapLayer" parent="."]
 y_sort_enabled = true
 tile_set = ExtResource("6_ei8fs")
@@ -70,6 +72,7 @@ script = ExtResource("4_26fgq")
 
 [node name="Player" parent="." instance=ExtResource("5_j0bro")]
 unique_name_in_owner = true
+camera_zoom = Vector2(0.8, 0.8)
 
 [node name="Hud" parent="Player" instance=ExtResource("6_ai4l1")]
 unique_name_in_owner = true
@@ -128,5 +131,6 @@ grow_vertical = 2
 texture = SubResource("GradientTexture1D_khxsa")
 metadata/_edit_use_anchors_ = true
 
-[connection signal="chunk_rendered" from="NoiseGenerator/BetterTerrainGaeaRenderer" to="." method="_on_chunk_rendered"]
-[connection signal="chunk_rendered" from="NoiseGenerator/BetterTerrainGaeaRenderer" to="." method="_first_chunk_rendered"]
+[connection signal="chunk_erased" from="NoiseGenerator" to="." method="_on_noise_generator_chunk_erased"]
+[connection signal="chunk_rendered" from="NoiseGenerator/ThreadedBetterTerrainGaeaRenderer" to="." method="_on_chunk_rendered"]
+[connection signal="chunk_rendered" from="NoiseGenerator/ThreadedBetterTerrainGaeaRenderer" to="." method="_first_chunk_rendered"]

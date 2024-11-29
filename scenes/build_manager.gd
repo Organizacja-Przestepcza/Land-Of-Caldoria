@@ -16,7 +16,7 @@ func build():
 		var coords: Array = world.object_tiles[chunk].keys()
 		if cell_pos in coords:
 			var type = world.object_tiles[chunk][cell_pos]["type"]
-			if type != ProcWorld.ObjType.MANMADE:
+			if not type == ProcWorld.ObjType.MANMADE:
 				return
 	if building_menu.selected_item == 0:
 		var chunk_d = world.object_tiles.get(chunk)
@@ -41,5 +41,6 @@ func build():
 			chunk_d[cell_pos] = {
 				"type": ProcWorld.ObjType.MANMADE,
 				"source": 3,
-				"atlas": atlas
+				"atlas_coords": atlas,
+				"alt_tile": 0
 			}

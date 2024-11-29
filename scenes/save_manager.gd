@@ -1,17 +1,17 @@
 extends Resource
 class_name SaveManager
 const SAVE_GAME_DIR = "user://save/"
-#var hud: Hud
 
 func create_save_data() -> SaveData:
+	var world: ProcWorld = WorldData.player.get_parent()
 	var s = SaveData.new()
 	s.world_name = WorldData.world_name
-	s.inventory = WorldData.player.hud.get_inventory_data()
+	s.inventory = WorldData.player.inventory.get_data()
 	s.player_global_position = WorldData.player.global_position
 	s.seed = WorldData.seed
 	s.size = WorldData.size
 	s.time = Time.get_datetime_string_from_system()
-	s.buildings = WorldData.player.get_parent().get_node("BuildLayer").tile_map_data
+	s.objects = world.object_tiles.duplicate(true)
 	return s
 
 func save(name:String) -> String:
@@ -23,7 +23,8 @@ func save(name:String) -> String:
 	var data = create_save_data()
 	print("Data: ", data.inventory)
 	var error = ResourceSaver.save(data, SAVE_GAME_DIR + save_path)
-	print(error)
+	if error:
+		print(error)
 	return save_path
 	
 static func load_game(name:String) -> Resource:
@@ -31,7 +32,11 @@ static func load_game(name:String) -> Resource:
 		return
 	print(load(SAVE_GAME_DIR + name + ".tres"))
 	return ResourceLoader.load(SAVE_GAME_DIR + name + ".tres")
-	
+
+static func remove_save(name: String) -> Error: # returns true if succesful
+	var err = DirAccess.remove_absolute(SAVE_GAME_DIR + name + ".tres")
+	return err
+
 static func load_all() -> Array:
 	var saved_games = []
 	if not DirAccess.dir_exists_absolute(SAVE_GAME_DIR):
