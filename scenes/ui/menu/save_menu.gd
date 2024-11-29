@@ -1,24 +1,23 @@
 extends Control
 
+@onready var load_menu: Control = $"../LoadMenu"
 @onready var saves_list: ItemList = $VBoxContainer/SavesList
 var save_manager: SaveManager
-var saves = []
 var save_name:String
 
 func _on_cancel_button_pressed() -> void:
 	emit_signal("save_cancel_pressed")
-	$VBoxContainer/SavesList.deselect_all()
+	saves_list.deselect_all()
 signal save_cancel_pressed
 
 func _ready() -> void:
 	display_saves()
 
 func display_saves() -> void:
-	saves = SaveManager.load_all()
 	saves_list.clear()
-	for save:String in saves:
+	SaveManager.load_all()
+	for save:String in SaveManager.saves:
 		saves_list.add_item(save.trim_suffix(".tres"))
-	print(saves)
 
 
 func _on_save_button_pressed() -> void:
@@ -29,8 +28,8 @@ func _on_save_button_pressed() -> void:
 		save_name = saves_list.get_item_text(saves_list.get_selected_items()[0])
 	
 	var filename = save_manager.save(save_name)
-	if saves.find(filename)==-1:
-		display_saves()
+	display_saves()
+	load_menu.display_saves()
 
 func _on_save_name_text_changed(new_text: String) -> void:
 	save_name = new_text
@@ -45,5 +44,7 @@ func _on_delete_button_pressed() -> void:
 		var selected_item = saves_list.get_item_text(saves_list.get_selected_items()[0])
 		var err = SaveManager.remove_save(selected_item)
 		if err:
-			print(error_string(err))
+			printerr(error_string(err))
 		display_saves()
+		load_menu.display_saves()
+	

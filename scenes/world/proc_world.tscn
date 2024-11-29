@@ -8,7 +8,7 @@
 [ext_resource type="Script" path="res://scenes/player/threaded_better_terrain_gaea_renderer.gd" id="5_bdqx5"]
 [ext_resource type="PackedScene" uid="uid://byb1nycwprtqb" path="res://scenes/player/player.tscn" id="5_j0bro"]
 [ext_resource type="PackedScene" uid="uid://d26rkh5gvtfkh" path="res://scenes/ui/hud/hud.tscn" id="6_ai4l1"]
-[ext_resource type="TileSet" uid="uid://cseicm0e8ig5g" path="res://tilesets/objects.tres" id="6_ei8fs"]
+[ext_resource type="TileSet" path="res://tilesets/objects.tres" id="6_ei8fs"]
 [ext_resource type="PackedScene" uid="uid://b0bmpokyxvpu8" path="res://scenes/ui/hotbar/hotbar.tscn" id="7_ibjah"]
 [ext_resource type="PackedScene" uid="uid://c83lveoubd7vh" path="res://scenes/ui/inventory/inventory.tscn" id="9_dkgoy"]
 [ext_resource type="PackedScene" uid="uid://cs0opcidf6hx4" path="res://scenes/systems/trading/trading.tscn" id="9_ynbql"]

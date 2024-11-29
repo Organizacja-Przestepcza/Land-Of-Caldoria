@@ -1,6 +1,7 @@
 extends Resource
 class_name SaveManager
 const SAVE_GAME_DIR = "user://save/"
+static var saves = []
 
 func create_save_data() -> SaveData:
 	var world: ProcWorld = WorldData.player.get_parent()
@@ -22,7 +23,6 @@ func save(name:String) -> String:
 	else:
 		save_path = str(name + ".tres")
 	var data = create_save_data()
-	print("Data: ", data.inventory)
 	var error = ResourceSaver.save(data, SAVE_GAME_DIR + save_path)
 	if error:
 		print(error)
@@ -31,15 +31,14 @@ func save(name:String) -> String:
 static func load_game(name:String) -> Resource:
 	if not ResourceLoader.exists(SAVE_GAME_DIR + name + ".tres"):
 		return
-	print(load(SAVE_GAME_DIR + name + ".tres"))
 	return ResourceLoader.load(SAVE_GAME_DIR + name + ".tres")
 
 static func remove_save(name: String) -> Error: # returns true if succesful
 	var err = DirAccess.remove_absolute(SAVE_GAME_DIR + name + ".tres")
 	return err
 
-static func load_all() -> Array:
-	var saved_games = []
+static func load_all() -> void:
+	saves.clear()
 	if not DirAccess.dir_exists_absolute(SAVE_GAME_DIR):
 		DirAccess.make_dir_absolute(SAVE_GAME_DIR)
 	var dir = DirAccess.open(SAVE_GAME_DIR)
@@ -48,8 +47,7 @@ static func load_all() -> Array:
 		var file_name = dir.get_next()
 		while file_name != "":
 			if not dir.current_is_dir():
-				saved_games.append(file_name)
+				saves.append(file_name)
 			file_name = dir.get_next()
 	else:
 		print("Error occured")
-	return saved_games

@@ -174,7 +174,6 @@ func unload_objects(chunk_pos: Vector2i):
 
 ## Saves objects from chunks in loading radius into the [member object_tiles]
 func save_loaded_chunks_objects():
-	print(object_tiles.keys())
 	for chunk_pos in chunk_loader._get_required_chunks(chunk_loader._get_actors_position()):
 		var chunk_pos_i = Vector2i(chunk_pos)
 		if not object_tiles.keys().has(chunk_pos_i):
