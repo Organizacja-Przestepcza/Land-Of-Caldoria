@@ -40,7 +40,10 @@ var nearest_interactable
 enum Direction {Down, Up, Right, Left}
 
 func _ready() -> void:
-	$Camera2D.zoom = camera_zoom
+	update_zoom(camera_zoom)
+
+func update_zoom(zoom: Vector2):
+	$Camera2D.zoom = zoom
 
 func get_input():
 	var input_direction = Input.get_vector("move_left", "move_right", "move_up", "move_down")

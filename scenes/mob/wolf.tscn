@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://c4ejahhefrxgt"]
+[gd_scene load_steps=25 format=3 uid="uid://c4ejahhefrxgt"]
 
 [ext_resource type="Script" path="res://scenes/mob/wolf.gd" id="1_pvkr2"]
 [ext_resource type="Texture2D" uid="uid://d0lf1q8x0ptpg" path="res://assets/textures/mob/wolf/MiniWolf.png" id="2_5vo6p"]
@@ -22,6 +22,22 @@ region = Rect2(96, 128, 32, 32)
 [sub_resource type="AtlasTexture" id="AtlasTexture_cyv7y"]
 atlas = ExtResource("2_5vo6p")
 region = Rect2(128, 128, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ebdy7"]
+atlas = ExtResource("2_5vo6p")
+region = Rect2(0, 224, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j7ojr"]
+atlas = ExtResource("2_5vo6p")
+region = Rect2(32, 224, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_su4ek"]
+atlas = ExtResource("2_5vo6p")
+region = Rect2(64, 224, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kigbj"]
+atlas = ExtResource("2_5vo6p")
+region = Rect2(96, 224, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_lebn2"]
 atlas = ExtResource("2_5vo6p")
@@ -87,6 +103,23 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_ebdy7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j7ojr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_su4ek")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kigbj")
+}],
+"loop": false,
+"name": &"death",
+"speed": 6.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_lebn2")
 }, {
 "duration": 1.0,
@@ -141,8 +174,7 @@ script = ExtResource("1_pvkr2")
 position = Vector2(0, -30)
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_bt3m1")
-animation = &"idle"
-frame_progress = 0.348646
+animation = &"death"
 
 [node name="DetectionArea" type="Area2D" parent="."]
 collision_layer = 4
@@ -154,8 +186,8 @@ shape = SubResource("CircleShape2D_efjds")
 position = Vector2(0.25, -8)
 shape = SubResource("RectangleShape2D_oix7d")
 
-[connection signal="area_entered" from="DetectionArea" to="." method="_on_area_2d_area_entered"]
 [connection signal="area_entered" from="DetectionArea" to="." method="_on_detection_area_area_entered"]
+[connection signal="area_entered" from="DetectionArea" to="." method="_on_area_2d_area_entered"]
 [connection signal="area_exited" from="DetectionArea" to="." method="_on_detection_area_area_exited"]
 [connection signal="body_entered" from="DetectionArea" to="." method="_on_detection_area_body_entered"]
 [connection signal="body_exited" from="DetectionArea" to="." method="_on_detection_area_body_exited"]
