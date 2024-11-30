@@ -6,6 +6,7 @@ class_name ProcWorld
 @onready var ground_layer: TileMapLayer = $GroundLayer
 @onready var grass_layer: TileMapLayer = $GrassLayer
 @onready var object_layer: TileMapLayer = $ObjectLayer
+@onready var floor_layer: TileMapLayer = $FloorLayer
 
 @onready var noise_generator: NoiseGenerator = $NoiseGenerator
 @onready var terrain_renderer: ThreadedBetterTerrainGaeaRenderer = $NoiseGenerator/ThreadedBetterTerrainGaeaRenderer
@@ -15,6 +16,8 @@ var h_noise: FastNoiseLite ## height noise
 var user_seed = WorldData.seed
 
 var object_tiles: Dictionary = {}
+var floor_tiles: Dictionary = {}
+@onready var tile_layer_arr: Array = [[object_tiles,object_layer], [floor_tiles,floor_layer]]
 enum ObjType {NATURAL,MANMADE}
 
 func _ready() -> void:
@@ -46,19 +49,20 @@ func _input(event: InputEvent) -> void:
 			print("Chunk boundaries ",_get_chunk_boundaries(chunk).position, " - ", _get_chunk_boundaries(chunk).end)
 			print("---")
 
-func load_objects(chunk_pos: Vector2i):
-	if not object_tiles.has(chunk_pos):
-		object_tiles[chunk_pos] = {}
-		print("Nothing to load, returning")
-		return
-	var chunk_d: Dictionary = object_tiles[chunk_pos]
-	for tile_pos: Vector2i in chunk_d.keys():
-		var tile_data: Dictionary = chunk_d[tile_pos]
-		object_layer.set_cell(tile_pos, tile_data["source"], tile_data["atlas_coords"], tile_data["alt_tile"])
-
 # -------
 # OBJECTS
 # -------
+
+func load_objects(chunk_pos: Vector2i):
+	for tiles in tile_layer_arr:
+		if not tiles[0].has(chunk_pos):
+			tiles[0][chunk_pos] = {}
+			print("Nothing to load, returning")
+			return
+		var chunk_d: Dictionary = tiles[0][chunk_pos]
+		for tile_pos: Vector2i in chunk_d.keys():
+			var tile_data: Dictionary = chunk_d[tile_pos]
+			tiles[1].set_cell(tile_pos, tile_data["source"], tile_data["atlas_coords"], tile_data["alt_tile"])
 
 func generate_objects(chunk_pos: Vector2i):
 	if not object_tiles.has(chunk_pos):
@@ -89,22 +93,24 @@ func generate_objects(chunk_pos: Vector2i):
 				}
 
 func unload_objects(chunk_pos: Vector2i):
-	if not object_tiles.has(chunk_pos):
-		object_tiles[chunk_pos] = {}
-		return
-	for tile_pos in object_tiles[chunk_pos].keys():
-		if not object_layer.get_cell_atlas_coords(tile_pos) == Vector2i(-1,-1): # dirty fix for overwriting of saved tiles
-			object_tiles[chunk_pos][tile_pos]["atlas_coords"] = object_layer.get_cell_atlas_coords(tile_pos)
-		object_layer.set_cell(tile_pos)
+	for tiles in tile_layer_arr:
+		if not tiles[0].has(chunk_pos):
+			tiles[0][chunk_pos] = {}
+			return
+		for tile_pos in tiles[0][chunk_pos].keys():
+			if not tiles[1].get_cell_atlas_coords(tile_pos) == Vector2i(-1,-1): # dirty fix for overwriting of saved tiles
+				tiles[0][chunk_pos][tile_pos]["atlas_coords"] = tiles[1].get_cell_atlas_coords(tile_pos)
+			tiles[1].set_cell(tile_pos)
 
-## Saves objects from chunks in loading radius into the [member object_tiles]
+## Saves objects from chunks in loading radius into [member object_tiles] and [member floor_tiles]
 func save_loaded_chunks_objects():
-	for chunk_pos in chunk_loader._get_required_chunks(chunk_loader._get_actors_position()):
-		var chunk_pos_i = Vector2i(chunk_pos)
-		if not object_tiles.keys().has(chunk_pos_i):
-			continue
-		for tile_pos in object_tiles[chunk_pos_i].keys():
-			object_tiles[chunk_pos_i][tile_pos]["atlas_coords"] = object_layer.get_cell_atlas_coords(tile_pos)
+	for tiles in tile_layer_arr:
+		for chunk_pos in chunk_loader._get_required_chunks(chunk_loader._get_actors_position()):
+			var chunk_pos_i = Vector2i(chunk_pos)
+			if not tiles[0].keys().has(chunk_pos_i):
+				continue
+			for tile_pos in tiles[0][chunk_pos_i].keys():
+				tiles[0][chunk_pos_i][tile_pos]["atlas_coords"] = tiles[1].get_cell_atlas_coords(tile_pos)
 
 # -------
 # STRUCTURES
@@ -184,7 +190,7 @@ func generate_mobs_on_chunk(chunk_position: Vector2i):
 # -------
 
 func _on_chunk_rendered(chunk_position: Vector2i) -> void:
-	if object_tiles.has(chunk_position) and chunk_loader._get_required_chunks(chunk_loader._get_actors_position()).has(chunk_position): # if chunk is in loading radius and has objects
+	if (object_tiles.has(chunk_position) or floor_tiles.has(chunk_position)) and chunk_loader._get_required_chunks(chunk_loader._get_actors_position()).has(chunk_position): # if chunk is in loading radius and has objects
 		load_objects(chunk_position)
 	elif object_tiles.has(chunk_position): # if the chunk has objects, but is NOT in loading radius
 		return
@@ -210,6 +216,11 @@ func delete_object_at(pos: Vector2i):
 	var chunk = noise_generator.map_to_chunk(pos)
 	if object_tiles.has(chunk):
 		object_tiles[chunk].erase(pos)
+
+func delete_floor_at(pos: Vector2i):
+	var chunk = noise_generator.map_to_chunk(pos)
+	if floor_tiles.has(chunk):
+		floor_tiles[chunk].erase(pos)
 
 func _chunk_to_global(chunk_pos: Vector2i) -> Vector2i:
 	var pos = chunk_pos*noise_generator.chunk_size*noise_generator.tile_size
