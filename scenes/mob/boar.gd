@@ -27,9 +27,12 @@ func _on_detection_area_body_entered(body: Node2D) -> void:
 func _on_detection_area_body_exited(body: Node2D) -> void:
 	chase_player = false
 	$AnimatedSprite2D.play("idle")
-	
+
 func attack() -> void:
 	super()
 	$AnimatedSprite2D.play("attack")
 	$AnimatedSprite2D.flip_h= velocity.x > 0
 	$AnimatedSprite2D.animation_looped.connect(func (): $AnimatedSprite2D.play("walk"))
+
+func die():
+	pass

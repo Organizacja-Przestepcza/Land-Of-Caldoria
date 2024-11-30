@@ -38,14 +38,14 @@ filter_type = 0
 seed = 1
 
 [sub_resource type="Resource" id="Resource_56f0v"]
-resource_name = "0"
+resource_name = "Water"
 script = ExtResource("5_fhr0w")
 type = 0
 tilemap_layer = 0
 source_id = 1
 atlas_coord = Vector2i(0, 0)
 alternative_tile = 0
-id = "0"
+id = "water"
 layer = 0
 
 [sub_resource type="Resource" id="Resource_jc7p6"]
@@ -57,11 +57,11 @@ min = -1.0
 max = 1.0
 
 [sub_resource type="Resource" id="Resource_8jydq"]
-resource_name = "1"
+resource_name = "Sand"
 script = ExtResource("4_ssnc4")
 tilemap_layer = 1
 terrain = 1
-id = "1"
+id = "sand"
 layer = 1
 
 [sub_resource type="Resource" id="Resource_bf6od"]
@@ -73,11 +73,11 @@ min = -0.1
 max = 0.1
 
 [sub_resource type="Resource" id="Resource_bipha"]
-resource_name = "2"
+resource_name = "Dirt"
 script = ExtResource("4_ssnc4")
 tilemap_layer = 2
 terrain = 2
-id = "2"
+id = "dirt"
 layer = 2
 
 [sub_resource type="Resource" id="Resource_c6a50"]
@@ -89,11 +89,11 @@ min = -0.05
 max = 0.15
 
 [sub_resource type="Resource" id="Resource_qb2y4"]
-resource_name = "3"
+resource_name = "Grass"
 script = ExtResource("4_ssnc4")
 tilemap_layer = 3
 terrain = 0
-id = "3"
+id = "grass"
 layer = 3
 
 [sub_resource type="Resource" id="Resource_clwsu"]

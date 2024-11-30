@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://d3yqywloojm6v"]
+[gd_scene load_steps=23 format=3 uid="uid://bxat0e8jrp8jo"]
 
 [ext_resource type="Script" path="res://scenes/mob/boar.gd" id="1_xlvok"]
 [ext_resource type="Texture2D" uid="uid://c0mpgnoxuvess" path="res://assets/textures/mob/boar/MiniBoar.png" id="2_ukve7"]
@@ -39,21 +39,21 @@ region = Rect2(64, 167, 32, 25)
 atlas = ExtResource("2_ukve7")
 region = Rect2(96, 167, 32, 25)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_7110i"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_kgntf"]
 atlas = ExtResource("2_ukve7")
-region = Rect2(0, 14, 32, 29)
+region = Rect2(0, 0, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_4mfhm"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_e4qe1"]
 atlas = ExtResource("2_ukve7")
-region = Rect2(32, 14, 32, 29)
+region = Rect2(32, 0, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_duvbr"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_cdmu8"]
 atlas = ExtResource("2_ukve7")
-region = Rect2(64, 14, 32, 29)
+region = Rect2(64, 0, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_hysh8"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_i1i3n"]
 atlas = ExtResource("2_ukve7")
-region = Rect2(96, 14, 32, 29)
+region = Rect2(96, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4010h"]
 atlas = ExtResource("2_ukve7")
@@ -112,16 +112,16 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_7110i")
+"texture": SubResource("AtlasTexture_kgntf")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_4mfhm")
+"texture": SubResource("AtlasTexture_e4qe1")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_duvbr")
+"texture": SubResource("AtlasTexture_cdmu8")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_hysh8")
+"texture": SubResource("AtlasTexture_i1i3n")
 }],
 "loop": true,
 "name": &"idle",
@@ -149,7 +149,7 @@ animations = [{
 radius = 141.089
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_oix7d"]
-size = Vector2(26, 17)
+size = Vector2(26, 16)
 
 [node name="Boar" type="CharacterBody2D"]
 collision_layer = 8
@@ -157,7 +157,7 @@ collision_mask = 3
 script = ExtResource("1_xlvok")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(0, -4)
+position = Vector2(-2, -30)
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_bt3m1")
 animation = &"idle"
@@ -169,7 +169,7 @@ collision_layer = 4
 shape = SubResource("CircleShape2D_efjds")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(3, -7.5)
+position = Vector2(1, -8)
 shape = SubResource("RectangleShape2D_oix7d")
 
 [connection signal="body_entered" from="DetectionArea" to="." method="_on_detection_area_body_entered"]

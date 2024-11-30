@@ -60,7 +60,8 @@ script = ExtResource("1_ersw6")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_bt3m1")
-animation = &"moving_top"
+animation = &"attacking"
+frame_progress = 0.418413
 
 [node name="DetectionArea" type="Area2D" parent="."]
 collision_layer = 4
