@@ -20,6 +20,7 @@ func close() -> void:
 	%Game.state = last_state
 	get_tree().paused = false
 	self.visible = false
+	line_edit.clear()
 
 func _on_line_edit_text_submitted(new_text: String) -> void:
 	var args = line_edit.text.split(" ",false)
@@ -34,6 +35,7 @@ func _on_line_edit_text_submitted(new_text: String) -> void:
 			history_index=0
 			line_edit.clear()
 			return
+		"camera": camera(args[1])
 		"render": 
 			var err = render(args[1],args[2])
 			if err:
@@ -44,7 +46,10 @@ func _on_line_edit_text_submitted(new_text: String) -> void:
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventKey:
-		if event.pressed:
+		if event.is_action_pressed("ui_cancel"):
+			close()
+			%PauseMenu.toggle()
+		elif event.pressed:
 			match event.keycode:
 				KEY_UP:
 					if history_index < history.size():
@@ -124,3 +129,10 @@ func render(subcommand, value: String) -> Error:
 		_:
 			return ERR_INVALID_PARAMETER
 	return OK
+
+func camera(value):
+	if value is String:
+		if not value.is_valid_float():
+			return
+		var zoom = value.to_float()
+		player.update_zoom(Vector2(zoom,zoom))

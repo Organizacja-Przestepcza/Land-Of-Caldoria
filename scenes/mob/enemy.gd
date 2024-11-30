@@ -3,8 +3,16 @@ class_name Enemy
 var speed: int
 var strength: int
 var bounce_force: int = 300
-
 var chase_player = false
+
+func _physics_process(delta: float) -> void:
+	if chase_player:
+		move_towards_player(player, delta)
+		if $AnimatedSprite2D.animation == "attack":
+			$AnimatedSprite2D.flip_h= velocity.x > 0
+		else:
+			$AnimatedSprite2D.flip_h= velocity.x < 0
+
 func move_towards_player(target, delta) -> void:
 	if target == null:
 		return
@@ -24,6 +32,8 @@ func move_towards_player(target, delta) -> void:
 	
 func attack() -> void:
 	player.hit(strength)
+	$AnimatedSprite2D.play("attack")
+	$AnimatedSprite2D.animation_looped.connect(func (): $AnimatedSprite2D.play("walk"))
 	
 func bounce_back(collision: KinematicCollision2D) -> void:
 	var bounce_direction = velocity.bounce(collision.get_normal()).normalized()
