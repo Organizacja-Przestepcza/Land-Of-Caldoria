@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://bevwwvcr2fdsa"]
+[gd_scene load_steps=24 format=3 uid="uid://bevwwvcr2fdsa"]
 
 [ext_resource type="Script" path="res://scenes/world/proc_world.gd" id="1_75342"]
 [ext_resource type="TileSet" uid="uid://d0pha3g0yk4g8" path="res://tilesets/main.tres" id="2_gbw1p"]
@@ -15,7 +15,6 @@
 [ext_resource type="PackedScene" uid="uid://3qegagme7w4c" path="res://scenes/systems/building/building.tscn" id="10_d4h0i"]
 [ext_resource type="PackedScene" uid="uid://cm85hy4nglvyg" path="res://scenes/ui/hud/notifications/notifications.tscn" id="11_k8yp2"]
 [ext_resource type="PackedScene" uid="uid://ddbr53ohn683s" path="res://scenes/ui/menu/pause_menu.tscn" id="11_ot3us"]
-[ext_resource type="PackedScene" uid="uid://cqg8foh8rbto4" path="res://scenes/mob/bear.tscn" id="12_l0gcd"]
 [ext_resource type="PackedScene" uid="uid://de7ljcthumfav" path="res://scenes/systems/crafting/crafting.tscn" id="12_wsaqj"]
 [ext_resource type="Script" path="res://scenes/world/tabs.gd" id="13_hqbme"]
 [ext_resource type="Script" path="res://scenes/player/game_controller.gd" id="13_xk8dt"]
@@ -158,9 +157,6 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = SubResource("GradientTexture1D_khxsa")
 metadata/_edit_use_anchors_ = true
-
-[node name="Bear" parent="." instance=ExtResource("12_l0gcd")]
-position = Vector2(109, 187)
 
 [connection signal="chunk_erased" from="NoiseGenerator" to="." method="_on_noise_generator_chunk_erased"]
 [connection signal="chunk_rendered" from="NoiseGenerator/ThreadedBetterTerrainGaeaRenderer" to="." method="_on_chunk_rendered"]
