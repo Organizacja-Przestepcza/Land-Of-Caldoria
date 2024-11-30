@@ -3,6 +3,8 @@ class_name BuildManager
 
 @onready var build_menu: BuildMenu = %Building
 @onready var build_layer: TileMapLayer = $"../ObjectLayer"
+@onready var ground_layer: TileMapLayer = $"../GroundLayer"
+@onready var grass_layer: TileMapLayer = $"../GrassLayer"
 @onready var world: ProcWorld = $".."
 
 var walls: Array = []
@@ -44,3 +46,9 @@ func build():
 				"atlas_coords": atlas,
 				"alt_tile": 0
 			}
+
+func dig():
+	var mouse_pos = get_local_mouse_position()
+	var cell_pos = build_layer.local_to_map(mouse_pos)
+	if not ground_layer.get_cell_source_id(cell_pos) == -1:
+		print("digging")

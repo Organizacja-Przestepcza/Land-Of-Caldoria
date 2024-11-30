@@ -40,7 +40,11 @@ var nearest_interactable
 enum Direction {Down, Up, Right, Left}
 
 func _ready() -> void:
-	$Camera2D.zoom = camera_zoom
+	update_zoom(camera_zoom)
+
+func update_zoom(zoom):
+	if zoom is Vector2:
+		$Camera2D.zoom = zoom
 
 func get_input():
 	var input_direction = Input.get_vector("move_left", "move_right", "move_up", "move_down")
@@ -141,6 +145,8 @@ func use_item() -> void:
 		consume(hotbar.selected_slot.get_child(0),1)
 	elif held_item == ItemLoader.name("hammer"):
 		build_manager.build()
+	elif held_item == ItemLoader.name("shovel"):
+		build_manager.dig()
 	elif held_item is Tool:
 		attack(held_item)
 
