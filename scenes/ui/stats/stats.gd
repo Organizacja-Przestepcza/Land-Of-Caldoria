@@ -21,6 +21,7 @@ class_name Stats
 @onready var intelligence_button: Button = $ScrollContainer/MarginContainer/VBoxContainer/IntelligenceContainer/IntelligenceButton
 @onready var agility_button: Button = $ScrollContainer/MarginContainer/VBoxContainer/AgilityContainer/AgilityButton
 @onready var luck_button: Button = $ScrollContainer/MarginContainer/VBoxContainer/LuckContainer/LuckButton
+@onready var notifications: Notifications = %Notifications
 
 
 
@@ -65,6 +66,7 @@ func add_exp(amount) -> void:
 func level_up() -> void:
 	player.exp -= next_treshold
 	player.level += 1 
+	notifications.add_notification("Level up! Current level: %d"%player.level)
 	level_label.text = "Level: " + str(player.level)
 	last_treshold = next_treshold
 	next_treshold = roundi(2.336*pow(player.level,1.618)+2.5)
