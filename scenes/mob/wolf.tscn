@@ -1,7 +1,7 @@
 [gd_scene load_steps=21 format=3 uid="uid://c4ejahhefrxgt"]
 
 [ext_resource type="Script" path="res://scenes/mob/wolf.gd" id="1_pvkr2"]
-[ext_resource type="Texture2D" uid="uid://druhomi5rh66f" path="res://assets/textures/mob/wolf/MiniWolf.png" id="2_5vo6p"]
+[ext_resource type="Texture2D" uid="uid://d0lf1q8x0ptpg" path="res://assets/textures/mob/wolf/MiniWolf.png" id="2_5vo6p"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_cqcl5"]
 atlas = ExtResource("2_5vo6p")
@@ -152,8 +152,8 @@ shape = SubResource("CircleShape2D_efjds")
 position = Vector2(0, -6.25)
 shape = SubResource("RectangleShape2D_oix7d")
 
-[connection signal="area_entered" from="DetectionArea" to="." method="_on_detection_area_area_entered"]
 [connection signal="area_entered" from="DetectionArea" to="." method="_on_area_2d_area_entered"]
+[connection signal="area_entered" from="DetectionArea" to="." method="_on_detection_area_area_entered"]
 [connection signal="area_exited" from="DetectionArea" to="." method="_on_detection_area_area_exited"]
 [connection signal="body_entered" from="DetectionArea" to="." method="_on_detection_area_body_entered"]
 [connection signal="body_exited" from="DetectionArea" to="." method="_on_detection_area_body_exited"]

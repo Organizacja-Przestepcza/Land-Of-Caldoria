@@ -4,6 +4,7 @@ var speed: int
 var strength: int
 var bounce_force: int = 300
 
+var chase_player = false
 func move_towards_player(target, delta) -> void:
 	if target == null:
 		return
@@ -32,3 +33,25 @@ func handle_obstacle(collision: KinematicCollision2D) -> void:
 	var obstacle = collision.get_collider()
 	if obstacle:
 		move_and_slide()
+
+func _on_detection_area_body_entered(body: Node2D) -> void:
+	if body is Player:
+		chase_player = true
+		$AnimatedSprite2D.play("walk")
+
+func _on_detection_area_body_exited(body: Node2D) -> void:
+	if body is Player:
+		chase_player = false
+		$AnimatedSprite2D.play("idle")
+
+func take_damage(damage: int) -> bool: ## returns true if the object was destroyed
+	health = health - damage
+	if health <= 0:
+		die()
+		return true
+	return false
+
+func die():
+	chase_player = false
+	$AnimatedSprite2D.play("death")
+	$AnimatedSprite2D.animation_finished.connect(func (): queue_free())

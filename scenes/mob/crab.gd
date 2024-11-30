@@ -1,7 +1,5 @@
 extends Enemy
 
-var chase_player = false
-
 func _ready() -> void:
 	super()
 	health = 10
