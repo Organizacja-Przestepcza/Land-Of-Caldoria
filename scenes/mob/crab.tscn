@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://bo0ydrqsetcuu"]
+[gd_scene load_steps=14 format=3 uid="uid://bo0ydrqsetcuu"]
 
 [ext_resource type="Script" path="res://scenes/mob/crab.gd" id="1_ersw6"]
 [ext_resource type="Texture2D" uid="uid://dihif2olxo83u" path="res://assets/textures/mob/crab/CrabMoving1.png" id="2_6dgns"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://dhs4tsb7jdmts" path="res://assets/textures/mob/crab/CrabMoving3.png" id="4_cdw5s"]
 [ext_resource type="Texture2D" uid="uid://dotf056wi6ug" path="res://assets/textures/mob/crab/CrabMoving4.png" id="5_3tidn"]
 [ext_resource type="Texture2D" uid="uid://ci6aa7bnkhnuh" path="res://assets/textures/mob/crab/Crab_Attack4.png" id="5_n57jg"]
+[ext_resource type="AudioStream" uid="uid://diyahgl2osn0g" path="res://assets/sfx/mob/Crab.mp3" id="10_8jrhm"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_bt3m1"]
 animations = [{
@@ -91,6 +92,9 @@ shape = SubResource("CircleShape2D_efjds")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 1)
 shape = SubResource("RectangleShape2D_oix7d")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("10_8jrhm")
 
 [connection signal="body_entered" from="DetectionArea" to="." method="_on_detection_area_body_entered"]
 [connection signal="body_exited" from="DetectionArea" to="." method="_on_detection_area_body_exited"]

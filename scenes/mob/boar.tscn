@@ -1,6 +1,7 @@
-[gd_scene load_steps=23 format=3 uid="uid://bxat0e8jrp8jo"]
+[gd_scene load_steps=24 format=3 uid="uid://d3yqywloojm6v"]
 
 [ext_resource type="Script" path="res://scenes/mob/boar.gd" id="1_xlvok"]
+[ext_resource type="AudioStream" uid="uid://dn7mg6m66t1dj" path="res://assets/sfx/mob/Pig.mp3" id="2_to4x0"]
 [ext_resource type="Texture2D" uid="uid://c0mpgnoxuvess" path="res://assets/textures/mob/boar/MiniBoar.png" id="2_ukve7"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_u0lhv"]
@@ -155,6 +156,9 @@ size = Vector2(26, 16)
 collision_layer = 8
 collision_mask = 3
 script = ExtResource("1_xlvok")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_to4x0")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(-2, -30)

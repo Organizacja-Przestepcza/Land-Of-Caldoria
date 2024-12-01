@@ -1,10 +1,11 @@
-[gd_scene load_steps=45 format=3 uid="uid://d1motrwehdjwo"]
+[gd_scene load_steps=46 format=3 uid="uid://d1motrwehdjwo"]
 
 [ext_resource type="Script" path="res://scenes/mob/slime.gd" id="1_0ap38"]
 [ext_resource type="Texture2D" uid="uid://clxnarstqlp3h" path="res://assets/textures/mob/slime/slime_idle1.png" id="2_3l7eg"]
 [ext_resource type="Texture2D" uid="uid://bc6dlkavklqpm" path="res://assets/textures/mob/slime/slime_swallow.png" id="2_qoyuc"]
 [ext_resource type="Texture2D" uid="uid://dswwmbnxb851u" path="res://assets/textures/mob/slime/slime_die.png" id="2_qx31m"]
 [ext_resource type="Texture2D" uid="uid://c62ow8p5gcfxy" path="res://assets/textures/mob/slime/slime_move.png" id="3_mlcl1"]
+[ext_resource type="AudioStream" uid="uid://dk0jt02qu1ra" path="res://assets/sfx/mob/slime jump.mp3" id="6_gynjw"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_1psu0"]
 atlas = ExtResource("2_qoyuc")
@@ -310,6 +311,9 @@ shape = SubResource("CircleShape2D_efjds")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-0.5, -7.5)
 shape = SubResource("RectangleShape2D_oix7d")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_gynjw")
 
 [connection signal="body_entered" from="DetectionArea" to="." method="_on_detection_area_body_entered"]
 [connection signal="body_exited" from="DetectionArea" to="." method="_on_detection_area_body_exited"]

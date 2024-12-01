@@ -4,7 +4,6 @@ var speed: int
 var strength: int
 var bounce_force: int = 300
 var chase_player = false
-@onready var notifications: Notifications = %Notifications
 
 func _physics_process(delta: float) -> void:
 	if chase_player:
@@ -49,6 +48,7 @@ func handle_obstacle(collision: KinematicCollision2D) -> void:
 func _on_detection_area_body_entered(body: Node2D) -> void:
 	if body is Player:
 		chase_player = true
+		play_chase()
 		$AnimatedSprite2D.play("walk")
 
 func _on_detection_area_body_exited(body: Node2D) -> void:
@@ -67,3 +67,5 @@ func die():
 	chase_player = false
 	$AnimatedSprite2D.play("death")
 	$AnimatedSprite2D.animation_finished.connect(func (): queue_free())
+func play_chase() -> void:
+	print("not implemented")

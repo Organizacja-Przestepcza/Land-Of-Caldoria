@@ -58,9 +58,10 @@ func play_animation() -> void:
 	if velocity.length() > 0:
 		velocity = velocity.normalized() * speed
 		$AnimatedSprite2D.play()
+		$AudioStreamPlayer.stream_paused = false
 	else:
 		$AnimatedSprite2D.stop()
-	
+		$AudioStreamPlayer.stream_paused = true
 	var animations: Array = ["walk_side", "walk_down", "walk_up", "run_side", "run_down", "run_up"]
 	var i: int = 0
 	if Input.is_action_pressed("sprint"):

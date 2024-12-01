@@ -8,3 +8,6 @@ func _ready() -> void:
 	exp = 10
 	strength = 10
 	$AnimatedSprite2D.play("idle")
+
+func play_chase() -> void:
+	$AudioStreamPlayer.play()
