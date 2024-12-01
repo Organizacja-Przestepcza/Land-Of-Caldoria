@@ -15,6 +15,7 @@ var chunk_loader: ChunkLoader
 var h_noise: FastNoiseLite ## height noise
 var user_seed = WorldData.seed
 
+var village_build = false
 var object_tiles: Dictionary = {}
 var floor_tiles: Dictionary = {}
 @onready var tile_layer_arr: Array = [[object_tiles,object_layer], [floor_tiles,floor_layer]]
@@ -39,6 +40,7 @@ func _ready() -> void:
 		object_tiles = WorldData.load.objects
 	noise_generator.add_child(chunk_loader)
 	get_tree().paused = false
+	generate_village()
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventKey:
@@ -119,7 +121,6 @@ func save_loaded_chunks_objects():
 var active_buildings: Array = []
 
 const building_types = {
-	"village": preload("res://scenes/village.tscn"),
 	"ruins": preload("res://scenes/ruins.tscn")
 }
 
@@ -133,29 +134,29 @@ func choose_random_building() -> String:
 	var building_list = building_types.keys();
 	var random_index = randi() % building_list.size()
 	return building_list[random_index]
-
+	
+func generate_village() -> void:
+	var village_scene = preload("res://scenes/village.tscn")
+	var village = village_scene.instantiate()
+	village.z_index = -1;
+	village.position = Vector2(0, 0)
+	add_child(village)
+	
 func chance_spawn_building(pos: Vector2) -> void:
 	randomize()
 	var tile_pos = ground_layer.local_to_map(pos)
 	var h_noise_val = noise_generator.settings.noise.get_noise_2d(tile_pos.x,tile_pos.y)
 	if h_noise_val > -0.05 and object_layer.get_cell_source_id(tile_pos) == -1:
-		if randi_range(0, 100) <= 10 and is_valid_building_position(pos):
+		if randi_range(0, 10000) <= 10 and is_valid_building_position(pos):
 			var building_name = choose_random_building()
 			var building_scene = building_types[building_name]
 			if building_scene:
 				print("Creating builidng.")
 				var building = building_scene.instantiate()
-				match building_name:
-					"ruins":
-						building.z_index = -1;
-						building.position = Vector2(0, 0)
-						add_child(building)
-						active_buildings.append(pos)
-					"village":
-						building.z_index = -1;
-						building.position = pos
-						add_child(building)
-						active_buildings.append(pos)
+				building.z_index = -1;
+				building.position = pos
+				add_child(building)
+				active_buildings.append(pos)
 				
 
 # -------
