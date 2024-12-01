@@ -1,6 +1,7 @@
-[gd_resource type="TileSet" load_steps=4 format=3 uid="uid://8cw0ot3ve8s4"]
+[gd_resource type="TileSet" load_steps=5 format=3 uid="uid://dq7xo5icgsgv5"]
 
 [ext_resource type="Texture2D" uid="uid://chd22bafdu5hb" path="res://assets/textures/tilesets/stone_floor.png" id="1_8yj1k"]
+[ext_resource type="Texture2D" uid="uid://dn0dcd1prienb" path="res://assets/textures/tilesets/hole.png" id="2_er61c"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_egr3f"]
 texture = ExtResource("1_8yj1k")
@@ -8,6 +9,7 @@ texture_region_size = Vector2i(32, 32)
 0:0/0 = 0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_bd2ua"]
+texture = ExtResource("2_er61c")
 texture_region_size = Vector2i(32, 32)
 0:0/0 = 0
 

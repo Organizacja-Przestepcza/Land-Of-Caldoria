@@ -34,6 +34,7 @@ func attack() -> void:
 	player.hit(strength)
 	notifications.add_notification(mob_name+" hit player: -"+ str(strength) + "hp")
 	$AnimatedSprite2D.play("attack")
+	play_attack()
 	$AnimatedSprite2D.animation_looped.connect(func (): $AnimatedSprite2D.play("walk"))
 	
 func bounce_back(collision: KinematicCollision2D) -> void:
@@ -67,5 +68,9 @@ func die():
 	chase_player = false
 	$AnimatedSprite2D.play("death")
 	$AnimatedSprite2D.animation_finished.connect(func (): queue_free())
+	
 func play_chase() -> void:
+	print("not implemented")
+
+func play_attack() -> void:
 	print("not implemented")

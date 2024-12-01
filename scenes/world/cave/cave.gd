@@ -1,3 +1,3 @@
 class_name Cave extends Node2D
-
-var world_position: Vector2i
+@onready var walker_generator: WalkerGenerator = $WalkerGenerator
+@onready var terrain_renderer: BetterTerrainGaeaRenderer = $WalkerGenerator/BetterTerrainGaeaRenderer

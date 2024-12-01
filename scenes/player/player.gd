@@ -15,6 +15,7 @@ extends CharacterBody2D
 @onready var hotbar: Hotbar = %Hotbar
 
 @onready var build_manager: BuildManager = $"../BuildManager"
+@onready var cave_manager: CaveManager = $"../CaveManager"
 @onready var inventory: Inventory = %Inventory
 @onready var health_bar: Health = hud.get_node("VBoxContainer/HealthBar")
 @onready var hunger_bar: Hunger = hud.get_node("VBoxContainer/HungerBar")
@@ -148,7 +149,7 @@ func use_item() -> void:
 	elif held_item == ItemLoader.name("hammer"):
 		build_manager.build()
 	elif held_item == ItemLoader.name("shovel"):
-		build_manager.dig()
+		cave_manager.dig()
 	elif held_item is Tool:
 		attack(held_item)
 
@@ -159,8 +160,8 @@ func interact():
 		nearest_interactable.queue_free()
 	elif nearest_interactable is NPC:
 		interface.get_node("Trading").open()
-	elif build_manager.get_floor_at(Vector2i.ZERO): #code for checking for holes
-		pass
+	elif cave_manager.is_valid_entry(position): # check if there is a hole under player
+		cave_manager.enter(position)
 
 func attack(tool: Tool):
 	var victim = await get_victim()
@@ -185,3 +186,6 @@ func consume(item: InventoryItem, amount: int) -> void:
 		effect_from_item(item.data)
 		notifications.add_notification("Used "+ item.data.name)
 		item.remove(amount)
+
+func enter_cave():
+	pass

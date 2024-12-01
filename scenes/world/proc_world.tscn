@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://bevwwvcr2fdsa"]
+[gd_scene load_steps=27 format=3 uid="uid://bevwwvcr2fdsa"]
 
 [ext_resource type="Script" path="res://scenes/world/proc_world.gd" id="1_75342"]
 [ext_resource type="AudioStream" uid="uid://jdy7g8aivofv" path="res://assets/sfx/ambient/Overworld theme.mp3" id="2_bam7b"]
@@ -10,8 +10,9 @@
 [ext_resource type="PackedScene" uid="uid://byb1nycwprtqb" path="res://scenes/player/player.tscn" id="5_j0bro"]
 [ext_resource type="PackedScene" uid="uid://d26rkh5gvtfkh" path="res://scenes/ui/hud/hud.tscn" id="6_ai4l1"]
 [ext_resource type="TileSet" uid="uid://dgn2sg8mjagkv" path="res://tilesets/objects.tres" id="6_ei8fs"]
-[ext_resource type="TileSet" uid="uid://8cw0ot3ve8s4" path="res://tilesets/floors.tres" id="6_wfmau"]
+[ext_resource type="TileSet" uid="uid://dq7xo5icgsgv5" path="res://tilesets/floors.tres" id="6_wfmau"]
 [ext_resource type="PackedScene" uid="uid://b0bmpokyxvpu8" path="res://scenes/ui/hotbar/hotbar.tscn" id="7_ibjah"]
+[ext_resource type="Script" path="res://scenes/world/cave/cave_manager.gd" id="9_djtgg"]
 [ext_resource type="PackedScene" uid="uid://c83lveoubd7vh" path="res://scenes/ui/inventory/inventory.tscn" id="9_dkgoy"]
 [ext_resource type="PackedScene" uid="uid://cs0opcidf6hx4" path="res://scenes/systems/trading/trading.tscn" id="9_ynbql"]
 [ext_resource type="PackedScene" uid="uid://3qegagme7w4c" path="res://scenes/systems/building/building.tscn" id="10_d4h0i"]
@@ -20,7 +21,7 @@
 [ext_resource type="PackedScene" uid="uid://de7ljcthumfav" path="res://scenes/systems/crafting/crafting.tscn" id="12_wsaqj"]
 [ext_resource type="Script" path="res://scenes/world/tabs.gd" id="13_hqbme"]
 [ext_resource type="Script" path="res://scenes/player/game_controller.gd" id="13_xk8dt"]
-[ext_resource type="PackedScene" path="res://scenes/player/console.tscn" id="15_jbsup"]
+[ext_resource type="PackedScene" uid="uid://xxmv67orn38r" path="res://scenes/player/console.tscn" id="15_jbsup"]
 [ext_resource type="PackedScene" uid="uid://0v860522ctv3" path="res://scenes/ui/stats/stats.tscn" id="17_iykmo"]
 [ext_resource type="PackedScene" uid="uid://npgme5adxp70" path="res://scenes/npc/blacksmith.tscn" id="17_tkbm6"]
 
@@ -37,7 +38,7 @@ script = ExtResource("1_75342")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_bam7b")
-volume_db = -25.0
+volume_db = -28.0
 autoplay = true
 parameters/looping = true
 
@@ -87,6 +88,10 @@ tile_set = ExtResource("6_ei8fs")
 [node name="BuildManager" type="Node2D" parent="."]
 visible = false
 script = ExtResource("4_26fgq")
+
+[node name="CaveManager" type="Node2D" parent="."]
+z_index = 3
+script = ExtResource("9_djtgg")
 
 [node name="Player" parent="." instance=ExtResource("5_j0bro")]
 unique_name_in_owner = true
@@ -165,7 +170,6 @@ position = Vector2(352, 128)
 [node name="LoadingScreen" type="CanvasLayer" parent="."]
 
 [node name="TextureRect" type="TextureRect" parent="LoadingScreen"]
-visible = false
 z_index = 10
 anchors_preset = 15
 anchor_right = 1.0

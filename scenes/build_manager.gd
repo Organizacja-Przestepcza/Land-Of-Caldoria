@@ -46,15 +46,3 @@ func build():
 				"atlas_coords": atlas,
 				"alt_tile": 0
 			}
-
-func dig():
-	var mouse_pos = get_local_mouse_position()
-	var cell_pos = build_layer.local_to_map(mouse_pos)
-	if not ground_layer.get_cell_source_id(cell_pos) == -1:
-		if floor_layer.get_cell_source_id(cell_pos) == -1:
-			floor_layer.set_cell(cell_pos,1,Vector2i.ZERO)
-		else:
-			floor_layer.erase_cell(cell_pos)
-
-func get_floor_at(pos: Vector2i):
-	pass
