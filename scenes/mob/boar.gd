@@ -2,6 +2,7 @@ extends Enemy
 
 func _ready() -> void:
 	super()
+	mob_name = "Boar"
 	health = 30
 	speed = 50
 	exp = 10

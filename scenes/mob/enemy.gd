@@ -4,6 +4,7 @@ var speed: int
 var strength: int
 var bounce_force: int = 300
 var chase_player = false
+@onready var notifications: Notifications = %Notifications
 
 func _physics_process(delta: float) -> void:
 	if chase_player:
@@ -32,6 +33,7 @@ func move_towards_player(target, delta) -> void:
 	
 func attack() -> void:
 	player.hit(strength)
+	notifications.add_notification(mob_name+" hit player: -"+ str(strength) + "hp")
 	$AnimatedSprite2D.play("attack")
 	$AnimatedSprite2D.animation_looped.connect(func (): $AnimatedSprite2D.play("walk"))
 	
