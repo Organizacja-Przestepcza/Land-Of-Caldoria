@@ -2,6 +2,7 @@ extends Enemy
 
 var chase_player = false
 func _ready() -> void:
+	mob_name = "Bear"
 	health = 40
 	speed = 30
 	exp = 20

@@ -19,6 +19,7 @@ extends CharacterBody2D
 @onready var health_bar: Health = hud.get_node("VBoxContainer/HealthBar")
 @onready var hunger_bar: Hunger = hud.get_node("VBoxContainer/HungerBar")
 @onready var stats: Stats = %Stats
+@onready var notifications: Notifications = %Notifications
 
 
 var facing: Direction = Direction.Down
@@ -155,9 +156,11 @@ func interact():
 func attack(tool: Tool):
 	var victim = await get_victim()
 	if victim is Mob:
+		notifications.add_notification("Attacked " + victim.mob_name + " : -" + str(tool.damage) + "hp")
 		if victim.take_damage(tool.damage):
 			var total_exp = victim.exp + roundi(((victim.exp * level)/10)-1)
 			stats.add_exp(total_exp)
+			notifications.add_notification("Killed %s : + %d exp"%[victim.mob_name,total_exp])
 			if victim.dropped_item:
 				inventory.add_item(victim.dropped_item, 1)
 	if victim is Destroyable:
@@ -165,9 +168,11 @@ func attack(tool: Tool):
 			if victim.take_damage(tool.damage) and victim.dropped_item:
 				var tile_pos = $"../ObjectLayer".local_to_map(victim.global_position)
 				get_parent().delete_object_at(tile_pos)
+				notifications.add_notification("Collected: %s"%victim.dropped_item.name)
 				inventory.add_item(victim.dropped_item, 1)
-
+	
 func consume(item: InventoryItem, amount: int) -> void:
 	if item.data is Consumable:
 		effect_from_item(item.data)
+		notifications.add_notification("Used "+ item.data.name)
 		item.remove(amount)

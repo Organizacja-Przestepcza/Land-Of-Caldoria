@@ -3,6 +3,7 @@ class_name Enemy
 var speed: int
 var strength: int
 var bounce_force: int = 300
+@onready var notifications: Notifications = %Notifications
 
 func move_towards_player(target, delta) -> void:
 	if target == null:
@@ -23,6 +24,7 @@ func move_towards_player(target, delta) -> void:
 	
 func attack() -> void:
 	player.hit(strength)
+	notifications.add_notification(mob_name+" hit player: -"+ str(strength) + "hp")
 	
 func bounce_back(collision: KinematicCollision2D) -> void:
 	var bounce_direction = velocity.bounce(collision.get_normal()).normalized()
