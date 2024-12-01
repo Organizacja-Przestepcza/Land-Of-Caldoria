@@ -24,7 +24,7 @@ func close() -> void:
 
 func _on_line_edit_text_submitted(new_text: String) -> void:
 	var args = line_edit.text.split(" ",false)
-	args.resize(3)
+	args.resize(4)
 	match args[0]:
 		"help", "?": help()
 		"teleport", "tp": teleport(args.slice(1))
@@ -36,6 +36,7 @@ func _on_line_edit_text_submitted(new_text: String) -> void:
 			line_edit.clear()
 			return
 		"camera": camera(args[1])
+		"spawn": spawn(args[1])
 		"render": 
 			var err = render(args[1],args[2])
 			if err:
@@ -136,3 +137,7 @@ func camera(value):
 			return
 		var zoom = value.to_float()
 		player.update_zoom(Vector2(zoom,zoom))
+
+func spawn(mob):
+	if mob is String:
+		print("Not implemented")
