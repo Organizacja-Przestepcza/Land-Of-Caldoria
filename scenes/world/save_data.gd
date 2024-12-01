@@ -8,3 +8,4 @@ class_name SaveData
 @export var player_global_position: Vector2
 @export var time: String
 @export var buildings: PackedByteArray
+@export var objects: Dictionary

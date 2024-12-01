@@ -3,32 +3,32 @@ extends CharacterBody2D
 
 @export var speed = 80
 @export var camera_zoom = Vector2(2,2)
-@export var strength = 1
-@export var endurance = 1
-@export var intelligence = 1
-@export var agility = 1
-@export var luck = 1
-@export var skill_points = 0
+@export var strength: int = 1
+@export var endurance: int = 1
+@export var intelligence: int = 1
+@export var agility: int = 1
+@export var luck: int = 1
+@export var skill_points: int = 0
 @onready var interface: CanvasLayer = $Interface
 @onready var hud: Hud = $Hud
 
 @onready var hotbar: Hotbar = %Hotbar
 
 @onready var build_manager: BuildManager = $"../BuildManager"
-@onready var inventory: Inventory = $Interface/Inventory
+@onready var inventory: Inventory = %Inventory
 @onready var health_bar: Health = hud.get_node("VBoxContainer/HealthBar")
 @onready var hunger_bar: Hunger = hud.get_node("VBoxContainer/HungerBar")
-@onready var stats: Stats = $Interface/Stats
+@onready var stats: Stats = %Stats
 
 
 var facing: Direction = Direction.Down
 
-var max_health = 100
-var health = 100
-var max_hunger = 100
-var hunger = 100
-var exp = 0
-var level = 1
+var max_health: int = 100
+var health: int = 100
+var max_hunger: int = 100
+var hunger: int = 100
+var exp: int = 0
+var level: int = 1
 var attack_animation_scene = preload("res://scenes/player/attack_animation.tscn")
 
 var reach = 30
@@ -163,6 +163,8 @@ func attack(tool: Tool):
 	if victim is Destroyable:
 		if victim.required_tool == hotbar.get_held_item() or victim.required_tool == null:
 			if victim.take_damage(tool.damage) and victim.dropped_item:
+				var tile_pos = $"../ObjectLayer".local_to_map(victim.global_position)
+				get_parent().delete_object_at(tile_pos)
 				inventory.add_item(victim.dropped_item, 1)
 
 func consume(item: InventoryItem, amount: int) -> void:

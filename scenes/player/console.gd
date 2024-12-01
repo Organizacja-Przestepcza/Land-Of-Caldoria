@@ -3,10 +3,10 @@ class_name Console
 
 @onready var line_edit: LineEdit = $LineEdit
 @onready var player: Player = %Player
-@onready var inventory: Inventory = $"../Inventory"
+@onready var inventory: Inventory = %Inventory
 var last_state
 var history: PackedStringArray
-var history_index: int = -1
+var history_index: int = 0
 
 func open():
 	last_state = %Game.state
@@ -25,9 +25,19 @@ func _on_line_edit_text_submitted(new_text: String) -> void:
 	var args = line_edit.text.split(" ",false)
 	args.resize(3)
 	match args[0]:
+		"help", "?": help()
 		"teleport", "tp": teleport(args.slice(1))
 		"give": give(args[1], args[2])
 		"clean": clean()
+		"clear": 
+			history.clear()
+			history_index=0
+			line_edit.clear()
+			return
+		"render": 
+			var err = render(args[1],args[2])
+			if err:
+				print(error_string(err))
 		_: print("Unknown command")
 	history.append(line_edit.text)
 	line_edit.clear()
@@ -37,16 +47,15 @@ func _input(event: InputEvent) -> void:
 		if event.pressed:
 			match event.keycode:
 				KEY_UP:
-					history_index += 1
 					if history_index < history.size():
-						line_edit.text = history[history_index]
-					else:
-						history_index = -1
+						history_index += 1
+						line_edit.text = history[history.size()-history_index]
 				KEY_DOWN:
-					history_index -= 1
-					if history_index > -1:
-						line_edit.text = history[history_index]
-					else:
+					if history_index > 1:
+						history_index -= 1
+						line_edit.text = history[history.size()-history_index]
+					elif history_index > 0:
+						history_index -= 1
 						line_edit.clear()
 
 func teleport(args: PackedStringArray):
@@ -77,3 +86,41 @@ func give(item_name: String, amount_str: String):
 
 func clean():
 	inventory.clean()
+
+func help():
+	print("Available commands:\n
+	teleport {x: float} {y: float} - teleports you\n
+	give {item_name: string} {amount: int} - gives you items\n
+	clean - deletes all your items\n
+	clear - clears command line history\n
+	render distance {distance: int} - changes render distance\n
+	render unload {true/false} - sets whether to unload chunks out of render distance or not")
+
+func render(subcommand, value: String) -> Error:
+	match subcommand:
+		"distance":
+			if not value.is_valid_int():
+				return ERR_INVALID_PARAMETER
+			var distance = value.to_int()
+			var chunk_loader = player.get_parent().chunk_loader
+			if chunk_loader is ChunkLoader:
+				chunk_loader.loading_radius = Vector2i(distance,distance)
+				print("Render distance set to ", value)
+			else:
+				printerr("Chunk loader is ", chunk_loader)
+		"unload":
+			var chunk_loader = player.get_parent().chunk_loader
+			if chunk_loader is ChunkLoader:
+				if value.to_lower() in ["enable", "true"]:
+					chunk_loader.unload_chunks = true
+					print("Chunk unloading enabled")
+				elif value.to_lower() in ["disable", "false"]:
+					chunk_loader.unload_chunks = false
+					print("Chunk unloading disabled")
+				else:
+					return ERR_INVALID_PARAMETER
+			else:
+				return FAILED
+		_:
+			return ERR_INVALID_PARAMETER
+	return OK

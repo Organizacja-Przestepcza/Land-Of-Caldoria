@@ -1,4 +1,4 @@
-extends Interface
+extends Control
 class_name Crafting
 @onready var inventory: Inventory = $"../Inventory"
 
@@ -14,8 +14,8 @@ class Ingredient:
 		amount = amnt
 
 func open() -> void:
-	super()
 	update_recipe_list()
+	inventory_list = inventory.to_list()
 
 func update_recipe_list():
 	recipe_list.clear()
@@ -24,12 +24,13 @@ func update_recipe_list():
 		recipe_list.set_item_metadata(recipe_list.item_count-1,recipe)
 
 func _on_exit_button_pressed() -> void:
-	close()
+	get_parent().close()
 
 func _on_recipe_list_item_selected(index: int) -> void:
 	update_ingredients_list(index)
 	
 func update_ingredients_list(index: int):
+	ingredients_list.clear()
 	var recipe: CraftingRecipe = recipe_list.get_item_metadata(index)
 	for ingredient in recipe.items.keys():
 		var ingr = Ingredient.new(ingredient,recipe.items[ingredient])

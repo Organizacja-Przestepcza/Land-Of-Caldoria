@@ -48,6 +48,7 @@ max_text_lines = 3
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
+size_flags_horizontal = 4
 size_flags_vertical = 4
 theme_override_constants/separation = 200
 alignment = 1
@@ -60,10 +61,10 @@ text = "Cancel
 "
 
 [node name="LoadButton" type="Button" parent="VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 theme_override_font_sizes/font_size = 48
-text = "Load
-"
+text = "Load"
 
 [connection signal="item_selected" from="VBoxContainer/LoadList" to="." method="_on_load_list_item_selected"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/CancelButton" to="." method="_on_cancel_button_pressed"]
