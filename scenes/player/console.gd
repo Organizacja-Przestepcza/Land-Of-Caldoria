@@ -46,7 +46,7 @@ func _on_line_edit_text_submitted(new_text: String) -> void:
 	line_edit.clear()
 
 func _input(event: InputEvent) -> void:
-	if event is InputEventKey:
+	if event is InputEventKey and visible == true:
 		if event.is_action_pressed("ui_cancel"):
 			close()
 			%PauseMenu.toggle()
