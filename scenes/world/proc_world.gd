@@ -134,14 +134,16 @@ func choose_random_building() -> String:
 	var random_index = randi() % building_list.size()
 	return building_list[random_index]
 
-func chance_spawn_building(pos: Vector2i) -> void:
+func chance_spawn_building(pos: Vector2) -> void:
 	randomize()
 	var tile_pos = ground_layer.local_to_map(pos)
-	if not ground_layer.get_cell_source_id(tile_pos) == -1:
+	var h_noise_val = noise_generator.settings.noise.get_noise_2d(tile_pos.x,tile_pos.y)
+	if h_noise_val > -0.05 and object_layer.get_cell_source_id(tile_pos) == -1:
 		if randi_range(0, 10000) <= 10 and is_valid_building_position(pos):
 			var building_name = choose_random_building()
-			var building_scene = load(building_types[building_name])
+			var building_scene = building_types[building_name]
 			if building_scene:
+				print("Creating builidng.")
 				var building = building_scene.instantiate()
 				building.z_index = -1;
 				building.position = pos
