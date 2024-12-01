@@ -1403,9 +1403,6 @@ texture_region_size = Vector2i(32, 32)
 [resource]
 tile_size = Vector2i(32, 32)
 physics_layer_0/collision_layer = 2
-terrain_set_0/mode = 1
-terrain_set_0/terrain_0/name = "cave"
-terrain_set_0/terrain_0/color = Color(0.607994, 0.211462, 0.446049, 1)
 sources/0 = SubResource("TileSetAtlasSource_7bppt")
 sources/1 = SubResource("TileSetAtlasSource_kurxq")
 sources/4 = SubResource("TileSetAtlasSource_5xls2")
