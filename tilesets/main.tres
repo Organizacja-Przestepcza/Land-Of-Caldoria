@@ -1,15 +1,9 @@
-<<<<<<< HEAD
-[gd_resource type="TileSet" load_steps=7 format=3 uid="uid://cj63m1wm18dcg"]
-=======
-[gd_resource type="TileSet" load_steps=24 format=3 uid="uid://d0pha3g0yk4g8"]
->>>>>>> 108de4263560a52de76d609d18023a71169a9188
+[gd_resource type="TileSet" load_steps=27 format=3 uid="uid://fyuqqbg7s5j5"]
 
 [ext_resource type="Texture2D" uid="uid://j0xvhotm7q2d" path="res://assets/textures/tilesets/ground_tileset_32.png" id="1_sa0ub"]
 [ext_resource type="Texture2D" uid="uid://bipcprw7rrykq" path="res://assets/textures/tilesets/water.png" id="2_48o0x"]
 [ext_resource type="PackedScene" uid="uid://co4rbbidq8odq" path="res://scenes/object/plant/tree/tree_1.tscn" id="3_puuko"]
 [ext_resource type="PackedScene" uid="uid://b0t557dst46s0" path="res://scenes/object/plant/tree/tree_2.tscn" id="4_0tnp1"]
-[ext_resource type="Texture2D" uid="uid://dfl5uioj6qy8s" path="res://assets/textures/tilesets/ruins.png" id="4_j1p4q"]
-
 [ext_resource type="Texture2D" uid="uid://ceqf820jaaxqk" path="res://assets/textures/tilesets/walls_tileset_32x64.png" id="4_nb15j"]
 [ext_resource type="PackedScene" uid="uid://jmxh2crmhmr0" path="res://scenes/object/plant/tree/tree_3.tscn" id="5_ph3wh"]
 [ext_resource type="PackedScene" uid="uid://d1vc3r7ysydls" path="res://scenes/object/plant/tree/tree_4.tscn" id="6_nkhep"]
@@ -21,6 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://dogxypalihf1n" path="res://scenes/object/ore/stone/stone_3.tscn" id="13_ykky7"]
 [ext_resource type="PackedScene" uid="uid://r676xfcfj0hg" path="res://scenes/object/ore/stone/stone_4.tscn" id="14_yl6vc"]
 [ext_resource type="PackedScene" uid="uid://bf6msv0efjgt4" path="res://scenes/object/ore/stone/stone_5.tscn" id="15_fbbga"]
+[ext_resource type="Texture2D" uid="uid://br88i6r2opvy4" path="res://assets/textures/tilesets/ruins_meadows.png" id="18_0wskh"]
 [ext_resource type="PackedScene" uid="uid://dr35ikyrrpmhi" path="res://scenes/object/furniture/chest/chest.tscn" id="18_tskbb"]
 [ext_resource type="PackedScene" uid="uid://b50ew3ar0cmlr" path="res://scenes/object/furniture/furnace/furnace.tscn" id="19_vrtvl"]
 
@@ -1220,7 +1215,6 @@ texture = ExtResource("2_48o0x")
 texture_region_size = Vector2i(32, 32)
 0:0/0 = 0
 
-
 [sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_ln6n1"]
 resource_name = "plant"
 scenes/1/scene = ExtResource("3_puuko")
@@ -1230,8 +1224,6 @@ scenes/4/scene = ExtResource("6_nkhep")
 scenes/5/scene = ExtResource("7_togi8")
 scenes/6/scene = ExtResource("8_4me3o")
 scenes/7/scene = ExtResource("9_433bx")
-[sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_ffra7"]
-
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_wlael"]
 resource_name = "wall"
@@ -1617,7 +1609,6 @@ scenes/1/scene = ExtResource("18_tskbb")
 scenes/2/scene = ExtResource("19_vrtvl")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_5xls2"]
-texture = ExtResource("4_j1p4q")
 texture_region_size = Vector2i(32, 32)
 0:0/0 = 0
 1:0/0 = 0
@@ -1897,10 +1888,31 @@ texture_region_size = Vector2i(32, 32)
 12:12/0 = 0
 12:12/0/terrain_set = 2
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ul7f2"]
+texture = ExtResource("18_0wskh")
+texture_region_size = Vector2i(32, 32)
+12:5/0 = 0
+13:5/0 = 0
+10:10/0 = 0
+0:3/size_in_atlas = Vector2i(2, 2)
+0:3/0 = 0
+0:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+0:0/size_in_atlas = Vector2i(3, 3)
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-19.5, 2.5, 23.5, 2, 28.5, 11.5, 24, 21.5, 6.5, 30, -16, 29, -28, 16.5, -27.5, 4, -19.5, 2.5)
+3:2/0 = 0
+3:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-42.5, -21.5, 26.5, -18, 3.5, -7.5, 5.5, 12.5, -13.5, 22, -32.5, 20, -43, 14)
+3:0/size_in_atlas = Vector2i(2, 2)
+3:0/0 = 0
+3:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-13, -1, 11, 0, 12.5, 12, -12, 9.5)
+
 [resource]
 tile_size = Vector2i(32, 32)
 physics_layer_0/collision_layer = 2
-
+terrain_set_0/mode = 0
+terrain_set_0/terrain_0/name = "ruins"
+terrain_set_0/terrain_0/color = Color(0.543407, 0.322966, 0.150468, 1)
+terrain_set_1/mode = 0
 terrain_set_2/mode = 0
 terrain_set_2/terrain_0/name = "ruins1"
 terrain_set_2/terrain_0/color = Color(0.5, 0.34375, 0.25, 1)
@@ -1908,6 +1920,7 @@ terrain_set_2/terrain_1/name = "ruins2 1"
 terrain_set_2/terrain_1/color = Color(0.68656, 0.291845, 0.377427, 1)
 terrain_set_2/terrain_2/name = "ruins3"
 terrain_set_2/terrain_2/color = Color(0.46875, 0.5, 0.25, 1)
+terrain_set_3/mode = 0
 sources/0 = SubResource("TileSetAtlasSource_7bppt")
 sources/1 = SubResource("TileSetAtlasSource_kurxq")
 sources/2 = SubResource("TileSetScenesCollectionSource_ln6n1")
@@ -1915,7 +1928,7 @@ sources/3 = SubResource("TileSetAtlasSource_wlael")
 sources/4 = SubResource("TileSetScenesCollectionSource_4d2k2")
 sources/5 = SubResource("TileSetScenesCollectionSource_3jd21")
 sources/6 = SubResource("TileSetAtlasSource_5xls2")
-
+sources/8 = SubResource("TileSetAtlasSource_ul7f2")
 metadata/_better_terrain = {
 "decoration": ["Decoration", Color(0.411765, 0.411765, 0.411765, 1), 3, [], {
 "path": "res://addons/better-terrain/icons/Decoration.svg"
