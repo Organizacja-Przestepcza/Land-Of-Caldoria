@@ -93,7 +93,7 @@ func unload_objects(chunk_pos: Vector2i):
 		object_tiles[chunk_pos] = {}
 		return
 	for tile_pos in object_tiles[chunk_pos].keys():
-		if not object_layer.get_cell_atlas_coords(tile_pos) == Vector2i(-1,-1): # dirty fix for overwriting of saved tiles
+		if not object_layer.get_cell_atlas_coords(tile_pos) == Vector2i(-1,-1): # if object wasn't already unloaded
 			object_tiles[chunk_pos][tile_pos]["atlas_coords"] = object_layer.get_cell_atlas_coords(tile_pos)
 		object_layer.set_cell(tile_pos)
 

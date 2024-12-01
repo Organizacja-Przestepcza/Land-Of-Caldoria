@@ -157,6 +157,8 @@ func interact():
 		nearest_interactable.queue_free()
 	elif nearest_interactable is NPC:
 		interface.get_node("Trading").open()
+	elif build_manager.get_floor_at(Vector2i.ZERO): #code for checking for holes
+		pass
 
 func attack(tool: Tool):
 	var victim = await get_victim()

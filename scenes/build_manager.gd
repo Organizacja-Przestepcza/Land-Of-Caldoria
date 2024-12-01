@@ -55,3 +55,6 @@ func dig():
 			floor_layer.set_cell(cell_pos,1,Vector2i.ZERO)
 		else:
 			floor_layer.erase_cell(cell_pos)
+
+func get_floor_at(pos: Vector2i):
+	pass

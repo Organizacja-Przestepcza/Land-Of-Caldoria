@@ -1,10 +1,9 @@
-[gd_resource type="TileSet" load_steps=11 format=3 uid="uid://d0pha3g0yk4g8"]
+[gd_resource type="TileSet" load_steps=9 format=3 uid="uid://d0pha3g0yk4g8"]
 
 [ext_resource type="Texture2D" uid="uid://j0xvhotm7q2d" path="res://assets/textures/tilesets/ground_tileset_32.png" id="1_sa0ub"]
 [ext_resource type="Texture2D" uid="uid://bipcprw7rrykq" path="res://assets/textures/tilesets/water.png" id="2_48o0x"]
 [ext_resource type="Texture2D" uid="uid://ks4oglinul48" path="res://assets/textures/tilesets/water2.png" id="2_o4k3o"]
 [ext_resource type="Texture2D" uid="uid://c671smj20l5hu" path="res://assets/textures/tilesets/ruins.png" id="4_j1p4q"]
-[ext_resource type="Texture2D" uid="uid://7sg8152th0k0" path="res://assets/textures/tilesets/cave.png" id="4_xwau6"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_7bppt"]
 resource_name = "ground"
@@ -1214,46 +1213,6 @@ texture_region_size = Vector2i(32, 32)
 0:0/0 = 0
 0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-12.8, -12.8, 12.8, -12.8, 12.8, 12.8, -12.8, 12.8)
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_6kadg"]
-resource_name = "cave"
-texture = ExtResource("4_xwau6")
-texture_region_size = Vector2i(32, 32)
-0:2/0 = 0
-0:2/0/terrain_set = 0
-0:2/0/terrain = 0
-0:2/0/terrains_peering_bit/top_right_corner = 0
-1:2/0 = 0
-1:2/0/terrain_set = 0
-1:2/0/terrain = 0
-1:2/0/terrains_peering_bit/top_left_corner = 0
-1:2/0/terrains_peering_bit/top_right_corner = 0
-2:2/0 = 0
-2:2/0/terrain_set = 0
-2:2/0/terrain = 0
-2:2/0/terrains_peering_bit/top_left_corner = 0
-1:3/0 = 0
-0:0/size_in_atlas = Vector2i(1, 2)
-0:0/0 = 0
-0:0/0/texture_origin = Vector2i(0, 16)
-0:0/0/terrain_set = 0
-0:0/0/terrain = 0
-0:0/0/terrains_peering_bit/bottom_right_corner = 0
-1:0/size_in_atlas = Vector2i(1, 2)
-1:0/0 = 0
-1:0/0/texture_origin = Vector2i(0, 16)
-1:0/0/terrain_set = 0
-1:0/0/terrain = 0
-1:0/0/terrains_peering_bit/bottom_right_corner = 0
-1:0/0/terrains_peering_bit/bottom_left_corner = 0
-2:0/size_in_atlas = Vector2i(1, 2)
-2:0/0 = 0
-2:0/0/texture_origin = Vector2i(0, 16)
-2:0/0/terrain_set = 0
-2:0/0/terrain = 0
-2:0/0/terrains_peering_bit/bottom_left_corner = 0
-3:0/0 = 0
-3:1/0 = 0
-
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_5xls2"]
 resource_name = "ruins"
 texture = ExtResource("4_j1p4q")
@@ -1451,7 +1410,6 @@ sources/0 = SubResource("TileSetAtlasSource_7bppt")
 sources/1 = SubResource("TileSetAtlasSource_kurxq")
 sources/4 = SubResource("TileSetAtlasSource_5xls2")
 sources/2 = SubResource("TileSetAtlasSource_i7fhd")
-sources/3 = SubResource("TileSetAtlasSource_6kadg")
 metadata/_better_terrain = {
 "decoration": ["Decoration", Color(0.411765, 0.411765, 0.411765, 1), 3, [], {
 "path": "res://addons/better-terrain/icons/Decoration.svg"
