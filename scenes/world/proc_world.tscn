@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://bevwwvcr2fdsa"]
+[gd_scene load_steps=24 format=3 uid="uid://bevwwvcr2fdsa"]
 
 [ext_resource type="Script" path="res://scenes/world/proc_world.gd" id="1_75342"]
 [ext_resource type="TileSet" uid="uid://d0pha3g0yk4g8" path="res://tilesets/main.tres" id="2_gbw1p"]
@@ -13,11 +13,12 @@
 [ext_resource type="PackedScene" uid="uid://c83lveoubd7vh" path="res://scenes/ui/inventory/inventory.tscn" id="9_dkgoy"]
 [ext_resource type="PackedScene" uid="uid://cs0opcidf6hx4" path="res://scenes/systems/trading/trading.tscn" id="9_ynbql"]
 [ext_resource type="PackedScene" uid="uid://3qegagme7w4c" path="res://scenes/systems/building/building.tscn" id="10_d4h0i"]
+[ext_resource type="PackedScene" uid="uid://cm85hy4nglvyg" path="res://scenes/ui/hud/notifications/notifications.tscn" id="11_k8yp2"]
 [ext_resource type="PackedScene" uid="uid://ddbr53ohn683s" path="res://scenes/ui/menu/pause_menu.tscn" id="11_ot3us"]
 [ext_resource type="PackedScene" uid="uid://de7ljcthumfav" path="res://scenes/systems/crafting/crafting.tscn" id="12_wsaqj"]
 [ext_resource type="Script" path="res://scenes/world/tabs.gd" id="13_hqbme"]
 [ext_resource type="Script" path="res://scenes/player/game_controller.gd" id="13_xk8dt"]
-[ext_resource type="PackedScene" uid="uid://xxmv67orn38r" path="res://scenes/player/console.tscn" id="15_jbsup"]
+[ext_resource type="PackedScene" path="res://scenes/player/console.tscn" id="15_jbsup"]
 [ext_resource type="PackedScene" uid="uid://0v860522ctv3" path="res://scenes/ui/stats/stats.tscn" id="17_iykmo"]
 [ext_resource type="PackedScene" uid="uid://npgme5adxp70" path="res://scenes/npc/blacksmith.tscn" id="17_tkbm6"]
 
@@ -83,6 +84,9 @@ offset_left = -0.000152588
 offset_right = 0.00012207
 offset_bottom = -0.000305176
 
+[node name="Notifications" parent="Player/Hud" instance=ExtResource("11_k8yp2")]
+unique_name_in_owner = true
+
 [node name="PauseMenu" parent="Player" instance=ExtResource("11_ot3us")]
 unique_name_in_owner = true
 process_mode = 3
@@ -144,6 +148,7 @@ position = Vector2(352, 128)
 [node name="LoadingScreen" type="CanvasLayer" parent="."]
 
 [node name="TextureRect" type="TextureRect" parent="LoadingScreen"]
+visible = false
 z_index = 10
 anchors_preset = 15
 anchor_right = 1.0

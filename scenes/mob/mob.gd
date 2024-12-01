@@ -6,7 +6,7 @@ var player: Player
 var health: int 
 var dropped_item: Item
 var exp: int
-
+var mob_name
 func _ready() -> void:
 	noise_generator.chunk_erased.connect(despawn)
 

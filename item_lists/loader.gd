@@ -9,10 +9,14 @@ var crafting_recipes : Dictionary = {
 var build_recipes : Dictionary = {
 	
 }
+var furnace_recipes : Dictionary = {
+	
+}
 func _ready() -> void:
 	load_lists("res://item_lists/crafting")
 	load_lists("res://item_lists/trade")
 	load_lists("res://item_lists/building")
+	load_lists("res://item_lists/furnace")
 
 func load_lists(path: String):
 	var files = DirAccess.get_files_at(path)
@@ -23,13 +27,14 @@ func load_lists(path: String):
 			lists_trade[obj.id] = obj.items
 		elif obj is CraftingRecipe:
 			crafting_recipes[obj.id] = obj
+		elif obj is FurnaceRecipe:
+			furnace_recipes[obj.id] = obj
 
 func trade_id(id: String) -> Dictionary:
-	if id in lists_trade.keys():
-		return lists_trade[id]
-	return {}
+	return lists_trade.get(id, {})
 
 func crafting_id(id: String) -> Dictionary:
-	if id in crafting_recipes.keys():
-		return crafting_recipes[id]
-	return {}
+	return crafting_recipes.get(id, {})
+	
+func furnace_id(id: String) -> Dictionary:
+	return furnace_recipes.get(id, {})

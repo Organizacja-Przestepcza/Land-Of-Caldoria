@@ -4,6 +4,7 @@ var chase_player = false
 
 func _ready() -> void:
 	super()
+	mob_name = "Crab"
 	health = 10
 	speed = 100
 	exp = 5

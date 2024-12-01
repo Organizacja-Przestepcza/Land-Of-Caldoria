@@ -65,8 +65,6 @@ func add_item(item: Item, amount: int) -> void:
 	var slot = find_available_slot(item)
 	if slot == null:
 		return
-	if amount > item.max_stack_size:
-		pass
 	if slot.get_child_count() == 0 and amount > item.max_stack_size:
 		var inv_item = InventoryItem.new(item, item.max_stack_size)
 		slot.add_child(inv_item)
