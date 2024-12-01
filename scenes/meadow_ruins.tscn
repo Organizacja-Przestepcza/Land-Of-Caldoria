@@ -1,6 +1,6 @@
-[gd_scene load_steps=2 format=4 uid="uid://d0tcufvo8qv4r"]
+[gd_scene load_steps=2 format=4 uid="uid://baoxcj5qk22t6"]
 
-[ext_resource type="TileSet" uid="uid://fyuqqbg7s5j5" path="res://tilesets/main.tres" id="1_jl2l4"]
+[ext_resource type="TileSet" uid="uid://dhhapnk54lhy3" path="res://tilesets/main.tres" id="1_jl2l4"]
 
 [node name="MeadowRuins" type="Node2D"]
 

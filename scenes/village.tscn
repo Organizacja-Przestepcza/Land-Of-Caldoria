@@ -1,6 +1,6 @@
 [gd_scene load_steps=12 format=4 uid="uid://d3nf6i6pjjd5n"]
 
-[ext_resource type="TileSet" uid="uid://d0pha3g0yk4g8" path="res://tilesets/main.tres" id="1_yst34"]
+[ext_resource type="TileSet" uid="uid://dhhapnk54lhy3" path="res://tilesets/main.tres" id="1_yst34"]
 [ext_resource type="Texture2D" uid="uid://d2g8ja1jhp5fo" path="res://assets/textures/tilesets/Tilled_Dirt.png" id="2_g4fcv"]
 [ext_resource type="Texture2D" uid="uid://b13gqqk2jhew2" path="res://assets/textures/tilesets/Fences.png" id="6_2mmxu"]
 [ext_resource type="Texture2D" uid="uid://c4ty20pcypdry" path="res://assets/textures/tilesets/FieldsTile_33.png" id="7_ki4j8"]
