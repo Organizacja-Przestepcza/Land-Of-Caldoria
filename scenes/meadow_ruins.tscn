@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=4 uid="uid://baoxcj5qk22t6"]
+[gd_scene load_steps=3 format=4 uid="uid://baoxcj5qk22t6"]
 
 [ext_resource type="TileSet" uid="uid://dhhapnk54lhy3" path="res://tilesets/main.tres" id="1_h4ci7"]
+[ext_resource type="TileSet" uid="uid://de7qrhfi6yaj2" path="res://tilesets/ruins.tres" id="2_gxdjq"]
 
 [node name="MeadowRuins" type="Node2D"]
 
@@ -15,5 +16,5 @@ tile_set = ExtResource("1_h4ci7")
 
 [node name="objects" type="TileMapLayer" parent="."]
 scale = Vector2(1, 1.096)
-tile_map_data = PackedByteArray("AAD/////CgAAAAMAAAABAAEACgADAAIAAAD8//7/CgADAAIAAAD9/wEACgADAAIAAAD//wIACgADAAIAAAACAP7/CgADAAAAAAA=")
-tile_set = ExtResource("1_h4ci7")
+tile_map_data = PackedByteArray("AAD//wAAAQAAAAMAAAD9//7/AQAAAAAAAAD+/wIAAQAAAAAAADD8/wEAAQADAAAAAAD8/wMAAQADAAIAAAABAP7/AQADAAIAAAACAAAAAQADAAIAAAA=")
+tile_set = ExtResource("2_gxdjq")
