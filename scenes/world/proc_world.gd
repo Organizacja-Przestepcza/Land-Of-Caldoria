@@ -139,16 +139,24 @@ func chance_spawn_building(pos: Vector2) -> void:
 	var tile_pos = ground_layer.local_to_map(pos)
 	var h_noise_val = noise_generator.settings.noise.get_noise_2d(tile_pos.x,tile_pos.y)
 	if h_noise_val > -0.05 and object_layer.get_cell_source_id(tile_pos) == -1:
-		if randi_range(0, 10000) <= 10 and is_valid_building_position(pos):
+		if randi_range(0, 100) <= 10 and is_valid_building_position(pos):
 			var building_name = choose_random_building()
 			var building_scene = building_types[building_name]
 			if building_scene:
 				print("Creating builidng.")
 				var building = building_scene.instantiate()
-				building.z_index = -1;
-				building.position = pos
-				add_child(building)
-				active_buildings.append(pos)
+				match building_name:
+					"ruins":
+						building.z_index = -1;
+						building.position = Vector2(0, 0)
+						add_child(building)
+						active_buildings.append(pos)
+					"village":
+						building.z_index = -1;
+						building.position = pos
+						add_child(building)
+						active_buildings.append(pos)
+				
 
 # -------
 # MOBS
@@ -177,7 +185,7 @@ func _random_mob_name() -> String:
 	var random_index = randi() % mob_list.size()
 	return mob_list[random_index]
 
-func generate_mobs_on_chunk(chunk_position: Vector2i):
+func generate_on_chunk(chunk_position: Vector2i):
 	var pos: Vector2i = _chunk_to_global(chunk_position)
 	for tile_x in range(noise_generator.chunk_size.x):
 		for tile_y in range(noise_generator.chunk_size.y):
@@ -198,7 +206,7 @@ func _on_chunk_rendered(chunk_position: Vector2i) -> void:
 		return
 	elif abs(chunk_position.x) > 0 or abs(chunk_position.y) > 0: # generate new chunk
 		generate_objects(chunk_position)
-		generate_mobs_on_chunk(chunk_position)
+		generate_on_chunk(chunk_position)
 
 func _on_chunk_changed(chunk_position: Vector2i): # this function could probably be done better, so it unloads just unloaded chunks
 	for chunk in object_tiles.keys(): 
