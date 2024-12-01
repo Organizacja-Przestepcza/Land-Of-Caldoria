@@ -130,6 +130,7 @@ var mob_types = {
 	"slime": preload("res://scenes/mob/slime.tscn"),
 	"crab": preload("res://scenes/mob/crab.tscn"),
 	"boar": preload("res://scenes/mob/boar.tscn"),
+	"bat": preload("res://scenes/mob/bat.tscn")
 }
 
 func chance_spawn_mob(pos: Vector2) -> void:
