@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://bevwwvcr2fdsa"]
+[gd_scene load_steps=24 format=3 uid="uid://bevwwvcr2fdsa"]
 
 [ext_resource type="Script" path="res://scenes/world/proc_world.gd" id="1_75342"]
 [ext_resource type="TileSet" uid="uid://d0pha3g0yk4g8" path="res://tilesets/main.tres" id="2_gbw1p"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://byb1nycwprtqb" path="res://scenes/player/player.tscn" id="5_j0bro"]
 [ext_resource type="PackedScene" uid="uid://d26rkh5gvtfkh" path="res://scenes/ui/hud/hud.tscn" id="6_ai4l1"]
 [ext_resource type="TileSet" uid="uid://dgn2sg8mjagkv" path="res://tilesets/objects.tres" id="6_ei8fs"]
+[ext_resource type="TileSet" uid="uid://cck3uckbct4jt" path="res://tilesets/floors.tres" id="6_wfmau"]
 [ext_resource type="PackedScene" uid="uid://b0bmpokyxvpu8" path="res://scenes/ui/hotbar/hotbar.tscn" id="7_ibjah"]
 [ext_resource type="PackedScene" uid="uid://c83lveoubd7vh" path="res://scenes/ui/inventory/inventory.tscn" id="9_dkgoy"]
 [ext_resource type="PackedScene" uid="uid://cs0opcidf6hx4" path="res://scenes/systems/trading/trading.tscn" id="9_ynbql"]
@@ -68,6 +69,8 @@ z_index = -2
 tile_set = ExtResource("2_gbw1p")
 
 [node name="FloorLayer" type="TileMapLayer" parent="."]
+z_index = -1
+tile_set = ExtResource("6_wfmau")
 
 [node name="ObjectLayer" type="TileMapLayer" parent="."]
 y_sort_enabled = true

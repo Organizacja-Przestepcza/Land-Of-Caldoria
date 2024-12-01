@@ -2,9 +2,10 @@ extends Node2D
 class_name BuildManager
 
 @onready var build_menu: BuildMenu = %Building
-@onready var build_layer: TileMapLayer = $"../ObjectLayer"
 @onready var ground_layer: TileMapLayer = $"../GroundLayer"
 @onready var grass_layer: TileMapLayer = $"../GrassLayer"
+@onready var floor_layer: TileMapLayer = $"../FloorLayer"
+@onready var build_layer: TileMapLayer = $"../ObjectLayer"
 @onready var world: ProcWorld = $".."
 
 var walls: Array = []
@@ -31,7 +32,6 @@ func build():
 	elif build_menu.selected_item == 1:
 		#if cell_pos in walls:
 			#return
-		print("Hammer time")
 		var chunk_d = world.object_tiles.get(chunk)
 		if not chunk_d is Dictionary:
 			world.object_tiles[chunk] = {}
@@ -51,4 +51,7 @@ func dig():
 	var mouse_pos = get_local_mouse_position()
 	var cell_pos = build_layer.local_to_map(mouse_pos)
 	if not ground_layer.get_cell_source_id(cell_pos) == -1:
-		print("digging")
+		if floor_layer.get_cell_source_id(cell_pos) == -1:
+			floor_layer.set_cell(cell_pos,1,Vector2i.ZERO)
+		else:
+			floor_layer.erase_cell(cell_pos)

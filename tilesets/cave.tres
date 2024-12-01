@@ -3,6 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://7sg8152th0k0" path="res://assets/textures/tilesets/cave.png" id="1_113vv"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_f8i5d"]
+resource_name = "cave"
 texture = ExtResource("1_113vv")
 texture_region_size = Vector2i(32, 32)
 0:0/0 = 0
