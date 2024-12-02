@@ -21,6 +21,7 @@ WorldData="*res://scenes/world/world_data.gd"
 ItemLoader="*res://items/loader.gd"
 ListLoader="*res://item_lists/loader.gd"
 BetterTerrain="*res://addons/better-terrain/BetterTerrain.gd"
+Settings="*res://settings.gd"
 
 [display]
 

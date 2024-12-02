@@ -2,6 +2,9 @@ extends Node2D
 class_name BuildManager
 
 @onready var build_menu: BuildMenu = %Building
+@onready var ground_layer: TileMapLayer = $"../GroundLayer"
+@onready var grass_layer: TileMapLayer = $"../GrassLayer"
+@onready var floor_layer: TileMapLayer = $"../FloorLayer"
 @onready var build_layer: TileMapLayer = $"../ObjectLayer"
 @onready var world: ProcWorld = $".."
 
@@ -29,7 +32,6 @@ func build():
 	elif build_menu.selected_item == 1:
 		#if cell_pos in walls:
 			#return
-		print("Hammer time")
 		var chunk_d = world.object_tiles.get(chunk)
 		if not chunk_d is Dictionary:
 			world.object_tiles[chunk] = {}
