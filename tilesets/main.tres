@@ -24,8 +24,12 @@
 
 [ext_resource type="Texture2D" uid="uid://j0xvhotm7q2d" path="res://assets/textures/tilesets/ground_tileset_32.png" id="1_sa0ub"]
 [ext_resource type="Texture2D" uid="uid://bipcprw7rrykq" path="res://assets/textures/tilesets/water.png" id="2_48o0x"]
+<<<<<<< HEAD
 [ext_resource type="Texture2D" uid="uid://c671smj20l5hu" path="res://assets/textures/tilesets/ruins.png" id="4_j1p4q"]
 >>>>>>> 4004e0f35ff93ce0ff0e0373109e2e397bb87e61
+=======
+[ext_resource type="Texture2D" uid="uid://ks4oglinul48" path="res://assets/textures/tilesets/water2.png" id="2_cucfj"]
+>>>>>>> 1fcc5bdd9eb42416d7ba16e5c74c47f58f3ccd1c
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_7bppt"]
 resource_name = "ground"
@@ -1219,9 +1223,21 @@ texture_region_size = Vector2i(32, 32)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_kurxq"]
 resource_name = "water"
+texture = ExtResource("2_cucfj")
+texture_region_size = Vector2i(32, 32)
+0:0/animation_columns = 4
+0:0/animation_frame_0/duration = 1.0
+0:0/animation_frame_1/duration = 1.0
+0:0/animation_frame_2/duration = 1.0
+0:0/animation_frame_3/duration = 1.0
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_i7fhd"]
+resource_name = "basic water"
 texture = ExtResource("2_48o0x")
 texture_region_size = Vector2i(32, 32)
 0:0/0 = 0
+<<<<<<< HEAD
 
 <<<<<<< HEAD
 [sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_ln6n1"]
@@ -1803,6 +1819,9 @@ texture_region_size = Vector2i(32, 32)
 4:1/0 = 0
 5:0/0 = 0
 5:1/0 = 0
+=======
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-12.8, -12.8, 12.8, -12.8, 12.8, 12.8, -12.8, 12.8)
+>>>>>>> 1fcc5bdd9eb42416d7ba16e5c74c47f58f3ccd1c
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ul7f2"]
 texture = ExtResource("18_0wskh")
@@ -1825,6 +1844,7 @@ texture_region_size = Vector2i(32, 32)
 [resource]
 tile_size = Vector2i(32, 32)
 physics_layer_0/collision_layer = 2
+<<<<<<< HEAD
 <<<<<<< HEAD
 terrain_set_0/mode = 0
 terrain_set_0/terrain_0/name = "ruins"
@@ -1851,6 +1871,14 @@ sources/0 = SubResource("TileSetAtlasSource_7bppt")
 sources/1 = SubResource("TileSetAtlasSource_kurxq")
 sources/4 = SubResource("TileSetAtlasSource_5xls2")
 >>>>>>> 4004e0f35ff93ce0ff0e0373109e2e397bb87e61
+=======
+terrain_set_0/mode = 1
+terrain_set_0/terrain_0/name = "cave"
+terrain_set_0/terrain_0/color = Color(0.607994, 0.211462, 0.446049, 1)
+sources/0 = SubResource("TileSetAtlasSource_7bppt")
+sources/1 = SubResource("TileSetAtlasSource_kurxq")
+sources/2 = SubResource("TileSetAtlasSource_i7fhd")
+>>>>>>> 1fcc5bdd9eb42416d7ba16e5c74c47f58f3ccd1c
 metadata/_better_terrain = {
 "decoration": ["Decoration", Color(0.411765, 0.411765, 0.411765, 1), 3, [], {
 "path": "res://addons/better-terrain/icons/Decoration.svg"

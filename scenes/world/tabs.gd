@@ -1,5 +1,7 @@
 extends TabContainer
 
+@onready var game = %Game
+
 enum TabName {
 	Inventory,
 	Crafting,
@@ -9,7 +11,7 @@ enum TabName {
 
 func open(tab: TabName) -> void:
 	open_tab(tab)
-	%Game.state = Game.State.INVENTORY
+	game.state = Game.State.INVENTORY
 	get_tree().paused = true
 	self.visible = true
 	self.current_tab = tab
@@ -26,7 +28,7 @@ func open_tab(tab:TabName) -> void:
 			$Stats.open()
 func close() -> void:
 	$Inventory.close()
-	%Game.state = Game.State.PLAYING
+	game.state = Game.State.PLAYING
 	get_tree().paused = false
 	self.visible = false
 

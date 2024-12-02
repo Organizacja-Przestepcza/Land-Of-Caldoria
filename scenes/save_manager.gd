@@ -14,6 +14,7 @@ func create_save_data() -> SaveData:
 	s.time = Time.get_datetime_string_from_system()
 	world.save_loaded_chunks_objects()
 	s.objects = world.object_tiles.duplicate(true)
+	print(s.objects)
 	return s
 
 func save(name:String) -> String:
