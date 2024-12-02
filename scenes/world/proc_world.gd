@@ -15,7 +15,6 @@ var chunk_loader: ChunkLoader
 var h_noise: FastNoiseLite ## height noise
 var user_seed = WorldData.seed
 
-var village_build = false
 var object_tiles: Dictionary = {}
 var floor_tiles: Dictionary = {}
 @onready var tile_layer_arr: Array = [[object_tiles,object_layer], [floor_tiles,floor_layer]]
@@ -121,12 +120,13 @@ func save_loaded_chunks_objects():
 var active_buildings: Array = []
 
 const building_types = {
-	"ruins": preload("res://scenes/ruins.tscn")
+	"ruins": preload("res://scenes/meadow_ruins.tscn"),
+	"ruins2": preload("res://scenes/meadow_ruins2.tscn")
 }
 
 func is_valid_building_position(pos: Vector2i) -> bool:
 	for other_pos in active_buildings:
-		if (pos.distance_to(other_pos) < 5000):
+		if (pos.distance_squared_to(other_pos) < 100):
 			return false
 	return true
 	
@@ -141,23 +141,44 @@ func generate_village() -> void:
 	village.z_index = -1;
 	village.position = Vector2(0, 0)
 	add_child(village)
+	var build: TileMapLayer = village.get_node("Objects")
+	var floor: TileMapLayer = village.get_node("Floor")
+	# set walls
+	BetterTerrain.set_cells(object_layer,build.get_used_cells(),0)
+	BetterTerrain.update_terrain_cells(object_layer,build.get_used_cells())
+	# set stone floor
+	BetterTerrain.set_cells(floor_layer,floor.get_used_cells_by_id(0,Vector2i.ZERO,0),1)
+	BetterTerrain.update_terrain_cells(floor_layer,floor.get_used_cells_by_id(0,Vector2i.ZERO,0))
+	# set path
+	BetterTerrain.set_cells(floor_layer,floor.get_used_cells_by_id(2,Vector2i.ZERO,0),2)
+	BetterTerrain.update_terrain_cells(floor_layer,floor.get_used_cells_by_id(0,Vector2i.ZERO,0))
+	village.get_node("Objects").clear()
+	village.get_node("Floor").clear()
 	
-func chance_spawn_building(pos: Vector2) -> void:
+func chance_spawn_building(chunk_pos: Vector2i) -> void:
 	randomize()
-	var tile_pos = ground_layer.local_to_map(pos)
+	var tile_pos = _chunk_to_map(chunk_pos)
 	var h_noise_val = noise_generator.settings.noise.get_noise_2d(tile_pos.x,tile_pos.y)
 	if h_noise_val > -0.05 and object_layer.get_cell_source_id(tile_pos) == -1:
-		if randi_range(0, 10000) <= 10 and is_valid_building_position(pos):
+		if randi_range(0, 10000) <= 10 and is_valid_building_position(chunk_pos):
 			var building_name = choose_random_building()
 			var building_scene = building_types[building_name]
 			if building_scene:
 				print("Creating builidng.")
 				var building = building_scene.instantiate()
 				building.z_index = -1;
-				building.position = pos
+				building.position = _chunk_to_global(chunk_pos)
+				var tiles = _chunk_positions_to_tile_positions([chunk_pos])
+				BetterTerrain.set_cells(floor_layer,tiles,0)
+				BetterTerrain.update_terrain_cells(floor_layer,tiles)
 				add_child(building)
-				active_buildings.append(pos)
+				active_buildings.append(chunk_pos)
 				
+func generate_buildings_on_chunk(chunk_pos: Vector2i):
+	if chunk_pos.x < 3 and chunk_pos.y < 3:
+		return
+	chance_spawn_building(chunk_pos)
+
 
 # -------
 # MOBS
@@ -186,7 +207,7 @@ func _random_mob_name() -> String:
 	var random_index = randi() % mob_list.size()
 	return mob_list[random_index]
 
-func generate_on_chunk(chunk_position: Vector2i):
+func generate_mobs_on_chunk(chunk_position: Vector2i):
 	var pos: Vector2i = _chunk_to_global(chunk_position)
 	for tile_x in range(noise_generator.chunk_size.x):
 		for tile_y in range(noise_generator.chunk_size.y):
@@ -194,7 +215,6 @@ func generate_on_chunk(chunk_position: Vector2i):
 			var y = pos.y + noise_generator.tile_size.y * tile_y
 			var mob_pos = Vector2i(x,y)
 			chance_spawn_mob(mob_pos)
-			chance_spawn_building(mob_pos)
 
 # -------
 # Signal functions
@@ -205,9 +225,10 @@ func _on_chunk_rendered(chunk_position: Vector2i) -> void:
 		load_objects(chunk_position)
 	elif object_tiles.has(chunk_position): # if the chunk has objects, but is NOT in loading radius
 		return
-	elif abs(chunk_position.x) > 0 or abs(chunk_position.y) > 0: # generate new chunk
+	elif chunk_position != Vector2i(0,0) and chunk_position != Vector2i(1,0): # generate new chunk
 		generate_objects(chunk_position)
-		generate_on_chunk(chunk_position)
+		generate_mobs_on_chunk(chunk_position)
+		generate_buildings_on_chunk(chunk_position)
 
 func _on_chunk_changed(chunk_position: Vector2i): # this function could probably be done better, so it unloads just unloaded chunks
 	for chunk in object_tiles.keys(): 
@@ -247,6 +268,16 @@ func _get_chunk_boundaries(chunk_pos: Vector2i) -> Rect2i:
 	size.x = noise_generator.chunk_size.x * noise_generator.tile_size.x - 1
 	size.y = noise_generator.chunk_size.y * noise_generator.tile_size.y - 1
 	return Rect2i(start_point,size)
+	
+func _chunk_positions_to_tile_positions(chunk_positions: Array) -> Array:
+	var tile_positions: Array = []
+
+	for chunk_pos in chunk_positions:
+		var chunk_tile_start = chunk_pos * noise_generator.chunk_size  # Top-left tile position in world space
+		for x in range(chunk_tile_start.x, chunk_tile_start.x + noise_generator.chunk_size.x):
+			for y in range(chunk_tile_start.y, chunk_tile_start.y + noise_generator.chunk_size.y):
+				tile_positions.append(Vector2i(x, y))  # Add tile position to the list
+	return tile_positions
 
 # -------
 # Other

@@ -68,5 +68,5 @@ func dig():
 		return
 	if floor_layer.get_cell_source_id(cell_pos) == -1:
 		floor_layer.set_cell(cell_pos,1,Vector2i.ZERO)
-	else:
+	elif floor_layer.get_cell_source_id(cell_pos) == 1:
 		floor_layer.erase_cell(cell_pos)
