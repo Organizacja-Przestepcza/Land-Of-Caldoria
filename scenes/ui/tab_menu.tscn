@@ -1,0 +1,50 @@
+[gd_scene load_steps=6 format=3 uid="uid://d4nniwa3oklbb"]
+
+[ext_resource type="Texture2D" uid="uid://dkmsxfnm2ad7s" path="res://assets/textures/ui/menu/bg_darkener.png" id="1_ki73n"]
+[ext_resource type="PackedScene" uid="uid://c83lveoubd7vh" path="res://scenes/ui/inventory/inventory.tscn" id="2_pmlpy"]
+[ext_resource type="PackedScene" uid="uid://de7ljcthumfav" path="res://scenes/systems/crafting/crafting.tscn" id="3_gppu7"]
+[ext_resource type="PackedScene" uid="uid://3qegagme7w4c" path="res://scenes/systems/building/building.tscn" id="4_dvuiu"]
+
+[sub_resource type="GDScript" id="GDScript_it808"]
+script/source = "extends Interface
+"
+
+[node name="TabMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = SubResource("GDScript_it808")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_ki73n")
+
+[node name="TabContainer" type="TabContainer" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 46.0
+grow_horizontal = 2
+current_tab = 0
+
+[node name="Inventory" parent="TabContainer" instance=ExtResource("2_pmlpy")]
+layout_mode = 2
+metadata/_tab_index = 0
+
+[node name="Crafting" parent="TabContainer" instance=ExtResource("3_gppu7")]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 1
+
+[node name="BuildingMenu" parent="TabContainer" instance=ExtResource("4_dvuiu")]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 2

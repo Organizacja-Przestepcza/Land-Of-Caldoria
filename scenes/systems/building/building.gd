@@ -1,4 +1,4 @@
-extends Interface
+extends Control
 class_name BuildMenu
 
 @onready var build_list: ItemList = $MarginContainer/BuildingContainer/BuildList
@@ -7,6 +7,9 @@ var selected_item: int = 0
 
 var inventory_list
 
+func open() -> void:
+	pass
+	
 func update_build_list():
 	build_list.clear()
 	for recipe: BuildRecipe in ListLoader.build_recipes.values():
@@ -14,7 +17,7 @@ func update_build_list():
 		build_list.set_item_metadata(build_list.item_count-1,recipe)
 
 func _on_exit_button_pressed() -> void:
-	close()
+	get_parent().close()
 
 
 func _on_build_list_item_selected(index: int) -> void:

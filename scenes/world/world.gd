@@ -1,5 +1,6 @@
 extends Node2D
 class_name World
+## @deprecated: Use [ProcWorld] instead.
 
 var h_noise: FastNoiseLite # height noise
 var o_noise: FastNoiseLite # objects noise
@@ -20,6 +21,7 @@ var mob_types = {
 	"crab": "res://scenes/mob/crab.tscn",
 	"boar": "res://scenes/mob/boar.tscn",
 	"bear": "res://scenes/mob/bear.tscn",
+	"wolf": "res://scenes/mob/wolf.tscn"
 }
 
 var dirs: Dictionary = {"tree":"res://scenes/object/plant/tree/","stone":"res://scenes/object/ore/stone/"}

@@ -71,7 +71,7 @@ size_flags_vertical = 3
 
 [node name="CraftButton" type="Button" parent="MarginContainer/FurnaceContainer/InventoryContainer"]
 layout_mode = 2
-text = "Craft"
+text = "Smelt"
 
 [node name="ExitButton" type="Button" parent="."]
 layout_mode = 1

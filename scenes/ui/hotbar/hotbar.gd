@@ -27,7 +27,7 @@ func select_slot(index: int):
 	selected_slot.theme = frame
 
 func get_held_item() -> Item:
-	var inv_item = selected_slot.get_child(0)
+	var inv_item = selected_slot.get_child(0) #To mi się wywala, chyba trzeba sprawdzić czy istnieje selected item
 	if inv_item is InventoryItem:
 		return inv_item.data
 	return

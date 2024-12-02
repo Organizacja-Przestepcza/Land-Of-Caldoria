@@ -12,9 +12,11 @@ offset_right = 40.0
 offset_bottom = 40.0
 
 [node name="HealthBar" parent="VBoxContainer" instance=ExtResource("3_o1cj0")]
+custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
 
 [node name="HungerBar" parent="VBoxContainer" instance=ExtResource("4_vnnwy")]
+custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
 
 [connection signal="death" from="VBoxContainer/HealthBar" to="." method="_on_death"]

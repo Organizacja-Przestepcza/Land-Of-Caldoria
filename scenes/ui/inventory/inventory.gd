@@ -1,4 +1,4 @@
-extends Interface
+extends Control
 class_name Inventory
 @export var invSize: int = 24
 @export var slotSize: Vector2 = Vector2(64,64)
@@ -6,6 +6,7 @@ class_name Inventory
 @onready var hotbar: GridContainer = %Hotbar/MarginContainer/Hotbar
 @onready var main = $HBoxContainer/VBoxContainer/Main
 @onready var armor = $HBoxContainer/Armor
+@onready var hotbar_container = %Hotbar/MarginContainer
 @onready var containers: Array[GridContainer] = [hotbar, main]
 var inventory_keys = ["hotbar", "main", "armor"]
 
@@ -35,13 +36,11 @@ func _ready() -> void:
 	
 	
 func open():
-	super()
 	hotbar.reparent(get_node("HBoxContainer/VBoxContainer"))
 	$HBoxContainer/VBoxContainer.move_child(hotbar, 0)
 
 func close():
-	super()
-	hotbar.reparent(%Hotbar/MarginContainer)
+	hotbar.reparent(hotbar_container)
 
 func find_available_slot(itm: Item) -> InventorySlot:
 	for container in containers:
@@ -67,8 +66,6 @@ func add_item(item: Item, amount: int) -> void:
 	var slot = find_available_slot(item)
 	if slot == null:
 		return
-	if amount > item.max_stack_size:
-		pass
 	if slot.get_child_count() == 0 and amount > item.max_stack_size:
 		var inv_item = InventoryItem.new(item, item.max_stack_size)
 		slot.add_child(inv_item)

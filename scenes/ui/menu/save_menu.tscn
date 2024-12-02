@@ -56,7 +56,7 @@ max_text_lines = 3
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 8
-theme_override_constants/separation = 200
+theme_override_constants/separation = 100
 
 [node name="CancelButton" type="Button" parent="VBoxContainer/HBoxContainer"]
 layout_mode = 2
@@ -70,7 +70,12 @@ theme_override_font_sizes/font_size = 48
 text = "Save
 "
 
+[node name="DeleteButton" type="Button" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Delete"
+
 [connection signal="text_changed" from="VBoxContainer/SaveName" to="." method="_on_save_name_text_changed"]
 [connection signal="empty_clicked" from="VBoxContainer/SavesList" to="." method="_on_saves_list_empty_clicked"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/CancelButton" to="." method="_on_cancel_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/SaveButton" to="." method="_on_save_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/DeleteButton" to="." method="_on_delete_button_pressed"]
