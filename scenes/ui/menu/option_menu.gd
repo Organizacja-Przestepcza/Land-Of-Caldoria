@@ -1,13 +1,13 @@
 extends Control
 
-var isFullscreen: bool = false 
+var is_fullscreen: bool = false 
 
 func initial_controls_setup():
 	
-	%MusicSlider.value = 100
+	%MusicSlider.value = _to_linear(Settings.music_volume)
 	%MusicLabel .text = ("Music: " + str(%MusicSlider.value) + "%")
 	
-	%SoundSlider.value = 100
+	%SoundSlider.value = _to_linear(Settings.sound_volume)
 	%SoundLabel.text = ("Sound: " + str(%SoundSlider.value) + "%")
 	
 	
@@ -22,8 +22,8 @@ signal backbutton_pressed
 
 
 func _on_fullscreen_button_pressed() -> void:
-	isFullscreen = !isFullscreen
-	if isFullscreen:
+	is_fullscreen = !is_fullscreen
+	if is_fullscreen:
 		%FullscreenButton.text = ("Fullscreen: on")
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
 		%ResolutionOptions.disabled = true
@@ -34,12 +34,19 @@ func _on_fullscreen_button_pressed() -> void:
 
 func _on_music_slider_value_changed(value: float) -> void:
 	%MusicLabel.text = "Music: " + str(%MusicSlider.value) + "%"
-
-
+	Settings.music_volume = _to_db(value)
+	if get_tree().root.has_node("World"):
+		var world = get_tree().root.get_node("World")
+		world.update_volume()
 
 func _on_sound_slider_value_changed(value: float) -> void:
 	%SoundLabel.text = "Sound: " + str(%SoundSlider.value) + "%"
-
+	Settings.sound_volume = _to_db(value)
 
 func _on_keybinds_button_pressed() -> void:
 	pass # Replace with function body.
+
+func _to_db(value: float) -> float:
+	return lerp(-80, 0, log(1 + value) / log(101))
+func _to_linear(volume_db: float) -> float:
+	return exp((volume_db - (-80)) / (0 - (-80)) * log(101)) - 1
