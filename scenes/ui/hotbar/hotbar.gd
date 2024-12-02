@@ -30,6 +30,7 @@ func get_held_item() -> Item:
 	var inv_item = selected_slot.get_child(0)
 	if not inv_item:
 		return
-	if inv_item is InventoryItem:
+	elif inv_item is InventoryItem:
 		return inv_item.data
-	return
+	else:
+		return
