@@ -186,5 +186,15 @@ shape = SubResource("CircleShape2D_b105i")
 position = Vector2(-3.75, -12)
 shape = SubResource("RectangleShape2D_4y5yq")
 
+[node name="ProgressBar" type="ProgressBar" parent="."]
+visible = false
+offset_left = -18.0
+offset_top = -35.0
+offset_right = 15.0
+offset_bottom = -31.0
+step = 1.0
+value = 100.0
+show_percentage = false
+
 [connection signal="body_entered" from="DetectionArea" to="." method="_on_detection_area_body_entered"]
 [connection signal="body_exited" from="DetectionArea" to="." method="_on_detection_area_body_exited"]

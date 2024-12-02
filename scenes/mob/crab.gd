@@ -7,6 +7,12 @@ func _ready() -> void:
 	speed = 100
 	exp = 5
 	strength = 5
+	$ProgressBar.max_value = health
+	$ProgressBar.value = health
+
+func handle_healthbar():
+	$ProgressBar.visible = true
+	$ProgressBar.value = health
 
 func _physics_process(delta: float) -> void:
 	if chase_player:

@@ -8,6 +8,12 @@ func _ready() -> void:
 	exp = 3
 	strength = 5
 	$AnimatedSprite2D.play("idle")
+	$ProgressBar.max_value = health
+	$ProgressBar.value = health
+
+func handle_healthbar():
+	$ProgressBar.visible = true
+	$ProgressBar.value = health
 	
 func play_attack() -> void:
 	$AudioStreamPlayer.play()

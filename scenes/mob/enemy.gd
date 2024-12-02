@@ -59,6 +59,7 @@ func _on_detection_area_body_exited(body: Node2D) -> void:
 
 func take_damage(damage: int) -> bool: ## returns true if the object was destroyed
 	health = health - damage
+	handle_healthbar()
 	if health <= 0:
 		die()
 		return true
@@ -74,3 +75,6 @@ func play_chase() -> void:
 
 func play_attack() -> void:
 	print("not implemented")
+
+func handle_healthbar():
+	print(mob_name)
