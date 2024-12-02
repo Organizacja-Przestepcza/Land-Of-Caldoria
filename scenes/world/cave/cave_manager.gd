@@ -38,20 +38,18 @@ func enter():
 	player.reparent(self)
 	player.move_local_x(16)
 	player.move_local_y(18)
-	#if not caves.has(cell_pos):
-		#caves[cell_pos] = Cave.new()
-	#var cave: Cave = caves.get(cell_pos)
-	#cave.position = pos
-	#add_child(cave)
 
 func leave():
+	position = Vector2.ZERO
 	world.visible = true
 	world.process_mode = Node.PROCESS_MODE_INHERIT
-	reparent(world)
+	#reparent(world)
 	visible = false
 	player.reparent(world)
+	player.move_local_x(-16)
+	player.move_local_y(-18)
 	player.position = floor_layer.map_to_local(current_cave)
-	print(get_tree().root.get_children())
+	cave_walls_layer.clear()
 
 func is_valid_entry(pos: Vector2):
 	var cell_pos = floor_layer.local_to_map(pos)
@@ -61,7 +59,10 @@ func is_valid_exit(pos: Vector2):
 	return cave_floor_layer.get_cell_atlas_coords(cell_pos) == Vector2i(7,2) # this is the exit floor tile
 
 func dig():
+	if has_node("Player"):
+		return
 	var mouse_pos = get_local_mouse_position()
+	print(mouse_pos)
 	var cell_pos = floor_layer.local_to_map(mouse_pos)
 	if ground_layer.get_cell_source_id(cell_pos) and grass_layer.get_cell_source_id(cell_pos):
 		return

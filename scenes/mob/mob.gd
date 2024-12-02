@@ -10,7 +10,10 @@ var mob_name
 func _ready() -> void:
 	world = get_parent()
 	world.chunk_loader.chunk_changed.connect(despawn)
-	player = get_parent().get_node("%Player")
+	if get_tree().root.has_node("World/Player"):
+		player = get_tree().root.get_node("World/Player")
+	elif get_tree().root.has_node("CaveManager/Player"):
+		player = get_tree().root.get_node("CaveManager/Player")
 	print(player)
 	notifications = player.notifications
 

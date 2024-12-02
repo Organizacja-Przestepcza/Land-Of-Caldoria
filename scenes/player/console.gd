@@ -4,20 +4,21 @@ class_name Console
 @onready var line_edit: LineEdit = $LineEdit
 @onready var player: Player = %Player
 @onready var inventory: Inventory = %Inventory
+@onready var game: Game = %Game
 var last_state
 var history: PackedStringArray
 var history_index: int = 0
 
 func open():
-	last_state = %Game.state
-	%Game.state = Game.State.CONSOLE
+	last_state = game.state
+	game.state = Game.State.CONSOLE
 	get_tree().paused = true
 	self.visible = true
 	await get_tree().create_timer(0.01).timeout
 	line_edit.grab_focus()
 
 func close() -> void:
-	%Game.state = last_state
+	game.state = last_state
 	get_tree().paused = false
 	self.visible = false
 	line_edit.clear()
@@ -49,7 +50,7 @@ func _input(event: InputEvent) -> void:
 	if event is InputEventKey and visible == true:
 		if event.is_action_pressed("ui_cancel"):
 			close()
-			%PauseMenu.toggle()
+			$"../../PauseMenu".toggle()
 		elif event.pressed:
 			match event.keycode:
 				KEY_UP:
