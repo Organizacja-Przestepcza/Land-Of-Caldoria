@@ -1,6 +1,7 @@
-[gd_scene load_steps=23 format=3 uid="uid://bevwwvcr2fdsa"]
+[gd_scene load_steps=27 format=3 uid="uid://bevwwvcr2fdsa"]
 
 [ext_resource type="Script" path="res://scenes/world/proc_world.gd" id="1_75342"]
+[ext_resource type="AudioStream" uid="uid://jdy7g8aivofv" path="res://assets/sfx/ambient/Overworld theme.mp3" id="2_bam7b"]
 [ext_resource type="TileSet" uid="uid://d0pha3g0yk4g8" path="res://tilesets/main.tres" id="2_gbw1p"]
 [ext_resource type="Script" path="res://addons/gaea/generators/2D/noise_generator/noise_generator.gd" id="2_vv2tn"]
 [ext_resource type="Resource" uid="uid://dmxmmyikn85ln" path="res://scenes/world/gaea_settings.tres" id="3_3in7x"]
@@ -9,10 +10,13 @@
 [ext_resource type="PackedScene" uid="uid://byb1nycwprtqb" path="res://scenes/player/player.tscn" id="5_j0bro"]
 [ext_resource type="PackedScene" uid="uid://d26rkh5gvtfkh" path="res://scenes/ui/hud/hud.tscn" id="6_ai4l1"]
 [ext_resource type="TileSet" uid="uid://dgn2sg8mjagkv" path="res://tilesets/objects.tres" id="6_ei8fs"]
+[ext_resource type="TileSet" uid="uid://dq7xo5icgsgv5" path="res://tilesets/floors.tres" id="6_wfmau"]
 [ext_resource type="PackedScene" uid="uid://b0bmpokyxvpu8" path="res://scenes/ui/hotbar/hotbar.tscn" id="7_ibjah"]
 [ext_resource type="PackedScene" uid="uid://c83lveoubd7vh" path="res://scenes/ui/inventory/inventory.tscn" id="9_dkgoy"]
 [ext_resource type="PackedScene" uid="uid://cs0opcidf6hx4" path="res://scenes/systems/trading/trading.tscn" id="9_ynbql"]
+[ext_resource type="PackedScene" uid="uid://2rk601jgd076" path="res://scenes/world/cave/cave_manager.tscn" id="10_bt8vl"]
 [ext_resource type="PackedScene" uid="uid://3qegagme7w4c" path="res://scenes/systems/building/building.tscn" id="10_d4h0i"]
+[ext_resource type="PackedScene" uid="uid://cm85hy4nglvyg" path="res://scenes/ui/hud/notifications/notifications.tscn" id="11_k8yp2"]
 [ext_resource type="PackedScene" uid="uid://ddbr53ohn683s" path="res://scenes/ui/menu/pause_menu.tscn" id="11_ot3us"]
 [ext_resource type="PackedScene" uid="uid://de7ljcthumfav" path="res://scenes/systems/crafting/crafting.tscn" id="12_wsaqj"]
 [ext_resource type="Script" path="res://scenes/world/tabs.gd" id="13_hqbme"]
@@ -31,6 +35,12 @@ gradient = SubResource("Gradient_frlg5")
 [node name="World" type="Node2D"]
 y_sort_enabled = true
 script = ExtResource("1_75342")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_bam7b")
+volume_db = -28.0
+autoplay = true
+parameters/looping = true
 
 [node name="NoiseGenerator" type="Node" parent="."]
 unique_name_in_owner = true
@@ -68,6 +78,8 @@ z_index = -2
 tile_set = ExtResource("2_gbw1p")
 
 [node name="FloorLayer" type="TileMapLayer" parent="."]
+z_index = -1
+tile_set = ExtResource("6_wfmau")
 
 [node name="ObjectLayer" type="TileMapLayer" parent="."]
 y_sort_enabled = true
@@ -76,6 +88,9 @@ tile_set = ExtResource("6_ei8fs")
 [node name="BuildManager" type="Node2D" parent="."]
 visible = false
 script = ExtResource("4_26fgq")
+
+[node name="CaveManager" parent="." instance=ExtResource("10_bt8vl")]
+visible = false
 
 [node name="Player" parent="." instance=ExtResource("5_j0bro")]
 unique_name_in_owner = true
@@ -89,6 +104,9 @@ unique_name_in_owner = true
 offset_left = -0.000152588
 offset_right = 0.00012207
 offset_bottom = -0.000305176
+
+[node name="Notifications" parent="Player/Hud" instance=ExtResource("11_k8yp2")]
+unique_name_in_owner = true
 
 [node name="PauseMenu" parent="Player" instance=ExtResource("11_ot3us")]
 unique_name_in_owner = true
@@ -149,6 +167,7 @@ script = ExtResource("13_xk8dt")
 position = Vector2(352, 128)
 
 [node name="LoadingScreen" type="CanvasLayer" parent="."]
+visible = false
 
 [node name="TextureRect" type="TextureRect" parent="LoadingScreen"]
 z_index = 10

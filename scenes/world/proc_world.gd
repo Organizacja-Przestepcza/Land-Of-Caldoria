@@ -247,3 +247,10 @@ func _get_chunk_boundaries(chunk_pos: Vector2i) -> Rect2i:
 	size.x = noise_generator.chunk_size.x * noise_generator.tile_size.x - 1
 	size.y = noise_generator.chunk_size.y * noise_generator.tile_size.y - 1
 	return Rect2i(start_point,size)
+
+# -------
+# Other
+# -------
+
+func update_volume():
+	$AudioStreamPlayer.volume_db = Settings.music_volume

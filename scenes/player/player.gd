@@ -15,10 +15,12 @@ extends CharacterBody2D
 @onready var hotbar: Hotbar = %Hotbar
 
 @onready var build_manager: BuildManager = $"../BuildManager"
+@onready var cave_manager: CaveManager = $"../CaveManager"
 @onready var inventory: Inventory = %Inventory
 @onready var health_bar: Health = hud.get_node("VBoxContainer/HealthBar")
 @onready var hunger_bar: Hunger = hud.get_node("VBoxContainer/HungerBar")
 @onready var stats: Stats = %Stats
+@onready var notifications: Notifications = %Notifications
 
 
 var facing: Direction = Direction.Down
@@ -42,8 +44,9 @@ enum Direction {Down, Up, Right, Left}
 func _ready() -> void:
 	update_zoom(camera_zoom)
 
-func update_zoom(zoom: Vector2):
-	$Camera2D.zoom = zoom
+func update_zoom(zoom):
+	if zoom is Vector2:
+		$Camera2D.zoom = zoom
 
 func get_input():
 	var input_direction = Input.get_vector("move_left", "move_right", "move_up", "move_down")
@@ -56,9 +59,10 @@ func play_animation() -> void:
 	if velocity.length() > 0:
 		velocity = velocity.normalized() * speed
 		$AnimatedSprite2D.play()
+		$AudioStreamPlayer.stream_paused = false
 	else:
 		$AnimatedSprite2D.stop()
-	
+		$AudioStreamPlayer.stream_paused = true
 	var animations: Array = ["walk_side", "walk_down", "walk_up", "run_side", "run_down", "run_up"]
 	var i: int = 0
 	if Input.is_action_pressed("sprint"):
@@ -144,6 +148,8 @@ func use_item() -> void:
 		consume(hotbar.selected_slot.get_child(0),1)
 	elif held_item == ItemLoader.name("hammer"):
 		build_manager.build()
+	elif held_item == ItemLoader.name("shovel"):
+		cave_manager.dig()
 	elif held_item is Tool:
 		attack(held_item)
 
@@ -154,13 +160,19 @@ func interact():
 		nearest_interactable.queue_free()
 	elif nearest_interactable is NPC:
 		interface.get_node("Trading").open()
+	elif cave_manager.is_valid_entry(position): # check if there is a hole under player
+		cave_manager.enter()
+	elif cave_manager.is_valid_exit(position):
+		cave_manager.leave()
 
 func attack(tool: Tool):
 	var victim = await get_victim()
 	if victim is Mob:
+		notifications.add_notification("Attacked " + victim.mob_name + " : -" + str(tool.damage) + "hp")
 		if victim.take_damage(tool.damage):
 			var total_exp = victim.exp + roundi(((victim.exp * level)/10)-1)
 			stats.add_exp(total_exp)
+			notifications.add_notification("Killed %s : + %d exp"%[victim.mob_name,total_exp])
 			if victim.dropped_item:
 				inventory.add_item(victim.dropped_item, 1)
 	if victim is Destroyable:
@@ -168,9 +180,14 @@ func attack(tool: Tool):
 			if victim.take_damage(tool.damage) and victim.dropped_item:
 				var tile_pos = $"../ObjectLayer".local_to_map(victim.global_position)
 				get_parent().delete_object_at(tile_pos)
+				notifications.add_notification("Collected: %s"%victim.dropped_item.name)
 				inventory.add_item(victim.dropped_item, 1)
-
+	
 func consume(item: InventoryItem, amount: int) -> void:
 	if item.data is Consumable:
 		effect_from_item(item.data)
+		notifications.add_notification("Used "+ item.data.name)
 		item.remove(amount)
+
+func enter_cave():
+	pass
