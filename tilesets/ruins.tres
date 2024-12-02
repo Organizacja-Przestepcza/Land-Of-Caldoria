@@ -1,7 +1,7 @@
 [gd_resource type="TileSet" load_steps=5 format=3 uid="uid://dpqylfwibmxl2"]
 
 [ext_resource type="Texture2D" uid="uid://j0xvhotm7q2d" path="res://assets/textures/tilesets/ground_tileset_32.png" id="1_thco6"]
-[ext_resource type="Texture2D" uid="uid://s63rb550main" path="res://assets/textures/tilesets/ruins_meadows.png" id="2_kwer5"]
+[ext_resource type="Texture2D" uid="uid://s63rb550main" path="res://assets/textures/tilesets/ruins_meadows.png" id="2_rbo77"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_86u0u"]
 texture = ExtResource("1_thco6")
@@ -196,19 +196,15 @@ texture_region_size = Vector2i(32, 32)
 11:15/0 = 0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_yxgio"]
-texture = ExtResource("2_kwer5")
+texture = ExtResource("2_rbo77")
 texture_region_size = Vector2i(32, 32)
 0:3/size_in_atlas = Vector2i(2, 2)
 0:3/0 = 0
-0:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-22, -1.5, 22.5, 1, 27, 8, 23, 20.5, 10.5, 29, -17.5, 28, -26.5, 13.5)
 3:2/0 = 0
-3:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-12.5, 2.5, 11.5, 1, 13, 9, 8.5, 12.5, -9.5, 12, -11, 8)
 0:0/size_in_atlas = Vector2i(3, 3)
 0:0/0 = 0
-0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-44.5, -6, -39, -17, 20, -19, 24.5, -15, 0, -5, 5, 14, -15, 21, -32, 19, -45, 7)
 3:0/size_in_atlas = Vector2i(2, 2)
 3:0/0 = 0
-3:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-28.5, 1, -26, -3, 8, -2, 7.5, 3.5, -3, 5.5, -5.5, 18.5, -15, 17.5, -18, 6)
 
 [resource]
 tile_size = Vector2i(32, 32)
