@@ -7,30 +7,26 @@
 [ext_resource type="Script" path="res://addons/better-terrain-in-gaea/better_terrain_tile_info.gd" id="4_ssnc4"]
 [ext_resource type="Script" path="res://addons/gaea/tile_info/tilemap_tile_info.gd" id="5_fhr0w"]
 
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_3sbpx"]
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_cq6en"]
 
-[sub_resource type="Resource" id="Resource_b2vki"]
-resource_name = "5"
-script = ExtResource("5_fhr0w")
-type = 0
+[sub_resource type="Resource" id="Resource_7iana"]
+script = ExtResource("4_ssnc4")
 tilemap_layer = 3
-source_id = 2
-atlas_coord = Vector2i(0, 0)
-alternative_tile = 1
-id = "5"
-layer = 4
+terrain = 0
+id = ""
+layer = 0
 
-[sub_resource type="Resource" id="Resource_wq4uj"]
+[sub_resource type="Resource" id="Resource_gi6m8"]
 script = ExtResource("2_ax0r8")
-noise = SubResource("FastNoiseLite_3sbpx")
+noise = SubResource("FastNoiseLite_cq6en")
 ignore_empty_cells = true
-tile = SubResource("Resource_b2vki")
-min = -0.119
-max = 0.927
-bounds_enabled = false
-bounds_max = Vector2(0, 0)
+tile = SubResource("Resource_7iana")
+min = -1.0
+max = 1.0
+bounds_enabled = true
+bounds_max = Vector2(32, 16)
 bounds_min = Vector2(0, 0)
-salt = 2689635696
+salt = 2669307649
 enabled = true
 filter_type = 0
 
@@ -111,4 +107,4 @@ tiles = Array[ExtResource("3_goyon")]([SubResource("Resource_jc7p6"), SubResourc
 noise = SubResource("FastNoiseLite_h4te1")
 infinite = true
 falloff_enabled = false
-modifiers = Array[ExtResource("1_4i30r")]([SubResource("Resource_wq4uj")])
+modifiers = Array[ExtResource("1_4i30r")]([SubResource("Resource_gi6m8")])
