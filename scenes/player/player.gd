@@ -161,7 +161,9 @@ func interact():
 	elif nearest_interactable is NPC:
 		interface.get_node("Trading").open()
 	elif cave_manager.is_valid_entry(position): # check if there is a hole under player
-		cave_manager.enter(position)
+		cave_manager.enter()
+	elif cave_manager.is_valid_exit(position):
+		cave_manager.leave()
 
 func attack(tool: Tool):
 	var victim = await get_victim()
