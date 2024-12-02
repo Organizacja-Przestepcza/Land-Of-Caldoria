@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://bpv4hmrlgrhr5"]
+[gd_scene load_steps=4 format=3 uid="uid://bpv4hmrlgrhr5"]
 
 [ext_resource type="Texture2D" uid="uid://dkmsxfnm2ad7s" path="res://assets/textures/ui/menu/bg_darkener.png" id="1_6lhks"]
 [ext_resource type="Script" path="res://scenes/ui/screen_of_death.gd" id="1_t62bl"]
+[ext_resource type="AudioStream" uid="uid://bfd2sn55itmf6" path="res://assets/sfx/ui/Death.mp3" id="2_82i83"]
 
 [node name="ScreenOfDeath" type="Control"]
 layout_mode = 3
@@ -11,6 +12,11 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_t62bl")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_82i83")
+volume_db = -25.0
+autoplay = true
 
 [node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 1

@@ -1,6 +1,7 @@
-[gd_scene load_steps=43 format=3 uid="uid://byb1nycwprtqb"]
+[gd_scene load_steps=44 format=3 uid="uid://byb1nycwprtqb"]
 
 [ext_resource type="Script" path="res://scenes/player/player.gd" id="1_g8p60"]
+[ext_resource type="AudioStream" uid="uid://c7p55ikoqr77h" path="res://assets/sfx/ambient/Steps.mp3" id="2_jle88"]
 [ext_resource type="Texture2D" uid="uid://br4h0lfg7mpcd" path="res://assets/textures/player/player_male_front.png" id="2_tw27j"]
 [ext_resource type="Texture2D" uid="uid://cho8kp1ldckvk" path="res://assets/textures/player/player_male_side.png" id="3_acvaq"]
 [ext_resource type="Texture2D" uid="uid://d104km64a2ftx" path="res://assets/textures/player/player_male_back.png" id="4_ix5x6"]
@@ -297,8 +298,15 @@ size = Vector2(16, 10)
 collision_mask = 2
 script = ExtResource("1_g8p60")
 
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_jle88")
+volume_db = -28.0
+autoplay = true
+parameters/looping = true
+
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -23)
+scale = Vector2(0.9, 0.9)
 sprite_frames = SubResource("SpriteFrames_j11y6")
 animation = &"walk_down"
 
