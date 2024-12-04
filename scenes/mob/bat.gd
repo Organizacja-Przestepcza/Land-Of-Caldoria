@@ -1,6 +1,5 @@
 extends Enemy
 
-var chase_player = false
 func _ready() -> void:
 	mob_name = "Bat"
 	health = 10

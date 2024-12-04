@@ -1,6 +1,6 @@
-extends Control
+extends Interface
 class_name Furnace
-@onready var inventory: Inventory = $"../Inventory"
+@onready var inventory: Inventory = %Inventory
 @onready var recipe_list: ItemList = $MarginContainer/FurnaceContainer/RecipeContainer/RecipeList
 @onready var ingredients_list: ItemList = $MarginContainer/FurnaceContainer/InventoryContainer/InventoryList
 
@@ -15,6 +15,7 @@ class Ingredient:
 		amount = amnt
 
 func open() -> void:
+	super()
 	update_recipe_list()
 	inventory_list = inventory.to_list()
 
@@ -25,7 +26,7 @@ func update_recipe_list():
 		recipe_list.set_item_metadata(recipe_list.item_count-1,recipe)
 
 func _on_exit_button_pressed() -> void:
-	get_parent().close()
+	close()
 
 func _on_recipe_list_item_selected(index: int) -> void:
 	update_ingredients_list(index)
@@ -49,7 +50,8 @@ func _on_craft_button_pressed() -> void:
 		for i in range(item_count):
 			var ingredient: Ingredient = ingredients_list.get_item_metadata(i)
 			inventory.remove_item(ingredient.item,ingredient.amount)
-			inventory_list[ingredient.item] -= ingredient.count
+			print(ingredient)
+			inventory_list[ingredient.item] -= ingredient.amount
 		var t = recipe_list.get_selected_items()
 		var recipe = recipe_list.get_item_metadata(t[0])
 		inventory.add_item(recipe.result,recipe.amount)

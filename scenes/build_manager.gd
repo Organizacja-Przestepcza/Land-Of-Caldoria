@@ -21,21 +21,15 @@ func build():
 			var type = world.object_tiles[chunk][cell_pos]["type"]
 			if not type == ProcWorld.ObjType.MANMADE:
 				return
+	var chunk_d = world.object_tiles.get(chunk)
+	if not chunk_d is Dictionary:
+		world.object_tiles[chunk] = {}
+		chunk_d = world.object_tiles.get(chunk)
 	if build_menu.selected_item == 0:
-		var chunk_d = world.object_tiles.get(chunk)
-		if not chunk_d is Dictionary:
-			world.object_tiles[chunk] = {}
-			chunk_d = world.object_tiles.get(chunk)
 		if chunk_d.erase(cell_pos):
 			BetterTerrain.set_cell(build_layer,cell_pos,-1)
 			BetterTerrain.update_terrain_cell(build_layer, cell_pos)
 	elif build_menu.selected_item == 1:
-		#if cell_pos in walls:
-			#return
-		var chunk_d = world.object_tiles.get(chunk)
-		if not chunk_d is Dictionary:
-			world.object_tiles[chunk] = {}
-			chunk_d = world.object_tiles.get(chunk)
 		if not chunk_d.has(cell_pos):
 			BetterTerrain.set_cell(build_layer,cell_pos,0)
 			BetterTerrain.update_terrain_cell(build_layer, cell_pos)
@@ -46,3 +40,6 @@ func build():
 				"atlas_coords": atlas,
 				"alt_tile": 0
 			}
+	elif build_menu.selected_item == 2:
+		if not chunk_d.has(cell_pos):
+			build_layer.set_cell(cell_pos,2,Vector2i.ZERO,2)

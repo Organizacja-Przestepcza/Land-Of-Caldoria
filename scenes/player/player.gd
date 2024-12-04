@@ -160,6 +160,8 @@ func interact():
 		nearest_interactable.queue_free()
 	elif nearest_interactable is NPC:
 		interface.get_node("Trading").open()
+	elif nearest_interactable is FurnaceObj:
+		interface.get_node("Furnace").open()
 	elif cave_manager.is_valid_entry(position): # check if there is a hole under player
 		cave_manager.enter()
 	elif cave_manager.is_valid_exit(position):
