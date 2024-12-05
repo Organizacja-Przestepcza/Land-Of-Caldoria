@@ -39,12 +39,10 @@ func build():
 		return
 	
 	if recipe.result == -1:
-		print("destroying")
 		if chunk_d.erase(cell_pos):
 			BetterTerrain.set_cell(build_layer,cell_pos,-1)
 			BetterTerrain.update_terrain_cell(build_layer, cell_pos)
 	elif not chunk_d.has(cell_pos):
-		print("building")
 		if recipe.is_terrain: # build terrain
 			BetterTerrain.set_cell(layer,cell_pos,recipe.result)
 			BetterTerrain.update_terrain_cell(layer, cell_pos)

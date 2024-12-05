@@ -27,9 +27,6 @@ func _on_build_list_item_selected(index: int) -> void:
 
 func has_required_ingredients() -> bool:
 	inventory_list = inventory.to_list()
-	print("\n")
-	for item: Item in inventory_list.keys():
-		print("%s: %d"%[item.name,inventory_list[item]])
 	var recipe = build_list.get_item_metadata(selected_item)
 	if recipe is BuildRecipe:
 		var item_arr: Array = recipe.items.keys()
