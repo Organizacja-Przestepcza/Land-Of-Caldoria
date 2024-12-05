@@ -8,7 +8,7 @@ var state: State = State.PLAYING
 @onready var crafting: Crafting = %Crafting
 
 @onready var console: Console = $"../Interface/Console"
-
+@onready var pause_menu: PauseMenu = %PauseMenu
 @onready var hotbar: Hotbar = %Hotbar
 @onready var inventory: Inventory = %Inventory
 @onready var player: Player = %Player
@@ -39,7 +39,7 @@ func _input(event: InputEvent) -> void:
 						tabs.open(3)
 						state = State.INVENTORY
 					elif event.is_action_pressed("ui_text_backspace"):
-						print(%Player.position)
+						print($"..".position)
 					elif event.pressed:
 						match event.physical_keycode:
 							KEY_1: hotbar.select_slot(0)
@@ -69,13 +69,13 @@ func _input(event: InputEvent) -> void:
 					close_menus()
 				elif event.is_action_pressed("ui_cancel"):
 					close_menus()
-					%PauseMenu.toggle()
+					pause_menu.toggle()
 			State.CONSOLE:
 				if event.pressed and event.physical_keycode == KEY_QUOTELEFT:
 					console.close()
 				elif event.is_action_pressed("ui_cancel"):
 					console.close()
-					%PauseMenu.toggle()
+					pause_menu.toggle()
 
 
 func get_slot_under_mouse() -> InventorySlot:

@@ -1,11 +1,14 @@
-[gd_scene load_steps=3 format=3 uid="uid://b50ew3ar0cmlr"]
+[gd_scene load_steps=5 format=3 uid="uid://b50ew3ar0cmlr"]
 
 [ext_resource type="Texture2D" uid="uid://bpqi1r0d5btbk" path="res://assets/textures/object/furniture/furnace/furnace.png" id="1_djg2c"]
+[ext_resource type="Script" path="res://scenes/object/furniture/furnace/furnace.gd" id="1_m7kll"]
+[ext_resource type="PackedScene" uid="uid://fdx8ye7rulig" path="res://scenes/interactable_area.tscn" id="2_xnhgl"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ykafg"]
 size = Vector2(20, 21)
 
 [node name="Furnace" type="StaticBody2D"]
+script = ExtResource("1_m7kll")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_djg2c")
@@ -13,3 +16,5 @@ texture = ExtResource("1_djg2c")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 1.5)
 shape = SubResource("RectangleShape2D_ykafg")
+
+[node name="InteractableArea" parent="." instance=ExtResource("2_xnhgl")]
