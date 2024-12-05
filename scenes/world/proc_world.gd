@@ -136,7 +136,7 @@ func choose_random_building() -> String:
 	return building_list[random_index]
 	
 func generate_village() -> void:
-	var village_scene = preload("res://scenes/village.tscn")
+	var village_scene = load("res://scenes/village.tscn")
 	var village = village_scene.instantiate()
 	village.z_index = -1;
 	village.position = Vector2(0, 0)

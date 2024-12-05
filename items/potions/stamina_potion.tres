@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="Item" load_steps=3 format=3 uid="uid://bjlbv3exkfnq"]
+
+[ext_resource type="Script" path="res://items/Item.gd" id="1_sx2qb"]
+[ext_resource type="Texture2D" uid="uid://br5sqdm3ovhnq" path="res://assets/textures/item/potions/stamina_potion.png" id="2_islqm"]
+
+[resource]
+script = ExtResource("1_sx2qb")
+slot = 0
+name = "stamina_potion"
+weight = 1
+texture = ExtResource("2_islqm")
+max_stack_size = 1
+description = "water in fluid"
+value = 11

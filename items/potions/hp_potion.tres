@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="Item" load_steps=3 format=3 uid="uid://dawshwdfkft3c"]
+
+[ext_resource type="Script" path="res://items/Item.gd" id="1_cvgir"]
+[ext_resource type="Texture2D" uid="uid://che3mehur728g" path="res://assets/textures/item/potions/hp_potion.png" id="2_hucmg"]
+
+[resource]
+script = ExtResource("1_cvgir")
+slot = 0
+name = "hp_potion"
+weight = 1
+texture = ExtResource("2_hucmg")
+max_stack_size = 1
+description = "amarena"
+value = 10
