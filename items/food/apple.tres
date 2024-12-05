@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="Consumable" load_steps=3 format=3 uid="uid://bdec44mfqgojl"]
+
+[ext_resource type="Script" path="res://items/Consumable.gd" id="1_dtnfi"]
+[ext_resource type="Texture2D" uid="uid://b42ieco2q4cnt" path="res://assets/textures/item/food/Apple.png" id="2_u17hr"]
+
+[resource]
+script = ExtResource("1_dtnfi")
+hunger_value = 5
+health_value = 0
+slot = 0
+name = "Apple"
+weight = 1
+texture = ExtResource("2_u17hr")
+max_stack_size = 8
+description = "Restores 5 hunger"
+value = 0

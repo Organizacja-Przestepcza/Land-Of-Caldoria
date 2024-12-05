@@ -1,6 +1,5 @@
-[gd_scene load_steps=4 format=3 uid="uid://c16tm1pfdkm4g"]
+[gd_scene load_steps=3 format=3 uid="uid://c16tm1pfdkm4g"]
 
-[ext_resource type="Texture2D" uid="uid://byk1r33uwp30o" path="res://assets/textures/object/bag.png" id="1_84qmv"]
 [ext_resource type="Script" path="res://scenes/object/loot_bag.gd" id="1_iqknj"]
 [ext_resource type="PackedScene" uid="uid://fdx8ye7rulig" path="res://scenes/interactable_area.tscn" id="3_d5g74"]
 
@@ -8,7 +7,6 @@
 script = ExtResource("1_iqknj")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_84qmv")
 
 [node name="InteractableArea" parent="." instance=ExtResource("3_d5g74")]
 position = Vector2(0, -14)

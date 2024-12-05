@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="Consumable" load_steps=3 format=3 uid="uid://hg731jvsx13h"]
+
+[ext_resource type="Script" path="res://items/Consumable.gd" id="1_k41j3"]
+[ext_resource type="Texture2D" uid="uid://cecjo0wymjy1b" path="res://assets/textures/item/food/Potatoes.png" id="2_db5mc"]
+
+[resource]
+script = ExtResource("1_k41j3")
+hunger_value = 5
+health_value = 0
+slot = 0
+name = "Potatoes"
+weight = 1
+texture = ExtResource("2_db5mc")
+max_stack_size = 8
+description = "Restores 5 hunger"
+value = 0
