@@ -1,6 +1,6 @@
 [gd_scene load_steps=25 format=3 uid="uid://c4ejahhefrxgt"]
 
-[ext_resource type="Script" path="res://scenes/mob/wolf.gd" id="1_pvkr2"]
+[ext_resource type="Script" path="res://scenes/mob/enemy/wolf.gd" id="1_pvkr2"]
 [ext_resource type="Texture2D" uid="uid://d0lf1q8x0ptpg" path="res://assets/textures/mob/wolf/MiniWolf.png" id="2_5vo6p"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2uess"]

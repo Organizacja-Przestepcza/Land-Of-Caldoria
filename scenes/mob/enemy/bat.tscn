@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://cqatk1gs1ledq"]
 
-[ext_resource type="Script" path="res://scenes/mob/wolf.gd" id="1_fyyvd"]
-[ext_resource type="Texture2D" uid="uid://ujtimm1fmdv5" path="res://assets/textures/mob/bat/bat.png" id="2_ysr7f"]
+[ext_resource type="Script" path="res://scenes/mob/enemy/wolf.gd" id="1_fyyvd"]
+[ext_resource type="Texture2D" path="res://assets/textures/mob/bat/bat.png" id="2_ysr7f"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_cpci2"]
 atlas = ExtResource("2_ysr7f")
