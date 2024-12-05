@@ -90,7 +90,6 @@ func remove_item(itm: Item, amount: int):
 				break
 			amount = leftover
 			loop+=1
-			print(slot.name, " removed ", itm.name, " left: ", amount)
 		
 func remove_item_in_slot(slot: InventorySlot, amount: int) -> int: #returns the number of not removed items
 	if slot:

@@ -51,7 +51,6 @@ func add(amount: int) -> int: ## If there are leftover items, returns their amou
 
 func remove(amount: int) -> int: #returns the number of not removed items
 	var amount_to_remove = min(count, amount)
-	print("amount to remove: ", amount_to_remove)
 	count -= amount_to_remove
 	if count <= 0:
 		self.queue_free()
