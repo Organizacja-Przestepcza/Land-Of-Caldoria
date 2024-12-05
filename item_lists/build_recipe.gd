@@ -3,7 +3,7 @@ class_name BuildRecipe
 
 enum Layer {Floor, Object}
 
-var id: String ## for now does nothing
+var name: String ## what shows up in the build menu
 var layer: Layer
 var is_terrain: bool ## [code]true[/code] if the tile is a BetterTerrain terrain
 var source: int ## not necessary if [member is_terrain] is [code]true[/code]

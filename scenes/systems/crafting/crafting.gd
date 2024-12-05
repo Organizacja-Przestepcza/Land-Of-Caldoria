@@ -7,13 +7,6 @@ class_name Crafting
 @onready var recipe_list: ItemList = $MarginContainer/CraftingContainer/RecipeContainer/RecipeList
 var inventory_list: Dictionary
 
-class Ingredient:
-	var item: Item
-	var amount: int
-	func _init(itm,amnt) -> void:
-		item = itm
-		amount = amnt
-
 func open() -> void:
 	game.state = Game.State.INVENTORY
 	update_recipe_list()

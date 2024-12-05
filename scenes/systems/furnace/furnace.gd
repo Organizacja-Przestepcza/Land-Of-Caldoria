@@ -7,13 +7,6 @@ class_name Furnace
 
 var inventory_list: Dictionary
 
-class Ingredient:
-	var item: Item
-	var amount: int
-	func _init(itm,amnt) -> void:
-		item = itm
-		amount = amnt
-
 func open() -> void:
 	super()
 	update_recipe_list()
