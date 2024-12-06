@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="Item" load_steps=3 format=3 uid="uid://cxp21jdyicpe4"]
+
+[ext_resource type="Script" path="res://items/Item.gd" id="1_tyfua"]
+[ext_resource type="Texture2D" uid="uid://che3mehur728g" path="res://assets/textures/item/potions/hp_potion.png" id="2_urhbr"]
+
+[resource]
+script = ExtResource("1_tyfua")
+slot = 0
+name = "hp_potion"
+weight = 2
+texture = ExtResource("2_urhbr")
+max_stack_size = 1
+description = "amarena"
+value = 11
