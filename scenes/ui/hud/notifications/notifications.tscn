@@ -1,0 +1,33 @@
+[gd_scene load_steps=6 format=3 uid="uid://cm85hy4nglvyg"]
+
+[ext_resource type="Script" path="res://scenes/ui/hud/notifications/notifications.gd" id="1_nysjb"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_825r7"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_r80en"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1j427"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_oydmc"]
+
+[node name="Notifications" type="ItemList"]
+custom_minimum_size = Vector2(500, 0)
+layout_direction = 3
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_right = 20.0
+grow_vertical = 0
+size_flags_horizontal = 3
+focus_mode = 0
+theme_override_colors/guide_color = Color(0, 0, 0, 0)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hovered_color = Color(1, 1, 1, 1)
+theme_override_styles/focus = SubResource("StyleBoxEmpty_825r7")
+theme_override_styles/panel = SubResource("StyleBoxEmpty_r80en")
+theme_override_styles/hovered = SubResource("StyleBoxEmpty_1j427")
+theme_override_styles/selected = SubResource("StyleBoxEmpty_oydmc")
+allow_search = false
+auto_height = true
+script = ExtResource("1_nysjb")

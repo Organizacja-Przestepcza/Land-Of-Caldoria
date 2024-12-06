@@ -1,32 +1,35 @@
 extends Node
 
-var lists : Dictionary = {
-	
-}
+var lists_trade : Dictionary = {}
+var crafting_recipes : Dictionary = {}
+var furnace_recipes : Dictionary = {}
+var build_recipes: Dictionary = {}
 
 func _ready() -> void:
-	load_all_lists("res://item_lists/")
+	load_lists("res://item_lists/crafting")
+	load_lists("res://item_lists/trade")
+	load_lists("res://item_lists/building")
+	load_lists("res://item_lists/furnace")
 
-func load_all_lists(path: String):
-	var dir = DirAccess.open(path)
-	if DirAccess.get_open_error() == OK:
-		dir.list_dir_begin()
-		var file_name = dir.get_next()
-		while file_name != "":
-			if dir.current_is_dir():
-				load_all_lists(dir.get_current_dir() +"/"+ file_name + "/")
-			else:
-				if file_name == "loader.gd":
-					file_name = dir.get_next()
-					continue
-				var script: GDScript = load(path + file_name)
-				var list: Resource = script.new()
-				lists[list.id] = list.items
-			file_name = dir.get_next()
-	else:
-		printerr("Error: Couldn't open " + path)
+func load_lists(path: String):
+	var files = DirAccess.get_files_at(path)
+	for file in files:
+		var script: GDScript = load(path+"/"+file)
+		var obj: Resource = script.new()
+		if obj is ListTrade:
+			lists_trade[obj.id] = obj.items
+		elif obj is BuildRecipe:
+			build_recipes[obj.name] = obj
+		elif obj is CraftingRecipe:
+			crafting_recipes[obj.id] = obj
+		elif obj is FurnaceRecipe:
+			furnace_recipes[obj.id] = obj
 
-func byId(id: String) -> Dictionary:
-	if id in lists.keys():
-		return lists[id]
-	return {}
+func trade_id(id: String) -> Dictionary:
+	return lists_trade.get(id, {})
+
+func crafting_id(id: String) -> Dictionary:
+	return crafting_recipes.get(id, {})
+	
+func furnace_id(id: String) -> Dictionary:
+	return furnace_recipes.get(id, {})

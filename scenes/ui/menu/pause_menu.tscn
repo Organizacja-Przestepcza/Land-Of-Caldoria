@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://gna421381s1" path="res://scenes/ui/menu/load_menu.tscn" id="5_8jqla"]
 
 [node name="PauseMenu" type="CanvasLayer"]
-process_mode = 3
+process_mode = 2
 scale = Vector2(0.4, 0.4)
 transform = Transform2D(0.4, 0, 0, 0.4, 0, 0)
 script = ExtResource("1_cjn31")
@@ -70,18 +70,15 @@ theme_override_font_sizes/font_size = 48
 text = "Quit"
 
 [node name="OptionMenu" parent="." instance=ExtResource("3_awxyc")]
-unique_name_in_owner = true
 visible = false
 
 [node name="SaveMenu" parent="." instance=ExtResource("4_yadad")]
-unique_name_in_owner = true
 visible = false
 
 [node name="LoadMenu" parent="." instance=ExtResource("5_8jqla")]
-unique_name_in_owner = true
 visible = false
 
-[connection signal="pressed" from="TextureRect/VBoxContainer/ContinueButton" to="." method="toggle_menu"]
+[connection signal="pressed" from="TextureRect/VBoxContainer/ContinueButton" to="." method="toggle"]
 [connection signal="pressed" from="TextureRect/VBoxContainer/SaveButton" to="." method="_on_save_button_pressed"]
 [connection signal="pressed" from="TextureRect/VBoxContainer/LoadButton" to="." method="_on_load_button_pressed"]
 [connection signal="pressed" from="TextureRect/VBoxContainer/OptionsButton" to="." method="_on_options_button_pressed"]

@@ -1,7 +1,6 @@
 extends NPC
 
 func _ready() -> void: 
-	print("medic")
 	super()
 	health = 100
 	accepted_items = {

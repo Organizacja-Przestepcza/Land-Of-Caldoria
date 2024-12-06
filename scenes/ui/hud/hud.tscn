@@ -1,21 +1,23 @@
-[gd_scene load_steps=6 format=3 uid="uid://d26rkh5gvtfkh"]
+[gd_scene load_steps=4 format=3 uid="uid://d26rkh5gvtfkh"]
 
 [ext_resource type="Script" path="res://scenes/ui/hud/hud.gd" id="1_vbnoe"]
-[ext_resource type="PackedScene" uid="uid://c83lveoubd7vh" path="res://scenes/ui/hud/inventory/inventory.tscn" id="2_2o7xh"]
-[ext_resource type="PackedScene" uid="uid://b0bmpokyxvpu8" path="res://scenes/ui/hud/hotbar/hotbar.tscn" id="3_w082k"]
-[ext_resource type="PackedScene" uid="uid://de7ljcthumfav" path="res://scenes/ui/hud/crafting/crafting.tscn" id="4_ivrvv"]
-[ext_resource type="PackedScene" uid="uid://3pv4sb34k43p" path="res://scenes/ui/hud/chest/chest_menu.tscn" id="4_jsupn"]
+[ext_resource type="PackedScene" uid="uid://52kcruy75hex" path="res://scenes/ui/hud/health/health_bar.tscn" id="3_o1cj0"]
+[ext_resource type="PackedScene" uid="uid://cyle35g3r7yjd" path="res://scenes/ui/hud/hunger/hunger_bar.tscn" id="4_vnnwy"]
 
 [node name="Hud" type="CanvasLayer"]
 script = ExtResource("1_vbnoe")
 
-[node name="Inventory" parent="." instance=ExtResource("2_2o7xh")]
-visible = false
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
 
-[node name="Hotbar" parent="." instance=ExtResource("3_w082k")]
+[node name="HealthBar" parent="VBoxContainer" instance=ExtResource("3_o1cj0")]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
 
-[node name="Crafting" parent="." instance=ExtResource("4_ivrvv")]
-visible = false
+[node name="HungerBar" parent="VBoxContainer" instance=ExtResource("4_vnnwy")]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
 
-[node name="Chest" parent="." instance=ExtResource("4_jsupn")]
-visible = false
+[connection signal="death" from="VBoxContainer/HealthBar" to="." method="_on_death"]
+[connection signal="death" from="VBoxContainer/HungerBar" to="." method="_on_death"]

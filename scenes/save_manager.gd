@@ -1,16 +1,20 @@
 extends Resource
 class_name SaveManager
 const SAVE_GAME_DIR = "user://save/"
-var hud: Hud
+static var saves = []
 
 func create_save_data() -> SaveData:
+	var world: ProcWorld = WorldData.player.get_parent()
 	var s = SaveData.new()
 	s.world_name = WorldData.world_name
-	s.inventory = WorldData.player.hud.get_inventory_data()
+	s.inventory = WorldData.player.inventory.get_data()
 	s.player_global_position = WorldData.player.global_position
 	s.seed = WorldData.seed
 	s.size = WorldData.size
 	s.time = Time.get_datetime_string_from_system()
+	world.save_loaded_chunks_objects()
+	s.objects = world.object_tiles.duplicate(true)
+	print(s.objects)
 	return s
 
 func save(name:String) -> String:
@@ -20,19 +24,22 @@ func save(name:String) -> String:
 	else:
 		save_path = str(name + ".tres")
 	var data = create_save_data()
-	print("Data: ", data.inventory)
 	var error = ResourceSaver.save(data, SAVE_GAME_DIR + save_path)
-	print(error)
+	if error:
+		print(error)
 	return save_path
 	
 static func load_game(name:String) -> Resource:
 	if not ResourceLoader.exists(SAVE_GAME_DIR + name + ".tres"):
 		return
-	print(load(SAVE_GAME_DIR + name + ".tres"))
 	return ResourceLoader.load(SAVE_GAME_DIR + name + ".tres")
-	
-static func load_all() -> Array:
-	var saved_games = []
+
+static func remove_save(name: String) -> Error: # returns true if succesful
+	var err = DirAccess.remove_absolute(SAVE_GAME_DIR + name + ".tres")
+	return err
+
+static func load_all() -> void:
+	saves.clear()
 	if not DirAccess.dir_exists_absolute(SAVE_GAME_DIR):
 		DirAccess.make_dir_absolute(SAVE_GAME_DIR)
 	var dir = DirAccess.open(SAVE_GAME_DIR)
@@ -41,8 +48,7 @@ static func load_all() -> Array:
 		var file_name = dir.get_next()
 		while file_name != "":
 			if not dir.current_is_dir():
-				saved_games.append(file_name)
+				saves.append(file_name)
 			file_name = dir.get_next()
 	else:
 		print("Error occured")
-	return saved_games

@@ -1,0 +1,53 @@
+[gd_scene load_steps=2 format=3 uid="uid://3qegagme7w4c"]
+
+[ext_resource type="Script" path="res://scenes/systems/building/building.gd" id="1_veh8q"]
+
+[node name="BuildingMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_veh8q")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 25
+theme_override_constants/margin_top = 75
+theme_override_constants/margin_right = 25
+theme_override_constants/margin_bottom = 25
+
+[node name="BuildingContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 50
+alignment = 1
+
+[node name="BuildList" type="ItemList" parent="MarginContainer/BuildingContainer"]
+custom_minimum_size = Vector2(500, 250)
+layout_mode = 2
+size_flags_vertical = 3
+item_count = 3
+item_0/text = "Destroy"
+item_1/text = "Wall"
+item_2/text = "Furnace"
+
+[node name="ExitButton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -45.0
+offset_bottom = 46.0
+grow_horizontal = 0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+text = "x"
+
+[connection signal="item_selected" from="MarginContainer/BuildingContainer/BuildList" to="." method="_on_build_list_item_selected"]
+[connection signal="pressed" from="ExitButton" to="." method="_on_exit_button_pressed"]

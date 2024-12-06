@@ -1,0 +1,110 @@
+[gd_resource type="Resource" script_class="NoiseGeneratorSettings" load_steps=19 format=3 uid="uid://dmxmmyikn85ln"]
+
+[ext_resource type="Script" path="res://addons/gaea/modifiers/2D/modifier_2d.gd" id="1_4i30r"]
+[ext_resource type="Script" path="res://addons/gaea/generators/2D/noise_generator/noise_generator_settings.gd" id="2_5diri"]
+[ext_resource type="Script" path="res://addons/gaea/modifiers/2D/noise_painter.gd" id="2_ax0r8"]
+[ext_resource type="Script" path="res://addons/gaea/generators/2D/noise_generator/noise_generator_data.gd" id="3_goyon"]
+[ext_resource type="Script" path="res://addons/better-terrain-in-gaea/better_terrain_tile_info.gd" id="4_ssnc4"]
+[ext_resource type="Script" path="res://addons/gaea/tile_info/tilemap_tile_info.gd" id="5_fhr0w"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_cq6en"]
+
+[sub_resource type="Resource" id="Resource_7iana"]
+script = ExtResource("4_ssnc4")
+tilemap_layer = 3
+terrain = 0
+id = ""
+layer = 0
+
+[sub_resource type="Resource" id="Resource_gi6m8"]
+script = ExtResource("2_ax0r8")
+noise = SubResource("FastNoiseLite_cq6en")
+ignore_empty_cells = true
+tile = SubResource("Resource_7iana")
+min = -1.0
+max = 1.0
+bounds_enabled = true
+bounds_max = Vector2(32, 16)
+bounds_min = Vector2(0, 0)
+salt = 2669307649
+enabled = true
+filter_type = 0
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_h4te1"]
+seed = 1
+
+[sub_resource type="Resource" id="Resource_56f0v"]
+resource_name = "Water"
+script = ExtResource("5_fhr0w")
+type = 0
+tilemap_layer = 0
+source_id = 1
+atlas_coord = Vector2i(0, 0)
+alternative_tile = 0
+id = "water"
+layer = 0
+
+[sub_resource type="Resource" id="Resource_jc7p6"]
+resource_name = "water"
+script = ExtResource("3_goyon")
+title = "water"
+tile = SubResource("Resource_56f0v")
+min = -1.0
+max = 1.0
+
+[sub_resource type="Resource" id="Resource_8jydq"]
+resource_name = "Sand"
+script = ExtResource("4_ssnc4")
+tilemap_layer = 1
+terrain = 1
+id = "sand"
+layer = 1
+
+[sub_resource type="Resource" id="Resource_bf6od"]
+resource_name = "sand"
+script = ExtResource("3_goyon")
+title = "sand"
+tile = SubResource("Resource_8jydq")
+min = -0.1
+max = 0.1
+
+[sub_resource type="Resource" id="Resource_bipha"]
+resource_name = "Dirt"
+script = ExtResource("4_ssnc4")
+tilemap_layer = 2
+terrain = 2
+id = "dirt"
+layer = 2
+
+[sub_resource type="Resource" id="Resource_c6a50"]
+resource_name = "dirt"
+script = ExtResource("3_goyon")
+title = "dirt"
+tile = SubResource("Resource_bipha")
+min = -0.05
+max = 0.15
+
+[sub_resource type="Resource" id="Resource_qb2y4"]
+resource_name = "Grass"
+script = ExtResource("4_ssnc4")
+tilemap_layer = 3
+terrain = 0
+id = "grass"
+layer = 3
+
+[sub_resource type="Resource" id="Resource_clwsu"]
+resource_name = "grass"
+script = ExtResource("3_goyon")
+title = "grass"
+tile = SubResource("Resource_qb2y4")
+min = 0.01
+max = 1.0
+
+[resource]
+resource_name = "Settings"
+script = ExtResource("2_5diri")
+tiles = Array[ExtResource("3_goyon")]([SubResource("Resource_jc7p6"), SubResource("Resource_bf6od"), SubResource("Resource_c6a50"), SubResource("Resource_clwsu")])
+noise = SubResource("FastNoiseLite_h4te1")
+infinite = true
+falloff_enabled = false
+modifiers = Array[ExtResource("1_4i30r")]([SubResource("Resource_gi6m8")])
