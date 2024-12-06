@@ -1,7 +1,7 @@
 extends Control
 
 @export var invSize: int = 30
-@export var slotSize: Vector2 = Vector2(64,64)
+@export var slotSize: Vector2 = Vector2(64, 64)
 
 @onready var chest = $HBoxContainer/ChestContainer/ChestInventory
 

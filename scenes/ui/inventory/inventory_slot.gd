@@ -4,7 +4,7 @@ extends PanelContainer
 @export var type: Type
 @export var id: int
 
-enum Type { MAIN, HEAD, ARMS, TORSO, LEGS, FEET, CHEST }
+enum Type { MAIN, HEAD, ARMS, TORSO, LEGS, FEET }
 
 func _init(t: Type, cms: Vector2) -> void:
 	type = t
