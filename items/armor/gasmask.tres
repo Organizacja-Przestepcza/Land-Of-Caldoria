@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="Item" load_steps=3 format=3 uid="uid://cc1n1pgicu7gt"]
+
+[ext_resource type="Script" path="res://items/Item.gd" id="1_5cwnr"]
+[ext_resource type="Texture2D" uid="uid://qfjgeqv6fjp7" path="res://assets/textures/item/armor/gasmask.png" id="2_rcb1d"]
+
+[resource]
+script = ExtResource("1_5cwnr")
+slot = 0
+name = "Gas Mask"
+weight = 1
+texture = ExtResource("2_rcb1d")
+max_stack_size = 1
+description = "Tube not included"
+value = 0
