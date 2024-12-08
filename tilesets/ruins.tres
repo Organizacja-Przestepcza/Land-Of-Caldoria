@@ -1,10 +1,6 @@
-[gd_resource type="TileSet" load_steps=5 format=3 uid="uid://dpqylfwibmxl2"]
-
-[ext_resource type="Texture2D" uid="uid://j0xvhotm7q2d" path="res://assets/textures/tilesets/ground_tileset_32.png" id="1_thco6"]
-[ext_resource type="Texture2D" uid="uid://s63rb550main" path="res://assets/textures/tilesets/ruins_meadows.png" id="2_rbo77"]
+[gd_resource type="TileSet" load_steps=3 format=3 uid="uid://dpqylfwibmxl2"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_86u0u"]
-texture = ExtResource("1_thco6")
 texture_region_size = Vector2i(32, 32)
 0:0/0 = 0
 1:0/0 = 0
@@ -196,14 +192,10 @@ texture_region_size = Vector2i(32, 32)
 11:15/0 = 0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_yxgio"]
-texture = ExtResource("2_rbo77")
 texture_region_size = Vector2i(32, 32)
-0:3/size_in_atlas = Vector2i(2, 2)
 0:3/0 = 0
 3:2/0 = 0
-0:0/size_in_atlas = Vector2i(3, 3)
 0:0/0 = 0
-3:0/size_in_atlas = Vector2i(2, 2)
 3:0/0 = 0
 
 [resource]
