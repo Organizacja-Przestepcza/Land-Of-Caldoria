@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="Item" load_steps=3 format=3 uid="uid://bqtoddjnphbhl"]
+
+[ext_resource type="Script" path="res://items/Item.gd" id="1_oy3jo"]
+[ext_resource type="Texture2D" uid="uid://x7e2jheejo5l" path="res://assets/textures/item/resource/wool.png" id="2_un2mf"]
+
+[resource]
+script = ExtResource("1_oy3jo")
+slot = 0
+name = "wool"
+weight = 1
+texture = ExtResource("2_un2mf")
+max_stack_size = 6
+description = "sheep_wool"
+value = 5

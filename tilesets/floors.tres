@@ -1,12 +1,6 @@
-[gd_resource type="TileSet" load_steps=9 format=3 uid="uid://btvfeolghs56u"]
-
-[ext_resource type="Texture2D" uid="uid://chd22bafdu5hb" path="res://assets/textures/tilesets/stone_floor.png" id="1_8yj1k"]
-[ext_resource type="Texture2D" uid="uid://dn0dcd1prienb" path="res://assets/textures/tilesets/hole.png" id="2_jscas"]
-[ext_resource type="Texture2D" uid="uid://d2g8ja1jhp5fo" path="res://assets/textures/tilesets/Tilled_Dirt.png" id="3_6oa82"]
-[ext_resource type="Texture2D" uid="uid://j0xvhotm7q2d" path="res://assets/textures/tilesets/ground_tileset_32.png" id="4_krjlt"]
+[gd_resource type="TileSet" load_steps=5 format=3 uid="uid://btvfeolghs56u"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_egr3f"]
-texture = ExtResource("1_8yj1k")
 texture_region_size = Vector2i(32, 32)
 0:0/0 = 0
 0:0/0/metadata/_better_terrain = {
@@ -14,12 +8,10 @@ texture_region_size = Vector2i(32, 32)
 }
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_bd2ua"]
-texture = ExtResource("2_jscas")
 texture_region_size = Vector2i(32, 32)
 0:0/0 = 0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_oepho"]
-texture = ExtResource("3_6oa82")
 texture_region_size = Vector2i(32, 32)
 0:0/0 = 0
 0:0/0/metadata/_better_terrain = {
@@ -27,7 +19,6 @@ texture_region_size = Vector2i(32, 32)
 }
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_0ki0i"]
-texture = ExtResource("4_krjlt")
 texture_region_size = Vector2i(32, 32)
 0:0/0 = 0
 0:0/0/metadata/_better_terrain = {
