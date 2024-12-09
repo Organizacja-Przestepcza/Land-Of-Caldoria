@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="Ranged" load_steps=3 format=3 uid="uid://dmiedj0dbxo6f"]
 
 [ext_resource type="Script" path="res://items/Ranged.gd" id="1_xyv4c"]
-[ext_resource type="Texture2D" uid="uid://dpsjm4xmqd6jq" path="res://assets/textures/item/tools/guns/muskeet.png" id="2_a3d3k"]
+[ext_resource type="Texture2D" uid="uid://dpsjm4xmqd6jq" path="res://assets/textures/item/tools/guns/muskeet.png" id="2_pjkpo"]
 
 [resource]
 script = ExtResource("1_xyv4c")
@@ -13,7 +13,7 @@ cooldown = 25.0
 slot = 0
 name = "Muskeet"
 weight = 10
-texture = ExtResource("2_a3d3k")
+texture = ExtResource("2_pjkpo")
 max_stack_size = 1
 description = "Not water proof"
 value = 30

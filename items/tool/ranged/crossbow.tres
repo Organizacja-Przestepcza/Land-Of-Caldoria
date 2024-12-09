@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="Ranged" load_steps=3 format=3 uid="uid://c8y63uhjj8cpn"]
 
 [ext_resource type="Script" path="res://items/Ranged.gd" id="1_m3mm8"]
-[ext_resource type="Texture2D" uid="uid://dae0q4k8s1jav" path="res://assets/textures/item/tools/guns/Crossbow.png" id="2_aa57a"]
+[ext_resource type="Texture2D" uid="uid://dae0q4k8s1jav" path="res://assets/textures/item/tools/guns/Crossbow.png" id="2_qeuak"]
 
 [resource]
 script = ExtResource("1_m3mm8")
@@ -13,7 +13,7 @@ cooldown = 15.0
 slot = 0
 name = "Crossbow"
 weight = 7
-texture = ExtResource("2_aa57a")
+texture = ExtResource("2_qeuak")
 max_stack_size = 1
 description = "takes forever to load"
 value = 30
