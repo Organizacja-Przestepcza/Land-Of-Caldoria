@@ -6,7 +6,6 @@ func _ready() -> void:
 	speed = 40
 	strength = 5
 	player = get_parent().get_node("%Player")
-	add_to_group("enemies")
 
 func _physics_process(delta: float) -> void:
 	if chase_player:

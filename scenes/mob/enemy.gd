@@ -4,7 +4,7 @@ var speed: int
 var strength: int
 var bounce_force: int = 300
 var chase_player = false
-var killed_count: int
+var killed_count: int = 0
 
 signal enemy_killed(killed_count)
 
@@ -72,7 +72,6 @@ func die():
 	chase_player = false
 	killed_count += 1
 	emit_signal("enemy_killed", killed_count)
-	print(killed_count)
 	$AnimatedSprite2D.play("death")
 	$AnimatedSprite2D.animation_finished.connect(func (): queue_free())
 	
