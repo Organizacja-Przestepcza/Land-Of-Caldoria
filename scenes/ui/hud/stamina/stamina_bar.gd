@@ -3,25 +3,22 @@ class_name Stamina
 @onready var player: Player =  $"../../.."
 var stamina_decrease_rate = 10.0
 var stamina_timer = 0.0
-@onready var stamina_bar: ProgressBar = %HungerProgressBar 
-signal death(cause: String)
+@onready var stamina_progress_bar: ProgressBar = %StaminaProgressBar
+
+func _process(delta: float) -> void:
+	match player.state:
+		player.State.IDLE: modify_stamina(1)
+		player.State.WALK: modify_stamina(0)
+		player.State.SPRINT: modify_stamina(-1)
 
 func _ready() -> void:
 	player = get_tree().current_scene.get_node("Player")
 	player.stamina = player.max_stamina
 
-func _process(delta):
-	stamina_timer += delta
-	if stamina_timer >= stamina_decrease_rate:
-		modify_stamina(0)
-		stamina_timer = 0.0
-	if player.stamina <= 0:
-		emit_signal("death", "hunger")
 
 func modify_stamina(value: int):
-	if player.stamina > 0:
 		player.stamina += value
 		update_stamina_bar()
 
 func update_stamina_bar():
-	stamina_bar.value = float(player.stamina)/player.max_stamina*100
+	stamina_progress_bar.value = float(player.stamina)/player.max_stamina*100
