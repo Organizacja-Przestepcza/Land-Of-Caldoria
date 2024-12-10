@@ -1,0 +1,31 @@
+[gd_scene load_steps=3 format=3 uid="uid://bds2vul2jv61b"]
+
+[ext_resource type="Script" path="res://scenes/ui/hud/stamina/stamina_bar.gd" id="1_dtmqm"]
+[ext_resource type="Texture2D" uid="uid://oxvbued8vp6j" path="res://assets/textures/ui/hud/stamina/stamina_symbol.png" id="2_2dffj"]
+
+[node name="Stamina" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_dtmqm")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.142361
+anchor_bottom = 0.0493827
+offset_right = 164.0
+offset_bottom = 42.0
+metadata/_edit_use_anchors_ = true
+
+[node name="StaminaTextureProgressBar" type="TextureRect" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("2_2dffj")
+
+[node name="StaminaProgressBar" type="ProgressBar" parent="HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(128, 24)
+layout_mode = 2
+size_flags_vertical = 8
+value = 100.0

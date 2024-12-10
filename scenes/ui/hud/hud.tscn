@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://d26rkh5gvtfkh"]
+[gd_scene load_steps=5 format=3 uid="uid://d26rkh5gvtfkh"]
 
 [ext_resource type="Script" path="res://scenes/ui/hud/hud.gd" id="1_vbnoe"]
 [ext_resource type="PackedScene" uid="uid://52kcruy75hex" path="res://scenes/ui/hud/health/health_bar.tscn" id="3_o1cj0"]
+[ext_resource type="PackedScene" uid="uid://bds2vul2jv61b" path="res://scenes/ui/hud/stamina/stamina_bar.tscn" id="4_7ymge"]
 [ext_resource type="PackedScene" uid="uid://cyle35g3r7yjd" path="res://scenes/ui/hud/hunger/hunger_bar.tscn" id="4_vnnwy"]
 
 [node name="Hud" type="CanvasLayer"]
@@ -17,6 +18,9 @@ layout_mode = 2
 
 [node name="HungerBar" parent="VBoxContainer" instance=ExtResource("4_vnnwy")]
 custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+
+[node name="StaminaBar" parent="VBoxContainer" instance=ExtResource("4_7ymge")]
 layout_mode = 2
 
 [connection signal="death" from="VBoxContainer/HealthBar" to="." method="_on_death"]
