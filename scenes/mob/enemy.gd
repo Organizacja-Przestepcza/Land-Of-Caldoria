@@ -6,7 +6,7 @@ var bounce_force: int = 300
 var chase_player = false
 var killed_count: int = 0
 
-signal enemy_killed(killed_count)
+signal enemy_killed(mob_name: String)
 
 func _physics_process(delta: float) -> void:
 	if chase_player:
@@ -61,6 +61,8 @@ func _on_detection_area_body_exited(body: Node2D) -> void:
 		$AnimatedSprite2D.play("idle")
 
 func take_damage(damage: int) -> bool: ## returns true if the object was destroyed
+	if health <= 0:
+		return true
 	health = health - damage
 	handle_healthbar()
 	if health <= 0:
@@ -71,7 +73,7 @@ func take_damage(damage: int) -> bool: ## returns true if the object was destroy
 func die():
 	chase_player = false
 	killed_count += 1
-	emit_signal("enemy_killed", killed_count)
+	emit_signal("enemy_killed", mob_name)
 	$AnimatedSprite2D.play("death")
 	$AnimatedSprite2D.animation_finished.connect(func (): queue_free())
 	
