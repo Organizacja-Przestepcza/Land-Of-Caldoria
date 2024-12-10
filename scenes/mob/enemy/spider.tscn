@@ -1,7 +1,7 @@
 [gd_scene load_steps=18 format=3 uid="uid://bmiprnvtinnwl"]
 
-[ext_resource type="Script" path="res://scenes/mob/wolf.gd" id="1_7eo4v"]
-[ext_resource type="Texture2D" uid="uid://ducwvv0imjv6u" path="res://assets/textures/mob/spider/Spider Sprite Sheet.png" id="2_jwc57"]
+[ext_resource type="Script" path="res://scenes/mob/enemy/wolf.gd" id="1_7eo4v"]
+[ext_resource type="Texture2D" path="res://assets/textures/mob/spider/Spider Sprite Sheet.png" id="2_jwc57"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_lacgm"]
 atlas = ExtResource("2_jwc57")
