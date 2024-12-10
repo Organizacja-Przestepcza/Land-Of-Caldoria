@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="Consumable" load_steps=3 format=3 uid="uid://cqrolue8kujcs"]
+
+[ext_resource type="Script" path="res://items/Consumable.gd" id="1_3d4vv"]
+[ext_resource type="Texture2D" uid="uid://dxq06ixvormc1" path="res://assets/textures/item/food/carrot.png" id="2_5ggmc"]
+
+[resource]
+script = ExtResource("1_3d4vv")
+hunger_value = 7
+health_value = 0
+slot = 0
+name = "Carrot"
+weight = 1
+texture = ExtResource("2_5ggmc")
+max_stack_size = 8
+description = "Restores 7 hunger"
+value = 0

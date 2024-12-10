@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="Item" load_steps=3 format=3 uid="uid://0fisnwwfury8"]
+
+[ext_resource type="Script" path="res://items/Item.gd" id="1_56c31"]
+[ext_resource type="Texture2D" uid="uid://cmvndvkjj5dp3" path="res://assets/textures/item/resource/sand.png" id="2_o7da0"]
+
+[resource]
+script = ExtResource("1_56c31")
+slot = 0
+name = "sand"
+weight = 1
+texture = ExtResource("2_o7da0")
+max_stack_size = 12
+description = "sand"
+value = 0

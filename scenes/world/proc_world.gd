@@ -14,6 +14,7 @@ class_name ProcWorld
 var chunk_loader: ChunkLoader
 var h_noise: FastNoiseLite ## height noise
 var user_seed = WorldData.seed
+@onready var wolfs_quest: QuestResource
 
 var object_tiles: Dictionary = {}
 var floor_tiles: Dictionary = {}
@@ -40,7 +41,7 @@ func _ready() -> void:
 	noise_generator.add_child(chunk_loader)
 	get_tree().paused = false
 	generate_village()
-
+	
 func _input(event: InputEvent) -> void:
 	if event is InputEventKey:
 		if event.keycode == KEY_BACKSPACE and event.echo == false and event.pressed == true:
@@ -199,6 +200,7 @@ func chance_spawn_mob(pos: Vector2) -> void:
 		if randi_range(0, 1000) <= 2: # 0.2% chance
 			var mob_name = _random_mob_name()
 			var mob = mob_types[mob_name].instantiate()
+			mob.add_to_group("enemies")
 			mob.global_position = pos
 			add_child(mob)
 

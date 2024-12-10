@@ -1,12 +1,15 @@
 extends Control
 class_name Interface
+@onready var game: Game = %Game
+
 
 func open() -> void:
-	%Game.state = Game.State.INVENTORY
+	game.state = Game.State.INVENTORY
 	get_tree().paused = true
 	self.visible = true
 	
 func close() -> void:
-	%Game.state = Game.State.PLAYING
+	game.state = Game.State.PLAYING
+	print("close")
 	get_tree().paused = false
 	self.visible = false

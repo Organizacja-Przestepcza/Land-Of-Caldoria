@@ -1,19 +1,14 @@
 extends Control
 class_name Crafting
 @onready var inventory: Inventory = $"../Inventory"
+@onready var game: Game = %Game
 
 @onready var ingredients_list: ItemList = $MarginContainer/CraftingContainer/IngredientsContainer/IngredientsList
 @onready var recipe_list: ItemList = $MarginContainer/CraftingContainer/RecipeContainer/RecipeList
 var inventory_list: Dictionary
 
-class Ingredient:
-	var item: Item
-	var amount: int
-	func _init(itm,amnt) -> void:
-		item = itm
-		amount = amnt
-
 func open() -> void:
+	game.state = Game.State.INVENTORY
 	update_recipe_list()
 	inventory_list = inventory.to_list()
 
@@ -23,8 +18,9 @@ func update_recipe_list():
 		recipe_list.add_item(recipe.result.name + " Amount: " + str(recipe.amount))
 		recipe_list.set_item_metadata(recipe_list.item_count-1,recipe)
 
+
 func _on_exit_button_pressed() -> void:
-	get_parent().close()
+	visible = false
 
 func _on_recipe_list_item_selected(index: int) -> void:
 	update_ingredients_list(index)
@@ -48,7 +44,8 @@ func _on_craft_button_pressed() -> void:
 		for i in range(item_count):
 			var ingredient: Ingredient = ingredients_list.get_item_metadata(i)
 			inventory.remove_item(ingredient.item,ingredient.amount)
-			inventory_list[ingredient.item] -= ingredient.count
+			
+			inventory_list[ingredient.item] -= ingredient.amount
 		var t = recipe_list.get_selected_items()
 		var recipe = recipe_list.get_item_metadata(t[0])
 		inventory.add_item(recipe.result,recipe.amount)

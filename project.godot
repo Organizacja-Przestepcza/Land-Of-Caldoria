@@ -22,6 +22,7 @@ ItemLoader="*res://items/loader.gd"
 ListLoader="*res://item_lists/loader.gd"
 BetterTerrain="*res://addons/better-terrain/BetterTerrain.gd"
 Settings="*res://settings.gd"
+Questify="*res://addons/questify/quest_manager.gd"
 
 [display]
 
@@ -32,9 +33,14 @@ window/stretch/aspect="expand"
 
 project/assembly_name="Land Of Caldoria"
 
+[editor]
+
+version_control/plugin_name="GitPlugin"
+version_control/autoload_on_startup=true
+
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/better-terrain/plugin.cfg", "res://addons/gaea/plugin.cfg")
+enabled=PackedStringArray("res://addons/ScriptEditorQoL/plugin.cfg", "res://addons/better-terrain/plugin.cfg", "res://addons/gaea/plugin.cfg", "res://addons/questify/plugin.cfg", "res://addons/script-ide/plugin.cfg")
 
 [file_customization]
 
@@ -133,6 +139,11 @@ ui_stats={
 2d_physics/layer_2="objects"
 2d_physics/layer_4="mobs"
 2d_physics/layer_5="npc"
+
+[questify]
+
+general/update_polling=true
+general/update_interval=0.5
 
 [rendering]
 

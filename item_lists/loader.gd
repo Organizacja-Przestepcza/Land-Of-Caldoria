@@ -1,17 +1,10 @@
 extends Node
 
-var lists_trade : Dictionary = {
-	
-}
-var crafting_recipes : Dictionary = {
-	
-}
-var build_recipes : Dictionary = {
-	
-}
-var furnace_recipes : Dictionary = {
-	
-}
+var lists_trade : Dictionary = {}
+var crafting_recipes : Dictionary = {}
+var furnace_recipes : Dictionary = {}
+var build_recipes: Dictionary = {}
+
 func _ready() -> void:
 	load_lists("res://item_lists/crafting")
 	load_lists("res://item_lists/trade")
@@ -25,6 +18,8 @@ func load_lists(path: String):
 		var obj: Resource = script.new()
 		if obj is ListTrade:
 			lists_trade[obj.id] = obj.items
+		elif obj is BuildRecipe:
+			build_recipes[obj.name] = obj
 		elif obj is CraftingRecipe:
 			crafting_recipes[obj.id] = obj
 		elif obj is FurnaceRecipe:

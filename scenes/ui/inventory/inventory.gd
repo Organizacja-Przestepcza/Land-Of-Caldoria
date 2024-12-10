@@ -58,7 +58,7 @@ func find_item(itm: Item) -> InventorySlot:
 		for slot in container.get_children():
 			if not slot.get_child_count() == 0:
 				var item: InventoryItem = slot.get_child(0)
-				if item.data.name == itm.name:
+				if item.data.name == itm.name and item.count > 0:
 					return slot
 	return null
 
@@ -80,11 +80,16 @@ func add_item(item: Item, amount: int) -> void:
 			add_item(item, leftover)
 			
 func remove_item(itm: Item, amount: int):
+	var loop = 0
 	while amount > 0:
 		var slot: InventorySlot = find_item(itm)
 		if slot:
 			var leftover = remove_item_in_slot(slot, amount)
+			if amount == leftover and loop > 5:
+				printerr("infinite loop detected") # PROPER FIX REQUIRED
+				break
 			amount = leftover
+			loop+=1
 		
 func remove_item_in_slot(slot: InventorySlot, amount: int) -> int: #returns the number of not removed items
 	if slot:
@@ -151,7 +156,7 @@ func to_list() -> Dictionary:
 	for c in containers:
 		for slot in c.get_children():
 			if !slot.get_child_count():
-				return list
+				continue
 			var item:InventoryItem = slot.get_child(0)
 			if item and item.count > 0:
 				if list.has(item.data):

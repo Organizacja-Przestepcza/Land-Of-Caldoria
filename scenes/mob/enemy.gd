@@ -4,6 +4,9 @@ var speed: int
 var strength: int
 var bounce_force: int = 300
 var chase_player = false
+var killed_count: int
+
+signal enemy_killed(killed_count)
 
 func _physics_process(delta: float) -> void:
 	if chase_player:
@@ -67,6 +70,9 @@ func take_damage(damage: int) -> bool: ## returns true if the object was destroy
 
 func die():
 	chase_player = false
+	killed_count += 1
+	emit_signal("enemy_killed", killed_count)
+	print(killed_count)
 	$AnimatedSprite2D.play("death")
 	$AnimatedSprite2D.animation_finished.connect(func (): queue_free())
 	

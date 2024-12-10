@@ -1,12 +1,12 @@
 extends Enemy
 
-var chase_player = false
 func _ready() -> void:
 	mob_name = "Bat"
 	health = 10
 	speed = 40
 	strength = 5
 	player = get_parent().get_node("%Player")
+	add_to_group("enemies")
 
 func _physics_process(delta: float) -> void:
 	if chase_player:

@@ -6,7 +6,8 @@ enum TabName {
 	Inventory,
 	Crafting,
 	Building,
-	Stats
+	Stats,
+	Quests
 }
 
 func open(tab: TabName) -> void:
