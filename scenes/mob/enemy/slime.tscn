@@ -1,6 +1,6 @@
 [gd_scene load_steps=46 format=3 uid="uid://d1motrwehdjwo"]
 
-[ext_resource type="Script" path="res://scenes/mob/slime.gd" id="1_0ap38"]
+[ext_resource type="Script" path="res://scenes/mob/enemy/slime.gd" id="1_0ap38"]
 [ext_resource type="Texture2D" uid="uid://clxnarstqlp3h" path="res://assets/textures/mob/slime/slime_idle1.png" id="2_3l7eg"]
 [ext_resource type="Texture2D" uid="uid://bc6dlkavklqpm" path="res://assets/textures/mob/slime/slime_swallow.png" id="2_qoyuc"]
 [ext_resource type="Texture2D" uid="uid://dswwmbnxb851u" path="res://assets/textures/mob/slime/slime_die.png" id="2_qx31m"]

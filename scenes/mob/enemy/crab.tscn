@@ -1,6 +1,6 @@
 [gd_scene load_steps=14 format=3 uid="uid://bo0ydrqsetcuu"]
 
-[ext_resource type="Script" path="res://scenes/mob/crab.gd" id="1_ersw6"]
+[ext_resource type="Script" path="res://scenes/mob/enemy/crab.gd" id="1_ersw6"]
 [ext_resource type="Texture2D" uid="uid://dihif2olxo83u" path="res://assets/textures/mob/crab/CrabMoving1.png" id="2_6dgns"]
 [ext_resource type="Texture2D" uid="uid://jxrfvhn4wpn" path="res://assets/textures/mob/crab/Crab_Attack1.png" id="2_ynre2"]
 [ext_resource type="Texture2D" uid="uid://bdkscjsn0cujr" path="res://assets/textures/mob/crab/CrabMoving2.png" id="3_07q73"]
