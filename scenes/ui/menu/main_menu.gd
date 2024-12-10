@@ -23,17 +23,17 @@ signal options_button_pressed
 
 
 func _on_exit_button_button_pressed() -> void:
-	emit_signal("exit_button_pressed")
+	exit_button_pressed.emit()
 
 signal exit_button_pressed
 
 
 func _on_start_button_button_pressed() -> void:
-	emit_signal("start_button_pressed")
+	start_button_pressed.emit()
 	
 signal start_button_pressed
 
 
 func _on_load_button_button_pressed() -> void:
-	emit_signal("load_button_pressed")
+	load_button_pressed.emit()
 signal load_button_pressed
