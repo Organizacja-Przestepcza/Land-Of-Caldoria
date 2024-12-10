@@ -12,4 +12,4 @@ func _try_loading() -> void:
 
 	_last_position = actor_position
 	_update_loading(actor_position)
-	emit_signal("chunk_changed", actor_position)
+	chunk_changed.emit(actor_position)

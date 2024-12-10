@@ -6,7 +6,7 @@ var save_manager: SaveManager
 var save_name:String
 
 func _on_cancel_button_pressed() -> void:
-	emit_signal("save_cancel_pressed")
+	save_cancel_pressed.emit()
 	saves_list.deselect_all()
 signal save_cancel_pressed
 
@@ -27,7 +27,7 @@ func _on_save_button_pressed() -> void:
 	if saves_list.is_anything_selected():
 		save_name = saves_list.get_item_text(saves_list.get_selected_items()[0])
 	
-	var filename = save_manager.save(save_name)
+	save_manager.save(save_name)
 	display_saves()
 	load_menu.display_saves()
 
@@ -35,7 +35,7 @@ func _on_save_name_text_changed(new_text: String) -> void:
 	save_name = new_text
 
 
-func _on_saves_list_empty_clicked(at_position: Vector2, mouse_button_index: int) -> void:
+func _on_saves_list_empty_clicked(_at_position: Vector2, _mouse_button_index: int) -> void:
 	saves_list.deselect_all()
 
 

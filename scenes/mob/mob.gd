@@ -18,7 +18,7 @@ func _ready() -> void:
 	print(player)
 	notifications = player.notifications
 
-func despawn(chunk_position):
+func despawn(_chunk_position):
 	var dist_to_player = self.global_position.distance_squared_to(player.global_position)
 	if dist_to_player > 3000000:
 		world.chunk_loader.chunk_changed.disconnect(despawn)

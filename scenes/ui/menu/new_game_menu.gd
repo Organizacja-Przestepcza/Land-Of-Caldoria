@@ -2,11 +2,11 @@ extends Control
 
 signal backbutton_pressed
 
-func _on_name_field_text_changed(new_text: String) -> void:
+func _on_name_field_text_changed(_new_text: String) -> void:
 	WorldData.world_name = %NameField.text
 
 func _on_back_button_pressed() -> void:
-	emit_signal("backbutton_pressed")
+	backbutton_pressed.emit()
 
 func _on_new_game_button_pressed() -> void:
 	var user_seed: int

@@ -234,7 +234,6 @@ func _on_chunk_rendered(chunk_position: Vector2i) -> void:
 
 func _on_chunk_changed(chunk_position: Vector2i): # this function could probably be done better, so it unloads just unloaded chunks
 	for chunk in object_tiles.keys(): 
-		var is_changed_chunk_required = chunk_loader._get_required_chunks(chunk_position).has(chunk_position)
 		if not chunk_loader._get_required_chunks(chunk_position).has(chunk): # if chunk is not required
 			unload_objects(chunk)
 

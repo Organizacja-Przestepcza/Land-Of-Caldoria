@@ -80,7 +80,7 @@ func play_animation() -> void:
 		$AnimatedSprite2D.flip_h = 0
 		facing = Direction.Up
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	get_input()
 	move_and_slide()
 	play_animation()
