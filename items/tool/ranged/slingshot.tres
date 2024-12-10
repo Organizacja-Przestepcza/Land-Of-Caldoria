@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="Ranged" load_steps=3 format=3 uid="uid://dubnaus7bfy10"]
+
+[ext_resource type="Script" path="res://items/Ranged.gd" id="1_3x4mn"]
+[ext_resource type="Texture2D" uid="uid://cjvgy2t24jgwu" path="res://assets/textures/item/tools/guns/Slingshot.png" id="2_qimar"]
+
+[resource]
+script = ExtResource("1_3x4mn")
+damage = 6
+durability = 100
+knockback = 1
+range = 5.0
+cooldown = 2.0
+slot = 0
+name = "Slingshot"
+weight = 1
+texture = ExtResource("2_qimar")
+max_stack_size = 1
+description = "pew pew pew"
+value = 30

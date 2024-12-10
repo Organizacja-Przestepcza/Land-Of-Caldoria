@@ -1,6 +1,6 @@
 [gd_scene load_steps=25 format=3 uid="uid://cqg8foh8rbto4"]
 
-[ext_resource type="Script" path="res://scenes/mob/bear.gd" id="1_xyaod"]
+[ext_resource type="Script" path="res://scenes/mob/enemy/bear.gd" id="1_xyaod"]
 [ext_resource type="Texture2D" uid="uid://bugwujbwkp7ia" path="res://assets/textures/mob/bear/MiniBear.png" id="2_d4grm"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_uu1j0"]

@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="Item" load_steps=3 format=3 uid="uid://dqxobkrhsru1q"]
+
+[ext_resource type="Script" path="res://items/Item.gd" id="1_w2755"]
+[ext_resource type="Texture2D" uid="uid://b5iit12sllrwq" path="res://assets/textures/item/tools/light/lamp.png" id="2_xwlfc"]
+
+[resource]
+script = ExtResource("1_w2755")
+slot = 0
+name = "Lamp"
+weight = 3
+texture = ExtResource("2_xwlfc")
+max_stack_size = 1
+description = "Bright"
+value = 0
