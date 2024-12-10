@@ -1,15 +1,18 @@
-[gd_resource type="Resource" script_class="Ranged" load_steps=3 format=3 uid="uid://c8y63uhjj8cpn"]
+[gd_resource type="Resource" script_class="Ranged" load_steps=5 format=3 uid="uid://c8y63uhjj8cpn"]
 
+[ext_resource type="Script" path="res://items/Item.gd" id="1_jggio"]
 [ext_resource type="Script" path="res://items/Ranged.gd" id="1_m3mm8"]
 [ext_resource type="Texture2D" uid="uid://dae0q4k8s1jav" path="res://assets/textures/item/tools/guns/Crossbow.png" id="2_qeuak"]
+[ext_resource type="Resource" uid="uid://b6b7iop2tmu02" path="res://items/ammunition/arrow.tres" id="2_qsh1b"]
 
 [resource]
 script = ExtResource("1_m3mm8")
-damage = 10
 durability = 100
 knockback = 1
 range = 15.0
-cooldown = 15.0
+cooldown = 7.5
+ammo_list = Array[ExtResource("1_jggio")]([ExtResource("2_qsh1b")])
+damage_list = Array[int]([12])
 slot = 0
 name = "Crossbow"
 weight = 7
