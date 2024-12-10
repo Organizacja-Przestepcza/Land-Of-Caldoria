@@ -19,7 +19,8 @@ func load_all_items(path: String):
 					file_name = dir.get_next()
 					continue
 				var item = load(path + file_name)
-				items[item.name.to_lower().replace(" ", "_")] = item
+				if item:
+					items[item.name.to_lower().replace(" ", "_")] = item
 			file_name = dir.get_next()
 	else:
 		printerr("Error: Couldn't open " + path)
