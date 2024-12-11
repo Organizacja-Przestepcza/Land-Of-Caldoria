@@ -6,7 +6,7 @@ enum State {
 	SPRINT
 }
 
-@export var speed = 80
+@export var speed = 300
 @export var camera_zoom = Vector2(2,2)
 @export var strength: int = 1
 @export var endurance: int = 1
@@ -45,7 +45,7 @@ var bullet_scene = preload("res://scenes/systems/shooting/bullet.tscn")
 
 var reach = 30
 var can_attack: bool = true
-var attack_cooldown: float = 0.5
+var attack_cooldown: float = 0.1
 
 var nearest_interactable
 
