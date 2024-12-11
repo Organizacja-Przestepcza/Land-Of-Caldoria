@@ -8,9 +8,9 @@ func _ready() -> void:
 	player = get_tree().current_scene.get_node("Player")
 	player.health = player.max_health
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if player.health <= 0:
-		emit_signal("death", "health")
+		death.emit("health")
 	
 func modify_health(value: int) -> void:
 	if player.health > 0:

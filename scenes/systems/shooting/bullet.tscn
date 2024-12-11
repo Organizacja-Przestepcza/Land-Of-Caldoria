@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://chpxdhho6klak"]
+
+[ext_resource type="Script" path="res://scenes/systems/shooting/bullet.gd" id="1_ojbac"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_fw3n5"]
+size = Vector2(3, 3)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_oa8af"]
+radius = 2.0
+
+[node name="Bullet" type="RigidBody2D"]
+linear_damp = 1.0
+script = ExtResource("1_ojbac")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("PlaceholderTexture2D_fw3n5")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_oa8af")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

@@ -26,6 +26,7 @@ enum State {
 @onready var hunger_bar: Hunger = hud.get_node("VBoxContainer/HungerBar")
 @onready var stats: Stats = %Stats
 @onready var notifications: Notifications = %Notifications
+@onready var ammo_selector: AmmoSelector = $Interface/AmmoSelector
 
 var state: State = State.IDLE
 
@@ -40,6 +41,7 @@ var stamina: int = 100
 var exp: int = 0
 var level: int = 1
 var attack_animation_scene = preload("res://scenes/player/attack_animation.tscn")
+var bullet_scene = preload("res://scenes/systems/shooting/bullet.tscn")
 
 var reach = 30
 var can_attack: bool = true
@@ -94,7 +96,7 @@ func play_animation() -> void:
 		$AnimatedSprite2D.flip_h = 0
 		facing = Direction.Up
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	get_input()
 	move_and_slide()
 	play_animation()
@@ -164,6 +166,8 @@ func use_item() -> void:
 		build_manager.build()
 	elif held_item == ItemLoader.name("shovel"):
 		cave_manager.dig()
+	elif held_item is Ranged:
+		shoot(held_item)
 	elif held_item is Tool:
 		attack(held_item)
 
@@ -183,9 +187,12 @@ func interact():
 
 func attack(tool: Tool):
 	var victim = await get_victim()
+	damage_victim(victim, tool.damage)
+	
+func damage_victim(victim, damage):
 	if victim is Mob:
-		notifications.add_notification("Attacked " + victim.mob_name + " : -" + str(tool.damage) + "hp")
-		if victim.take_damage(tool.damage):
+		notifications.add_notification("Attacked " + victim.mob_name + " : -" + str(damage) + "hp")
+		if victim.take_damage(damage):
 			var total_exp = victim.exp + roundi(((victim.exp * level)/10)-1)
 			stats.add_exp(total_exp)
 			notifications.add_notification("Killed %s : + %d exp"%[victim.mob_name,total_exp])
@@ -193,7 +200,7 @@ func attack(tool: Tool):
 				inventory.add_item(victim.dropped_item, 1)
 	if victim is Destroyable:
 		if victim.required_tool == hotbar.get_held_item() or victim.required_tool == null:
-			if victim.take_damage(tool.damage) and victim.dropped_item:
+			if victim.take_damage(damage) and victim.dropped_item:
 				var tile_pos = $"../ObjectLayer".local_to_map(victim.global_position)
 				get_parent().delete_object_at(tile_pos)
 				notifications.add_notification("Collected: %s"%victim.dropped_item.name)
@@ -205,5 +212,43 @@ func consume(item: InventoryItem, amount: int) -> void:
 		notifications.add_notification("Used "+ item.data.name)
 		item.remove(amount)
 
-func enter_cave():
-	pass
+func shoot(weap: Ranged):
+	if not inventory.find_item(ammo_selector.current_ammo):
+		return
+	var mouse_pos = get_global_mouse_position()
+	var bullet_instance: Bullet = bullet_scene.instantiate()
+	bullet_instance.collision_mask -= 1
+	var offset: Vector2
+	match facing:
+		Direction.Up: 
+			offset = Vector2(0, -32)
+			if mouse_pos.y > global_position.y:
+				return
+		Direction.Down: 
+			offset = Vector2(0, 0)
+			if mouse_pos.y < global_position.y:
+				return
+		Direction.Right: 
+			offset = Vector2(6, -24)
+			if mouse_pos.x < global_position.x:
+				return
+		Direction.Left: 
+			offset = Vector2(-6, -24)
+			if mouse_pos.x > global_position.x:
+				return
+	bullet_instance.position = global_position + offset
+	bullet_instance.set_direction_towards(mouse_pos)
+	var ammo_idx = weap.ammo_list.find(ammo_selector.current_ammo)
+	bullet_instance.damage = weap.damage_list[ammo_idx]
+	bullet_instance.hit.connect(_on_bullet_hit)
+	inventory.remove_item(ammo_selector.current_ammo, 1)
+	get_tree().current_scene.add_child(bullet_instance)
+
+func _on_bullet_hit(body: Node, damage: int):
+	if body is Enemy:
+		damage_victim(body, damage)
+
+
+func _on_hotbar_item_selected(item: Item) -> void:
+	if item is Ranged:
+		ammo_selector.update_ammo_list_for_item(item)

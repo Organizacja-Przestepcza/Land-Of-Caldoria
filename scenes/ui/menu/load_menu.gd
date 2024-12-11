@@ -12,7 +12,7 @@ func display_saves() -> void:
 		$VBoxContainer/LoadList.add_item(save.trim_suffix(".tres"))
 
 func _on_cancel_button_pressed() -> void:
-	emit_signal("load_cancel_pressed")
+	load_cancel_pressed.emit()
 	$VBoxContainer/HBoxContainer/LoadButton.disabled = true
 	$VBoxContainer/LoadList.deselect_all()
 
@@ -32,5 +32,5 @@ func _on_load_button_pressed() -> void:
 	get_tree().change_scene_to_packed(load("res://scenes/world/proc_world.tscn"))
 
 
-func _on_load_list_item_selected(index: int) -> void:
+func _on_load_list_item_selected(_index: int) -> void:
 	$VBoxContainer/HBoxContainer/LoadButton.disabled = false

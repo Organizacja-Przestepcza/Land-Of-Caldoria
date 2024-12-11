@@ -16,7 +16,7 @@ func _process(delta):
 		modify_hunger(-1)
 		hunger_timer = 0.0
 	if player.hunger <= 0:
-		emit_signal("death", "hunger")
+		death.emit("hunger")
 
 func modify_hunger(value: int):
 	if player.hunger > 0:

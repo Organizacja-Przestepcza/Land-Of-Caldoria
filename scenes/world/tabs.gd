@@ -27,6 +27,7 @@ func open_tab(tab:TabName) -> void:
 			$Building.open()
 		TabName.Stats:
 			$Stats.open()
+
 func close() -> void:
 	$Inventory.close()
 	game.state = Game.State.PLAYING

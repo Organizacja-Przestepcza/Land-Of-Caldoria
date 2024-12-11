@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://bevwwvcr2fdsa"]
+[gd_scene load_steps=31 format=3 uid="uid://bevwwvcr2fdsa"]
 
 [ext_resource type="Script" path="res://scenes/world/proc_world.gd" id="1_75342"]
 [ext_resource type="AudioStream" uid="uid://jdy7g8aivofv" path="res://assets/sfx/ambient/Overworld theme.mp3" id="2_bam7b"]
@@ -21,10 +21,11 @@
 [ext_resource type="PackedScene" uid="uid://de7ljcthumfav" path="res://scenes/systems/crafting/crafting.tscn" id="12_wsaqj"]
 [ext_resource type="Script" path="res://scenes/world/tabs.gd" id="13_hqbme"]
 [ext_resource type="Script" path="res://scenes/player/game_controller.gd" id="13_xk8dt"]
-[ext_resource type="PackedScene" path="res://scenes/player/console.tscn" id="15_jbsup"]
+[ext_resource type="PackedScene" uid="uid://xxmv67orn38r" path="res://scenes/player/console.tscn" id="15_jbsup"]
 [ext_resource type="PackedScene" uid="uid://0v860522ctv3" path="res://scenes/ui/stats/stats.tscn" id="17_iykmo"]
 [ext_resource type="PackedScene" uid="uid://npgme5adxp70" path="res://scenes/npc/blacksmith.tscn" id="17_tkbm6"]
 [ext_resource type="PackedScene" uid="uid://dmasf4uhgm1x8" path="res://scenes/systems/furnace/furnace.tscn" id="18_4gc6m"]
+[ext_resource type="PackedScene" uid="uid://b1kkeufchmftp" path="res://scenes/systems/shooting/ammo_selector.tscn" id="19_5qn1l"]
 [ext_resource type="PackedScene" uid="uid://dpk2ucm8f0jch" path="res://scenes/npc/medic.tscn" id="25_5rha6"]
 [ext_resource type="PackedScene" uid="uid://c81rwddnrgmnu" path="res://scenes/npc/lumberjack.tscn" id="26_cixvo"]
 
@@ -127,6 +128,9 @@ visible = false
 process_mode = 3
 visible = false
 
+[node name="AmmoSelector" parent="Player/Interface" instance=ExtResource("19_5qn1l")]
+visible = false
+
 [node name="Tabs" type="TabContainer" parent="Player/Interface"]
 unique_name_in_owner = true
 visible = false
@@ -190,4 +194,5 @@ position = Vector2(689, 122)
 
 [connection signal="chunk_rendered" from="NoiseGenerator/ThreadedBetterTerrainGaeaRenderer" to="." method="_on_chunk_rendered"]
 [connection signal="grid_rendered" from="NoiseGenerator/ThreadedBetterTerrainGaeaRenderer" to="." method="_on_grid_rendered"]
+[connection signal="item_selected" from="Player/Hud/Hotbar" to="Player" method="_on_hotbar_item_selected"]
 [connection signal="tab_changed" from="Player/Interface/Tabs" to="Player/Interface/Tabs" method="_on_tab_changed"]

@@ -15,6 +15,9 @@ func open() -> void:
 func update_recipe_list():
 	recipe_list.clear()
 	for recipe: CraftingRecipe in ListLoader.crafting_recipes.values():
+		if not recipe.result:
+			print(recipe.id, " - item doesnt exist")
+			continue
 		recipe_list.add_item(recipe.result.name + " Amount: " + str(recipe.amount))
 		recipe_list.set_item_metadata(recipe_list.item_count-1,recipe)
 
@@ -30,6 +33,9 @@ func update_ingredients_list(index: int):
 	var recipe: CraftingRecipe = recipe_list.get_item_metadata(index)
 	for ingredient in recipe.items.keys():
 		var ingr = Ingredient.new(ingredient,recipe.items[ingredient])
+		if not ingr.item:
+			print(ingredient, " doesnt exist")
+			continue
 		ingredients_list.add_item(ingr.item.name + " Amount: " + str(ingr.amount),null,false)
 		ingredients_list.set_item_metadata(ingredients_list.item_count-1,ingr)
 

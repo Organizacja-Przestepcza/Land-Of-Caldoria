@@ -1,15 +1,18 @@
-[gd_resource type="Resource" script_class="Ranged" load_steps=3 format=3 uid="uid://dmiedj0dbxo6f"]
+[gd_resource type="Resource" script_class="Ranged" load_steps=5 format=3 uid="uid://dmiedj0dbxo6f"]
 
+[ext_resource type="Script" path="res://items/Item.gd" id="1_3qvc2"]
 [ext_resource type="Script" path="res://items/Ranged.gd" id="1_xyv4c"]
 [ext_resource type="Texture2D" uid="uid://dpsjm4xmqd6jq" path="res://assets/textures/item/tools/guns/muskeet.png" id="2_pjkpo"]
+[ext_resource type="Resource" uid="uid://dubus644ar8nn" path="res://items/ammunition/lead_bullets.tres" id="2_qxcgu"]
 
 [resource]
 script = ExtResource("1_xyv4c")
-damage = 20
 durability = 100
 knockback = 1
 range = 25.0
-cooldown = 25.0
+cooldown = 10.0
+ammo_list = Array[ExtResource("1_3qvc2")]([ExtResource("2_qxcgu")])
+damage_list = Array[int]([20])
 slot = 0
 name = "Muskeet"
 weight = 10

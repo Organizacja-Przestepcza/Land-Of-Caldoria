@@ -1,15 +1,18 @@
-[gd_resource type="Resource" script_class="Ranged" load_steps=3 format=3 uid="uid://d2jo2qxut7p1o"]
+[gd_resource type="Resource" script_class="Ranged" load_steps=5 format=3 uid="uid://d2jo2qxut7p1o"]
 
+[ext_resource type="Script" path="res://items/Item.gd" id="1_5711a"]
 [ext_resource type="Script" path="res://items/Ranged.gd" id="1_vbf2t"]
+[ext_resource type="Resource" uid="uid://b6b7iop2tmu02" path="res://items/ammunition/arrow.tres" id="2_dnt48"]
 [ext_resource type="Texture2D" uid="uid://dgrfelx1t81cs" path="res://assets/textures/item/tools/guns/Bow.png" id="2_yexgl"]
 
 [resource]
 script = ExtResource("1_vbf2t")
-damage = 8
 durability = 100
 knockback = 1
 range = 15.0
-cooldown = 5.0
+cooldown = 4.0
+ammo_list = Array[ExtResource("1_5711a")]([ExtResource("2_dnt48")])
+damage_list = Array[int]([8])
 slot = 0
 name = "Bow"
 weight = 3

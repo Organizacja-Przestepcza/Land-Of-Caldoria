@@ -1,0 +1,36 @@
+[gd_scene load_steps=2 format=3 uid="uid://b1kkeufchmftp"]
+
+[ext_resource type="Script" path="res://scenes/systems/shooting/ammo_selector.gd" id="1_exfa1"]
+
+[node name="AmmoSelector" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_exfa1")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 25
+theme_override_constants/margin_top = 75
+theme_override_constants/margin_right = 25
+theme_override_constants/margin_bottom = 25
+
+[node name="VBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 50
+alignment = 1
+
+[node name="AmmoList" type="ItemList" parent="MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(500, 250)
+layout_mode = 2
+size_flags_vertical = 3
+
+[connection signal="item_selected" from="MarginContainer/VBoxContainer/AmmoList" to="." method="_on_ammo_list_item_selected"]

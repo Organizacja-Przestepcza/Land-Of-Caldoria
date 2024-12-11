@@ -1,15 +1,20 @@
-[gd_resource type="Resource" script_class="Ranged" load_steps=3 format=3 uid="uid://dubnaus7bfy10"]
+[gd_resource type="Resource" script_class="Ranged" load_steps=7 format=3 uid="uid://dubnaus7bfy10"]
 
 [ext_resource type="Script" path="res://items/Ranged.gd" id="1_3x4mn"]
+[ext_resource type="Script" path="res://items/Item.gd" id="1_roqd5"]
+[ext_resource type="Resource" uid="uid://bc20xwa55ys0i" path="res://items/resource/ore/stone.tres" id="2_q46wd"]
 [ext_resource type="Texture2D" uid="uid://cjvgy2t24jgwu" path="res://assets/textures/item/tools/guns/Slingshot.png" id="2_qimar"]
+[ext_resource type="Resource" uid="uid://iuvcf21v7028" path="res://items/food/blueberry.tres" id="3_ktq8q"]
+[ext_resource type="Resource" path="res://items/food/potatoes.tres" id="4_nln1s"]
 
 [resource]
 script = ExtResource("1_3x4mn")
-damage = 6
 durability = 100
 knockback = 1
 range = 5.0
-cooldown = 2.0
+cooldown = 1.5
+ammo_list = Array[ExtResource("1_roqd5")]([ExtResource("2_q46wd"), ExtResource("3_ktq8q"), ExtResource("4_nln1s")])
+damage_list = Array[int]([5, 1, 2])
 slot = 0
 name = "Slingshot"
 weight = 1
