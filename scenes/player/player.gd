@@ -199,6 +199,8 @@ func consume(item: InventoryItem, amount: int) -> void:
 		item.remove(amount)
 
 func shoot(weap: Ranged):
+	if not inventory.find_item(ammo_selector.current_ammo):
+		return
 	var mouse_pos = get_global_mouse_position()
 	var bullet_instance: Bullet = bullet_scene.instantiate()
 	bullet_instance.collision_mask -= 1
@@ -225,8 +227,14 @@ func shoot(weap: Ranged):
 	var ammo_idx = weap.ammo_list.find(ammo_selector.current_ammo)
 	bullet_instance.damage = weap.damage_list[ammo_idx]
 	bullet_instance.hit.connect(_on_bullet_hit)
+	inventory.remove_item(ammo_selector.current_ammo, 1)
 	get_tree().current_scene.add_child(bullet_instance)
 
 func _on_bullet_hit(body: Node, damage: int):
 	if body is Enemy:
 		damage_victim(body, damage)
+
+
+func _on_hotbar_item_selected(item: Item) -> void:
+	if item is Ranged:
+		ammo_selector.update_ammo_list_for_item(item)

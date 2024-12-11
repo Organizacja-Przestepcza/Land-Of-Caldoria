@@ -54,6 +54,9 @@ func find_available_slot(itm: Item) -> InventorySlot:
 	return null
 
 func find_item(itm: Item) -> InventorySlot:
+	if not itm:
+		push_warning("this item doesnt exist")
+		return null
 	for container in containers:
 		for slot in container.get_children():
 			if not slot.get_child_count() == 0:

@@ -18,7 +18,6 @@ func _ready() -> void:
 func _on_slot_clicked(event: InputEvent, slot) -> void:
 	if event is InputEventMouseButton and event.is_pressed() and event.button_index == MOUSE_BUTTON_LEFT:
 		hotbar_slot_click.emit(slot.id)
-		emit_signal("hotbar_slot_click", slot.id)
 
 signal hotbar_slot_click(index: int)
 
@@ -26,6 +25,11 @@ func select_slot(index: int):
 	selected_slot.theme = null
 	selected_slot=hotbar.get_child(index)
 	selected_slot.theme = frame
+	var held_item = get_held_item()
+	if held_item is Item:
+		item_selected.emit(held_item)
+
+signal item_selected(item: Item)
 
 func get_held_item() -> Item:
 	var inv_item = selected_slot.get_child(0) #To mi się wywala, chyba trzeba sprawdzić czy istnieje selected item

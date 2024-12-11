@@ -7,3 +7,4 @@ extends Item
 @export var cooldown: float
 @export var ammo_list: Array[Item]
 @export var damage_list: Array[int]
+var selected_ammo_idx: int
