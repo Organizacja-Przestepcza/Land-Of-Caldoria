@@ -26,6 +26,7 @@
 [ext_resource type="PackedScene" uid="uid://npgme5adxp70" path="res://scenes/npc/blacksmith.tscn" id="17_tkbm6"]
 [ext_resource type="PackedScene" uid="uid://dmasf4uhgm1x8" path="res://scenes/systems/furnace/furnace.tscn" id="18_4gc6m"]
 [ext_resource type="PackedScene" uid="uid://4fmaeu4rd0m2" path="res://scenes/systems/quests/quests_tab.tscn" id="24_sgwuo"]
+[ext_resource type="PackedScene" uid="uid://b1kkeufchmftp" path="res://scenes/systems/shooting/ammo_selector.tscn" id="19_5qn1l"]
 [ext_resource type="PackedScene" uid="uid://dpk2ucm8f0jch" path="res://scenes/npc/medic.tscn" id="25_5rha6"]
 [ext_resource type="PackedScene" uid="uid://c81rwddnrgmnu" path="res://scenes/npc/lumberjack.tscn" id="26_cixvo"]
 [ext_resource type="Script" path="res://scenes/systems/quests/quest_manager.gd" id="28_i1x7g"]
@@ -129,6 +130,9 @@ visible = false
 process_mode = 3
 visible = false
 
+[node name="AmmoSelector" parent="Player/Interface" instance=ExtResource("19_5qn1l")]
+visible = false
+
 [node name="Tabs" type="TabContainer" parent="Player/Interface"]
 unique_name_in_owner = true
 visible = false
@@ -201,4 +205,5 @@ script = ExtResource("28_i1x7g")
 
 [connection signal="chunk_rendered" from="NoiseGenerator/ThreadedBetterTerrainGaeaRenderer" to="." method="_on_chunk_rendered"]
 [connection signal="grid_rendered" from="NoiseGenerator/ThreadedBetterTerrainGaeaRenderer" to="." method="_on_grid_rendered"]
+[connection signal="item_selected" from="Player/Hud/Hotbar" to="Player" method="_on_hotbar_item_selected"]
 [connection signal="tab_changed" from="Player/Interface/Tabs" to="Player/Interface/Tabs" method="_on_tab_changed"]

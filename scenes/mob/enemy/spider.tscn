@@ -1,0 +1,133 @@
+[gd_scene load_steps=18 format=3 uid="uid://bmiprnvtinnwl"]
+
+[ext_resource type="Script" path="res://scenes/mob/enemy/wolf.gd" id="1_7eo4v"]
+[ext_resource type="Texture2D" path="res://assets/textures/mob/spider/Spider Sprite Sheet.png" id="2_jwc57"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lacgm"]
+atlas = ExtResource("2_jwc57")
+region = Rect2(0, 224, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lkvwd"]
+atlas = ExtResource("2_jwc57")
+region = Rect2(32, 224, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jbjvt"]
+atlas = ExtResource("2_jwc57")
+region = Rect2(64, 224, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a0b5m"]
+atlas = ExtResource("2_jwc57")
+region = Rect2(96, 224, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_afp4p"]
+atlas = ExtResource("2_jwc57")
+region = Rect2(128, 224, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6qfpl"]
+atlas = ExtResource("2_jwc57")
+region = Rect2(160, 224, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fb0jm"]
+atlas = ExtResource("2_jwc57")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m4lnf"]
+atlas = ExtResource("2_jwc57")
+region = Rect2(32, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wtw3r"]
+atlas = ExtResource("2_jwc57")
+region = Rect2(64, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0m3vm"]
+atlas = ExtResource("2_jwc57")
+region = Rect2(96, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jvb7e"]
+atlas = ExtResource("2_jwc57")
+region = Rect2(128, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v5b11"]
+atlas = ExtResource("2_jwc57")
+region = Rect2(160, 32, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_bt3m1"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lacgm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lkvwd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jbjvt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a0b5m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_afp4p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6qfpl")
+}],
+"loop": true,
+"name": &"attack",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fb0jm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m4lnf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wtw3r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0m3vm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jvb7e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v5b11")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_efjds"]
+radius = 141.089
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_oix7d"]
+size = Vector2(25, 15.5)
+
+[node name="Spider" type="CharacterBody2D"]
+collision_layer = 8
+collision_mask = 3
+script = ExtResource("1_7eo4v")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(6, -10)
+sprite_frames = SubResource("SpriteFrames_bt3m1")
+animation = &"attack"
+
+[node name="DetectionArea" type="Area2D" parent="."]
+collision_layer = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea"]
+shape = SubResource("CircleShape2D_efjds")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -6.25)
+shape = SubResource("RectangleShape2D_oix7d")
+
+[connection signal="area_entered" from="DetectionArea" to="." method="_on_detection_area_area_entered"]
+[connection signal="area_entered" from="DetectionArea" to="." method="_on_area_2d_area_entered"]
+[connection signal="area_exited" from="DetectionArea" to="." method="_on_detection_area_area_exited"]
+[connection signal="body_entered" from="DetectionArea" to="." method="_on_detection_area_body_entered"]
+[connection signal="body_exited" from="DetectionArea" to="." method="_on_detection_area_body_exited"]

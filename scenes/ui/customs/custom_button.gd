@@ -7,5 +7,5 @@ func set_label(new_label: String) -> void:
 	$MarginContainer/Button.text = new_label
 
 func _on_button_pressed() -> void:
-	emit_signal("button_pressed")
+	button_pressed.emit()
 signal button_pressed

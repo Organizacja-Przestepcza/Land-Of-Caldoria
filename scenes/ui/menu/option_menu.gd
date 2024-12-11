@@ -17,7 +17,7 @@ func _ready() -> void:
 	
 
 func _on_back_button_pressed() -> void:
-		emit_signal("backbutton_pressed")
+	backbutton_pressed.emit()
 signal backbutton_pressed
 
 

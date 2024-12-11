@@ -73,7 +73,7 @@ func take_damage(damage: int) -> bool: ## returns true if the object was destroy
 func die():
 	chase_player = false
 	killed_count += 1
-	emit_signal("enemy_killed", mob_name)
+	enemy_killed.emit(mob_name)
 	$AnimatedSprite2D.play("death")
 	$AnimatedSprite2D.animation_finished.connect(func (): queue_free())
 	
