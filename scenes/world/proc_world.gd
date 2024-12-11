@@ -186,11 +186,11 @@ func generate_buildings_on_chunk(chunk_pos: Vector2i):
 # -------
 
 const mob_types = {
-	"slime": preload("res://scenes/mob/slime.tscn"),
-	"crab": preload("res://scenes/mob/crab.tscn"),
-	"boar": preload("res://scenes/mob/boar.tscn"),
-	"bear": preload("res://scenes/mob/bear.tscn"),
-	"wolf": preload("res://scenes/mob/wolf.tscn")}
+	"slime": preload("res://scenes/mob/enemy/slime.tscn"),
+	"crab": preload("res://scenes/mob/enemy/crab.tscn"),
+	"boar": preload("res://scenes/mob/enemy/boar.tscn"),
+	"bear": preload("res://scenes/mob/enemy/bear.tscn"),
+	"wolf": preload("res://scenes/mob/enemy/wolf.tscn")}
 
 func chance_spawn_mob(pos: Vector2) -> void:
 	randomize()
