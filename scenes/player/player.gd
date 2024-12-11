@@ -1,5 +1,10 @@
 class_name Player
 extends CharacterBody2D
+enum State {
+	IDLE,
+	WALK,
+	SPRINT
+}
 
 @export var speed = 80
 @export var camera_zoom = Vector2(2,2)
@@ -11,7 +16,7 @@ extends CharacterBody2D
 @export var skill_points: int = 0
 @onready var interface: CanvasLayer = $Interface
 @onready var hud: Hud = $Hud
-
+@onready var stamina_bar:Stamina = $Hud/VBoxContainer/StaminaBar
 @onready var hotbar: Hotbar = %Hotbar
 
 @onready var build_manager: BuildManager = $"../BuildManager"
@@ -22,6 +27,7 @@ extends CharacterBody2D
 @onready var stats: Stats = %Stats
 @onready var notifications: Notifications = %Notifications
 
+var state: State = State.IDLE
 
 var facing: Direction = Direction.Down
 
@@ -29,6 +35,8 @@ var max_health: int = 100
 var health: int = 100
 var max_hunger: int = 100
 var hunger: int = 100
+var max_stamina: int = 100
+var stamina: int = 100
 var exp: int = 0
 var level: int = 1
 var attack_animation_scene = preload("res://scenes/player/attack_animation.tscn")
@@ -51,8 +59,14 @@ func update_zoom(zoom):
 func get_input():
 	var input_direction = Input.get_vector("move_left", "move_right", "move_up", "move_down")
 	velocity = input_direction * speed
-	if Input.is_action_pressed("sprint"):
+	if velocity == Vector2.ZERO:
+		state = State.IDLE
+		return
+	if Input.is_action_pressed("sprint") and stamina > 0:
 		velocity = velocity * 2
+		state = State.SPRINT
+	else:
+		state = State.WALK
 		
 
 func play_animation() -> void:
