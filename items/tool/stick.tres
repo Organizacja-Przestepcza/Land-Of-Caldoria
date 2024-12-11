@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="Tool" load_steps=3 format=3 uid="uid://bwk76lxfsbiwm"]
+
+[ext_resource type="Script" path="res://items/Tool.gd" id="1_qf225"]
+[ext_resource type="Texture2D" uid="uid://cfa46ykuf58uc" path="res://assets/textures/item/tools/stick.png" id="2_3n3rq"]
+
+[resource]
+script = ExtResource("1_qf225")
+damage = 1
+durability = 1
+knockback = 1
+range = 1.0
+slot = 0
+name = "Stick"
+weight = 3
+texture = ExtResource("2_3n3rq")
+max_stack_size = 1
+description = "Stick"
+value = 20
