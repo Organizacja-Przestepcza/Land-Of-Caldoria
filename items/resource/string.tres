@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="Item" load_steps=3 format=3 uid="uid://jf27eo2faidh"]
+
+[ext_resource type="Script" path="res://items/Item.gd" id="1_ywah1"]
+[ext_resource type="Texture2D" uid="uid://u8rd66cl3d06" path="res://assets/textures/item/resource/string.png" id="2_yqkpf"]
+
+[resource]
+script = ExtResource("1_ywah1")
+slot = 0
+name = "string"
+weight = 1
+texture = ExtResource("2_yqkpf")
+max_stack_size = 16
+description = "Tie yout shoes"
+value = 0
