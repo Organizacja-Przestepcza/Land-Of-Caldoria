@@ -28,4 +28,5 @@ unique_name_in_owner = true
 custom_minimum_size = Vector2(128, 24)
 layout_mode = 2
 size_flags_vertical = 8
+step = 1.0
 value = 100.0
