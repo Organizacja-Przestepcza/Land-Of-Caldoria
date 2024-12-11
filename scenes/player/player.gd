@@ -21,6 +21,7 @@ extends CharacterBody2D
 @onready var hunger_bar: Hunger = hud.get_node("VBoxContainer/HungerBar")
 @onready var stats: Stats = %Stats
 @onready var notifications: Notifications = %Notifications
+@onready var ammo_selector: AmmoSelector = $Interface/AmmoSelector
 
 
 var facing: Direction = Direction.Down
@@ -172,9 +173,12 @@ func interact():
 
 func attack(tool: Tool):
 	var victim = await get_victim()
+	damage_victim(victim, tool.damage)
+	
+func damage_victim(victim, damage):
 	if victim is Mob:
-		notifications.add_notification("Attacked " + victim.mob_name + " : -" + str(tool.damage) + "hp")
-		if victim.take_damage(tool.damage):
+		notifications.add_notification("Attacked " + victim.mob_name + " : -" + str(damage) + "hp")
+		if victim.take_damage(damage):
 			var total_exp = victim.exp + roundi(((victim.exp * level)/10)-1)
 			stats.add_exp(total_exp)
 			notifications.add_notification("Killed %s : + %d exp"%[victim.mob_name,total_exp])
@@ -182,7 +186,7 @@ func attack(tool: Tool):
 				inventory.add_item(victim.dropped_item, 1)
 	if victim is Destroyable:
 		if victim.required_tool == hotbar.get_held_item() or victim.required_tool == null:
-			if victim.take_damage(tool.damage) and victim.dropped_item:
+			if victim.take_damage(damage) and victim.dropped_item:
 				var tile_pos = $"../ObjectLayer".local_to_map(victim.global_position)
 				get_parent().delete_object_at(tile_pos)
 				notifications.add_notification("Collected: %s"%victim.dropped_item.name)
@@ -193,12 +197,6 @@ func consume(item: InventoryItem, amount: int) -> void:
 		effect_from_item(item.data)
 		notifications.add_notification("Used "+ item.data.name)
 		item.remove(amount)
-
-@export var spawn_offset: Vector2 = Vector2(0, -10)
-@export var bullet_speed: float = 300.0
-@export var bullet_radius: float = 1.0  # Radius of the bullet circle
-@export var bullet_color: Color = Color(1, 1, 1)  # Default bullet color
-
 
 func shoot(weap: Ranged):
 	var mouse_pos = get_global_mouse_position()
@@ -224,4 +222,11 @@ func shoot(weap: Ranged):
 				return
 	bullet_instance.position = global_position + offset
 	bullet_instance.set_direction_towards(mouse_pos)
+	var ammo_idx = weap.ammo_list.find(ammo_selector.current_ammo)
+	bullet_instance.damage = weap.damage_list[ammo_idx]
+	bullet_instance.hit.connect(_on_bullet_hit)
 	get_tree().current_scene.add_child(bullet_instance)
+
+func _on_bullet_hit(body: Node, damage: int):
+	if body is Enemy:
+		damage_victim(body, damage)

@@ -43,7 +43,6 @@ func _on_craft_button_pressed() -> void:
 		for i in range(item_count):
 			var ingredient: Ingredient = ingredients_list.get_item_metadata(i)
 			inventory.remove_item(ingredient.item,ingredient.amount)
-			print(ingredient)
 			inventory_list[ingredient.item] -= ingredient.amount
 		var t = recipe_list.get_selected_items()
 		var recipe = recipe_list.get_item_metadata(t[0])

@@ -131,12 +131,10 @@ func get_data() -> Dictionary:
 
 func load_data() -> void:
 	var inventory_data = WorldData.load.inventory
-	print(inventory_data)
 	# Clear existing items in hotbar and main inventory
 	clean()
 	
 	#var inventory_keys = inventory_data.keys()
-	print(inventory_keys)
 	for c in range(containers.size()):
 		for i in range(containers[c].get_child_count()):
 			var item_path = inventory_data[inventory_keys[c]][i]

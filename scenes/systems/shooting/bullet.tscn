@@ -9,8 +9,6 @@ size = Vector2(3, 3)
 radius = 2.0
 
 [node name="Bullet" type="RigidBody2D"]
-collision_layer = 32
-collision_mask = 27
 linear_damp = 1.0
 script = ExtResource("1_ojbac")
 
@@ -19,3 +17,5 @@ texture = SubResource("PlaceholderTexture2D_fw3n5")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_oa8af")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
