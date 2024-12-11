@@ -62,7 +62,7 @@ func get_input():
 	if velocity == Vector2.ZERO:
 		state = State.IDLE
 		return
-	if Input.is_action_pressed("sprint"):
+	if Input.is_action_pressed("sprint") and stamina > 0:
 		velocity = velocity * 2
 		state = State.SPRINT
 	else:
