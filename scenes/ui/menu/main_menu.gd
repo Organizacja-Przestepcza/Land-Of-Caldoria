@@ -17,7 +17,7 @@ func _ready() -> void:
 
 
 func _on_option_button_button_pressed() -> void:
-	emit_signal("options_button_pressed")
+	options_button_pressed.emit()
 
 signal options_button_pressed
 

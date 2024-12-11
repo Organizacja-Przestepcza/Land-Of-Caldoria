@@ -32,6 +32,7 @@ var hunger: int = 100
 var exp: int = 0
 var level: int = 1
 var attack_animation_scene = preload("res://scenes/player/attack_animation.tscn")
+var bullet_scene = preload("res://scenes/systems/shooting/bullet.tscn")
 
 var reach = 30
 var can_attack: bool = true
@@ -150,6 +151,8 @@ func use_item() -> void:
 		build_manager.build()
 	elif held_item == ItemLoader.name("shovel"):
 		cave_manager.dig()
+	elif held_item is Ranged:
+		shoot(held_item)
 	elif held_item is Tool:
 		attack(held_item)
 
@@ -191,5 +194,34 @@ func consume(item: InventoryItem, amount: int) -> void:
 		notifications.add_notification("Used "+ item.data.name)
 		item.remove(amount)
 
-func enter_cave():
-	pass
+@export var spawn_offset: Vector2 = Vector2(0, -10)
+@export var bullet_speed: float = 300.0
+@export var bullet_radius: float = 1.0  # Radius of the bullet circle
+@export var bullet_color: Color = Color(1, 1, 1)  # Default bullet color
+
+
+func shoot(weap: Ranged):
+	var mouse_pos = get_global_mouse_position()
+	var bullet_instance: Bullet = bullet_scene.instantiate()
+	bullet_instance.collision_mask -= 1
+	var offset: Vector2
+	match facing:
+		Direction.Up: 
+			offset = Vector2(0, -32)
+			if mouse_pos.y > global_position.y:
+				return
+		Direction.Down: 
+			offset = Vector2(0, 0)
+			if mouse_pos.y < global_position.y:
+				return
+		Direction.Right: 
+			offset = Vector2(6, -24)
+			if mouse_pos.x < global_position.x:
+				return
+		Direction.Left: 
+			offset = Vector2(-6, -24)
+			if mouse_pos.x > global_position.x:
+				return
+	bullet_instance.position = global_position + offset
+	bullet_instance.set_direction_towards(mouse_pos)
+	get_tree().current_scene.add_child(bullet_instance)
