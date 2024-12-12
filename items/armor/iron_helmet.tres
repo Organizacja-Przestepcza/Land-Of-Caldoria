@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="Armor" load_steps=3 format=3 uid="uid://dufrqgpltiuu6"]
+
+[ext_resource type="Script" path="res://items/armor.gd" id="1_5tsmu"]
+[ext_resource type="Texture2D" uid="uid://dtkbck61sjyop" path="res://assets/textures/item/armor/iron_helmet.png" id="2_pfei1"]
+
+[resource]
+script = ExtResource("1_5tsmu")
+durability = 100
+protection = 5
+bonuses = {}
+slot = 1
+name = "Iron Helmet"
+weight = 1
+texture = ExtResource("2_pfei1")
+max_stack_size = 1
+description = "Sturdy head protection"
+value = 30

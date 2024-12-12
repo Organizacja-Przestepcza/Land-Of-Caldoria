@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="Armor" load_steps=3 format=3 uid="uid://b3vf4fmak7bmh"]
+
+[ext_resource type="Script" path="res://items/armor.gd" id="1_bpthe"]
+[ext_resource type="Texture2D" uid="uid://dyqp8mrpbt63i" path="res://assets/textures/item/armor/leggings.png" id="2_mxxii"]
+
+[resource]
+script = ExtResource("1_bpthe")
+durability = 0
+protection = 8
+bonuses = {
+"agility": -1
+}
+slot = 4
+name = "Iron Leggings"
+weight = 3
+texture = ExtResource("2_mxxii")
+max_stack_size = 1
+description = "Sturdy legs protection"
+value = 48
