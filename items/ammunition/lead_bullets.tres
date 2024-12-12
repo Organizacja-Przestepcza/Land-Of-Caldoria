@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="Item" load_steps=3 format=3 uid="uid://dubus644ar8nn"]
 
-[ext_resource type="Script" path="res://items/Item.gd" id="1_n276m"]
+[ext_resource type="Script" path="res://items/item.gd" id="1_n276m"]
 [ext_resource type="Texture2D" uid="uid://38j1dta7lv7t" path="res://assets/textures/item/ammunition/lead_bullets.png" id="2_krlqq"]
 
 [resource]

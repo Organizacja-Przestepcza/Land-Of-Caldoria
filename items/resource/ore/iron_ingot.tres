@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="Item" load_steps=3 format=3 uid="uid://h0sjx22e8w6v"]
 
-[ext_resource type="Script" path="res://items/Item.gd" id="1_6afqu"]
+[ext_resource type="Script" path="res://items/item.gd" id="1_6afqu"]
 [ext_resource type="Texture2D" uid="uid://ce323mq75p8p7" path="res://assets/textures/item/resource/iron/iron_ingot.png" id="2_3o3uw"]
 
 [resource]
