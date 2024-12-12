@@ -13,7 +13,9 @@ func _init(t: Type, cms: Vector2) -> void:
 
 func _can_drop_data(_at_position: Vector2, item: Variant):
 	if item is InventoryItem:
-		return item.data.slot == type
+		if type == Type.MAIN:
+			return true
+		return item.data.slot == type 
 	return false
 	
 func _drop_data(_at_position: Vector2, dropped_item: Variant):

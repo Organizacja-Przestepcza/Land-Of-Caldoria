@@ -6,7 +6,7 @@ enum State {
 	SPRINT
 }
 
-@export var speed = 300
+@export var speed = 80
 @export var camera_zoom = Vector2(2,2)
 @export var strength: int = 1
 @export var endurance: int = 1
@@ -45,7 +45,7 @@ var bullet_scene = preload("res://scenes/systems/shooting/bullet.tscn")
 
 var reach = 30
 var can_attack: bool = true
-var attack_cooldown: float = 0.1
+var attack_cooldown: float = 0.5
 
 var nearest_interactable
 
@@ -186,6 +186,7 @@ func interact():
 		cave_manager.leave()
 
 func attack(tool: Tool):
+	attack_cooldown = tool.cooldown if tool.cooldown else 0.5
 	var victim = await get_victim()
 	damage_victim(victim, tool.damage)
 	
