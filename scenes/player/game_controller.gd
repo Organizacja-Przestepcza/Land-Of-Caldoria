@@ -6,6 +6,7 @@ var state: State = State.PLAYING
 
 @onready var building: BuildMenu = %Building
 @onready var crafting: Crafting = %Crafting
+@onready var ammo_selector: AmmoSelector = $"../Interface/AmmoSelector"
 
 @onready var console: Console = $"../Interface/Console"
 @onready var pause_menu: PauseMenu = %PauseMenu
@@ -34,12 +35,12 @@ func _input(event: InputEvent) -> void:
 						tabs.open(0)
 					elif event.is_action_pressed("crafting_menu"):
 						tabs.open(1)
-						state = State.INVENTORY
 					elif event.is_action_pressed("ui_stats"):
 						tabs.open(3)
-						state = State.INVENTORY
 					elif event.is_action_pressed("ui_text_backspace"):
 						print($"..".position)
+					elif event.is_action_pressed("switch_ammo"):
+						ammo_selector.open()
 					elif event.pressed:
 						match event.physical_keycode:
 							KEY_1: hotbar.select_slot(0)
@@ -67,6 +68,8 @@ func _input(event: InputEvent) -> void:
 					close_menus()
 				elif event.is_action_pressed("gui_inventory"):
 					close_menus()
+				elif event.is_action_pressed("switch_ammo"):
+					close_menus()
 				elif event.is_action_pressed("ui_cancel"):
 					close_menus()
 					pause_menu.toggle()
@@ -88,3 +91,4 @@ func get_slot_under_mouse() -> InventorySlot:
 
 func close_menus():
 	tabs.close()
+	ammo_selector.close()

@@ -23,7 +23,7 @@ func close() -> void:
 	self.visible = false
 	line_edit.clear()
 
-func _on_line_edit_text_submitted(new_text: String) -> void:
+func _on_line_edit_text_submitted(_new_text: String) -> void:
 	var args = line_edit.text.split(" ",false)
 	args.resize(4)
 	match args[0]:
@@ -74,7 +74,7 @@ func teleport(args: PackedStringArray):
 			print("\"",args[1], "\" is not a valid number")
 			return
 		get_tree().paused = false
-		player.global_position = Vector2i(args[0].to_float(), args[1].to_float())
+		player.global_position = Vector2(args[0].to_float(), args[1].to_float())
 		get_tree().paused = true
 		
 func give(item_name: String, amount_str: String):

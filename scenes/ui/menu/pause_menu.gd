@@ -17,7 +17,7 @@ func _ready() -> void:
 	hide_menus()
 
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if game.state == game.State.PLAYING and Input.is_action_just_pressed("ui_cancel"):
 		toggle()
 

@@ -54,6 +54,9 @@ func find_available_slot(itm: Item) -> InventorySlot:
 	return null
 
 func find_item(itm: Item) -> InventorySlot:
+	if not itm:
+		push_warning("this item doesnt exist")
+		return null
 	for container in containers:
 		for slot in container.get_children():
 			if not slot.get_child_count() == 0:
@@ -131,12 +134,10 @@ func get_data() -> Dictionary:
 
 func load_data() -> void:
 	var inventory_data = WorldData.load.inventory
-	print(inventory_data)
 	# Clear existing items in hotbar and main inventory
 	clean()
 	
 	#var inventory_keys = inventory_data.keys()
-	print(inventory_keys)
 	for c in range(containers.size()):
 		for i in range(containers[c].get_child_count()):
 			var item_path = inventory_data[inventory_keys[c]][i]

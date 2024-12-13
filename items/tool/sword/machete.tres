@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="Tool" load_steps=3 format=3 uid="uid://d4mivj7fg2m3t"]
+
+[ext_resource type="Script" path="res://items/Tool.gd" id="1_fdf1i"]
+[ext_resource type="Texture2D" uid="uid://c7on5c2mtyjm1" path="res://assets/textures/item/tools/sword/machete.png" id="2_33wnk"]
+
+[resource]
+script = ExtResource("1_fdf1i")
+damage = 6
+durability = 100
+knockback = 1
+range = 1.0
+slot = 0
+name = "Machete"
+weight = 3
+texture = ExtResource("2_33wnk")
+max_stack_size = 1
+description = "Grasscutter 2000"
+value = 30
