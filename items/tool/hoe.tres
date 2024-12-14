@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="Tool" load_steps=2 format=3 uid="uid://b4spy3kaa2lv7"]
+
+[ext_resource type="Script" path="res://items/Tool.gd" id="1_i1ufs"]
+
+[resource]
+script = ExtResource("1_i1ufs")
+damage = 0
+durability = 0
+knockback = 0
+range = 0.0
+slot = 0
+name = ""
+weight = 0
+max_stack_size = 0
+description = ""
+value = 0
