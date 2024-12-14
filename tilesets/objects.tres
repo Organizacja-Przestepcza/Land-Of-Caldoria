@@ -449,21 +449,101 @@ texture_region_size = Vector2i(32, 64)
 texture = ExtResource("16_2kp4c")
 texture_region_size = Vector2i(32, 32)
 0:0/0 = 0
+0:0/0/metadata/_better_terrain = {
+4: [1],
+"type": 1
+}
 1:0/0 = 0
+1:0/0/metadata/_better_terrain = {
+0: [1],
+4: [1],
+"type": 1
+}
 2:0/0 = 0
+2:0/0/metadata/_better_terrain = {
+0: [1],
+4: [1],
+8: [1],
+"type": 1
+}
 3:0/0 = 0
+3:0/0/metadata/_better_terrain = {
+4: [1],
+8: [1],
+"type": 1
+}
 0:1/0 = 0
+0:1/0/metadata/_better_terrain = {
+4: [1],
+12: [1],
+"type": 1
+}
 1:1/0 = 0
+1:1/0/metadata/_better_terrain = {
+0: [1],
+4: [1],
+12: [1],
+"type": 1
+}
 2:1/0 = 0
+2:1/0/metadata/_better_terrain = {
+0: [1],
+4: [1],
+8: [1],
+12: [1],
+"type": 1
+}
 3:1/0 = 0
+3:1/0/metadata/_better_terrain = {
+4: [1],
+8: [1],
+12: [1],
+"type": 1
+}
 0:2/0 = 0
+0:2/0/metadata/_better_terrain = {
+12: [1],
+"type": 1
+}
 1:2/0 = 0
+1:2/0/metadata/_better_terrain = {
+0: [1],
+12: [1],
+"type": 1
+}
 2:2/0 = 0
+2:2/0/metadata/_better_terrain = {
+0: [1],
+8: [1],
+12: [1],
+"type": 1
+}
 3:2/0 = 0
+3:2/0/metadata/_better_terrain = {
+8: [1],
+12: [1],
+"type": 1
+}
 0:3/0 = 0
+0:3/0/metadata/_better_terrain = {
+"type": 1
+}
 1:3/0 = 0
+1:3/0/metadata/_better_terrain = {
+0: [1],
+"type": 1
+}
 2:3/0 = 0
+2:3/0/metadata/_better_terrain = {
+0: [1],
+8: [1],
+"type": 1
+}
 3:3/0 = 0
+3:3/0/metadata/_better_terrain = {
+8: [1],
+"type": 1
+}
 
 [resource]
 tile_size = Vector2i(32, 32)
@@ -480,8 +560,9 @@ metadata/_better_terrain = {
 "terrains": [["walls", Color(0.997059, 0.537199, 0.131364, 1), 0, [], {
 "coord": Vector2i(0, 3),
 "source_id": 3
-}], ["sfdsdf", Color(0.661571, 0.351367, 0.405286, 1), 0, [], {
-"path": ""
+}], ["fence", Color(0.661571, 0.351367, 0.405286, 1), 0, [], {
+"coord": Vector2i(0, 3),
+"source_id": 7
 }]],
 "version": "0.2"
 }

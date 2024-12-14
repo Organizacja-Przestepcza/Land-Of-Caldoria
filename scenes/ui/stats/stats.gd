@@ -74,6 +74,7 @@ func level_up() -> void:
 	
 func add_points() -> void:
 	player.skill_points +=2
+
 func set_attrib() -> void:
 	strength_label.text = "Strength: " + str(player.strength)
 	endurance_label.text = "Endurance: " + str(player.endurance)

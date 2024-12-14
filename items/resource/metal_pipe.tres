@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="Item" load_steps=3 format=3 uid="uid://c7e1ees1588px"]
 
 [ext_resource type="Script" path="res://items/Item.gd" id="1_noocm"]
-[ext_resource type="Texture2D" uid="uid://b20kac40capx8" path="res://assets/textures/item/resource/metal_pipe.png" id="2_1pcgi"]
+[ext_resource type="Texture2D" uid="uid://c5lxlpup2ohfp" path="res://assets/textures/item/resource/metal_pipe.png" id="2_1pcgi"]
 
 [resource]
 script = ExtResource("1_noocm")
@@ -11,4 +11,4 @@ weight = 3
 texture = ExtResource("2_1pcgi")
 max_stack_size = 1
 description = "YOU WISH"
-value = 0
+value = 20
