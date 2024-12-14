@@ -145,14 +145,20 @@ func generate_village() -> void:
 	var build: TileMapLayer = village.get_node("Objects")
 	var floor: TileMapLayer = village.get_node("Floor")
 	# set walls
-	BetterTerrain.set_cells(object_layer,build.get_used_cells(),0)
-	BetterTerrain.update_terrain_cells(object_layer,build.get_used_cells())
+	BetterTerrain.set_cells(object_layer,build.get_used_cells_by_id(3),0)
+	# set fence
+	BetterTerrain.set_cells(object_layer,build.get_used_cells_by_id(7),1)
 	# set stone floor
-	BetterTerrain.set_cells(floor_layer,floor.get_used_cells_by_id(0,Vector2i.ZERO,0),1)
-	BetterTerrain.update_terrain_cells(floor_layer,floor.get_used_cells_by_id(0,Vector2i.ZERO,0))
+	BetterTerrain.set_cells(floor_layer,floor.get_used_cells_by_id(0),0)
 	# set path
-	BetterTerrain.set_cells(floor_layer,floor.get_used_cells_by_id(2,Vector2i.ZERO,0),2)
-	BetterTerrain.update_terrain_cells(floor_layer,floor.get_used_cells_by_id(0,Vector2i.ZERO,0))
+	BetterTerrain.set_cells(floor_layer,floor.get_used_cells_by_id(2),1)
+	# set field
+	BetterTerrain.set_cells(floor_layer,floor.get_used_cells_by_id(4),3)
+	BetterTerrain.set_cells(floor_layer,floor.get_used_cells_by_id(5),2)
+	
+	# update layers
+	BetterTerrain.update_terrain_cells(object_layer,build.get_used_cells())
+	BetterTerrain.update_terrain_cells(floor_layer,floor.get_used_cells())
 	village.get_node("Objects").clear()
 	village.get_node("Floor").clear()
 	
