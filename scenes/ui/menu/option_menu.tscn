@@ -116,6 +116,7 @@ text = "Go back"
 
 [connection signal="value_changed" from="VBoxContainer/MusicMargin/MarginContainer/MusicSlider" to="." method="_on_music_slider_value_changed"]
 [connection signal="value_changed" from="VBoxContainer/SoundMargin/MarginContainer/SoundSlider" to="." method="_on_sound_slider_value_changed"]
+[connection signal="item_selected" from="VBoxContainer/ResolutionOptions" to="." method="_on_resolution_options_item_selected"]
 [connection signal="pressed" from="VBoxContainer/FullscreenButton" to="." method="_on_fullscreen_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/KeybindsButton" to="." method="_on_keybinds_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/BackButton" to="." method="_on_back_button_pressed"]
