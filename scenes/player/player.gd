@@ -14,6 +14,7 @@ enum State {
 @export var agility: int = 1
 @export var luck: int = 1
 @export var skill_points: int = 0
+
 @onready var interface: CanvasLayer = $Interface
 @onready var hud: Hud = $Hud
 @onready var stamina_bar:Stamina = $Hud/VBoxContainer/StaminaBar
