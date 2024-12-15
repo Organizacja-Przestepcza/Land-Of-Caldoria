@@ -16,7 +16,6 @@ func _ready():
 
 func _on_node_added(node: Node):
 	if node.is_in_group("enemies") and node.name == "Wolf":
-		print("New enemy detected: ", node.name)
 		node.connect("enemy_killed", _on_enemy_killed)
 
 
@@ -24,9 +23,7 @@ func _on_condition_query_requested(type: String, key: String, value: Variant, re
 	if type == "kill":
 		if key == "wolf" and current_kills >= value:
 			requester.set_completed(true)
-			print("Quest completed! Killed enough enemies.")
 			
 func _on_enemy_killed(mob_name: String):
 	if mob_name == "Wolf":
 		current_kills += 1
-	print("Updated kills: ", current_kills)

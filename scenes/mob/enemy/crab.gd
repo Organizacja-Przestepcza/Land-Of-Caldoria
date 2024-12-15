@@ -19,9 +19,10 @@ func _physics_process(delta: float) -> void:
 	if chase_player:
 		move_towards_player(player, delta)
 
-func _on_detection_area_body_exited(_body: Node2D) -> void:
-	chase_player = false
-	$AnimatedSprite2D.stop()
+func _on_detection_area_body_exited(body: Node2D) -> void:
+	if body is Player:
+		chase_player = false
+		$AnimatedSprite2D.stop()
 	
 func play_attack() -> void:
 	$AudioStreamPlayer.play()

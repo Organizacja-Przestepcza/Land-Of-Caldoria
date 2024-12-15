@@ -21,6 +21,8 @@ enum State {
 
 @onready var build_manager: BuildManager = $"../BuildManager"
 @onready var cave_manager: CaveManager = $"../CaveManager"
+@onready var farming_manager: FarmingManager = $"../FarmingManager"
+
 @onready var inventory: Inventory = %Inventory
 @onready var health_bar: Health = hud.get_node("VBoxContainer/HealthBar")
 @onready var hunger_bar: Hunger = hud.get_node("VBoxContainer/HungerBar")
@@ -160,12 +162,18 @@ func get_victim():
 
 func use_item() -> void:
 	var held_item = hotbar.get_held_item()
-	if held_item is Consumable:
-		consume(hotbar.selected_slot.get_child(0),1)
-	elif held_item == ItemLoader.name("hammer"):
+	if held_item == ItemLoader.name("hammer"):
 		build_manager.build()
 	elif held_item == ItemLoader.name("shovel"):
 		cave_manager.dig()
+	elif held_item == ItemLoader.name("hoe"):
+		farming_manager.till_ground()
+	elif held_item == ItemLoader.name("bucket"):
+		pass # fill with water/milk
+	elif held_item == ItemLoader.name("water_bucket"):
+		pass # water the plants
+	elif held_item is Consumable:
+		consume(hotbar.selected_slot.get_child(0),1)
 	elif held_item is Ranged:
 		shoot(held_item)
 	elif held_item is Tool:
@@ -214,7 +222,7 @@ func consume(item: InventoryItem, amount: int) -> void:
 		item.remove(amount)
 
 func shoot(weap: Ranged):
-	if not inventory.find_item(ammo_selector.current_ammo):
+	if not inventory.find_item(ammo_selector.get_current_ammo()):
 		return
 	var mouse_pos = get_global_mouse_position()
 	var bullet_instance: Bullet = bullet_scene.instantiate()
@@ -239,10 +247,10 @@ func shoot(weap: Ranged):
 				return
 	bullet_instance.position = global_position + offset
 	bullet_instance.set_direction_towards(mouse_pos)
-	var ammo_idx = weap.ammo_list.find(ammo_selector.current_ammo)
+	var ammo_idx = weap.ammo_list.find(ammo_selector.get_current_ammo())
 	bullet_instance.damage = weap.damage_list[ammo_idx]
 	bullet_instance.hit.connect(_on_bullet_hit)
-	inventory.remove_item(ammo_selector.current_ammo, 1)
+	inventory.remove_item(ammo_selector.get_current_ammo(), 1)
 	get_tree().current_scene.add_child(bullet_instance)
 
 func _on_bullet_hit(body: Node, damage: int):

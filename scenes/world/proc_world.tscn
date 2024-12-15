@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://bevwwvcr2fdsa"]
+[gd_scene load_steps=34 format=3 uid="uid://bevwwvcr2fdsa"]
 
 [ext_resource type="Script" path="res://scenes/world/proc_world.gd" id="1_75342"]
 [ext_resource type="AudioStream" uid="uid://jdy7g8aivofv" path="res://assets/sfx/ambient/Overworld theme.mp3" id="2_bam7b"]
@@ -18,6 +18,7 @@
 [ext_resource type="PackedScene" uid="uid://3qegagme7w4c" path="res://scenes/systems/building/building.tscn" id="10_d4h0i"]
 [ext_resource type="PackedScene" uid="uid://cm85hy4nglvyg" path="res://scenes/ui/hud/notifications/notifications.tscn" id="11_k8yp2"]
 [ext_resource type="PackedScene" uid="uid://ddbr53ohn683s" path="res://scenes/ui/menu/pause_menu.tscn" id="11_ot3us"]
+[ext_resource type="PackedScene" uid="uid://cp6bo3elht7og" path="res://scenes/systems/farming/farming_manager.tscn" id="11_wwmhn"]
 [ext_resource type="PackedScene" uid="uid://de7ljcthumfav" path="res://scenes/systems/crafting/crafting.tscn" id="12_wsaqj"]
 [ext_resource type="Script" path="res://scenes/world/tabs.gd" id="13_hqbme"]
 [ext_resource type="Script" path="res://scenes/player/game_controller.gd" id="13_xk8dt"]
@@ -92,6 +93,8 @@ script = ExtResource("4_26fgq")
 
 [node name="CaveManager" parent="." instance=ExtResource("10_bt8vl")]
 visible = false
+
+[node name="FarmingManager" parent="." instance=ExtResource("11_wwmhn")]
 
 [node name="Player" parent="." instance=ExtResource("5_j0bro")]
 unique_name_in_owner = true

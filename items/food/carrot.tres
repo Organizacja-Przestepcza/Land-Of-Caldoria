@@ -7,6 +7,7 @@
 script = ExtResource("1_3d4vv")
 hunger_value = 7
 health_value = 0
+is_plantable = true
 slot = 0
 name = "Carrot"
 weight = 1

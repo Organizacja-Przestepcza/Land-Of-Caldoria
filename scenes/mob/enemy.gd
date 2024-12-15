@@ -57,7 +57,8 @@ func _on_detection_area_body_exited(body: Node2D) -> void:
 
 func take_damage(damage: int) -> bool: ## returns true if the object was destroyed
 	if health <= 0:
-		queue_free()
+		if $AnimatedSprite2D.animation != "death":
+			queue_free()
 		return false
 	health = health - damage
 	handle_healthbar()
