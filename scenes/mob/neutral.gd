@@ -6,10 +6,6 @@ var bounce_force: int = 300
 
 func handle_healthbar():
 	print(mob_name)
-
-func bounce_back(collision: KinematicCollision2D) -> void:
-	var bounce_direction = velocity.bounce(collision.get_normal()).normalized()
-	velocity = bounce_direction * bounce_force
 	
 func take_damage(damage: int) -> bool: ## returns true if the object was destroyed
 	health = health - damage
