@@ -136,9 +136,9 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_k5xad")
 }],
-"loop": true,
+"loop": false,
 "name": &"death",
-"speed": 7.0
+"speed": 16.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -217,7 +217,8 @@ script = ExtResource("1_uo4hf")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_fhyei")
 animation = &"death"
-frame_progress = 0.54732
+frame = 9
+frame_progress = 1.0
 
 [node name="Area2D" type="Area2D" parent="."]
 collision_layer = 4
