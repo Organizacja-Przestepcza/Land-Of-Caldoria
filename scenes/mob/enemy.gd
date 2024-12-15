@@ -78,6 +78,3 @@ func play_chase() -> void:
 
 func play_attack() -> void:
 	print("not implemented")
-
-func handle_healthbar():
-	print(mob_name)
