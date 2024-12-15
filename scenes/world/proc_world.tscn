@@ -99,7 +99,14 @@ visible = false
 [node name="Player" parent="." instance=ExtResource("5_j0bro")]
 unique_name_in_owner = true
 position = Vector2(469, 284)
+speed = null
 camera_zoom = Vector2(1, 1)
+strength = null
+endurance = null
+intelligence = null
+agility = null
+luck = null
+skill_points = null
 
 [node name="Hud" parent="Player" instance=ExtResource("6_ai4l1")]
 unique_name_in_owner = true

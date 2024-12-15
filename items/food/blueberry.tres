@@ -7,9 +7,12 @@
 script = ExtResource("1_bnblq")
 hunger_value = 5
 health_value = 0
+is_plantable = false
+atlas_id = -1
 slot = 0
 name = "Blueberry"
 weight = 1
 texture = ExtResource("2_noshp")
 max_stack_size = 8
 description = "Restores 5 hunger"
+value = 5

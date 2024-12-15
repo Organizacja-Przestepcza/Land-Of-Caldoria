@@ -188,6 +188,8 @@ func interact():
 		interface.get_node("Trading").open()
 	elif nearest_interactable is FurnaceObj:
 		interface.get_node("Furnace").open()
+	elif farming_manager.is_on_field(position):
+		farming_manager.plant_seed(hotbar.get_held_item(), position)
 	elif cave_manager.is_valid_entry(position): # check if there is a hole under player
 		cave_manager.enter()
 	elif cave_manager.is_valid_exit(position):
