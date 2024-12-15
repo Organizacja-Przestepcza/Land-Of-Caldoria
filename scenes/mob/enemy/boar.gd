@@ -7,6 +7,7 @@ func _ready() -> void:
 	speed = 50
 	exp = 10
 	strength = 10
+	bounce_force = 200
 	$AnimatedSprite2D.play("idle")
 	$ProgressBar.max_value = health
 	$ProgressBar.value = health
