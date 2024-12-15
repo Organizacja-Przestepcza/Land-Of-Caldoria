@@ -1,5 +1,6 @@
-[gd_scene load_steps=22 format=3 uid="uid://cjtvqnkmxqxwa"]
+[gd_scene load_steps=23 format=3 uid="uid://cjtvqnkmxqxwa"]
 
+[ext_resource type="Script" path="res://scenes/mob/neutral/sheep.gd" id="1_uo4hf"]
 [ext_resource type="Texture2D" uid="uid://wq08hq6k1mhn" path="res://assets/textures/mob/sheep/sheep_idle.png" id="1_vdaef"]
 [ext_resource type="Texture2D" uid="uid://cacrjpf0f62xx" path="res://assets/textures/mob/sheep/sheep_walk_front.png" id="2_c2n6k"]
 [ext_resource type="Texture2D" uid="uid://dpmdvuvn0fgp0" path="res://assets/textures/mob/sheep/sheep_walk.png" id="3_08hbb"]
@@ -133,13 +134,18 @@ radius = 61.2944
 size = Vector2(31, 28)
 
 [node name="Sheep" type="CharacterBody2D"]
+collision_layer = 8
+collision_mask = 3
+script = ExtResource("1_uo4hf")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_fhyei")
 animation = &"idle"
-frame_progress = 0.553997
+frame_progress = 0.552439
 
 [node name="Area2D" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("CircleShape2D_s1taf")
@@ -147,3 +153,13 @@ shape = SubResource("CircleShape2D_s1taf")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-0.5, 1)
 shape = SubResource("RectangleShape2D_i5bvi")
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+visible = false
+offset_left = -13.0
+offset_top = -27.0
+offset_right = 14.0
+offset_bottom = -23.0
+step = 1.0
+value = 100.0
+show_percentage = false

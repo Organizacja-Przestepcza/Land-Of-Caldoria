@@ -190,7 +190,8 @@ const mob_types = {
 	"crab": preload("res://scenes/mob/enemy/crab.tscn"),
 	"boar": preload("res://scenes/mob/enemy/boar.tscn"),
 	"bear": preload("res://scenes/mob/enemy/bear.tscn"),
-	"wolf": preload("res://scenes/mob/enemy/wolf.tscn")}
+	"wolf": preload("res://scenes/mob/enemy/wolf.tscn"),
+	"sheep": preload("res://scenes/mob/neutral/sheep.tscn")}
 
 func chance_spawn_mob(pos: Vector2) -> void:
 	randomize()
