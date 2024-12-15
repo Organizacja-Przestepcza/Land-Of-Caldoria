@@ -45,13 +45,13 @@ func bounce_back(collision: KinematicCollision2D) -> void:
 	velocity = bounce_direction * bounce_force
 
 func _on_detection_area_body_entered(body: Node2D) -> void:
-	if body is Player:
+	if body is Player and $AnimatedSprite2D.animation != "death":
 		chase_player = true
 		play_chase()
 		$AnimatedSprite2D.play("walk")
 
 func _on_detection_area_body_exited(body: Node2D) -> void:
-	if body is Player:
+	if body is Player and $AnimatedSprite2D.animation != "death":
 		chase_player = false
 		$AnimatedSprite2D.play("idle")
 
