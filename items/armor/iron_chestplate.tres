@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="Armor" load_steps=3 format=3 uid="uid://n12glj482wue"]
+
+[ext_resource type="Script" path="res://items/armor.gd" id="1_umnqm"]
+[ext_resource type="Texture2D" uid="uid://d3xmucgmfiht3" path="res://assets/textures/item/armor/iron_chestplate.png" id="2_qvw5l"]
+
+[resource]
+script = ExtResource("1_umnqm")
+durability = 100
+protection = 10
+bonuses = {
+"agility": -1
+}
+slot = 3
+name = "Iron Chestplate"
+weight = 5
+texture = ExtResource("2_qvw5l")
+max_stack_size = 1
+description = "Sturdy torso protection"
+value = 60

@@ -31,7 +31,7 @@ func move_towards_player(target, delta) -> void:
 			attack()
 			bounce_back(collision)
 		else:
-			handle_obstacle(collision)
+			move_and_slide()
 	
 func attack() -> void:
 	player.hit(strength)
@@ -43,11 +43,6 @@ func attack() -> void:
 func bounce_back(collision: KinematicCollision2D) -> void:
 	var bounce_direction = velocity.bounce(collision.get_normal()).normalized()
 	velocity = bounce_direction * bounce_force
-	
-func handle_obstacle(collision: KinematicCollision2D) -> void:
-	var obstacle = collision.get_collider()
-	if obstacle:
-		move_and_slide()
 
 func _on_detection_area_body_entered(body: Node2D) -> void:
 	if body is Player:
@@ -62,7 +57,8 @@ func _on_detection_area_body_exited(body: Node2D) -> void:
 
 func take_damage(damage: int) -> bool: ## returns true if the object was destroyed
 	if health <= 0:
-		return true
+		queue_free()
+		return false
 	health = health - damage
 	handle_healthbar()
 	if health <= 0:

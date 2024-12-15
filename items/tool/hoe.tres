@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="Tool" load_steps=3 format=3 uid="uid://dgoxne2wxetkl"]
+
+[ext_resource type="Script" path="res://items/tool.gd" id="1_hb33w"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_uw0bp"]
+size = Vector2(32, 32)
+
+[resource]
+script = ExtResource("1_hb33w")
+damage = 1
+durability = 100
+knockback = 0
+range = 0.0
+cooldown = 0.0
+slot = 0
+name = "Hoe"
+weight = 1
+texture = SubResource("PlaceholderTexture2D_uw0bp")
+max_stack_size = 1
+description = "Hoe, hoe, hoe, merry christmas"
+value = 20

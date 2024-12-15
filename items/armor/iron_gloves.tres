@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="Armor" load_steps=3 format=3 uid="uid://dodsjf1s78ssm"]
+
+[ext_resource type="Script" path="res://items/armor.gd" id="1_oyn0q"]
+[ext_resource type="Texture2D" uid="uid://c6jkctiuqnd31" path="res://assets/textures/item/armor/iron_gloves.png" id="2_bvg8b"]
+
+[resource]
+script = ExtResource("1_oyn0q")
+durability = 0
+protection = 2
+bonuses = {
+"agility": -1
+}
+slot = 2
+name = "Iron Gloves"
+weight = 1
+texture = ExtResource("2_bvg8b")
+max_stack_size = 1
+description = "Sturdy hand protection"
+value = 15

@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="Tool" load_steps=3 format=3 uid="uid://l6a6s3mv82s6"]
 
-[ext_resource type="Script" path="res://items/Tool.gd" id="1_o2m4y"]
+[ext_resource type="Script" path="res://items/tool.gd" id="1_o2m4y"]
 [ext_resource type="Texture2D" uid="uid://vyfyf5ftmgbt" path="res://assets/textures/item/tools/knife/Combat_knife.png" id="2_22cy5"]
 
 [resource]
