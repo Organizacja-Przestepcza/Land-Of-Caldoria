@@ -15,3 +15,6 @@ func _ready() -> void:
 func handle_healthbar():
 	$ProgressBar.visible = true
 	$ProgressBar.value = health
+	
+func play_attack() -> void:
+	$AudioStreamPlayer.play()

@@ -1,7 +1,8 @@
-[gd_scene load_steps=25 format=3 uid="uid://cqg8foh8rbto4"]
+[gd_scene load_steps=26 format=3 uid="uid://cqg8foh8rbto4"]
 
 [ext_resource type="Script" path="res://scenes/mob/enemy/bear.gd" id="1_xyaod"]
 [ext_resource type="Texture2D" uid="uid://bugwujbwkp7ia" path="res://assets/textures/mob/bear/MiniBear.png" id="2_d4grm"]
+[ext_resource type="AudioStream" uid="uid://bn82jyjqvxxw5" path="res://assets/sfx/mob/Bear (1).mp3" id="3_uw0xq"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_uu1j0"]
 atlas = ExtResource("2_d4grm")
@@ -195,6 +196,10 @@ offset_bottom = -31.0
 step = 1.0
 value = 100.0
 show_percentage = false
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_uw0xq")
+volume_db = -3.805
 
 [connection signal="body_entered" from="DetectionArea" to="." method="_on_detection_area_body_entered"]
 [connection signal="body_exited" from="DetectionArea" to="." method="_on_detection_area_body_exited"]
