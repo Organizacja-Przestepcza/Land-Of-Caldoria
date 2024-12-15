@@ -3,10 +3,10 @@ extends Enemy
 func _ready() -> void:
 	mob_name = "Wolf"
 	super()
-	health = 20
+	health = 30
 	speed = 90
-	exp = 5
-	strength = 5
+	exp = 10
+	strength = 10
 	$AnimatedSprite2D.play("idle")
 	$ProgressBar.max_value = health
 	$ProgressBar.value = health
