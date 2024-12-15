@@ -74,10 +74,10 @@ func die():
 	$AnimatedSprite2D.animation_finished.connect(func (): queue_free())
 	
 func play_chase() -> void:
-	print("not implemented")
+	print(mob_name, " chase sound")
 
 func play_attack() -> void:
-	print("not implemented")
+	print(mob_name, " attack sound")
 
 func handle_healthbar():
 	print(mob_name)

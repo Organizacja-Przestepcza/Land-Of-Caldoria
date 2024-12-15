@@ -59,7 +59,6 @@ func load_objects(chunk_pos: Vector2i):
 	for tiles in tile_layer_arr:
 		if not tiles[0].has(chunk_pos):
 			tiles[0][chunk_pos] = {}
-			print("Nothing to load, returning")
 			return
 		var chunk_d: Dictionary = tiles[0][chunk_pos]
 		for tile_pos: Vector2i in chunk_d.keys():
@@ -171,7 +170,6 @@ func chance_spawn_building(chunk_pos: Vector2i) -> void:
 			var building_name = choose_random_building()
 			var building_scene = building_types[building_name]
 			if building_scene:
-				print("Creating builidng.")
 				var building = building_scene.instantiate()
 				building.z_index = -1;
 				building.position = _chunk_to_global(chunk_pos)
