@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="Tool" load_steps=3 format=3 uid="uid://ceog5fxjm0c7b"]
 
-[ext_resource type="Script" path="res://items/Tool.gd" id="1_aqf56"]
+[ext_resource type="Script" path="res://items/tool.gd" id="1_aqf56"]
 [ext_resource type="Texture2D" uid="uid://debsudj5sqygd" path="res://assets/textures/item/tools/sword/spear.png" id="2_fh2s2"]
 
 [resource]

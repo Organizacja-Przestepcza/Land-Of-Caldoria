@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="Armor" load_steps=3 format=3 uid="uid://r1l51o4lsdr4"]
+
+[ext_resource type="Script" path="res://items/armor.gd" id="1_775ac"]
+[ext_resource type="Texture2D" uid="uid://j75r1ulwac8p" path="res://assets/textures/item/armor/iron_boots.png" id="2_vfd2v"]
+
+[resource]
+script = ExtResource("1_775ac")
+durability = 0
+protection = 4
+bonuses = {}
+slot = 5
+name = "Iron Boots"
+weight = 2
+texture = ExtResource("2_vfd2v")
+max_stack_size = 1
+description = "Sturdy feet protection"
+value = 24

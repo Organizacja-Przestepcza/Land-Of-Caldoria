@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="Tool" load_steps=3 format=3 uid="uid://d4mivj7fg2m3t"]
 
-[ext_resource type="Script" path="res://items/Tool.gd" id="1_fdf1i"]
+[ext_resource type="Script" path="res://items/tool.gd" id="1_fdf1i"]
 [ext_resource type="Texture2D" uid="uid://c7on5c2mtyjm1" path="res://assets/textures/item/tools/sword/machete.png" id="2_33wnk"]
 
 [resource]

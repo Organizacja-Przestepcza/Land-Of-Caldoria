@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="Tool" load_steps=3 format=3 uid="uid://drg1ns4derpdu"]
 
-[ext_resource type="Script" path="res://items/Tool.gd" id="1_irrfa"]
+[ext_resource type="Script" path="res://items/tool.gd" id="1_irrfa"]
 [ext_resource type="Texture2D" uid="uid://boig5alkv1h2n" path="res://assets/textures/item/tools/hammer/hammer.png" id="2_g51ba"]
 
 [resource]

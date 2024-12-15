@@ -32,7 +32,7 @@ func select_slot(index: int):
 signal item_selected(item: Item)
 
 func get_held_item() -> Item:
-	var inv_item = selected_slot.get_child(0) #To mi się wywala, chyba trzeba sprawdzić czy istnieje selected item
+	var inv_item = selected_slot.get_child(0) if selected_slot.get_child_count() > 0 else null
 	if inv_item is InventoryItem:
 		return inv_item.data
 	return

@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="Item" load_steps=3 format=3 uid="uid://d4bo8rk273egm"]
 
-[ext_resource type="Script" path="res://items/Item.gd" id="1_dyiy1"]
+[ext_resource type="Script" path="res://items/item.gd" id="1_dyiy1"]
 [ext_resource type="Texture2D" uid="uid://wujipq1ptgja" path="res://assets/textures/item/resource/wood/wooden plank.png" id="2_rf73t"]
 
 [resource]

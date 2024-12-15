@@ -81,25 +81,13 @@ func set_attrib() -> void:
 	intelligence_label.text = "Intelligence: " + str(player.intelligence)
 	luck_label.text = "Luck: " + str(player.luck)
 	agility_label.text = "Agility: " + str(player.agility)
-	
-func _input(event: InputEvent) -> void:
-	if event is InputEventKey:
-		if event.keycode == KEY_ENTER and event.is_pressed():
-			add_exp(1)
 
 func set_btn_state() -> void: 
-	if player.skill_points < 1 :
-		strength_button.disabled = true
-		endurance_button.disabled = true
-		intelligence_button.disabled = true
-		agility_button.disabled = true
-		luck_button.disabled = true
-		return
-	strength_button.disabled = false
-	endurance_button.disabled = false
-	intelligence_button.disabled = false
-	agility_button.disabled = false
-	luck_button.disabled = false
+	strength_button.disabled = player.skill_points < 1
+	endurance_button.disabled = player.skill_points < 1
+	intelligence_button.disabled = player.skill_points < 1
+	agility_button.disabled = player.skill_points < 1
+	luck_button.disabled = player.skill_points < 1
 
 func _on_button_pressed(btn_value: String) -> void:
 	if not player.skill_points > 0:

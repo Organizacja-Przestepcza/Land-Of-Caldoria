@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="Consumable" load_steps=3 format=3 uid="uid://iuvcf21v7028"]
 
-[ext_resource type="Script" path="res://items/Consumable.gd" id="1_bnblq"]
+[ext_resource type="Script" path="res://items/consumable.gd" id="1_bnblq"]
 [ext_resource type="Texture2D" uid="uid://0dha4xgik3c1" path="res://assets/textures/item/food/blueberry.png" id="2_noshp"]
 
 [resource]

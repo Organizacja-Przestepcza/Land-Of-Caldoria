@@ -5,3 +5,4 @@ extends Item
 @export var durability: int
 @export var knockback: int
 @export var range: float
+@export var cooldown: float
