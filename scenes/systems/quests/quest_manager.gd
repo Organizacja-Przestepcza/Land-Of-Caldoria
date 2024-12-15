@@ -15,7 +15,7 @@ func _ready():
 	
 
 func _on_node_added(node: Node):
-	if node.is_in_group("enemies") and node.name == "Wolf":
+	if node.name == "Wolf":
 		print("New enemy detected: ", node.name)
 		node.connect("enemy_killed", _on_enemy_killed)
 
