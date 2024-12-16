@@ -194,7 +194,8 @@ const mob_types = {
 	"crab": preload("res://scenes/mob/enemy/crab.tscn"),
 	"boar": preload("res://scenes/mob/enemy/boar.tscn"),
 	"bear": preload("res://scenes/mob/enemy/bear.tscn"),
-	"wolf": preload("res://scenes/mob/enemy/wolf.tscn")}
+	"wolf": preload("res://scenes/mob/enemy/wolf.tscn"),
+	"sheep": preload("res://scenes/mob/neutral/sheep.tscn")}
 
 func chance_spawn_mob(pos: Vector2) -> void:
 	randomize()
@@ -204,7 +205,10 @@ func chance_spawn_mob(pos: Vector2) -> void:
 		if randi_range(0, 1000) <= 2: # 0.2% chance
 			var mob_name = _random_mob_name()
 			var mob = mob_types[mob_name].instantiate()
-			mob.add_to_group("enemies")
+			if mob is Enemy:
+				mob.add_to_group("enemies")
+			elif mob is Neutral:
+				mob.add_to_group("neutrals")
 			mob.global_position = pos
 			add_child(mob)
 

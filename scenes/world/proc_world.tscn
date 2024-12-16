@@ -204,6 +204,7 @@ position = Vector2(210, 304)
 position = Vector2(689, 122)
 
 [node name="QuestManager" type="Node" parent="."]
+unique_name_in_owner = true
 script = ExtResource("28_i1x7g")
 
 [connection signal="chunk_rendered" from="NoiseGenerator/ThreadedBetterTerrainGaeaRenderer" to="." method="_on_chunk_rendered"]

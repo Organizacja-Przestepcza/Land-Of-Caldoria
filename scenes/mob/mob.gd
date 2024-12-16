@@ -22,3 +22,6 @@ func despawn(_chunk_position):
 	if dist_to_player > 3000000:
 		world.chunk_loader.chunk_changed.disconnect(despawn)
 		queue_free()
+
+func handle_healthbar():
+	print(mob_name)

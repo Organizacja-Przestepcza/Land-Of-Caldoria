@@ -79,6 +79,3 @@ func play_chase() -> void:
 
 func play_attack() -> void:
 	print(mob_name, " attack sound")
-
-func handle_healthbar():
-	print(mob_name)
