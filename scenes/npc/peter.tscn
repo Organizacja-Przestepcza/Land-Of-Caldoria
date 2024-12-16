@@ -1,0 +1,40 @@
+[gd_scene load_steps=6 format=3 uid="uid://d4h1voxks6c2l"]
+
+[ext_resource type="Texture2D" uid="uid://dfaym323qqyvv" path="res://assets/textures/tilesets/pomnik.png" id="1_cf6qd"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hmyi2"]
+atlas = ExtResource("1_cf6qd")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_fsbfx"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hmyi2")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_kkcw2"]
+radius = 28.6356
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_x0jk2"]
+radius = 27.2029
+
+[node name="Peter" type="CharacterBody2D"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_fsbfx")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1, 0)
+shape = SubResource("CircleShape2D_kkcw2")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 8
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_x0jk2")
