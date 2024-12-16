@@ -7,10 +7,12 @@
 script = ExtResource("1_sf7n7")
 hunger_value = 6
 health_value = 0
+is_plantable = false
+atlas_id = -1
 slot = 0
 name = "Apple"
 weight = 1
 texture = ExtResource("2_isder")
 max_stack_size = 8
 description = "Restores 6 hunger"
-value = 0
+value = 6

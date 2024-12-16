@@ -10,7 +10,7 @@
 [ext_resource type="Script" path="res://addons/gaea/modifiers/2D/walls.gd" id="6_emoqd"]
 [ext_resource type="Script" path="res://addons/gaea/modifiers/2D/noise_painter.gd" id="7_544d5"]
 [ext_resource type="Script" path="res://addons/better-terrain-in-gaea/better_terrain_gaea_renderer.gd" id="7_n78an"]
-[ext_resource type="TileSet" uid="uid://bd0ap0k6oav55" path="res://tilesets/cave.tres" id="9_nxgtn"]
+[ext_resource type="TileSet" uid="uid://bhygu67slsgf4" path="res://tilesets/cave.tres" id="9_nxgtn"]
 
 [sub_resource type="Resource" id="Resource_bulkx"]
 script = ExtResource("5_a1hq5")

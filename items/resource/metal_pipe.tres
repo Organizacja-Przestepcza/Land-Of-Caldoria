@@ -11,4 +11,4 @@ weight = 3
 texture = ExtResource("2_1pcgi")
 max_stack_size = 1
 description = "YOU WISH"
-value = 0
+value = 20

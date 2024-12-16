@@ -15,7 +15,6 @@ func _ready() -> void:
 		player = get_tree().root.get_node("World/Player")
 	elif get_tree().root.has_node("CaveManager/Player"):
 		player = get_tree().root.get_node("CaveManager/Player")
-	print(player)
 	notifications = player.notifications
 
 func despawn(_chunk_position):

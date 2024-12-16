@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="Item" load_steps=4 format=3 uid="uid://2x2na1aoh5w0"]
+
+[ext_resource type="Script" path="res://items/item.gd" id="1_w1bk7"]
+[ext_resource type="Texture2D" uid="uid://bsaxok8hlh6em" path="res://assets/textures/item/tools/bucket/Bucket.png" id="2_qygae"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_niean"]
+atlas = ExtResource("2_qygae")
+region = Rect2(0, 0, 32, 32)
+
+[resource]
+script = ExtResource("1_w1bk7")
+slot = 0
+name = "Bucket"
+weight = 1
+texture = SubResource("AtlasTexture_niean")
+max_stack_size = 1
+description = "Can hold liquids"
+value = 6

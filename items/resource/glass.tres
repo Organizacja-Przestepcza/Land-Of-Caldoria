@@ -10,5 +10,5 @@ name = "Glass"
 weight = 1
 texture = ExtResource("2_p3yr1")
 max_stack_size = 16
-description = "Now yo can see me,"
-value = 0
+description = "Now you can see me"
+value = 16

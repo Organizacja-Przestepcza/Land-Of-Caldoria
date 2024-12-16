@@ -14,6 +14,7 @@ enum State {
 @export var agility: int = 1
 @export var luck: int = 1
 @export var skill_points: int = 0
+
 @onready var interface: CanvasLayer = $Interface
 @onready var hud: Hud = $Hud
 @onready var stamina_bar:Stamina = $Hud/VBoxContainer/StaminaBar
@@ -21,6 +22,8 @@ enum State {
 
 @onready var build_manager: BuildManager = $"../BuildManager"
 @onready var cave_manager: CaveManager = $"../CaveManager"
+@onready var farming_manager: FarmingManager = $"../FarmingManager"
+
 @onready var inventory: Inventory = %Inventory
 @onready var health_bar: Health = hud.get_node("VBoxContainer/HealthBar")
 @onready var hunger_bar: Hunger = hud.get_node("VBoxContainer/HungerBar")
@@ -160,16 +163,24 @@ func get_victim():
 
 func use_item() -> void:
 	var held_item = hotbar.get_held_item()
-	if held_item is Consumable:
-		consume(hotbar.selected_slot.get_child(0),1)
-	elif held_item == ItemLoader.name("hammer"):
+	if held_item == ItemLoader.name("hammer"):
 		build_manager.build()
 	elif held_item == ItemLoader.name("shovel"):
 		cave_manager.dig()
+	elif held_item == ItemLoader.name("hoe"):
+		if not farming_manager.till_ground():
+			farming_manager.harvest()
+	elif held_item == ItemLoader.name("bucket"):
+		farming_manager.fill_bucket()
+	elif held_item == ItemLoader.name("water_bucket"):
+		farming_manager.water_crop()
+	elif held_item is Consumable:
+		consume(hotbar.selected_slot.get_child(0),1)
 	elif held_item is Ranged:
 		shoot(held_item)
 	elif held_item is Tool:
 		attack(held_item)
+
 
 func interact():
 	if nearest_interactable is LootBag:
@@ -180,6 +191,8 @@ func interact():
 		interface.get_node("Trading").open()
 	elif nearest_interactable is FurnaceObj:
 		interface.get_node("Furnace").open()
+	elif farming_manager.is_on_field(position):
+		farming_manager.plant_seed(hotbar.get_held_item(), position)
 	elif cave_manager.is_valid_entry(position): # check if there is a hole under player
 		cave_manager.enter()
 	elif cave_manager.is_valid_exit(position):
@@ -214,7 +227,7 @@ func consume(item: InventoryItem, amount: int) -> void:
 		item.remove(amount)
 
 func shoot(weap: Ranged):
-	if not inventory.find_item(ammo_selector.current_ammo):
+	if not inventory.find_item(ammo_selector.get_current_ammo()):
 		return
 	var mouse_pos = get_global_mouse_position()
 	var bullet_instance: Bullet = bullet_scene.instantiate()
@@ -239,10 +252,10 @@ func shoot(weap: Ranged):
 				return
 	bullet_instance.position = global_position + offset
 	bullet_instance.set_direction_towards(mouse_pos)
-	var ammo_idx = weap.ammo_list.find(ammo_selector.current_ammo)
+	var ammo_idx = weap.ammo_list.find(ammo_selector.get_current_ammo())
 	bullet_instance.damage = weap.damage_list[ammo_idx]
 	bullet_instance.hit.connect(_on_bullet_hit)
-	inventory.remove_item(ammo_selector.current_ammo, 1)
+	inventory.remove_item(ammo_selector.get_current_ammo(), 1)
 	get_tree().current_scene.add_child(bullet_instance)
 
 func _on_bullet_hit(body: Node, damage: int):

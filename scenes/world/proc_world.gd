@@ -59,7 +59,6 @@ func load_objects(chunk_pos: Vector2i):
 	for tiles in tile_layer_arr:
 		if not tiles[0].has(chunk_pos):
 			tiles[0][chunk_pos] = {}
-			print("Nothing to load, returning")
 			return
 		var chunk_d: Dictionary = tiles[0][chunk_pos]
 		for tile_pos: Vector2i in chunk_d.keys():
@@ -145,14 +144,20 @@ func generate_village() -> void:
 	var build: TileMapLayer = village.get_node("Objects")
 	var floor: TileMapLayer = village.get_node("Floor")
 	# set walls
-	BetterTerrain.set_cells(object_layer,build.get_used_cells(),0)
-	BetterTerrain.update_terrain_cells(object_layer,build.get_used_cells())
+	BetterTerrain.set_cells(object_layer,build.get_used_cells_by_id(3),0)
+	# set fence
+	BetterTerrain.set_cells(object_layer,build.get_used_cells_by_id(7),1)
 	# set stone floor
-	BetterTerrain.set_cells(floor_layer,floor.get_used_cells_by_id(0,Vector2i.ZERO,0),1)
-	BetterTerrain.update_terrain_cells(floor_layer,floor.get_used_cells_by_id(0,Vector2i.ZERO,0))
+	BetterTerrain.set_cells(floor_layer,floor.get_used_cells_by_id(0),0)
 	# set path
-	BetterTerrain.set_cells(floor_layer,floor.get_used_cells_by_id(2,Vector2i.ZERO,0),2)
-	BetterTerrain.update_terrain_cells(floor_layer,floor.get_used_cells_by_id(0,Vector2i.ZERO,0))
+	BetterTerrain.set_cells(floor_layer,floor.get_used_cells_by_id(2),1)
+	# set field
+	BetterTerrain.set_cells(floor_layer,floor.get_used_cells_by_id(4),3)
+	BetterTerrain.set_cells(floor_layer,floor.get_used_cells_by_id(5),2)
+	
+	# update layers
+	BetterTerrain.update_terrain_cells(object_layer,build.get_used_cells())
+	BetterTerrain.update_terrain_cells(floor_layer,floor.get_used_cells())
 	village.get_node("Objects").clear()
 	village.get_node("Floor").clear()
 	
@@ -165,7 +170,6 @@ func chance_spawn_building(chunk_pos: Vector2i) -> void:
 			var building_name = choose_random_building()
 			var building_scene = building_types[building_name]
 			if building_scene:
-				print("Creating builidng.")
 				var building = building_scene.instantiate()
 				building.z_index = -1;
 				building.position = _chunk_to_global(chunk_pos)

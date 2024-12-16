@@ -10,5 +10,5 @@ name = "wool"
 weight = 1
 texture = ExtResource("2_un2mf")
 max_stack_size = 6
-description = "sheep_wool"
+description = "Very comfortable"
 value = 5

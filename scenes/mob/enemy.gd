@@ -45,19 +45,20 @@ func bounce_back(collision: KinematicCollision2D) -> void:
 	velocity = bounce_direction * bounce_force
 
 func _on_detection_area_body_entered(body: Node2D) -> void:
-	if body is Player:
+	if body is Player and $AnimatedSprite2D.animation != "death":
 		chase_player = true
 		play_chase()
 		$AnimatedSprite2D.play("walk")
 
 func _on_detection_area_body_exited(body: Node2D) -> void:
-	if body is Player:
+	if body is Player and $AnimatedSprite2D.animation != "death":
 		chase_player = false
 		$AnimatedSprite2D.play("idle")
 
 func take_damage(damage: int) -> bool: ## returns true if the object was destroyed
 	if health <= 0:
-		queue_free()
+		if $AnimatedSprite2D.animation != "death":
+			queue_free()
 		return false
 	health = health - damage
 	handle_healthbar()
@@ -74,7 +75,7 @@ func die():
 	$AnimatedSprite2D.animation_finished.connect(func (): queue_free())
 	
 func play_chase() -> void:
-	print("not implemented")
+	print(mob_name, " chase sound")
 
 func play_attack() -> void:
-	print("not implemented")
+	print(mob_name, " attack sound")
