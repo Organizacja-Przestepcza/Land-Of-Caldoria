@@ -105,6 +105,8 @@ func _physics_process(_delta):
 	play_animation()
 
 func hit(value: int):
+	var armor_protection: int
+	var armor_array = inventory.get_armor()
 	print("hit received, damage: ", value)
 	health_bar.modify_health(-value)
 
