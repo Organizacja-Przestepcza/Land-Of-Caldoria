@@ -6,7 +6,6 @@ var health : int
 var accepted_items: Dictionary
 @onready var detection_area:Area2D = get_node("DetectionArea")
 @onready var player: Player = %Player
-@onready var quest_manager: QuestManager = %QuestManager
 var interaction_dialog: InteractionDialog
 var has_given_quest: bool = false
 
@@ -26,7 +25,7 @@ func show_interaction():
 func _on_quest_started():
 	if has_given_quest:
 		return
-	#quest_manager.
+	SignalBus.start_quest.emit()
 	has_given_quest = true
 
 func _on_trade_started():
