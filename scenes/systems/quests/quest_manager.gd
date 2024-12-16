@@ -37,12 +37,6 @@ func is_kill_mob_completed(mob_name: String, to_kill: int) -> bool:
 			return true
 	return false
 
-func _on_condition_query_requested(type: String, key: String, value: Variant, requester: QuestCondition):
-	if type == "kill_mob":
-		if key == "wolf" and current_kills >= value:
-			requester.set_completed(true)
-			print("Quest completed! Killed enough enemies.")
-
 func _on_enemy_killed(mob_name: String):
 	if _mob_kills.has(mob_name):
 		_mob_kills[mob_name] += 1
