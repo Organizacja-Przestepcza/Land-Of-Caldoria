@@ -171,15 +171,16 @@ func use_item() -> void:
 		if not farming_manager.till_ground():
 			farming_manager.harvest()
 	elif held_item == ItemLoader.name("bucket"):
-		pass # fill with water/milk
+		farming_manager.fill_bucket()
 	elif held_item == ItemLoader.name("water_bucket"):
-		pass # water the plants
+		farming_manager.water_crop()
 	elif held_item is Consumable:
 		consume(hotbar.selected_slot.get_child(0),1)
 	elif held_item is Ranged:
 		shoot(held_item)
 	elif held_item is Tool:
 		attack(held_item)
+
 
 func interact():
 	if nearest_interactable is LootBag:
