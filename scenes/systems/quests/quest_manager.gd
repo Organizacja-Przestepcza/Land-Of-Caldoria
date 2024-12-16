@@ -1,21 +1,27 @@
 extends Node
-@onready var current_quest: QuestResource
+class_name QuestManager
 
+var current_quest: QuestResource
+var quest_resources: Dictionary = {
+	"kill_mobs": preload("res://quests/kill_mobs.tres")
+}
 
-# Store your kill count
+var active_quests: Array[QuestResource]
+
 var current_kills: int = 0
 
-# Connect to the signal when the Questify is initialized
 func _ready():
-	current_quest = preload("res://quests/wolf_task.tres")
-	var instance = current_quest.instantiate()
-	Questify.start_quest(instance)
 	get_tree().connect("node_added", _on_node_added)
-	Questify.condition_query_requested.connect(_on_condition_query_requested)
+	#var instance = current_quest.instantiate()
+	#Questify.start_quest(instance)
+	#Questify.condition_query_requested.connect(_on_condition_query_requested)
+
+func new_quest():
 	
+	pass
 
 func _on_node_added(node: Node):
-	if node.name == "Wolf":
+	if node is Enemy:
 		print("New enemy detected: ", node.name)
 		node.connect("enemy_killed", _on_enemy_killed)
 
@@ -25,7 +31,7 @@ func _on_condition_query_requested(type: String, key: String, value: Variant, re
 		if key == "wolf" and current_kills >= value:
 			requester.set_completed(true)
 			print("Quest completed! Killed enough enemies.")
-			
+
 func _on_enemy_killed(mob_name: String):
 	if mob_name == "Wolf":
 		current_kills += 1

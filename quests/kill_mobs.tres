@@ -8,59 +8,60 @@
 [ext_resource type="Script" path="res://addons/questify/scripts/model/quest_node.gd" id="6_gsjk4"]
 [ext_resource type="Script" path="res://addons/questify/scripts/model/quest_resource.gd" id="7_j36xr"]
 
-[sub_resource type="Resource" id="Resource_2o3us"]
+[sub_resource type="Resource" id="Resource_hxsxg"]
 script = ExtResource("2_t5bl4")
-name = "Wilki"
-description = "Kill: 5 wolfs."
+name = "Hunt: <mob_name>"
+description = "Find and kill <amount> <mob_name>."
 id = "TeOYeaHQ28"
 optional = false
 graph_editor_position = Vector2(20, 60)
 graph_editor_size = Vector2(280, 503)
+metadata/type = "kill"
 
-[sub_resource type="Resource" id="Resource_m6eyu"]
+[sub_resource type="Resource" id="Resource_s12vk"]
 script = ExtResource("3_0u0e3")
-description = "Complete killing."
+description = "Kill the enemies"
 id = "nznn79f2n1"
 optional = false
-graph_editor_position = Vector2(1120, 80)
+graph_editor_position = Vector2(460, 60)
 graph_editor_size = Vector2(468, 499)
 
-[sub_resource type="Resource" id="Resource_xlq2q"]
+[sub_resource type="Resource" id="Resource_hdwf3"]
 script = ExtResource("1_dn0hw")
-from = SubResource("Resource_2o3us")
-to = SubResource("Resource_m6eyu")
+from = SubResource("Resource_hxsxg")
+to = SubResource("Resource_s12vk")
 edge_type = 0
 
-[sub_resource type="Resource" id="Resource_me4yf"]
+[sub_resource type="Resource" id="Resource_n3n8p"]
 script = ExtResource("4_1uwca")
-type = "kill"
-key = "wolf"
+type = "kill_mob"
+key = "<mob_name>"
 id = "d7kW-t8itL"
 optional = false
-graph_editor_position = Vector2(540, 420)
+graph_editor_position = Vector2(20, 660)
 graph_editor_size = Vector2(340, 320)
 metadata/value = 2.0
 
-[sub_resource type="Resource" id="Resource_cku7s"]
+[sub_resource type="Resource" id="Resource_no04o"]
 script = ExtResource("1_dn0hw")
-from = SubResource("Resource_me4yf")
-to = SubResource("Resource_m6eyu")
+from = SubResource("Resource_n3n8p")
+to = SubResource("Resource_s12vk")
 edge_type = 1
 
-[sub_resource type="Resource" id="Resource_qyhx8"]
+[sub_resource type="Resource" id="Resource_dfex6"]
 script = ExtResource("5_ketph")
 id = "mpjWZWJalo"
 optional = false
-graph_editor_position = Vector2(1740, 180)
+graph_editor_position = Vector2(1020, 60)
 graph_editor_size = Vector2(141, 78)
 
-[sub_resource type="Resource" id="Resource_f8rli"]
+[sub_resource type="Resource" id="Resource_ri6e3"]
 script = ExtResource("1_dn0hw")
-from = SubResource("Resource_m6eyu")
-to = SubResource("Resource_qyhx8")
+from = SubResource("Resource_s12vk")
+to = SubResource("Resource_dfex6")
 edge_type = 0
 
 [resource]
 script = ExtResource("7_j36xr")
-nodes = Array[ExtResource("6_gsjk4")]([SubResource("Resource_2o3us"), SubResource("Resource_m6eyu"), SubResource("Resource_qyhx8"), SubResource("Resource_me4yf")])
-edges = Array[ExtResource("1_dn0hw")]([SubResource("Resource_xlq2q"), SubResource("Resource_cku7s"), SubResource("Resource_f8rli")])
+nodes = Array[ExtResource("6_gsjk4")]([SubResource("Resource_s12vk"), SubResource("Resource_dfex6"), SubResource("Resource_n3n8p"), SubResource("Resource_hxsxg")])
+edges = Array[ExtResource("1_dn0hw")]([SubResource("Resource_hdwf3"), SubResource("Resource_no04o"), SubResource("Resource_ri6e3")])
