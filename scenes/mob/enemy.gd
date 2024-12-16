@@ -6,8 +6,6 @@ var bounce_force: int = 300
 var chase_player = false
 var killed_count: int = 0
 
-signal enemy_killed(mob_name: String)
-
 func _physics_process(delta: float) -> void:
 	if chase_player:
 		move_towards_player(player, delta)
@@ -70,7 +68,7 @@ func take_damage(damage: int) -> bool: ## returns true if the object was destroy
 func die():
 	chase_player = false
 	killed_count += 1
-	enemy_killed.emit(mob_name)
+	SignalBus.enemy_killed.emit(mob_name)
 	$AnimatedSprite2D.play("death")
 	$AnimatedSprite2D.animation_finished.connect(func (): queue_free())
 	

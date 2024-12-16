@@ -18,15 +18,6 @@ func update() -> void:
 		if child != null:
 			child.queue_free()
 
-	for quest in Questify.get_quests():
-		var label = Label.new()
-		if quest.completed:
-			var completed = "\u2713" if quest.completed else "\u2717"
-			label.text = "Quest: %s\nDescription: %s\nCompleted: %s" % [quest.name, quest.description, completed]
-		else:
-			var completed = "%s/2" % [quest_manager.current_kills]
-			label.text = "Quest: %s\nDescription: %s\nCompleted: %s" % [quest.name, quest.description, completed]
-		$VBoxContainer.add_child(label)
 
 func open() -> void:
 	game.state = Game.State.INVENTORY

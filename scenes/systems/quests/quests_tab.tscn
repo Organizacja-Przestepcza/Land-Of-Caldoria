@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://4fmaeu4rd0m2"]
+[gd_scene load_steps=3 format=3 uid="uid://4fmaeu4rd0m2"]
 
 [ext_resource type="Script" path="res://scenes/systems/quests/quest_tab.gd" id="1_vmn5x"]
+[ext_resource type="PackedScene" uid="uid://dx8olehyewohi" path="res://scenes/systems/quests/quest_tile.tscn" id="2_0ftag"]
 
 [node name="Quests" type="Control"]
 layout_mode = 3
@@ -19,3 +20,6 @@ anchor_right = 0.5
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="QuestTile" parent="VBoxContainer" instance=ExtResource("2_0ftag")]
+layout_mode = 2

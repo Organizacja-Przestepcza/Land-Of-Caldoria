@@ -1,0 +1,5 @@
+[gd_scene format=3 uid="uid://dx8olehyewohi"]
+
+[node name="QuestTile" type="Control"]
+layout_mode = 3
+anchors_preset = 0

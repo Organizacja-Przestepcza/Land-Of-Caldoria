@@ -14,7 +14,6 @@ class_name ProcWorld
 var chunk_loader: ChunkLoader
 var h_noise: FastNoiseLite ## height noise
 var user_seed = WorldData.seed
-@onready var wolfs_quest: QuestResource
 
 var object_tiles: Dictionary = {}
 var floor_tiles: Dictionary = {}
