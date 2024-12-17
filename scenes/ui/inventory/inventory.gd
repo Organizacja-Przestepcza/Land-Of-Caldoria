@@ -53,6 +53,15 @@ func find_available_slot(itm: Item) -> InventorySlot:
 					return slot
 	return null
 
+func get_armor():
+	var armor_array: Array
+	for slot: InventorySlot in armor:
+		if slot.get_child_count() > 0:
+			var item = slot.get_child(0)
+			if item is Armor:
+				armor_array.push_back(item)
+	return armor_array
+
 func find_item(itm: Item) -> InventorySlot:
 	if not itm:
 		push_warning("this item doesnt exist")
