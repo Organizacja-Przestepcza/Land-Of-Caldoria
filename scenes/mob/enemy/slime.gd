@@ -2,7 +2,7 @@ extends Enemy
 
 func _ready() -> void:
 	super()
-	mob_name = "Slime"
+	mob_name = "slime"
 	health = 20
 	speed = 80
 	exp = 3

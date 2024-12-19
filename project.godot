@@ -17,12 +17,13 @@ config/icon="res://icon.svg"
 
 [autoload]
 
+SignalBus="*res://signal_bus.gd"
 WorldData="*res://scenes/world/world_data.gd"
 ItemLoader="*res://items/loader.gd"
 ListLoader="*res://item_lists/loader.gd"
-BetterTerrain="*res://addons/better-terrain/BetterTerrain.gd"
+MobLoader="*res://scenes/mob/mob_loader.gd"
 Settings="*res://settings.gd"
-SignalBus="*res://signal_bus.gd"
+BetterTerrain="*res://addons/better-terrain/BetterTerrain.gd"
 
 [display]
 

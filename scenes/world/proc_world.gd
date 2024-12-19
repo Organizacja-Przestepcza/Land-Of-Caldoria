@@ -188,13 +188,7 @@ func generate_buildings_on_chunk(chunk_pos: Vector2i):
 # MOBS
 # -------
 
-const mob_types = {
-	"slime": preload("res://scenes/mob/enemy/slime.tscn"),
-	"crab": preload("res://scenes/mob/enemy/crab.tscn"),
-	"boar": preload("res://scenes/mob/enemy/boar.tscn"),
-	"bear": preload("res://scenes/mob/enemy/bear.tscn"),
-	"wolf": preload("res://scenes/mob/enemy/wolf.tscn"),
-	"sheep": preload("res://scenes/mob/neutral/sheep.tscn")}
+const mob_types: Array[String] = ["slime","crab","boar","bear","wolf","sheep"]
 
 func chance_spawn_mob(pos: Vector2) -> void:
 	randomize()
@@ -202,19 +196,14 @@ func chance_spawn_mob(pos: Vector2) -> void:
 	var h_noise_val: float = noise_generator.settings.noise.get_noise_2d(tile_pos.x,tile_pos.y)
 	if h_noise_val > -0.05 and object_layer.get_cell_source_id(tile_pos) == -1: # if there is ground and no objects
 		if randi_range(0, 1000) <= 2: # 0.2% chance
-			var mob_name = _random_mob_name()
-			var mob = mob_types[mob_name].instantiate()
+			var mob_name = mob_types.pick_random()
+			var mob = MobLoader.get_mob(mob_name).instantiate()
 			if mob is Enemy:
 				mob.add_to_group("enemies")
 			elif mob is Neutral:
 				mob.add_to_group("neutrals")
 			mob.global_position = pos
 			add_child(mob)
-
-func _random_mob_name() -> String:
-	var mob_list = mob_types.keys()
-	var random_index = randi() % mob_list.size()
-	return mob_list[random_index]
 
 func generate_mobs_on_chunk(chunk_position: Vector2i):
 	var pos: Vector2i = _chunk_to_global(chunk_position)

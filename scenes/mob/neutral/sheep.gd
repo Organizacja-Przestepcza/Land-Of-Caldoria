@@ -1,7 +1,7 @@
 extends Neutral
 
 func _ready() -> void:
-	mob_name = "Sheep"
+	mob_name = "sheep"
 	super()
 	health = 10
 	speed = 80

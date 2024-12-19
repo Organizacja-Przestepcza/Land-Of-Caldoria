@@ -1,14 +1,9 @@
 extends Control
 
 @onready var game: Game = %Game
-@onready var quest_manager = %QuestManager
+@onready var quests: Quests = %QuestManager
 
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
 	pass
 
 func update() -> void:
