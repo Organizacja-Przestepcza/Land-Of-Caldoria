@@ -197,7 +197,7 @@ func chance_spawn_mob(pos: Vector2) -> void:
 	if h_noise_val > -0.05 and object_layer.get_cell_source_id(tile_pos) == -1: # if there is ground and no objects
 		if randi_range(0, 1000) <= 2: # 0.2% chance
 			var mob_name = mob_types.pick_random()
-			var mob = MobLoader.get_mob(mob_name).instantiate()
+			var mob = MobLoader.get_mob(mob_name)
 			if mob is Enemy:
 				mob.add_to_group("enemies")
 			elif mob is Neutral:

@@ -260,7 +260,7 @@ func shoot(weap: Ranged):
 	get_tree().current_scene.add_child(bullet_instance)
 
 func _on_bullet_hit(body: Node, damage: int):
-	if body is Enemy:
+	if body is Mob:
 		damage_victim(body, damage)
 
 

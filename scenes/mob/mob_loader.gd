@@ -13,18 +13,24 @@ var neutrals: Dictionary = {
 	"sheep": preload("res://scenes/mob/neutral/sheep.tscn")
 }
 
-func get_enemy(mob_name: String):
+func get_enemy(mob_name: String) -> Enemy:
 	mob_name = mob_name.to_lower()
-	return enemies.get(mob_name)
+	var enemy = enemies.get(mob_name)
+	if enemy is PackedScene:
+		return enemy.instantiate()
+	return null
 
-func get_neutral(mob_name: String):
+func get_neutral(mob_name: String) -> Neutral:
 	mob_name = mob_name.to_lower()
-	return neutrals.get(mob_name)
+	var neutral = neutrals.get(mob_name)
+	if neutral is PackedScene:
+		return neutral.instantiate()
+	return null
 
-func get_mob(mob_name: String):
+func get_mob(mob_name: String) -> Mob:
 	mob_name = mob_name.to_lower()
 	if enemies.has(mob_name):
-		return enemies.get(mob_name)
+		return enemies.get(mob_name).instantiate()
 	if neutrals.has(mob_name):
-		return neutrals.get(mob_name)
+		return neutrals.get(mob_name).instantiate()
 	return null
