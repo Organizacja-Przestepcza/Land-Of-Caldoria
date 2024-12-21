@@ -4,8 +4,13 @@ class_name Notifications
 
 var active_notifications = []
 
-func add_notification(message: String) -> void:
+func _ready() -> void:
+	SignalBus.player_attacked.connect(_on_player_attacked)
 
+func _on_player_attacked(mob: String, damage: int):
+	add_notification(mob+" hit player: -"+ str(damage) + "hp")
+
+func add_notification(message: String) -> void:
 	var idx = notifications.add_item(message)
 	notifications.set_item_tooltip_enabled(idx,false)
 	notifications.set_item_selectable(idx,false)

@@ -9,5 +9,6 @@ func take_damage(damage: int) -> bool: # returns true if the object was destroye
 	health = health - damage
 	if health <= 0:
 		self.queue_free()
+		SignalBus.object_destroyed.emit(self)
 		return true
 	return false

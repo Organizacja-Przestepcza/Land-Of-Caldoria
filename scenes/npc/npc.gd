@@ -23,6 +23,7 @@ func show_interaction():
 		interaction_dialog.show()
 
 func _on_quest_started():
+	interaction_dialog.hide()
 	if has_given_quest:
 		return
 	SignalBus.start_quest.emit()

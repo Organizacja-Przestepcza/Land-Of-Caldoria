@@ -1,17 +1,18 @@
 extends Node
 
 var enemies: Dictionary = {
-	"bat": preload("res://scenes/mob/enemy/bat.tscn"),
 	"bear": preload("res://scenes/mob/enemy/bear.tscn"),
 	"boar": preload("res://scenes/mob/enemy/boar.tscn"),
 	"crab": preload("res://scenes/mob/enemy/crab.tscn"),
 	"slime": preload("res://scenes/mob/enemy/slime.tscn"),
-	"spider": preload("res://scenes/mob/enemy/spider.tscn"),
 	"wolf": preload("res://scenes/mob/enemy/wolf.tscn")
 }
 var neutrals: Dictionary = {
 	"sheep": preload("res://scenes/mob/neutral/sheep.tscn")
 }
+
+func get_random_enemy_name() -> String:
+	return enemies.keys().pick_random()
 
 func get_enemy(mob_name: String) -> Enemy:
 	mob_name = mob_name.to_lower()

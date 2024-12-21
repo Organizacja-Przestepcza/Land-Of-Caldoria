@@ -33,7 +33,8 @@ func move_towards_player(target, delta) -> void:
 	
 func attack() -> void:
 	player.hit(strength)
-	notifications.add_notification(mob_name+" hit player: -"+ str(strength) + "hp")
+	var damage = strength
+	SignalBus.player_attacked.emit(mob_name,damage)
 	$AnimatedSprite2D.play("attack")
 	play_attack()
 	$AnimatedSprite2D.animation_looped.connect(func (): $AnimatedSprite2D.play("walk"))
