@@ -5,7 +5,7 @@ extends VBoxContainer
 var _qm: QuestManager
 
 func _ready() -> void:
-	SignalBus.quest_started.connect(append)
+	#SignalBus.quest_started.connect(append)
 	_qm = quests.quest_manager
 
 func append() -> void: ## maybe can be used for optimization
