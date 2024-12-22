@@ -26,8 +26,8 @@ func _on_quest_started():
 	interaction_dialog.hide()
 	if has_given_quest:
 		return
-	var t: String = Quests.Type.keys().pick_random() # picks random type
-	SignalBus.quest_started.emit(Quests.Type.get(t))
+	var t: String = QuestHandler.Type.keys().pick_random() # picks random type
+	SignalBus.quest_started.emit(QuestHandler.Type.get(t))
 	has_given_quest = true
 
 func _on_trade_started():

@@ -24,6 +24,7 @@ ListLoader="*res://item_lists/loader.gd"
 MobLoader="*res://scenes/mob/mob_loader.gd"
 Settings="*res://settings.gd"
 BetterTerrain="*res://addons/better-terrain/BetterTerrain.gd"
+QuestHandler="*res://scenes/systems/quests/quest_handler.gd"
 
 [display]
 
@@ -154,3 +155,4 @@ general/update_interval=0.5
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0
+textures/default_filters/use_nearest_mipmap_filter=true

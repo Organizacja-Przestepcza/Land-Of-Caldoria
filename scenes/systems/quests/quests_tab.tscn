@@ -1,6 +1,4 @@
-[gd_scene load_steps=2 format=3 uid="uid://4fmaeu4rd0m2"]
-
-[ext_resource type="PackedScene" uid="uid://dx8olehyewohi" path="res://scenes/systems/quests/quest_tile.tscn" id="2_0ftag"]
+[gd_scene format=3 uid="uid://4fmaeu4rd0m2"]
 
 [node name="Quests" type="VBoxContainer"]
 anchors_preset = -1
@@ -10,9 +8,3 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 metadata/_edit_use_anchors_ = true
-
-[node name="QuestTile" parent="." instance=ExtResource("2_0ftag")]
-layout_mode = 2
-
-[node name="QuestTile2" parent="." instance=ExtResource("2_0ftag")]
-layout_mode = 2

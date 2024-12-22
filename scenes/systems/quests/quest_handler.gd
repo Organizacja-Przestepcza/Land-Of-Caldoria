@@ -1,5 +1,4 @@
 extends Node
-class_name Quests
 
 var quest_manager := QuestManager.new()
 
