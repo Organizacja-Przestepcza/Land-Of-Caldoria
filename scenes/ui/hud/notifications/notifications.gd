@@ -6,13 +6,13 @@ var active_notifications = []
 
 func _ready() -> void:
 	SignalBus.player_attacked.connect(_on_player_attacked)
-	SignalBus.quest_started.connect(_on_quest_started)
+	QuestHandler.quest_started.connect(_on_quest_started)
 	SignalBus.object_destroyed.connect(_on_object_destroyed)
 
 func _on_player_attacked(mob: String, damage: int):
 	add_notification(mob+" hit player: -"+ str(damage) + "hp")
 
-func _on_quest_started(type: QuestHandler.Type):
+func _on_quest_started(quest: QuestEntry):
 	add_notification("New quest started")
 	
 func _on_object_destroyed(object: Destroyable):

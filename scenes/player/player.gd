@@ -7,7 +7,7 @@ enum State {
 }
 
 @export var speed = 80
-@export var camera_zoom = Vector2(2,2)
+@export var camera_zoom = Vector2(2.2,2.2)
 @export var strength: int = 1
 @export var endurance: int = 1
 @export var intelligence: int = 1

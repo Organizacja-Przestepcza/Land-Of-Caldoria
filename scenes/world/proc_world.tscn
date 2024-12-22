@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://bevwwvcr2fdsa"]
+[gd_scene load_steps=32 format=3 uid="uid://bevwwvcr2fdsa"]
 
 [ext_resource type="Script" path="res://scenes/world/proc_world.gd" id="1_75342"]
 [ext_resource type="AudioStream" uid="uid://jdy7g8aivofv" path="res://assets/sfx/ambient/Overworld theme.mp3" id="2_bam7b"]
@@ -31,13 +31,6 @@
 [ext_resource type="PackedScene" uid="uid://dpk2ucm8f0jch" path="res://scenes/npc/medic.tscn" id="25_5rha6"]
 [ext_resource type="PackedScene" uid="uid://c81rwddnrgmnu" path="res://scenes/npc/lumberjack.tscn" id="26_cixvo"]
 [ext_resource type="Script" path="res://scenes/systems/quests/quest_tab.gd" id="27_t5dow"]
-
-[sub_resource type="Gradient" id="Gradient_frlg5"]
-offsets = PackedFloat32Array(0, 0.532468, 1)
-colors = PackedColorArray(0, 0, 0, 1, 0.112202, 0.730707, 0.439799, 1, 1, 1, 1, 1)
-
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_khxsa"]
-gradient = SubResource("Gradient_frlg5")
 
 [node name="World" type="Node2D"]
 y_sort_enabled = true
@@ -99,7 +92,6 @@ visible = false
 [node name="Player" parent="." instance=ExtResource("5_j0bro")]
 unique_name_in_owner = true
 position = Vector2(469, 284)
-camera_zoom = Vector2(1, 1)
 
 [node name="Hud" parent="Player" instance=ExtResource("6_ai4l1")]
 unique_name_in_owner = true
@@ -185,19 +177,6 @@ script = ExtResource("13_xk8dt")
 [node name="Blacksmith" parent="." instance=ExtResource("17_tkbm6")]
 position = Vector2(620, 253)
 
-[node name="LoadingScreen" type="CanvasLayer" parent="."]
-visible = false
-
-[node name="TextureRect" type="TextureRect" parent="LoadingScreen"]
-z_index = 10
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = SubResource("GradientTexture1D_khxsa")
-metadata/_edit_use_anchors_ = true
-
 [node name="Medic" parent="." instance=ExtResource("25_5rha6")]
 position = Vector2(210, 304)
 
@@ -205,6 +184,5 @@ position = Vector2(210, 304)
 position = Vector2(689, 122)
 
 [connection signal="chunk_rendered" from="NoiseGenerator/ThreadedBetterTerrainGaeaRenderer" to="." method="_on_chunk_rendered"]
-[connection signal="grid_rendered" from="NoiseGenerator/ThreadedBetterTerrainGaeaRenderer" to="." method="_on_grid_rendered"]
 [connection signal="item_selected" from="Player/Hud/Hotbar" to="Player" method="_on_hotbar_item_selected"]
 [connection signal="tab_changed" from="Player/Interface/Tabs" to="Player/Interface/Tabs" method="_on_tab_changed"]

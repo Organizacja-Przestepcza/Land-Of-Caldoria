@@ -21,7 +21,6 @@ var floor_tiles: Dictionary = {}
 enum ObjType {NATURAL,MANMADE}
 
 func _ready() -> void:
-	$LoadingScreen.show()
 	if user_seed == -1:
 		user_seed = randi()
 	noise_generator.settings.noise.seed = user_seed
@@ -233,9 +232,6 @@ func _on_chunk_changed(chunk_position: Vector2i): # this function could probably
 		if not chunk_loader._get_required_chunks(chunk_position).has(chunk): # if chunk is not required
 			unload_objects(chunk)
 
-func _on_grid_rendered() -> void:
-	$LoadingScreen.hide()
-	terrain_renderer.grid_rendered.disconnect(_on_grid_rendered)
 
 # -------
 # Chunk helpers
