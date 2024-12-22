@@ -66,6 +66,8 @@ func find_item(itm: Item) -> InventorySlot:
 	return null
 
 func add_item(item: Item, amount: int) -> void:
+	if item == null:
+		return
 	var slot = find_available_slot(item)
 	if slot == null:
 		return

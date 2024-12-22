@@ -214,11 +214,10 @@ func damage_victim(victim, damage):
 				inventory.add_item(victim.dropped_item, 1)
 	if victim is Destroyable:
 		if victim.required_tool == hotbar.get_held_item() or victim.required_tool == null:
-			if victim.take_damage(damage) and victim.dropped_item:
+			if victim.take_damage(damage):
 				var tile_pos = $"../ObjectLayer".local_to_map(victim.global_position)
 				get_parent().delete_object_at(tile_pos)
-				notifications.add_notification("Collected: %s"%victim.dropped_item.name)
-				inventory.add_item(victim.dropped_item, 1)
+				inventory.add_item(victim.get_drop(), 1)
 	
 func consume(item: InventoryItem, amount: int) -> void:
 	if item.data is Consumable:

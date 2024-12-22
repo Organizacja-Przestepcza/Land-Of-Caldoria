@@ -24,4 +24,4 @@ func despawn(_chunk_position):
 		queue_free()
 
 func handle_healthbar():
-	print(mob_name)
+	print_debug("Healthbar not implemented")
