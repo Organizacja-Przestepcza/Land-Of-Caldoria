@@ -8,6 +8,7 @@ var c_label: Label ## Label for displaying count
 func _init(d: Item, a: int):
 	data = d
 	count = a
+	SignalBus.item_added.emit(d,a)
 	c_label = Label.new()
 	add_child(c_label)
 	display_count()
@@ -38,20 +39,18 @@ func make_drag_preview(at_position: Vector2) -> Control:
 
 func add(amount: int) -> int: ## If there are leftover items, returns their amount. Returns null in any other case.
 	var space_left = data.max_stack_size - count
-	if amount < 0:
-		pass
-	elif amount > space_left:
-		count+=space_left
-		display_count()
-		return amount-space_left
-	else:
-		count+=amount
-		display_count()
+	var amount_to_add = min(amount,space_left)
+	count+=amount_to_add
+	SignalBus.item_added.emit(data,amount_to_add)
+	if amount > amount_to_add:
+		return amount-amount_to_add
+	display_count()
 	return 0
 
-func remove(amount: int) -> int: #returns the number of not removed items
+func remove(amount: int) -> int: ## Returns the number of not removed items
 	var amount_to_remove = min(count, amount)
 	count -= amount_to_remove
+	SignalBus.item_added.emit(data,-amount_to_remove)
 	if count <= 0:
 		self.queue_free()
 		return amount-amount_to_remove

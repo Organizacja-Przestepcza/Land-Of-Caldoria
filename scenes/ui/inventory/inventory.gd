@@ -9,6 +9,7 @@ class_name Inventory
 @onready var hotbar_container = %Hotbar/MarginContainer
 @onready var containers: Array[GridContainer] = [hotbar, main]
 var inventory_keys = ["hotbar", "main", "armor"]
+var lootbag_tscn = preload("res://scenes/object/loot_bag.tscn")
 
 func _ready() -> void:
 	
@@ -43,14 +44,15 @@ func close():
 	hotbar.reparent(hotbar_container)
 
 func find_available_slot(itm: Item) -> InventorySlot:
-	for container in containers:
-		for slot in container.get_children():
-			if slot.get_child_count() == 0:
-				return slot
-			else:
-				var item: InventoryItem = slot.get_child(0)
-				if item.data.name == itm.name and item.count < itm.max_stack_size:
+	if itm:
+		for container in containers:
+			for slot in container.get_children():
+				if slot.get_child_count() == 0:
 					return slot
+				else:
+					var item: InventoryItem = slot.get_child(0)
+					if item.data.name == itm.name and item.count < itm.max_stack_size:
+						return slot
 	return null
 
 func find_item(itm: Item) -> InventorySlot:
@@ -66,8 +68,6 @@ func find_item(itm: Item) -> InventorySlot:
 	return null
 
 func add_item(item: Item, amount: int) -> void:
-	if item == null:
-		return
 	var slot = find_available_slot(item)
 	if slot == null:
 		return
@@ -75,6 +75,7 @@ func add_item(item: Item, amount: int) -> void:
 		var inv_item = InventoryItem.new(item, item.max_stack_size)
 		slot.add_child(inv_item)
 		add_item(item,amount-item.max_stack_size)
+		return
 	elif slot.get_child_count() == 0:
 		var inv_item = InventoryItem.new(item, amount)
 		slot.add_child(inv_item)
@@ -97,33 +98,27 @@ func remove_item(itm: Item, amount: int):
 			loop+=1
 		
 func remove_item_in_slot(slot: InventorySlot, amount: int) -> int: #returns the number of not removed items
-	if slot:
-		if slot.get_child_count() > 0:
-			var item_at_index: InventoryItem = slot.get_child(0)
-			var leftover: int = item_at_index.remove(amount)
-			return leftover
+	if slot.get_child_count() > 0:
+		var item_at_index: InventoryItem = slot.get_child(0)
+		var leftover: int = item_at_index.remove(amount)
+		return leftover
 	return 0
 
 func drop_item_in_slot(slot: InventorySlot, amount: int):
-	if slot:
-		if slot.get_child_count() > 0:
-			var item: InventoryItem = slot.get_child(0)
-			var lootbag_tscn = load("res://scenes/object/loot_bag.tscn")
-			var lootbag: LootBag = lootbag_tscn.instantiate()
-			lootbag.position = player.position
-			lootbag.items[item.data] = amount
-			player.get_parent().add_child(lootbag)
-			item.remove(amount)
+	if slot.get_child_count() > 0:
+		var item: InventoryItem = slot.get_child(0)
+		var lootbag: LootBag = lootbag_tscn.instantiate()
+		lootbag.position = player.position
+		lootbag.items[item.data] = amount
+		player.get_parent().add_child(lootbag)
+		item.remove(amount)
 
 
 func get_data() -> Dictionary:
-	var inventory_data = {
-		"hotbar": [],
-		"main": [],
-		"armor": []
-	}
-	#var inventory_keys = inventory_data.keys()
+	var inventory_data = {}
+	
 	for c in range(containers.size()):
+		inventory_data.get_or_add(inventory_keys[c], [])
 		for i in range(containers[c].get_child_count()):
 			var slot: InventorySlot = containers[c].get_child(i)
 			if slot.get_child_count() > 0:
@@ -144,7 +139,7 @@ func load_data() -> void:
 		for i in range(containers[c].get_child_count()):
 			var item_path = inventory_data[inventory_keys[c]][i]
 			if item_path != null:
-				var item = InventoryItem.new(ItemLoader.items[str(item_path[0]).to_lower().replace(" ","_")], item_path[1])
+				var item = InventoryItem.new(ItemLoader.name(str(item_path[0])), item_path[1])
 				containers[c].get_child(i).add_child(item)
 
 func clean() -> void:

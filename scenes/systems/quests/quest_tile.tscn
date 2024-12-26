@@ -33,7 +33,11 @@ layout_mode = 2
 layout_mode = 2
 size_flags_horizontal = 2
 size_flags_vertical = 8
-text = "Kill 2 wolfs: 0/2"
+text = "Kill 2 wolfs"
+
+[node name="Progress" type="Label" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "0/2"
 
 [node name="Checkbox" type="TextureRect" parent="VBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(40, 40)

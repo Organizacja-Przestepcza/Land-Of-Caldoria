@@ -23,6 +23,43 @@ class_name Stats
 @onready var luck_button: Button = $ScrollContainer/MarginContainer/VBoxContainer/LuckContainer/LuckButton
 @onready var notifications: Notifications = %Notifications
 
+@export var strength: int = 1:
+	set(value):
+		strength = value
+		strength_label.text = "Strength: " + str(strength)
+	get:
+		return strength
+@export var endurance: int = 1:
+	set(value):
+		endurance = value
+		endurance_label.text = "Endurance: " + str(endurance)
+	get:
+		return endurance
+@export var intelligence: int = 1:
+	set(value):
+		intelligence = value
+		intelligence_label.text = "Intelligence: " + str(intelligence)
+	get:
+		return intelligence
+@export var agility: int = 1:
+	set(value):
+		agility = value
+		agility_label.text = "Agility: " + str(agility)
+	get:
+		return agility
+@export var luck: int = 1:
+	set(value):
+		luck = value
+		luck_label.text = "Luck: " + str(luck)
+	get:
+		return luck
+@export var skill_points: int = 0:
+	set(value):
+		skill_points = value
+		set_btn_state()
+		points_label.text = "Avaliable points: " + str(skill_points)
+	get:
+		return skill_points
 
 
 var last_treshold = 0
@@ -33,14 +70,11 @@ func _ready() -> void:
 
 func open() -> void:
 	set_stats()
-	set_btn_state()
 
 func set_stats() -> void:
 	update_health()
 	update_hunger()
 	update_exp()
-	update_skill_points()
-	set_attrib()
 	
 func update_health()	-> void:
 	health_bar.value = player.health
@@ -55,9 +89,6 @@ func update_exp() -> void:
 	exp_bar.max_value = next_treshold
 	exp_label.text = str(player.exp) + "/" + str(next_treshold)
 
-func update_skill_points() -> void:
-	points_label.text = "Avaliable points: " + str(player.skill_points)
-	
 func add_exp(amount) -> void:
 	player.exp += amount
 	while player.exp >= next_treshold: 
@@ -73,39 +104,31 @@ func level_up() -> void:
 	add_points()
 	
 func add_points() -> void:
-	player.skill_points +=2
-
-func set_attrib() -> void:
-	strength_label.text = "Strength: " + str(player.strength)
-	endurance_label.text = "Endurance: " + str(player.endurance)
-	intelligence_label.text = "Intelligence: " + str(player.intelligence)
-	luck_label.text = "Luck: " + str(player.luck)
-	agility_label.text = "Agility: " + str(player.agility)
+	skill_points +=2
 
 func set_btn_state() -> void: 
-	strength_button.disabled = player.skill_points < 1
-	endurance_button.disabled = player.skill_points < 1
-	intelligence_button.disabled = player.skill_points < 1
-	agility_button.disabled = player.skill_points < 1
-	luck_button.disabled = player.skill_points < 1
+	strength_button.disabled = skill_points < 1
+	endurance_button.disabled = skill_points < 1
+	intelligence_button.disabled = skill_points < 1
+	agility_button.disabled = skill_points < 1
+	luck_button.disabled = skill_points < 1
 
 func _on_button_pressed(btn_value: String) -> void:
-	if not player.skill_points > 0:
+	if not skill_points > 0:
 		return
-	player.skill_points -= 1
+	skill_points -= 1
 	match btn_value:
 		"strength": 
-			player.strength += 1
+			strength += 1
 		"endurance":
-			player.endurance += 1
+			endurance += 1
 			player.max_health += 10
 			player.health += 10
 		"intelligence":
-			player.intelligence += 1
+			intelligence += 1
 		"agility": 
-			player.agility += 1
+			agility += 1
 			player.speed += 5
 		"luck": 
-			player.luck += 1
+			luck += 1
 	set_stats()
-	set_btn_state()

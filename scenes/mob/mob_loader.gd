@@ -13,6 +13,10 @@ var neutrals: Dictionary = {
 
 func get_random_enemy_name() -> String:
 	return enemies.keys().pick_random()
+	
+func get_random_enemy() -> Enemy:
+	var mob_name = enemies.keys().pick_random()
+	return enemies.get(mob_name).instantiate()
 
 func get_enemy(mob_name: String) -> Enemy:
 	mob_name = mob_name.to_lower()

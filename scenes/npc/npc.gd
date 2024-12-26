@@ -25,8 +25,8 @@ func _on_quest_started():
 	interaction_dialog.hide()
 	if has_given_quest:
 		return
-	var type = 0 #randi_range(0,QuestHandler.Type.size()-1) # picks random type
-	QuestHandler.new_quest(type)
+	var type = randi_range(0,QuestHandler.Type.size()-1) # picks random type
+	QuestHandler.new_quest(type, self)
 	has_given_quest = true
 
 func _on_trade_started():
@@ -36,3 +36,8 @@ func _on_trade_started():
 		node.open()
 	else:
 		print("couldnt open trading")
+
+func complete_quest(quest: QuestEntry):
+	has_given_quest = false
+	var reward = quest.get_metadata(QuestHandler._key.REWARD)
+	

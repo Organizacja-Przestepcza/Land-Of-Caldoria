@@ -8,17 +8,12 @@ enum State {
 
 @export var speed = 80
 @export var camera_zoom = Vector2(2.2,2.2)
-@export var strength: int = 1
-@export var endurance: int = 1
-@export var intelligence: int = 1
-@export var agility: int = 1
-@export var luck: int = 1
-@export var skill_points: int = 0
 
 @onready var interface: CanvasLayer = $Interface
 @onready var hud: Hud = $Hud
 @onready var stamina_bar:Stamina = $Hud/VBoxContainer/StaminaBar
 @onready var hotbar: Hotbar = %Hotbar
+@onready var money: Money = $Interface/Trading.money_counter
 
 @onready var build_manager: BuildManager = $"../BuildManager"
 @onready var cave_manager: CaveManager = $"../CaveManager"
@@ -56,6 +51,7 @@ enum Direction {Down, Up, Right, Left}
 
 func _ready() -> void:
 	update_zoom(camera_zoom)
+	WorldData.player = self
 
 func update_zoom(zoom):
 	if zoom is Vector2:
