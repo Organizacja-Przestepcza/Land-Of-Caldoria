@@ -1,7 +1,6 @@
-[gd_scene load_steps=7 format=3 uid="uid://vu2j75ysvtwf"]
+[gd_scene load_steps=6 format=3 uid="uid://vu2j75ysvtwf"]
 
 [ext_resource type="Texture2D" uid="uid://b7iu5kvo27u6w" path="res://assets/textures/npc/witch/witch_front.png" id="1_ttghm"]
-[ext_resource type="PackedScene" uid="uid://bfj8c4rxmoj81" path="res://scenes/npc/detection_area.tscn" id="2_42tfd"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ulf5s"]
 atlas = ExtResource("1_ttghm")
@@ -26,16 +25,15 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ou48k"]
-size = Vector2(20, 18)
+size = Vector2(20, 16)
 
 [node name="Witch" type="CharacterBody2D"]
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -23)
 sprite_frames = SubResource("SpriteFrames_4r3f4")
 animation = &"idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 19)
+position = Vector2(0, -2)
 shape = SubResource("RectangleShape2D_ou48k")
-
-[node name="DetectionArea" parent="." instance=ExtResource("2_42tfd")]

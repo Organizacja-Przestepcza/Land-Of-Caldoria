@@ -6,8 +6,6 @@ var bounce_force: int = 300
 var chase_player = false
 var killed_count: int = 0
 
-signal enemy_killed(mob_name: String)
-
 func _physics_process(delta: float) -> void:
 	if chase_player:
 		move_towards_player(player, delta)
@@ -35,7 +33,8 @@ func move_towards_player(target, delta) -> void:
 	
 func attack() -> void:
 	player.hit(strength)
-	notifications.add_notification(mob_name+" hit player: -"+ str(strength) + "hp")
+	var damage = strength
+	SignalBus.player_attacked.emit(mob_name,damage)
 	$AnimatedSprite2D.play("attack")
 	play_attack()
 	$AnimatedSprite2D.animation_looped.connect(func (): $AnimatedSprite2D.play("walk"))
@@ -70,7 +69,7 @@ func take_damage(damage: int) -> bool: ## returns true if the object was destroy
 func die():
 	chase_player = false
 	killed_count += 1
-	enemy_killed.emit(mob_name)
+	SignalBus.enemy_killed.emit(mob_name)
 	$AnimatedSprite2D.play("death")
 	$AnimatedSprite2D.animation_finished.connect(func (): queue_free())
 	

@@ -1,11 +1,13 @@
 extends Enemy
 
-func _ready() -> void:
-	mob_name = "Bat"
+func _init() -> void:
+	mob_name = "bat"
 	health = 10
 	speed = 40
 	strength = 5
-	player = get_parent().get_node("%Player")
+	exp = 5
+
+func _ready() -> void:
 	add_to_group("enemies")
 
 func _physics_process(delta: float) -> void:

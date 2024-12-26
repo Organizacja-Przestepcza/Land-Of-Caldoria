@@ -14,7 +14,8 @@ func create_save_data() -> SaveData:
 	s.time = Time.get_datetime_string_from_system()
 	world.save_loaded_chunks_objects()
 	s.objects = world.object_tiles.duplicate(true)
-	print(s.objects)
+	s.floors = world.floor_tiles.duplicate(true)
+	s.quests = QuestHandler.quest_manager.get_data()
 	return s
 
 func save(name:String) -> String:
@@ -29,11 +30,20 @@ func save(name:String) -> String:
 		print(error)
 	return save_path
 	
-static func load_game(name:String) -> Resource:
+static func load_game(name:String) -> bool:
 	if not ResourceLoader.exists(SAVE_GAME_DIR + name + ".tres"):
-		return
-	return ResourceLoader.load(SAVE_GAME_DIR + name + ".tres")
-
+		return false
+	var load_data = ResourceLoader.load(SAVE_GAME_DIR + name + ".tres")
+	if load_data is SaveData:
+		WorldData.seed = load_data.seed
+		WorldData.size = load_data.size
+		WorldData.world_name = load_data.world_name
+		WorldData.load = load_data
+		QuestHandler.quest_manager.set_data(load_data.quests)
+		return true
+	printerr("load_data is not SaveData")
+	return false
+	
 static func remove_save(name: String) -> Error: # returns true if succesful
 	var err = DirAccess.remove_absolute(SAVE_GAME_DIR + name + ".tres")
 	return err

@@ -7,18 +7,13 @@ enum State {
 }
 
 @export var speed = 80
-@export var camera_zoom = Vector2(2,2)
-@export var strength: int = 1
-@export var endurance: int = 1
-@export var intelligence: int = 1
-@export var agility: int = 1
-@export var luck: int = 1
-@export var skill_points: int = 0
+@export var camera_zoom = Vector2(2.2,2.2)
 
 @onready var interface: CanvasLayer = $Interface
 @onready var hud: Hud = $Hud
 @onready var stamina_bar:Stamina = $Hud/VBoxContainer/StaminaBar
 @onready var hotbar: Hotbar = %Hotbar
+@onready var money: Money = $Interface/Trading.money_counter
 
 @onready var build_manager: BuildManager = $"../BuildManager"
 @onready var cave_manager: CaveManager = $"../CaveManager"
@@ -56,6 +51,7 @@ enum Direction {Down, Up, Right, Left}
 
 func _ready() -> void:
 	update_zoom(camera_zoom)
+	WorldData.player = self
 
 func update_zoom(zoom):
 	if zoom is Vector2:
@@ -196,7 +192,7 @@ func interact():
 			inventory.add_item(key,nearest_interactable.items[key])
 		nearest_interactable.queue_free()
 	elif nearest_interactable is NPC:
-		interface.get_node("Trading").open()
+		nearest_interactable.show_interaction()
 	elif nearest_interactable is FurnaceObj:
 		interface.get_node("Furnace").open()
 	elif farming_manager.is_on_field(position):
@@ -222,11 +218,10 @@ func damage_victim(victim, damage):
 				inventory.add_item(victim.dropped_item, 1)
 	if victim is Destroyable:
 		if victim.required_tool == hotbar.get_held_item() or victim.required_tool == null:
-			if victim.take_damage(damage) and victim.dropped_item:
+			if victim.take_damage(damage):
 				var tile_pos = $"../ObjectLayer".local_to_map(victim.global_position)
 				get_parent().delete_object_at(tile_pos)
-				notifications.add_notification("Collected: %s"%victim.dropped_item.name)
-				inventory.add_item(victim.dropped_item, 1)
+				inventory.add_item(victim.get_drop(), 1)
 	
 func consume(item: InventoryItem, amount: int) -> void:
 	if item.data is Consumable:
@@ -267,7 +262,7 @@ func shoot(weap: Ranged):
 	get_tree().current_scene.add_child(bullet_instance)
 
 func _on_bullet_hit(body: Node, damage: int):
-	if body is Enemy:
+	if body is Mob:
 		damage_victim(body, damage)
 
 

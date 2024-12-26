@@ -11,11 +11,7 @@ var mob_name
 func _ready() -> void:
 	world = get_parent()
 	world.chunk_loader.chunk_changed.connect(despawn)
-	if get_tree().root.has_node("World/Player"):
-		player = get_tree().root.get_node("World/Player")
-	elif get_tree().root.has_node("CaveManager/Player"):
-		player = get_tree().root.get_node("CaveManager/Player")
-	notifications = player.notifications
+	player = WorldData.player
 
 func despawn(_chunk_position):
 	var dist_to_player = self.global_position.distance_squared_to(player.global_position)
@@ -24,4 +20,4 @@ func despawn(_chunk_position):
 		queue_free()
 
 func handle_healthbar():
-	print(mob_name)
+	print_debug("Healthbar not implemented")

@@ -22,14 +22,10 @@ signal load_cancel_pressed
 func _on_load_button_pressed() -> void:
 	var selected_item = $VBoxContainer/LoadList.get_selected_items()[0]
 	var load_name = $VBoxContainer/LoadList.get_item_text(selected_item)
-	var load_data = SaveManager.load_game(load_name)
-
-	WorldData.seed = load_data.seed
-	WorldData.size = load_data.size
-	WorldData.world_name = load_data.world_name
-	WorldData.load = load_data
-	
-	get_tree().change_scene_to_packed(load("res://scenes/world/proc_world.tscn"))
+	if SaveManager.load_game(load_name):
+		get_tree().change_scene_to_packed(load("res://scenes/world/proc_world.tscn"))
+	else:
+		print("Load failed")
 
 
 func _on_load_list_item_selected(_index: int) -> void:

@@ -1,15 +1,16 @@
 extends Enemy
 
-func _ready() -> void:
-	super()
-	mob_name = "Slime"
+func _init() -> void:
+	mob_name = "slime"
 	health = 20
 	speed = 80
 	exp = 3
 	strength = 5
+
+func _ready() -> void:
+	super()
 	$AnimatedSprite2D.play("idle")
 	$ProgressBar.max_value = health
-	$ProgressBar.value = health
 	add_to_group("enemies")
 
 func handle_healthbar():

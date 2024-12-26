@@ -9,3 +9,5 @@ class_name SaveData
 @export var time: String
 @export var buildings: PackedByteArray
 @export var objects: Dictionary
+@export var floors: Dictionary
+@export var quests: Array[Dictionary]

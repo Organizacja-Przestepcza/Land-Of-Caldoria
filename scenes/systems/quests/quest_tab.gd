@@ -1,33 +1,32 @@
-extends Control
+extends VBoxContainer
 
 @onready var game: Game = %Game
-@onready var quest_manager = %QuestManager
+var _qm := QuestHandler.quest_manager
+var _q_tile_scene := preload("res://scenes/systems/quests/quest_tile.tscn")
 
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass
+	QuestHandler.quest_started.connect(append_quest)
+	_load_quests()
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
+func append_quest(quest: QuestEntry) -> void:
+	var quest_tile: QuestTile = _q_tile_scene.instantiate()
+	add_child(quest_tile)
+	quest_tile.init(quest)
+	quest.quest_completed.connect(quest_tile.update_check)
+	quest.quest_updated.connect(quest_tile.update_progress)
 
-func update() -> void:
-	# Clear all children in VBoxContainer
-	for i in range($VBoxContainer.get_child_count()):
-		var child = $VBoxContainer.get_child(i)
-		if child != null:
-			child.queue_free()
-
-	for quest in Questify.get_quests():
-		var label = Label.new()
-		if quest.completed:
-			var completed = "\u2713" if quest.completed else "\u2717"
-			label.text = "Quest: %s\nDescription: %s\nCompleted: %s" % [quest.name, quest.description, completed]
-		else:
-			var completed = "%s/2" % [quest_manager.current_kills]
-			label.text = "Quest: %s\nDescription: %s\nCompleted: %s" % [quest.name, quest.description, completed]
-		$VBoxContainer.add_child(label)
+func _load_quests() -> void:
+	# Clear all children
+	for child: Node in get_children():
+		child.queue_free()
+		
+	for i in _qm.size():
+		var quest = _qm.get_quest(i)
+		var quest_tile: QuestTile = _q_tile_scene.instantiate()
+		add_child(quest_tile)
+		quest_tile.init(quest)
+		quest.quest_completed.connect(quest_tile.update_check)
+		quest.quest_updated.connect(quest_tile.update_progress)
 
 func open() -> void:
 	game.state = Game.State.INVENTORY
-	update()

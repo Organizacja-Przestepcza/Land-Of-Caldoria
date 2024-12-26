@@ -9,3 +9,4 @@ extends Resource
 @export var max_stack_size: int
 @export var description: String
 @export var value: int
+@export var is_throwable: bool

@@ -1,0 +1,34 @@
+[gd_scene load_steps=2 format=3 uid="uid://cv44h47thbnhy"]
+
+[ext_resource type="Script" path="res://scenes/npc/interaction_dialog.gd" id="1_7v63n"]
+
+[node name="InteractionDialog" type="Control"]
+visible = false
+z_index = 10
+layout_mode = 3
+anchors_preset = 0
+offset_left = 14.0
+offset_top = -60.0
+offset_right = 14.0
+offset_bottom = -60.0
+scale = Vector2(0.5, 0.5)
+script = ExtResource("1_7v63n")
+metadata/_edit_use_anchors_ = true
+
+[node name="Trade" type="Button" parent="."]
+layout_mode = 0
+offset_right = 120.0
+offset_bottom = 46.0
+theme_override_font_sizes/font_size = 32
+text = "Trade"
+
+[node name="Quest" type="Button" parent="."]
+layout_mode = 0
+offset_top = 46.0
+offset_right = 120.0
+offset_bottom = 92.0
+theme_override_font_sizes/font_size = 32
+text = "Quest"
+
+[connection signal="pressed" from="Trade" to="." method="_on_trade_pressed"]
+[connection signal="pressed" from="Quest" to="." method="_on_quest_pressed"]

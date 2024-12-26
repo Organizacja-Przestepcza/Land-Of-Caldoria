@@ -1,0 +1,55 @@
+[gd_scene load_steps=4 format=3 uid="uid://dx8olehyewohi"]
+
+[ext_resource type="Texture2D" uid="uid://qo0mwl4rb808" path="res://assets/textures/ui/unchecked.png" id="1_68tde"]
+[ext_resource type="Texture2D" uid="uid://b8l3ofk2kidt6" path="res://assets/textures/ui/checked.png" id="1_ehg0m"]
+[ext_resource type="Script" path="res://scenes/systems/quests/quest_tile.gd" id="1_imyst"]
+
+[node name="QuestTile" type="MarginContainer"]
+offset_right = 257.0
+offset_bottom = 95.0
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+script = ExtResource("1_imyst")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 6
+theme_override_font_sizes/font_size = 64
+text = "Mob hunt: wolf"
+uppercase = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="Objective" type="Label" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 2
+size_flags_vertical = 8
+text = "Kill 2 wolfs"
+
+[node name="Progress" type="Label" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "0/2"
+
+[node name="Checkbox" type="TextureRect" parent="VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+texture = ExtResource("1_68tde")
+expand_mode = 1
+
+[node name="Check" type="TextureRect" parent="VBoxContainer/HBoxContainer/Checkbox"]
+visible = false
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("1_ehg0m")

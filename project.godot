@@ -17,12 +17,14 @@ config/icon="res://icon.svg"
 
 [autoload]
 
+SignalBus="*res://signal_bus.gd"
 WorldData="*res://scenes/world/world_data.gd"
 ItemLoader="*res://items/loader.gd"
 ListLoader="*res://item_lists/loader.gd"
-BetterTerrain="*res://addons/better-terrain/BetterTerrain.gd"
+MobLoader="*res://scenes/mob/mob_loader.gd"
 Settings="*res://settings.gd"
-Questify="*res://addons/questify/quest_manager.gd"
+BetterTerrain="*res://addons/better-terrain/BetterTerrain.gd"
+QuestHandler="*res://scenes/systems/quests/quest_handler.gd"
 
 [display]
 
@@ -40,7 +42,7 @@ version_control/autoload_on_startup=true
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/ScriptEditorQoL/plugin.cfg", "res://addons/better-terrain/plugin.cfg", "res://addons/gaea/plugin.cfg", "res://addons/questify/plugin.cfg", "res://addons/script-ide/plugin.cfg")
+enabled=PackedStringArray("res://addons/ScriptEditorQoL/plugin.cfg", "res://addons/better-terrain/plugin.cfg", "res://addons/gaea/plugin.cfg", "res://addons/rubonnek.quest_manager/plugin.cfg", "res://addons/script-ide/plugin.cfg")
 
 [file_customization]
 
@@ -153,3 +155,4 @@ general/update_interval=0.5
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0
+textures/default_filters/use_nearest_mipmap_filter=true
