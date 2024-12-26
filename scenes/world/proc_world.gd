@@ -36,6 +36,7 @@ func _ready() -> void:
 		player.inventory.load_data()
 		player.global_position = WorldData.load.player_global_position
 		object_tiles = WorldData.load.objects
+		floor_tiles = WorldData.load.floors
 	noise_generator.add_child(chunk_loader)
 	get_tree().paused = false
 	generate_village()

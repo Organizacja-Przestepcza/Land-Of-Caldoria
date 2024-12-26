@@ -7,7 +7,7 @@ extends Control
 
 func  _ready() -> void:
 	for i in invSize:
-		var slot = InventorySlot.new(InventorySlot.Type.CHEST, slotSize)
+		var slot = InventorySlot.new(InventorySlot.Type.MAIN, slotSize)
 		slot.id = i
 		slot.gui_input.connect(_on_slot_clicked.bind(slot))
 		chest.add_child(slot)
@@ -15,6 +15,6 @@ func  _ready() -> void:
 
 func _on_slot_clicked(event: InputEvent, slot) -> void:
 	if event is InputEventMouseButton and event.is_pressed() and event.button_index == MOUSE_BUTTON_LEFT:
-		emit_signal("inv_slot_click", slot.id)
+		inv_slot_click.emit(slot.id)
 
 signal inv_slot_click(index: int)

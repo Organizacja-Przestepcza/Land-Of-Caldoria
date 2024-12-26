@@ -13,10 +13,14 @@ func _ready():
 
 func new_quest(type: Type):
 	match type:
-		Type.KILL: new_kill_quest()
+		Type.KILL: start_kill_quest()
 		Type.COLLECT: print("collect quest not implemented")
 
-func new_kill_quest():
+func start_collect_quest():
+	var to_kill = randi_range(2,4)
+	pass
+
+func start_kill_quest():
 	randomize()
 	var to_kill = randi_range(2,4)
 	var mob_name = MobLoader.get_random_enemy_name()

@@ -6,6 +6,7 @@ var _q_tile_scene := preload("res://scenes/systems/quests/quest_tile.tscn")
 
 func _ready() -> void:
 	QuestHandler.quest_started.connect(append)
+	update()
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventKey:

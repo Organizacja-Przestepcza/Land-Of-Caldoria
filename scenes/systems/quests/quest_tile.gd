@@ -10,9 +10,13 @@ func init(quest: QuestEntry) -> void:
 	_q_entry = quest
 	title.text = _q_entry.get_title()
 	objective.text = _q_entry.get_description()
+	set_visibility()
+
+func set_visibility() -> void:
+	check.visible = _q_entry.is_completed()
 
 func set_completed(_quest: QuestEntry):
-	check.show()
-
-func set_uncompleted(_quest: QuestEntry):
-	check.hide()
+	if _q_entry.is_completed():
+		check.show()
+	else:
+		check.hide()
