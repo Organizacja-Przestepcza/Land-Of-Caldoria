@@ -23,7 +23,7 @@ func _input(event: InputEvent) -> void:
 		match state:
 			State.PLAYING:
 				if get_tree().paused == false:
-					if event.is_action_pressed("LC_use", true):
+					if event.is_action_pressed("LC_use",true):
 						player.use_item()
 					elif event.is_action_pressed("LC_drop_item"):
 						inventory.drop_item_in_slot(hotbar.selected_slot,1)
