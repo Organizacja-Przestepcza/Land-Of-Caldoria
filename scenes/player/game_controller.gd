@@ -23,23 +23,23 @@ func _input(event: InputEvent) -> void:
 		match state:
 			State.PLAYING:
 				if get_tree().paused == false:
-					if event.is_action_pressed("use", true):
+					if event.is_action_pressed("LC_use", true):
 						player.use_item()
-					elif event.is_action_pressed("drop_item"):
+					elif event.is_action_pressed("LC_drop_item"):
 						inventory.drop_item_in_slot(hotbar.selected_slot,1)
-					elif event.is_action_pressed("interact"):
+					elif event.is_action_pressed("LC_interact"):
 						player.interact()
-					elif event.is_action_pressed("build_menu"):
+					elif event.is_action_pressed("LC_build_menu"):
 						tabs.open(2)
-					elif event.is_action_pressed("gui_inventory"):
+					elif event.is_action_pressed("LC_inventory"):
 						tabs.open(0)
-					elif event.is_action_pressed("crafting_menu"):
+					elif event.is_action_pressed("LC_crafting_menu"):
 						tabs.open(1)
-					elif event.is_action_pressed("ui_stats"):
+					elif event.is_action_pressed("LC_stats"):
 						tabs.open(3)
 					elif event.is_action_pressed("ui_text_backspace"):
 						print($"..".position)
-					elif event.is_action_pressed("switch_ammo"):
+					elif event.is_action_pressed("LC_switch_ammo"):
 						ammo_selector.open()
 					elif event.pressed:
 						match event.physical_keycode:
@@ -51,24 +51,24 @@ func _input(event: InputEvent) -> void:
 							KEY_6: hotbar.select_slot(5)
 							KEY_QUOTELEFT: console.open()
 			State.INVENTORY:
-				if event.is_action_pressed("drop_item"):
+				if event.is_action_pressed("LC_drop_item"):
 					var slot = get_slot_under_mouse()
 					if slot:
 						inventory.drop_item_in_slot(slot,1)
-				elif event.is_action_pressed("use"):
+				elif event.is_action_pressed("LC_use"):
 					var slot = get_slot_under_mouse()
 					if slot and slot.get_child_count() > 0:
 						var item = slot.get_child(0)
 						if item is InventoryItem:
 							player.consume(item,1)
 					
-				elif event.is_action_pressed("crafting_menu"):
+				elif event.is_action_pressed("LC_crafting_menu"):
 					close_menus()
-				elif event.is_action_pressed("build_menu"):
+				elif event.is_action_pressed("LC_build_menu"):
 					close_menus()
-				elif event.is_action_pressed("gui_inventory"):
+				elif event.is_action_pressed("LC_inventory"):
 					close_menus()
-				elif event.is_action_pressed("switch_ammo"):
+				elif event.is_action_pressed("LC_switch_ammo"):
 					close_menus()
 				elif event.is_action_pressed("ui_cancel"):
 					close_menus()

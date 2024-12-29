@@ -58,12 +58,12 @@ func update_zoom(zoom):
 		$Camera2D.zoom = zoom
 
 func get_input():
-	var input_direction = Input.get_vector("move_left", "move_right", "move_up", "move_down")
+	var input_direction = Input.get_vector("LC_move_left", "LC_move_right", "LC_move_up", "LC_move_down")
 	velocity = input_direction * speed
 	if velocity == Vector2.ZERO:
 		state = State.IDLE
 		return
-	if Input.is_action_pressed("sprint") and stamina > 0:
+	if Input.is_action_pressed("LC_sprint") and stamina > 0:
 		velocity = velocity * 2
 		state = State.SPRINT
 	else:
@@ -80,7 +80,7 @@ func play_animation() -> void:
 		$AudioStreamPlayer.stream_paused = true
 	var animations: Array = ["walk_side", "walk_down", "walk_up", "run_side", "run_down", "run_up"]
 	var i: int = 0
-	if Input.is_action_pressed("sprint"):
+	if Input.is_action_pressed("LC_sprint"):
 		i = 3
 	if velocity.x != 0:
 		$AnimatedSprite2D.animation = animations[i]
