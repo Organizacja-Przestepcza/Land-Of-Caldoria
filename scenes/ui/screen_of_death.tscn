@@ -57,7 +57,17 @@ layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 theme_override_font_sizes/font_size = 48
-text = "Life will bring me more suffering but even tho I'm ready to come back..."
+text = "Mom, take me home"
+autowrap_mode = 3
+
+[node name="LoadButton" type="Button" parent="VBoxContainer"]
+custom_minimum_size = Vector2(512, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_font_sizes/font_size = 48
+text = "Let's cook somethin good"
 autowrap_mode = 3
 
 [connection signal="pressed" from="VBoxContainer/MenuButton" to="." method="_on_menu_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/LoadButton" to="." method="_on_load_button_pressed"]
