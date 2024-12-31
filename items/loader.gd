@@ -26,6 +26,7 @@ func load_all_items(path: String):
 		printerr("Error: Couldn't open " + path)
 
 func name(n: String) -> Item:
+	n = n.to_lower().replace(" ", "_")
 	if n in items.keys():
-		return items[n.to_lower().replace(" ", "_")]
+		return items[n]
 	return null

@@ -1,7 +1,7 @@
 extends Resource
 class_name BuildRecipe
 
-enum Layer {Floor, Object}
+enum Layer {Floor = 1, Object = 0}
 
 var name: String ## what shows up in the build menu
 var layer: Layer

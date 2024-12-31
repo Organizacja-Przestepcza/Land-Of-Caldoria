@@ -3,12 +3,13 @@ class_name SaveManager
 const SAVE_GAME_DIR = "user://save/"
 static var saves = []
 
-func create_save_data() -> SaveData:
-	var world: ProcWorld = WorldData.player.get_parent()
+static func create_save_data() -> SaveData:
+	var world: ProcWorld = WorldData.player.get_tree().root.get_node("World")
+	var cave_manager: CaveManager = WorldData.player.get_tree().root.get_node("CaveManager")
 	var s = SaveData.new()
 	s.world_name = WorldData.world_name
 	s.inventory = WorldData.player.inventory.get_data()
-	s.player_global_position = WorldData.player.global_position
+	s.player_global_position = WorldData.player.global_position if WorldData.player.get_parent() is World else cave_manager.get_cave_global_position()
 	s.seed = WorldData.seed
 	s.size = WorldData.size
 	s.time = Time.get_datetime_string_from_system()
@@ -16,9 +17,10 @@ func create_save_data() -> SaveData:
 	s.objects = world.object_tiles.duplicate(true)
 	s.floors = world.floor_tiles.duplicate(true)
 	s.quests = QuestHandler.quest_manager.get_data()
+	s.caves = cave_manager.caves.duplicate(true)
 	return s
 
-func save(name:String) -> String:
+static func save(name:String) -> String:
 	var save_path
 	if name.is_empty():
 		save_path = str(WorldData.world_name +".tres")
@@ -44,7 +46,7 @@ static func load_game(name:String) -> bool:
 	printerr("load_data is not SaveData")
 	return false
 	
-static func remove_save(name: String) -> Error: # returns true if succesful
+static func remove_save(name: String) -> Error:
 	var err = DirAccess.remove_absolute(SAVE_GAME_DIR + name + ".tres")
 	return err
 
