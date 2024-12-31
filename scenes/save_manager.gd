@@ -42,6 +42,8 @@ static func load_game(name:String) -> bool:
 		WorldData.world_name = load_data.world_name
 		WorldData.load = load_data
 		QuestHandler.quest_manager.set_data(load_data.quests)
+		#get_tree().root.get_node("CaveManager").queue_free()
+		#get_tree().change_scene_to_file("res://scenes/start.tscn")
 		return true
 	printerr("load_data is not SaveData")
 	return false

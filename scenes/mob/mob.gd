@@ -1,6 +1,5 @@
 extends CharacterBody2D
 class_name Mob
-var notifications
 var player: Player
 var world: ProcWorld
 var health: int 

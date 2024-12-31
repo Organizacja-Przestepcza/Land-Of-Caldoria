@@ -23,6 +23,7 @@ func _on_load_button_pressed() -> void:
 	var selected_item = $VBoxContainer/LoadList.get_selected_items()[0]
 	var load_name = $VBoxContainer/LoadList.get_item_text(selected_item)
 	if SaveManager.load_game(load_name):
+		get_tree().root.get_node("CaveManager").queue_free()
 		get_tree().change_scene_to_packed(load("res://scenes/world/proc_world.tscn"))
 	else:
 		print("Load failed")

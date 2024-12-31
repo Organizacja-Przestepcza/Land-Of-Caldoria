@@ -25,6 +25,8 @@ MobLoader="*res://scenes/mob/mob_loader.gd"
 Settings="*res://settings.gd"
 BetterTerrain="*res://addons/better-terrain/BetterTerrain.gd"
 QuestHandler="*res://scenes/systems/quests/quest_handler.gd"
+EventAudio="*res://addons/event_audio/scenes/event_audio_autoload.tscn"
+EventAudioCSharp="*res://addons/event_audio/EventAudio.cs"
 
 [display]
 
@@ -42,7 +44,7 @@ version_control/autoload_on_startup=true
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/ScriptEditorQoL/plugin.cfg", "res://addons/better-terrain/plugin.cfg", "res://addons/gaea/plugin.cfg", "res://addons/rubonnek.quest_manager/plugin.cfg", "res://addons/script-ide/plugin.cfg")
+enabled=PackedStringArray("res://addons/ScriptEditorQoL/plugin.cfg", "res://addons/better-terrain/plugin.cfg", "res://addons/event_audio/plugin.cfg", "res://addons/gaea/plugin.cfg", "res://addons/rubonnek.quest_manager/plugin.cfg", "res://addons/script-ide/plugin.cfg")
 
 [file_customization]
 

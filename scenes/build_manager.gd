@@ -24,7 +24,7 @@ func build():
 	
 	# aborts if at specified tile there exists an object that is not manmade
 	var type = chunk_d.get(cell_pos, {}).get("type")
-	if not type == ProcWorld.ObjType.MANMADE:
+	if type and not type == ProcWorld.ObjType.MANMADE:
 		return
 				
 

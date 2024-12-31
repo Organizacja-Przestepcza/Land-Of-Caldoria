@@ -55,7 +55,6 @@ func _input(event: InputEvent) -> void:
 			print("Player is in: ", chunk)
 			print("Chunk boundaries ",_get_chunk_boundaries(chunk).position, " - ", _get_chunk_boundaries(chunk).end)
 			print("---")
-			print_debug(floor_tiles)
 
 #region Objects
 
