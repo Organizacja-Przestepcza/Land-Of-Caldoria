@@ -7,7 +7,7 @@ class_name SaveData
 @export var inventory: Dictionary
 @export var player_global_position: Vector2
 @export var time: String
-@export var buildings: PackedByteArray
+@export var save_name: String
 @export var objects: Dictionary
 @export var floors: Dictionary
 @export var quests: Array[Dictionary]

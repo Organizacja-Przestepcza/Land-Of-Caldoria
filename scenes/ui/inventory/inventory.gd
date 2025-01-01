@@ -59,7 +59,7 @@ func get_armor():
 	var armor_array: Array
 	for slot: InventorySlot in armor.get_children():
 		if slot.get_child_count() > 0:
-			var item = slot.get_child(0)
+			var item: InventoryItem = slot.get_child(0)
 			if item.data is Armor:
 				armor_array.push_back(item.data)
 	return armor_array
