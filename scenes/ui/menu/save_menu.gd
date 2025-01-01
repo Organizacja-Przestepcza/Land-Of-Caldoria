@@ -2,7 +2,6 @@ extends Control
 
 @onready var load_menu: Control = $"../LoadMenu"
 @onready var saves_list: ItemList = $VBoxContainer/SavesList
-var save_manager: SaveManager
 var save_name:String
 
 func _on_cancel_button_pressed() -> void:
@@ -11,23 +10,19 @@ func _on_cancel_button_pressed() -> void:
 signal save_cancel_pressed
 
 func _ready() -> void:
+	SaveManager.load_all()
 	display_saves()
 
 func display_saves() -> void:
 	saves_list.clear()
-	SaveManager.load_all()
-	for save:String in SaveManager.saves:
-		saves_list.add_item(save.trim_suffix(".tres"))
+	for save:String in SaveManager.get_save_names():
+		saves_list.add_item(save)
 
 
 func _on_save_button_pressed() -> void:
-	WorldData.player = get_parent().get_parent()
-	save_manager = SaveManager.new()
-	
 	if saves_list.is_anything_selected():
 		save_name = saves_list.get_item_text(saves_list.get_selected_items()[0])
-	
-	save_manager.save(save_name)
+	SaveManager.save(save_name)
 	display_saves()
 	load_menu.display_saves()
 
@@ -45,6 +40,7 @@ func _on_delete_button_pressed() -> void:
 		var err = SaveManager.remove_save(selected_item)
 		if err:
 			printerr(error_string(err))
-		display_saves()
-		load_menu.display_saves()
+			return
+		load_menu.load_list.remove_item(saves_list.get_selected_items()[0])
+		saves_list.remove_item(saves_list.get_selected_items()[0])
 	
