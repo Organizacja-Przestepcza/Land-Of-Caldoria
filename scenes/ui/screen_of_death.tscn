@@ -42,39 +42,32 @@ metadata/_edit_use_anchors_ = true
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_font_sizes/font_size = 128
-text = "You have died loser!"
+text = "You have died..."
 horizontal_alignment = 1
 
 [node name="Label" type="Label" parent="VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 48
-text = "What do you want to do now?"
+text = "What to do now, that everything is lost?"
 horizontal_alignment = 1
-
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-theme_override_constants/separation = 10
-
-[node name="DeleteButton" type="Button" parent="VBoxContainer/HBoxContainer"]
-custom_minimum_size = Vector2(350, 0)
-layout_mode = 2
-theme_override_font_sizes/font_size = 48
-text = "Destroy the world 
-(delete)"
-
-[node name="RespawnButton" type="Button" parent="VBoxContainer/HBoxContainer"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 48
-text = "Get myself killed again 
-(load last save)"
 
 [node name="MenuButton" type="Button" parent="VBoxContainer"]
 custom_minimum_size = Vector2(512, 0)
 layout_mode = 2
 size_flags_horizontal = 4
+size_flags_vertical = 4
 theme_override_font_sizes/font_size = 48
-text = "Mom, take me back home :c"
+text = "Mom, take me home"
+autowrap_mode = 3
+
+[node name="LoadButton" type="Button" parent="VBoxContainer"]
+custom_minimum_size = Vector2(512, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_font_sizes/font_size = 48
+text = "Let's cook somethin good"
+autowrap_mode = 3
 
 [connection signal="pressed" from="VBoxContainer/MenuButton" to="." method="_on_menu_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/LoadButton" to="." method="_on_load_button_pressed"]
