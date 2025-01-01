@@ -23,7 +23,7 @@ signal load_cancel_pressed
 func _on_load_button_pressed() -> void:
 	var selected_item = $VBoxContainer/LoadList.get_selected_items()[0]
 	var load_name = $VBoxContainer/LoadList.get_item_text(selected_item)
-	SaveManager.load_game(load_name)
+	SaveManager.load_game_by_name(load_name)
 
 
 func _on_load_list_item_selected(_index: int) -> void:

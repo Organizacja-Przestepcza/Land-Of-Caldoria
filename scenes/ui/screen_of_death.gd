@@ -6,5 +6,4 @@ func _on_menu_button_pressed() -> void:
 
 
 func _on_load_button_pressed() -> void:
-	#SaveManager.load_last_save()
-	pass
+	SaveManager.load_last_save()
