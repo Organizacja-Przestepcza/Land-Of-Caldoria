@@ -1,6 +1,6 @@
 extends Control
 class_name Health
-@onready var health_bar: ProgressBar = %HealthProgressBar
+@onready var health_bar: TextureProgressBar = %HealthProgressBar
 signal death(cause: String)
 @onready var player: Player = $"../../.."
 

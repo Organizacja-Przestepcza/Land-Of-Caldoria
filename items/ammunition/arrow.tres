@@ -1,18 +1,15 @@
-[gd_resource type="Resource" script_class="Tool" load_steps=3 format=3 uid="uid://b6b7iop2tmu02"]
+[gd_resource type="Resource" script_class="Item" load_steps=3 format=3 uid="uid://b6b7iop2tmu02"]
 
-[ext_resource type="Script" path="res://items/tool.gd" id="1_ue6it"]
-[ext_resource type="Texture2D" uid="uid://dmt5vqpovruff" path="res://assets/textures/item/tools/spade.png" id="2_d7g8u"]
+[ext_resource type="Script" path="res://items/item.gd" id="1_nru28"]
+[ext_resource type="Texture2D" uid="uid://cfa1imosb6iey" path="res://assets/textures/item/ammunition/arrow.png" id="2_34jhh"]
 
 [resource]
-script = ExtResource("1_ue6it")
-damage = 2
-durability = -1
-knockback = 1
-range = 1.0
+script = ExtResource("1_nru28")
 slot = 0
-name = "Shovel"
-weight = 3
-texture = ExtResource("2_d7g8u")
-max_stack_size = 1
-description = "You can dig with it"
-value = 20
+name = "Arrow"
+weight = 1
+texture = ExtResource("2_34jhh")
+max_stack_size = 32
+description = "Shoot'em all"
+value = 5
+is_throwable = false
