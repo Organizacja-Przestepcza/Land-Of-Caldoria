@@ -1,14 +1,36 @@
-[gd_resource type="Theme" load_steps=3 format=3 uid="uid://ceqm84uqlgmkn"]
+[gd_resource type="Theme" load_steps=13 format=3 uid="uid://ceqm84uqlgmkn"]
 
-[ext_resource type="Texture2D" uid="uid://ds3mgcms8weff" path="res://assets/textures/ui/menu/button_normal.png" id="1_7kj3h"]
+[ext_resource type="Texture2D" uid="uid://bh7i38i7ynwk" path="res://assets/textures/ui/default/Disabled Button.png" id="1_6gpx0"]
+[ext_resource type="Texture2D" uid="uid://bgi7e2i532trf" path="res://assets/textures/ui/default/Main Menu Button.png" id="2_cblen"]
+[ext_resource type="Texture2D" uid="uid://bmd0ttngrrnrv" path="res://assets/textures/ui/default/Toggled Menu Button.png" id="2_qhmre"]
+[ext_resource type="Texture2D" uid="uid://b8ww6vtf1lfes" path="res://assets/textures/ui/default/grabber.png" id="4_1t8o0"]
+[ext_resource type="Texture2D" uid="uid://brfj1qao8q46t" path="res://assets/textures/ui/default/grabbed_grabber.png" id="5_1fvdq"]
+[ext_resource type="Texture2D" uid="uid://ca7lhvfb08iy4" path="res://assets/textures/ui/default/scrollbar.png" id="6_kkxeu"]
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_8ofpy"]
-content_margin_left = 10.0
-content_margin_top = 10.0
-content_margin_right = 10.0
-content_margin_bottom = 10.0
-texture = ExtResource("1_7kj3h")
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_rf6iu"]
+texture = ExtResource("1_6gpx0")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_3ki08"]
+texture = ExtResource("2_qhmre")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_pqprd"]
+texture = ExtResource("2_cblen")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_fmwpb"]
+texture = ExtResource("4_1t8o0")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_yminh"]
+texture = ExtResource("5_1fvdq")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ogwdb"]
+texture = ExtResource("6_kkxeu")
 
 [resource]
 default_font_size = 48
-Button/styles/normal = SubResource("StyleBoxTexture_8ofpy")
+Button/styles/disabled = SubResource("StyleBoxTexture_rf6iu")
+Button/styles/hover = SubResource("StyleBoxTexture_3ki08")
+Button/styles/normal = SubResource("StyleBoxTexture_pqprd")
+ProgressBar/colors/font_outline_color = Color(0, 0, 0, 1)
+VScrollBar/styles/grabber = SubResource("StyleBoxTexture_fmwpb")
+VScrollBar/styles/grabber_highlight = SubResource("StyleBoxTexture_yminh")
+VScrollBar/styles/scroll = SubResource("StyleBoxTexture_ogwdb")
