@@ -4,7 +4,7 @@ class_name Trading
 @onready var inventory: Inventory = %Inventory
 
 @onready var player: Player = %Player
-
+@onready var hud: Hud = %Hud
 @onready var buy_list: ItemList = $TextureRect/VBoxContainer/HBoxContainer/BuyContainer/BuyList
 @onready var sell_list: ItemList = $TextureRect/VBoxContainer/HBoxContainer/SellContainer/SellList
 @onready var money_counter: Money = $TextureRect/VBoxContainer/MoneyCounter
@@ -19,12 +19,12 @@ class ItemInList:
 func open() -> void:
 	if player.nearest_interactable is NPC:
 		super()
-		%Hud.hide()
+		hud.hide()
 		update_lists(player.nearest_interactable)
 		
 func close() -> void:
 	super()
-	%Hud.show()
+	hud.show()
 
 func update_lists(npc:NPC) -> void:
 	curr_npc = npc

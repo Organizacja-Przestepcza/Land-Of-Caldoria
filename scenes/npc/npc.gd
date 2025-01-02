@@ -21,16 +21,16 @@ func show_interaction():
 	else:
 		interaction_dialog.show()
 
-func _on_quest_started():
+func _on_quest_started() -> void:
 	interaction_dialog.hide()
 	if has_given_quest:
 		return
-	var type = randi_range(0,QuestHandler.Type.size()-1) # picks random type
+	var type: int = randi_range(0,QuestHandler.Type.size()-1) # picks random type
 	QuestHandler.new_quest(type, self)
 	has_given_quest = true
 
 func _on_trade_started():
-	var node = player.get_node("Interface/Trading")
+	var node := player.get_node("Interface/Trading")
 	if node is Trading:
 		interaction_dialog.hide()
 		node.open()

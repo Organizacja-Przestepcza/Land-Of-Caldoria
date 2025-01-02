@@ -7,6 +7,7 @@ var state: State = State.PLAYING
 @onready var building: BuildMenu = %Building
 @onready var crafting: Crafting = %Crafting
 @onready var ammo_selector: AmmoSelector = $"../Interface/AmmoSelector"
+@onready var furnace: Furnace = $"../Interface/Furnace"
 
 @onready var console: Console = $"../Interface/Console"
 @onready var pause_menu: PauseMenu = %PauseMenu
@@ -92,3 +93,4 @@ func get_slot_under_mouse() -> InventorySlot:
 func close_menus():
 	tabs.close()
 	ammo_selector.close()
+	furnace.close()

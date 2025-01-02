@@ -17,7 +17,11 @@ var user_seed = WorldData.seed
 
 var object_tiles: Dictionary = {}
 var floor_tiles: Dictionary = {}
-@onready var tile_layer_arr: Array = [[object_tiles,object_layer], [floor_tiles,floor_layer]]
+@onready var tile_layer_arr: Array[Dictionary] = [
+	{_TILES: object_tiles,_LAYER: object_layer}, 
+	{_TILES: floor_tiles,_LAYER: floor_layer}
+]
+enum {_TILES = 0, _LAYER = 1}
 enum ObjType {NATURAL,MANMADE}
 
 func _ready() -> void:
@@ -37,7 +41,9 @@ func _ready() -> void:
 		player.global_position = WorldData.load.player_global_position
 		object_tiles = WorldData.load.objects
 		floor_tiles = WorldData.load.floors
+		$CaveManager.caves = WorldData.load.caves
 	noise_generator.add_child(chunk_loader)
+	$CaveManager.reparent(get_tree().root)
 	get_tree().paused = false
 	generate_village()
 	
@@ -50,71 +56,63 @@ func _input(event: InputEvent) -> void:
 			print("Chunk boundaries ",_get_chunk_boundaries(chunk).position, " - ", _get_chunk_boundaries(chunk).end)
 			print("---")
 
-# -------
-# OBJECTS
-# -------
+#region Objects
 
 func load_objects(chunk_pos: Vector2i):
 	for tiles in tile_layer_arr:
-		if not tiles[0].has(chunk_pos):
-			tiles[0][chunk_pos] = {}
-			return
-		var chunk_d: Dictionary = tiles[0][chunk_pos]
+		var chunk_d: Dictionary = tiles.get(_TILES, {}).get_or_add(chunk_pos, {})
 		for tile_pos: Vector2i in chunk_d.keys():
-			var tile_data: Dictionary = chunk_d[tile_pos]
-			tiles[1].set_cell(tile_pos, tile_data["source"], tile_data["atlas_coords"], tile_data["alt_tile"])
+			var tile_data: Dictionary = chunk_d.get(tile_pos, {})
+			tiles[_LAYER].set_cell(tile_pos, tile_data.get("source"), tile_data.get("atlas_coords"), tile_data.get("alt_tile"))
 
 func generate_objects(chunk_pos: Vector2i):
-	if not object_tiles.has(chunk_pos):
-		object_tiles[chunk_pos] = {}
-	var chunk_d: Dictionary = object_tiles[chunk_pos]
 	var pos = _chunk_to_map(chunk_pos)
-	for x in range(pos.x,pos.x+noise_generator.chunk_size.x):
-		for y in range(pos.y,pos.y+noise_generator.chunk_size.y):
-			var h_noise_val: float = noise_generator.settings.noise.get_noise_2d(x,y)
-			var tile_pos = Vector2i(x,y)
-			if not object_layer.get_cell_source_id(tile_pos) == -1: # if tile is not empty (aka there is an object there) - skip
-				continue
-			if h_noise_val > 0.1 and y % randi_range(2,5) == x % randi_range(2,5) and randi_range(0,100) < 30:
-				object_layer.set_cell(tile_pos, 0, Vector2i(0, 0), randi_range(1,7))
-				chunk_d[tile_pos] = {
-					"type": ObjType.NATURAL,
-					"source": 0,
-					"atlas_coords": Vector2i.ZERO,
-					"alt_tile": object_layer.get_cell_alternative_tile(tile_pos) # change to atlas coords if the tile is not from scene collection
-				}
-			if h_noise_val > -0.05 and y % randi_range(2,5) == x % randi_range(2,5) and randi_range(0,100) < 15:
-				object_layer.set_cell(tile_pos, 1, Vector2i(0, 0), randi_range(1,5))
-				chunk_d[tile_pos] = {
-					"type": ObjType.NATURAL,
-					"source": 1,
-					"atlas_coords": Vector2i.ZERO,
-					"alt_tile": object_layer.get_cell_alternative_tile(tile_pos) # change to atlas coords if the tile is not from scene collection
-				}
+	for tiles in tile_layer_arr:
+		var chunk_d: Dictionary = tiles[0].get(chunk_pos, {})
+		for x in range(pos.x,pos.x+noise_generator.chunk_size.x):
+			for y in range(pos.y,pos.y+noise_generator.chunk_size.y):
+				var h_noise_val: float = noise_generator.settings.noise.get_noise_2d(x,y)
+				var tile_pos = Vector2i(x,y)
+				if not object_layer.get_cell_source_id(tile_pos) == -1: # if tile is not empty (aka there is an object there) - skip
+					continue
+				if h_noise_val > 0.1 and y % randi_range(2,5) == x % randi_range(2,5) and randi_range(0,100) < 30:
+					object_layer.set_cell(tile_pos, 0, Vector2i(0, 0), randi_range(1,7))
+					chunk_d[tile_pos] = {
+						"type": ObjType.NATURAL,
+						"source": 0,
+						"atlas_coords": Vector2i.ZERO,
+						"alt_tile": object_layer.get_cell_alternative_tile(tile_pos) # change to atlas coords if the tile is not from scene collection
+					}
+				if h_noise_val > -0.05 and y % randi_range(2,5) == x % randi_range(2,5) and randi_range(0,100) < 15:
+					object_layer.set_cell(tile_pos, 1, Vector2i(0, 0), randi_range(1,5))
+					chunk_d[tile_pos] = {
+						"type": ObjType.NATURAL,
+						"source": 1,
+						"atlas_coords": Vector2i.ZERO,
+						"alt_tile": object_layer.get_cell_alternative_tile(tile_pos) # change to atlas coords if the tile is not from scene collection
+					}
 
 func unload_objects(chunk_pos: Vector2i):
-	for tiles in tile_layer_arr:
-		if not tiles[0].has(chunk_pos):
-			tiles[0][chunk_pos] = {}
-			return
-		for tile_pos in tiles[0][chunk_pos].keys():
-			if not tiles[1].get_cell_atlas_coords(tile_pos) == Vector2i(-1,-1): # dirty fix for overwriting of saved tiles
-				tiles[0][chunk_pos][tile_pos]["atlas_coords"] = tiles[1].get_cell_atlas_coords(tile_pos)
-			tiles[1].set_cell(tile_pos)
+	for tiles: Dictionary in tile_layer_arr:
+		var tiles_in_chunk: Dictionary = tiles.get(_TILES, {}).get_or_add(chunk_pos, {})
+		for tile_pos in tiles_in_chunk.keys():
+			if not tiles[_LAYER].get_cell_atlas_coords(tile_pos) == Vector2i(-1,-1): # dirty fix for overwriting of saved tiles
+				tiles_in_chunk[tile_pos]["atlas_coords"] = tiles[_LAYER].get_cell_atlas_coords(tile_pos)
+			tiles[_LAYER].set_cell(tile_pos)
 
 ## Saves objects from chunks in loading radius into [member object_tiles] and [member floor_tiles]
 func save_loaded_chunks_objects():
-	for tiles in tile_layer_arr:
+	for tiles: Dictionary in tile_layer_arr:
 		for chunk_pos in chunk_loader._get_required_chunks(chunk_loader._get_actors_position()):
-			var chunk_pos_i = Vector2i(chunk_pos)
-			if not tiles[0].keys().has(chunk_pos_i):
+			var chunk_posi = Vector2i(chunk_pos)
+			var tiles_in_chunk: Dictionary = tiles.get(_TILES, {}).get(chunk_posi, {})
+			if tiles_in_chunk.is_empty():
 				continue
-			for tile_pos in tiles[0][chunk_pos_i].keys():
-				tiles[0][chunk_pos_i][tile_pos]["atlas_coords"] = tiles[1].get_cell_atlas_coords(tile_pos)
+			for tile_pos: Vector2i in tiles_in_chunk.keys():
+				tiles_in_chunk[tile_pos]["atlas_coords"] = tiles.get(_LAYER).get_cell_atlas_coords(tile_pos)
+#endregion
 
-# -------
-# STRUCTURES
-# -------
+#region Structures
 
 var active_buildings: Array = []
 
@@ -182,11 +180,9 @@ func generate_buildings_on_chunk(chunk_pos: Vector2i):
 	if chunk_pos.x < 3 and chunk_pos.y < 3:
 		return
 	chance_spawn_building(chunk_pos)
+#endregion
 
-
-# -------
-# MOBS
-# -------
+#region Mobs
 
 const mob_types: Array[String] = ["slime","crab","boar","bear","wolf","sheep"]
 
@@ -213,10 +209,9 @@ func generate_mobs_on_chunk(chunk_position: Vector2i):
 			var y = pos.y + noise_generator.tile_size.y * tile_y
 			var mob_pos = Vector2i(x,y)
 			chance_spawn_mob(mob_pos)
+#endregion
 
-# -------
-# Signal functions
-# -------
+#region Signal functions
 
 func _on_chunk_rendered(chunk_position: Vector2i) -> void:
 	if (object_tiles.has(chunk_position) or floor_tiles.has(chunk_position)) and chunk_loader._get_required_chunks(chunk_loader._get_actors_position()).has(chunk_position): # if chunk is in loading radius and has objects
@@ -232,16 +227,15 @@ func _on_chunk_changed(chunk_position: Vector2i): # this function could probably
 	for chunk in object_tiles.keys(): 
 		if not chunk_loader._get_required_chunks(chunk_position).has(chunk): # if chunk is not required
 			unload_objects(chunk)
+#endregion
 
+#region ChunkHelpers
 
-# -------
-# Chunk helpers
-# -------
-
-func delete_object_at(pos: Vector2i):
+func delete_object_at(pos: Vector2i, layer: int = 0): ## 0 is object layer, 1 is floor layer
 	var chunk = noise_generator.map_to_chunk(pos)
-	if object_tiles.has(chunk):
-		object_tiles[chunk].erase(pos)
+	var tiles: Dictionary = tile_layer_arr[layer].get(_TILES, {})
+	if tiles.has(chunk):
+		tiles[chunk].erase(pos)
 
 func delete_floor_at(pos: Vector2i):
 	var chunk = noise_generator.map_to_chunk(pos)
@@ -273,9 +267,16 @@ func _chunk_positions_to_tile_positions(chunk_positions: Array) -> Array:
 				tile_positions.append(Vector2i(x, y))  # Add tile position to the list
 	return tile_positions
 
-# -------
-# Other
-# -------
+func get_chunk_data(cell_pos: Vector2i, layer: int = 0): ## 0 is object layer, 1 is floor layer
+	var chunk = noise_generator.map_to_chunk(cell_pos)
+	var tiles = tile_layer_arr[layer].get(_TILES, {})
+	var chunk_d: Dictionary = tiles.get_or_add(chunk, {})
+	return chunk_d
+
+#endregion
+
+#region Other
 
 func update_volume():
 	$AudioStreamPlayer.volume_db = Settings.music_volume
+#endregion

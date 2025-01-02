@@ -45,7 +45,7 @@ version_control/autoload_on_startup=true
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/ScriptEditorQoL/plugin.cfg", "res://addons/better-terrain/plugin.cfg", "res://addons/gaea/plugin.cfg", "res://addons/rubonnek.quest_manager/plugin.cfg", "res://addons/script-ide/plugin.cfg")
+enabled=PackedStringArray("res://addons/ScriptEditorQoL/plugin.cfg", "res://addons/better-terrain/plugin.cfg", "res://addons/event_audio/plugin.cfg", "res://addons/gaea/plugin.cfg", "res://addons/rubonnek.quest_manager/plugin.cfg", "res://addons/script-ide/plugin.cfg")
 
 [file_customization]
 

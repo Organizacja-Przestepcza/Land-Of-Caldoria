@@ -19,7 +19,7 @@ func _ready() -> void:
 	texture = data.texture
 	tooltip_text = "%s" % [data.name]
 	
-func _get_drag_data(at_position: Vector2):
+func _get_drag_data(at_position: Vector2) -> InventoryItem:
 	set_drag_preview(make_drag_preview(at_position))
 	return self
 
@@ -38,7 +38,7 @@ func make_drag_preview(at_position: Vector2) -> Control:
 	return c
 
 func add(amount: int) -> int: ## If there are leftover items, returns their amount. Returns null in any other case.
-	var space_left = data.max_stack_size - count
+	var space_left: int = data.max_stack_size - count
 	var amount_to_add = min(amount,space_left)
 	count+=amount_to_add
 	SignalBus.item_added.emit(data,amount_to_add)
