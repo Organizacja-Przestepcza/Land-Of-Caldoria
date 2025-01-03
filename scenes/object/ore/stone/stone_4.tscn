@@ -4,14 +4,13 @@
 [ext_resource type="Texture2D" uid="uid://be0pytnsmrcjd" path="res://assets/textures/object/ore/stone/stone_4.png" id="1_yh33j"]
 
 [node name="Stone4" type="StaticBody2D"]
-scale = Vector2(0.4, 0.4)
+position = Vector2(0, -5)
+scale = Vector2(0.8, 0.8)
 collision_layer = 2
 script = ExtResource("1_duq08")
 
 [node name="Sprite" type="Sprite2D" parent="."]
-position = Vector2(0.500002, -15)
 texture = ExtResource("1_yh33j")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
-position = Vector2(0.500002, -15)
-polygon = PackedVector2Array(-9, 20, 22, 20, 30, 16, 22, -4, -22, -4, -30, 12)
+polygon = PackedVector2Array(-10, 11.25, 12.5, 11.25, 17.5, 8.75, 16.25, 1.25, -16.25, 1.25, -16.25, 6.25)
