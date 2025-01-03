@@ -1,14 +1,15 @@
 [gd_resource type="Resource" script_class="Item" load_steps=3 format=3 uid="uid://moxoidrp0rnp"]
 
 [ext_resource type="Script" path="res://items/item.gd" id="1_ycn2m"]
-[ext_resource type="Texture2D" uid="uid://cbs4hc8hf5135" path="res://assets/textures/item/resource/string.png" id="2_p3yr1"]
+[ext_resource type="Texture2D" uid="uid://hxxnrc2amybb" path="res://assets/textures/item/resource/glass.png" id="2_4tnv1"]
 
 [resource]
 script = ExtResource("1_ycn2m")
 slot = 0
 name = "Glass"
 weight = 1
-texture = ExtResource("2_p3yr1")
+texture = ExtResource("2_4tnv1")
 max_stack_size = 16
 description = "Now you can see me"
 value = 16
+is_throwable = false
