@@ -28,6 +28,7 @@ func select_slot(index: int):
 	var held_item = get_held_item()
 	if held_item is Item:
 		item_selected.emit(held_item)
+	else: item_selected.emit(null)
 
 signal item_selected(item: Item)
 

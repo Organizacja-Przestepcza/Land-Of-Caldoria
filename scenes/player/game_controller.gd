@@ -3,6 +3,7 @@ class_name Game
 
 var state: State = State.PLAYING
 @onready var trading: Trading = $"../Interface/Trading"
+@onready var hint_legend: HintLegend = %HintLegend
 
 @onready var building: BuildMenu = %Building
 @onready var crafting: Crafting = %Crafting
@@ -18,6 +19,9 @@ var state: State = State.PLAYING
 @onready var tabs: TabContainer = %Tabs
 
 enum State {PLAYING, INVENTORY, CONSOLE}
+
+func _ready() -> void:
+	hotbar.item_selected.connect(_on_hotbar_item_selected)
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventKey and not event.echo:
@@ -94,3 +98,6 @@ func close_menus():
 	tabs.close()
 	ammo_selector.close()
 	furnace.close()
+
+func _on_hotbar_item_selected(item: Item)->void:
+	hint_legend.add_hint_for_item(item)
