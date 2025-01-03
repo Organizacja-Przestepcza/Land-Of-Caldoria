@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="Item" load_steps=3 format=3 uid="uid://4op1akeae4hr"]
+
+[ext_resource type="Script" path="res://items/item.gd" id="1_p742b"]
+[ext_resource type="Texture2D" uid="uid://c1cin7avh67pb" path="res://assets/textures/item/tools/backpack.png" id="2_q7nn1"]
+
+[resource]
+script = ExtResource("1_p742b")
+slot = 0
+name = "backpack"
+weight = 5
+texture = ExtResource("2_q7nn1")
+max_stack_size = 1
+description = "to stash my shit"
+value = 25
+is_throwable = true
