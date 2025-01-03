@@ -40,11 +40,9 @@ func _on_fullscreen_button_pressed() -> void:
 	if is_fullscreen:
 		%FullscreenButton.text = ("Fullscreen: on")
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
-		%ResolutionOptions.disabled = true
 	else:
 		%FullscreenButton.text = ("Fullscreen: off")
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
-		%ResolutionOptions.disabled = false
 
 func _on_music_slider_value_changed(value: float) -> void:
 	%MusicLabel.text = "Music: " + str(%MusicSlider.value) + "%"

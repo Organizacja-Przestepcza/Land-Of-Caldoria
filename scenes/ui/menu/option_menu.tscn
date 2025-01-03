@@ -83,17 +83,6 @@ unique_name_in_owner = true
 custom_minimum_size = Vector2(512, 0)
 layout_mode = 2
 
-[node name="ResolutionOptions" type="OptionButton" parent="OptionsContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-selected = 0
-item_count = 2
-popup/item_0/text = "1920x1080 Full HD"
-popup/item_1/text = "1366x768"
-popup/item_1/id = 1
-
 [node name="FullscreenButton" type="Button" parent="OptionsContainer"]
 unique_name_in_owner = true
 layout_mode = 2
