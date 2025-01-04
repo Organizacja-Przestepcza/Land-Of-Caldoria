@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://52kcruy75hex"]
 
-[ext_resource type="Texture2D" uid="uid://cmej264ny22y" path="res://assets/textures/ui/hud/health/heart.png" id="1_5xh1y"]
+[ext_resource type="Texture2D" uid="uid://cmej264ny22y" path="res://assets/textures/ui/hud/heart.png" id="1_5xh1y"]
 [ext_resource type="Script" path="res://scenes/ui/hud/health/health_bar.gd" id="1_sh6w1"]
 [ext_resource type="Texture2D" uid="uid://dcwr32ae2cm2m" path="res://assets/textures/ui/default/bar.png" id="3_swr7s"]
 [ext_resource type="Texture2D" uid="uid://cgs5c2jilif4n" path="res://assets/textures/ui/default/progress_bar.png" id="4_ypex4"]
@@ -11,22 +11,20 @@ anchors_preset = 0
 script = ExtResource("1_sh6w1")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
-layout_mode = 1
-anchors_preset = -1
-anchor_right = 0.222222
-anchor_bottom = 0.0493827
+layout_mode = 0
+offset_right = 159.0
+offset_bottom = 25.0
 metadata/_edit_use_anchors_ = true
 
 [node name="HealthTextureProgressBar" type="TextureRect" parent="HBoxContainer"]
 layout_mode = 2
-size_flags_vertical = 8
 texture = ExtResource("1_5xh1y")
+stretch_mode = 2
 
 [node name="HealthProgressBar" type="TextureProgressBar" parent="HBoxContainer"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(128, 24)
+custom_minimum_size = Vector2(128, 0)
 layout_mode = 2
-size_flags_vertical = 4
 value = 100.0
 nine_patch_stretch = true
 stretch_margin_left = 8

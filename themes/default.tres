@@ -1,36 +1,75 @@
 [gd_resource type="Theme" load_steps=13 format=3 uid="uid://ceqm84uqlgmkn"]
 
 [ext_resource type="Texture2D" uid="uid://bh7i38i7ynwk" path="res://assets/textures/ui/default/Disabled Button.png" id="1_6gpx0"]
-[ext_resource type="Texture2D" uid="uid://bgi7e2i532trf" path="res://assets/textures/ui/default/Main Menu Button.png" id="2_cblen"]
-[ext_resource type="Texture2D" uid="uid://bmd0ttngrrnrv" path="res://assets/textures/ui/default/Toggled Menu Button.png" id="2_qhmre"]
-[ext_resource type="Texture2D" uid="uid://b8ww6vtf1lfes" path="res://assets/textures/ui/default/grabber.png" id="4_1t8o0"]
-[ext_resource type="Texture2D" uid="uid://brfj1qao8q46t" path="res://assets/textures/ui/default/grabbed_grabber.png" id="5_1fvdq"]
-[ext_resource type="Texture2D" uid="uid://ca7lhvfb08iy4" path="res://assets/textures/ui/default/scrollbar.png" id="6_kkxeu"]
+[ext_resource type="Texture2D" uid="uid://dmug8puit8h8i" path="res://assets/textures/ui/lc_button_hover.png" id="2_j665j"]
+[ext_resource type="Texture2D" uid="uid://bqv8rvlemjpai" path="res://assets/textures/ui/lc_button_normal.png" id="3_1qfci"]
+[ext_resource type="Texture2D" uid="uid://3ki857ea0wbx" path="res://assets/textures/ui/lc_button_pressed.png" id="4_qwdq2"]
+[ext_resource type="Texture2D" uid="uid://cjaxp1c10ebrv" path="res://assets/textures/ui/lc_progressbar_fill.png" id="5_xhtqq"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_rf6iu"]
 texture = ExtResource("1_6gpx0")
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_o1fbm"]
+
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_3ki08"]
-texture = ExtResource("2_qhmre")
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+texture = ExtResource("2_j665j")
+texture_margin_left = 20.0
+texture_margin_top = 20.0
+texture_margin_right = 20.0
+texture_margin_bottom = 20.0
+expand_margin_left = 2.0
+expand_margin_top = 2.0
+expand_margin_right = 2.0
+expand_margin_bottom = 2.0
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_pqprd"]
-texture = ExtResource("2_cblen")
+content_margin_left = 10.0
+content_margin_top = 10.0
+content_margin_right = 10.0
+content_margin_bottom = 10.0
+texture = ExtResource("3_1qfci")
+texture_margin_left = 20.0
+texture_margin_top = 20.0
+texture_margin_right = 20.0
+texture_margin_bottom = 20.0
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_fmwpb"]
-texture = ExtResource("4_1t8o0")
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_0i586"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+texture = ExtResource("4_qwdq2")
+texture_margin_left = 22.0
+texture_margin_top = 22.0
+texture_margin_right = 22.0
+texture_margin_bottom = 22.0
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_yminh"]
-texture = ExtResource("5_1fvdq")
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_86p8m"]
+texture = ExtResource("5_xhtqq")
+texture_margin_left = 8.0
+texture_margin_top = 8.0
+texture_margin_right = 8.0
+texture_margin_bottom = 8.0
+modulate_color = Color(0.133333, 0.133333, 0.133333, 1)
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ogwdb"]
-texture = ExtResource("6_kkxeu")
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_4vwa6"]
+texture = ExtResource("5_xhtqq")
+texture_margin_left = 8.0
+texture_margin_top = 8.0
+texture_margin_right = 8.0
+texture_margin_bottom = 8.0
+modulate_color = Color(0.666569, 0.666569, 0.666569, 1)
 
 [resource]
 default_font_size = 48
 Button/styles/disabled = SubResource("StyleBoxTexture_rf6iu")
+Button/styles/focus = SubResource("StyleBoxEmpty_o1fbm")
 Button/styles/hover = SubResource("StyleBoxTexture_3ki08")
 Button/styles/normal = SubResource("StyleBoxTexture_pqprd")
-ProgressBar/colors/font_outline_color = Color(0, 0, 0, 1)
-VScrollBar/styles/grabber = SubResource("StyleBoxTexture_fmwpb")
-VScrollBar/styles/grabber_highlight = SubResource("StyleBoxTexture_yminh")
-VScrollBar/styles/scroll = SubResource("StyleBoxTexture_ogwdb")
+Button/styles/pressed = SubResource("StyleBoxTexture_0i586")
+ProgressBar/styles/background = SubResource("StyleBoxTexture_86p8m")
+ProgressBar/styles/fill = SubResource("StyleBoxTexture_4vwa6")
