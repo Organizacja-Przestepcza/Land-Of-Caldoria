@@ -31,7 +31,6 @@ enabled = true
 filter_type = 0
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_h4te1"]
-seed = 1
 
 [sub_resource type="Resource" id="Resource_56f0v"]
 resource_name = "Water"

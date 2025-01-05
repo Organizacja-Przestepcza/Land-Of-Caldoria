@@ -1,15 +1,19 @@
-[gd_scene load_steps=32 format=3 uid="uid://bevwwvcr2fdsa"]
+[gd_scene load_steps=39 format=3 uid="uid://bevwwvcr2fdsa"]
 
 [ext_resource type="Script" path="res://scenes/world/proc_world.gd" id="1_75342"]
 [ext_resource type="AudioStream" uid="uid://jdy7g8aivofv" path="res://assets/sfx/ambient/Overworld theme.mp3" id="2_bam7b"]
 [ext_resource type="TileSet" uid="uid://d0pha3g0yk4g8" path="res://tilesets/main.tres" id="2_gbw1p"]
+[ext_resource type="Script" path="res://addons/event_audio/src/ea_event_bank_mounter.gd" id="2_q3pmd"]
 [ext_resource type="Script" path="res://addons/gaea/generators/2D/noise_generator/noise_generator.gd" id="2_vv2tn"]
+[ext_resource type="Script" path="res://addons/event_audio/src/ea_event.gd" id="3_01ps5"]
 [ext_resource type="Resource" uid="uid://dmxmmyikn85ln" path="res://scenes/world/gaea_settings.tres" id="3_3in7x"]
 [ext_resource type="Script" path="res://scenes/build_manager.gd" id="4_26fgq"]
 [ext_resource type="Script" path="res://scenes/player/threaded_better_terrain_gaea_renderer.gd" id="5_bdqx5"]
+[ext_resource type="Script" path="res://addons/event_audio/src/ea_event_playback_settings.gd" id="5_c61s5"]
 [ext_resource type="PackedScene" uid="uid://byb1nycwprtqb" path="res://scenes/player/player.tscn" id="5_j0bro"]
 [ext_resource type="PackedScene" uid="uid://d26rkh5gvtfkh" path="res://scenes/ui/hud/hud.tscn" id="6_ai4l1"]
 [ext_resource type="TileSet" uid="uid://dgn2sg8mjagkv" path="res://tilesets/objects.tres" id="6_ei8fs"]
+[ext_resource type="Script" path="res://addons/event_audio/src/ea_event_bank.gd" id="6_iuqh8"]
 [ext_resource type="TileSet" uid="uid://btvfeolghs56u" path="res://tilesets/floors.tres" id="6_wfmau"]
 [ext_resource type="PackedScene" uid="uid://b0bmpokyxvpu8" path="res://scenes/ui/hotbar/hotbar.tscn" id="7_ibjah"]
 [ext_resource type="PackedScene" uid="uid://c83lveoubd7vh" path="res://scenes/ui/inventory/inventory.tscn" id="9_dkgoy"]
@@ -32,9 +36,37 @@
 [ext_resource type="PackedScene" uid="uid://c81rwddnrgmnu" path="res://scenes/npc/lumberjack.tscn" id="26_cixvo"]
 [ext_resource type="Script" path="res://scenes/systems/quests/quest_tab.gd" id="27_t5dow"]
 
+[sub_resource type="Resource" id="Resource_5ek53"]
+script = ExtResource("5_c61s5")
+stop_when_source_dies = false
+stationary = true
+volume_db = -10.0
+min_pitch = 1.0
+max_pitch = 1.0
+panning_strength = 1.0
+attenuation = 1.0
+max_distance = 2000
+unit_size = 10.0
+max_db = 3.0
+
+[sub_resource type="Resource" id="Resource_itpnr"]
+script = ExtResource("3_01ps5")
+audio_streams = Array[AudioStream]([ExtResource("2_bam7b")])
+probability_weights = Array[float]([1.0])
+trigger_tags = ""
+playback_settings = SubResource("Resource_5ek53")
+
+[sub_resource type="Resource" id="Resource_881ut"]
+script = ExtResource("6_iuqh8")
+entries = Array[ExtResource("3_01ps5")]([SubResource("Resource_itpnr")])
+
 [node name="World" type="Node2D"]
 y_sort_enabled = true
 script = ExtResource("1_75342")
+
+[node name="EAEventBankMounter" type="Node" parent="."]
+script = ExtResource("2_q3pmd")
+_audio_bank_resource = SubResource("Resource_881ut")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_bam7b")

@@ -75,7 +75,7 @@ func generate_objects(chunk_pos: Vector2i):
 				var tile_pos = Vector2i(x,y)
 				if not object_layer.get_cell_source_id(tile_pos) == -1: # if tile is not empty (aka there is an object there) - skip
 					continue
-				if h_noise_val > 0.1 and y % randi_range(2,5) == x % randi_range(2,5) and randi_range(0,100) < 30:
+				if h_noise_val > 0.1 and y % randi_range(2,5) == x % randi_range(2,5) and randi_range(0,100) < 25:
 					object_layer.set_cell(tile_pos, 0, Vector2i(0, 0), randi_range(1,7))
 					chunk_d[tile_pos] = {
 						"type": ObjType.NATURAL,
@@ -83,7 +83,7 @@ func generate_objects(chunk_pos: Vector2i):
 						"atlas_coords": Vector2i.ZERO,
 						"alt_tile": object_layer.get_cell_alternative_tile(tile_pos) # change to atlas coords if the tile is not from scene collection
 					}
-				if h_noise_val > -0.05 and y % randi_range(2,5) == x % randi_range(2,5) and randi_range(0,100) < 15:
+				if h_noise_val > -0.05 and y % randi_range(2,5) == x % randi_range(2,5) and randi_range(0,100) < 5:
 					object_layer.set_cell(tile_pos, 1, Vector2i(0, 0), randi_range(1,5))
 					chunk_d[tile_pos] = {
 						"type": ObjType.NATURAL,
@@ -159,7 +159,6 @@ func generate_village() -> void:
 	village.get_node("Floor").clear()
 	
 func chance_spawn_building(chunk_pos: Vector2i) -> void:
-	randomize()
 	var tile_pos = _chunk_to_map(chunk_pos)
 	var h_noise_val = noise_generator.settings.noise.get_noise_2d(tile_pos.x,tile_pos.y)
 	if h_noise_val > -0.05 and object_layer.get_cell_source_id(tile_pos) == -1:
@@ -187,7 +186,6 @@ func generate_buildings_on_chunk(chunk_pos: Vector2i):
 const mob_types: Array[String] = ["slime","crab","boar","bear","wolf","sheep"]
 
 func chance_spawn_mob(pos: Vector2) -> void:
-	randomize()
 	var tile_pos = ground_layer.local_to_map(pos)
 	var h_noise_val: float = noise_generator.settings.noise.get_noise_2d(tile_pos.x,tile_pos.y)
 	if h_noise_val > -0.05 and object_layer.get_cell_source_id(tile_pos) == -1: # if there is ground and no objects
