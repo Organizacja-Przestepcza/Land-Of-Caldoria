@@ -45,7 +45,20 @@ var reach = 30
 var can_attack: bool = true
 var attack_cooldown: float = 0.5
 
-var nearest_interactable
+var nearest_interactable:
+	get:
+		return nearest_interactable
+	set(val):
+		if nearest_interactable is Node:
+			var children: Array = nearest_interactable.get_children()
+			var old = children.filter(func(element): return element is Label).front()
+			if old is Label:
+				old.queue_free()
+		if val is Node:
+			var lbl := Label.new()
+			lbl.text = InputMap.action_get_events("LC_interact").filter(func(action): return action is InputEventKey or action is InputEventMouseButton).front().as_text().get_slice("(",0)
+			val.add_child(lbl)
+		nearest_interactable = val
 
 enum Direction {Down, Up, Right, Left}
 

@@ -55,6 +55,8 @@ func remove(amount: int) -> int: ## Returns the number of not removed items
 	count -= amount_to_remove
 	SignalBus.item_added.emit(data,-amount_to_remove)
 	if count <= 0:
+		if get_parent().is_selected:
+			SignalBus.selected_item_changed.emit(null)
 		self.queue_free()
 		return amount-amount_to_remove
 	display_count()
