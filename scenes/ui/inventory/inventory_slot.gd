@@ -3,6 +3,7 @@ extends PanelContainer
 
 @export var type: Type
 @export var id: int
+var is_selected: bool = false
 
 enum Type { MAIN, HEAD, ARMS, TORSO, LEGS, FEET }
 
@@ -29,4 +30,8 @@ func _drop_data(_at_position: Vector2, dropped_item: Variant) -> void:
 				dropped_item.remove(dropped_item.count - amount_left)
 				return
 			current_item.reparent(dropped_item.get_parent())
+		elif dropped_item.get_parent().is_selected:
+			SignalBus.selected_item_changed.emit(null)
 		dropped_item.reparent(self)
+		if is_selected:
+			SignalBus.selected_item_changed.emit(dropped_item.data)

@@ -18,6 +18,9 @@ func _ready() -> void:
 	stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
 	texture = data.texture
 	tooltip_text = "%s" % [data.name]
+	var inv_slot: InventorySlot = get_parent()
+	if inv_slot.is_selected:
+		SignalBus.selected_item_changed.emit(data)
 	
 func _get_drag_data(at_position: Vector2) -> InventoryItem:
 	set_drag_preview(make_drag_preview(at_position))

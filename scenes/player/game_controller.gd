@@ -15,13 +15,10 @@ var state: State = State.PLAYING
 @onready var hotbar: Hotbar = %Hotbar
 @onready var inventory: Inventory = %Inventory
 @onready var player: Player = %Player
-@onready var stats: Control = %Stats
+@onready var stats: Stats = %Stats
 @onready var tabs: TabContainer = %Tabs
 
 enum State {PLAYING, INVENTORY, CONSOLE}
-
-func _ready() -> void:
-	hotbar.item_selected.connect(_on_hotbar_item_selected)
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventKey and not event.echo:
@@ -98,6 +95,3 @@ func close_menus():
 	tabs.close()
 	ammo_selector.close()
 	furnace.close()
-
-func _on_hotbar_item_selected(item: Item)->void:
-	hint_legend.add_hint_for_item(item)
