@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://bevwwvcr2fdsa"]
+[gd_scene load_steps=33 format=3 uid="uid://bevwwvcr2fdsa"]
 
 [ext_resource type="Script" path="res://scenes/world/proc_world.gd" id="1_75342"]
 [ext_resource type="AudioStream" uid="uid://jdy7g8aivofv" path="res://assets/sfx/ambient/Overworld theme.mp3" id="2_bam7b"]
@@ -22,6 +22,7 @@
 [ext_resource type="PackedScene" uid="uid://de7ljcthumfav" path="res://scenes/systems/crafting/crafting.tscn" id="12_wsaqj"]
 [ext_resource type="Script" path="res://scenes/world/tabs.gd" id="13_hqbme"]
 [ext_resource type="Script" path="res://scenes/player/game_controller.gd" id="13_xk8dt"]
+[ext_resource type="PackedScene" uid="uid://dwxv43ipd2lgd" path="res://scenes/ui/hud/hints/hint_legend.tscn" id="15_exyb5"]
 [ext_resource type="PackedScene" uid="uid://xxmv67orn38r" path="res://scenes/player/console.tscn" id="15_jbsup"]
 [ext_resource type="PackedScene" uid="uid://0v860522ctv3" path="res://scenes/ui/stats/stats.tscn" id="17_iykmo"]
 [ext_resource type="PackedScene" uid="uid://npgme5adxp70" path="res://scenes/npc/blacksmith.tscn" id="17_tkbm6"]
@@ -101,6 +102,9 @@ unique_name_in_owner = true
 offset_left = -0.000152588
 offset_right = 0.00012207
 offset_bottom = -0.000305176
+
+[node name="HintLegend" parent="Player/Hud" instance=ExtResource("15_exyb5")]
+unique_name_in_owner = true
 
 [node name="Notifications" parent="Player/Hud" instance=ExtResource("11_k8yp2")]
 unique_name_in_owner = true
