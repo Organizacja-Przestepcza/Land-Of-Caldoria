@@ -133,8 +133,10 @@ custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 
+[connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
 [connection signal="value_changed" from="OptionsContainer/MusicMargin/MarginContainer/MusicSlider" to="." method="_on_music_slider_value_changed"]
 [connection signal="value_changed" from="OptionsContainer/SoundMargin/MarginContainer/SoundSlider" to="." method="_on_sound_slider_value_changed"]
 [connection signal="pressed" from="OptionsContainer/FullscreenButton" to="." method="_on_fullscreen_button_pressed"]
 [connection signal="pressed" from="OptionsContainer/KeybindsButton" to="." method="_on_keybinds_button_pressed"]
 [connection signal="pressed" from="OptionsContainer/BackButton" to="." method="_on_back_button_pressed"]
+[connection signal="visibility_changed" from="KeybindsContainer" to="KeybindsContainer" method="_on_visibility_changed"]

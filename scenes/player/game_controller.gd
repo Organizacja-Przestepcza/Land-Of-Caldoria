@@ -20,8 +20,13 @@ var state: State = State.PLAYING
 
 enum State {PLAYING, INVENTORY, CONSOLE}
 
+func _ready() -> void:
+	SignalBus.player_attacked.connect(_on_player_attacked)
+
+func _on_player_attacked(mob,damage):
+	var controller= Input.get_connected_joypads().front()
+	Input.start_joy_vibration(controller,0.1,0.5,0.2)
 func _input(event: InputEvent) -> void:
-	if event is InputEventKey and not event.echo:
 		match state:
 			State.PLAYING:
 				if get_tree().paused == false:
@@ -43,7 +48,7 @@ func _input(event: InputEvent) -> void:
 						print($"..".position)
 					elif event.is_action_pressed("LC_switch_ammo"):
 						ammo_selector.open()
-					elif event.pressed:
+					elif event is InputEventKey and not event.echo and event.pressed:
 						match event.physical_keycode:
 							KEY_1: hotbar.select_slot(0)
 							KEY_2: hotbar.select_slot(1)
@@ -76,7 +81,7 @@ func _input(event: InputEvent) -> void:
 					close_menus()
 					pause_menu.toggle()
 			State.CONSOLE:
-				if event.pressed and event.physical_keycode == KEY_QUOTELEFT:
+				if event is InputEventKey and event.pressed and event.physical_keycode == KEY_QUOTELEFT:
 					console.close()
 				elif event.is_action_pressed("ui_cancel"):
 					console.close()

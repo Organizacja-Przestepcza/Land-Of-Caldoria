@@ -25,3 +25,7 @@ func _on_new_game_button_pressed() -> void:
 	#medium 64
 	#large 256
 	get_tree().change_scene_to_packed(load("res://scenes/world/proc_world.tscn"))
+
+
+func _on_visibility_changed() -> void:
+	if visible: %BackButton.grab_focus()

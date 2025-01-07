@@ -38,6 +38,7 @@ func _ready() -> void:
 	
 func open():
 	hotbar.reparent(get_node("HBoxContainer/VBoxContainer"))
+	main.grab_focus()
 	$HBoxContainer/VBoxContainer.move_child(hotbar, 0)
 
 func close():

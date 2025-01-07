@@ -44,3 +44,7 @@ func _on_delete_button_pressed() -> void:
 		load_menu.load_list.remove_item(saves_list.get_selected_items()[0])
 		saves_list.remove_item(saves_list.get_selected_items()[0])
 	
+
+
+func _on_visibility_changed() -> void:
+	if visible == true: $VBoxContainer/HBoxContainer/CancelButton.grab_focus()

@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="Consumable" load_steps=3 format=3 uid="uid://cv1h131q3i63e"]
+
+[ext_resource type="Script" path="res://items/consumable.gd" id="1_0gm16"]
+[ext_resource type="Texture2D" uid="uid://djeyb3i6rxvmg" path="res://assets/textures/item/food/raw_meat.png" id="2_xy7d5"]
+
+[resource]
+script = ExtResource("1_0gm16")
+hunger_value = 5
+health_value = 0
+is_plantable = false
+atlas_id = -1
+slot = 0
+name = "Raw Meat"
+weight = 1
+texture = ExtResource("2_xy7d5")
+max_stack_size = 4
+description = "Restores 5 hunger"
+value = 10
+is_throwable = false

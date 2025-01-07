@@ -42,30 +42,35 @@ horizontal_alignment = 1
 [node name="ContinueButton" type="Button" parent="TextureRect/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
+focus_neighbor_bottom = NodePath("../SaveButton")
 theme_override_font_sizes/font_size = 48
 text = "Continue"
 
 [node name="SaveButton" type="Button" parent="TextureRect/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
+focus_neighbor_bottom = NodePath("../LoadButton")
 theme_override_font_sizes/font_size = 48
 text = "Save"
 
 [node name="LoadButton" type="Button" parent="TextureRect/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
+focus_neighbor_bottom = NodePath("../OptionsButton")
 theme_override_font_sizes/font_size = 48
 text = "Load"
 
 [node name="OptionsButton" type="Button" parent="TextureRect/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
+focus_neighbor_bottom = NodePath("../QuitButton")
 theme_override_font_sizes/font_size = 48
 text = "Options"
 
 [node name="QuitButton" type="Button" parent="TextureRect/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
+focus_neighbor_bottom = NodePath("../ContinueButton")
 theme_override_font_sizes/font_size = 48
 text = "Quit"
 
@@ -78,6 +83,7 @@ visible = false
 [node name="LoadMenu" parent="." instance=ExtResource("5_8jqla")]
 visible = false
 
+[connection signal="visibility_changed" from="TextureRect" to="." method="_on_texture_rect_visibility_changed"]
 [connection signal="pressed" from="TextureRect/VBoxContainer/ContinueButton" to="." method="toggle"]
 [connection signal="pressed" from="TextureRect/VBoxContainer/SaveButton" to="." method="_on_save_button_pressed"]
 [connection signal="pressed" from="TextureRect/VBoxContainer/LoadButton" to="." method="_on_load_button_pressed"]

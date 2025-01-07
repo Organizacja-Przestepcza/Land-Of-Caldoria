@@ -7,3 +7,6 @@ func _on_menu_button_pressed() -> void:
 
 func _on_load_button_pressed() -> void:
 	SaveManager.load_last_save()
+
+func _ready() -> void:
+	$VBoxContainer/MenuButton.grab_focus()
