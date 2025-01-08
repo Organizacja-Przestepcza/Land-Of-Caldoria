@@ -10,6 +10,8 @@ class_name BuildManager
 
 func build():
 	var mouse_pos = get_local_mouse_position()
+	if mouse_pos.distance_to(WorldData.player.position) > 150:
+		return
 	var cell_pos = object_layer.local_to_map(mouse_pos)
 	
 	var recipe = build_menu.get_current_recipe()

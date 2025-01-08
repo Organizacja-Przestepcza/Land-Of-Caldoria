@@ -1,11 +1,40 @@
-[gd_scene load_steps=7 format=3 uid="uid://cvtq0enjtags6"]
+[gd_scene load_steps=15 format=3 uid="uid://cvtq0enjtags6"]
 
 [ext_resource type="Script" path="res://scenes/start.gd" id="1_odj8b"]
 [ext_resource type="Texture2D" uid="uid://byatqr0oyakgk" path="res://assets/textures/ui/menu/Summer6.png" id="2_ir8uq"]
 [ext_resource type="PackedScene" uid="uid://l72ck6aqcfe8" path="res://scenes/ui/menu/option_menu.tscn" id="2_jsv6s"]
+[ext_resource type="Script" path="res://addons/event_audio/src/ea_event_bank_mounter.gd" id="2_r8226"]
+[ext_resource type="Script" path="res://addons/event_audio/src/ea_event.gd" id="3_a47i7"]
+[ext_resource type="AudioStream" uid="uid://jdy7g8aivofv" path="res://assets/sfx/ambient/Overworld theme.mp3" id="4_u86e1"]
 [ext_resource type="Texture2D" uid="uid://bv3fcq18kx01k" path="res://assets/textures/ui/menu/game_logov2.png" id="4_wlmjk"]
 [ext_resource type="PackedScene" uid="uid://cbghomtojyvih" path="res://scenes/ui/menu/new_game_menu.tscn" id="5_3efak"]
+[ext_resource type="Script" path="res://addons/event_audio/src/ea_event_playback_settings.gd" id="5_gddlr"]
+[ext_resource type="Script" path="res://addons/event_audio/src/ea_event_bank.gd" id="6_wr5it"]
 [ext_resource type="PackedScene" uid="uid://gna421381s1" path="res://scenes/ui/menu/load_menu.tscn" id="6_xfpok"]
+
+[sub_resource type="Resource" id="Resource_5ek53"]
+script = ExtResource("5_gddlr")
+stop_when_source_dies = false
+stationary = true
+volume_db = -10.0
+min_pitch = 1.0
+max_pitch = 1.0
+panning_strength = 1.0
+attenuation = 1.0
+max_distance = 2000
+unit_size = 10.0
+max_db = 3.0
+
+[sub_resource type="Resource" id="Resource_itpnr"]
+script = ExtResource("3_a47i7")
+audio_streams = Array[AudioStream]([ExtResource("4_u86e1")])
+probability_weights = Array[float]([1.0])
+trigger_tags = "overworld_ambient"
+playback_settings = SubResource("Resource_5ek53")
+
+[sub_resource type="Resource" id="Resource_uny8n"]
+script = ExtResource("6_wr5it")
+entries = Array[ExtResource("3_a47i7")]([SubResource("Resource_itpnr")])
 
 [node name="Start" type="Control"]
 layout_mode = 3
@@ -15,6 +44,10 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_odj8b")
+
+[node name="EAEventBankMounter" type="Node" parent="."]
+script = ExtResource("2_r8226")
+_audio_bank_resource = SubResource("Resource_uny8n")
 
 [node name="Background" type="TextureRect" parent="."]
 texture_filter = 1

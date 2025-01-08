@@ -46,6 +46,7 @@ func _ready() -> void:
 	$CaveManager.reparent(get_tree().root)
 	get_tree().paused = false
 	generate_village()
+	EventAudio.play_2d("overworld_ambient",self)
 	
 func _input(event: InputEvent) -> void:
 	if event is InputEventKey:
@@ -271,10 +272,4 @@ func get_chunk_data(cell_pos: Vector2i, layer: int = 0): ## 0 is object layer, 1
 	var chunk_d: Dictionary = tiles.get_or_add(chunk, {})
 	return chunk_d
 
-#endregion
-
-#region Other
-
-func update_volume():
-	$AudioStreamPlayer.volume_db = Settings.music_volume
 #endregion

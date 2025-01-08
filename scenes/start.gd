@@ -4,6 +4,9 @@ extends Control
 @onready var load_menu: Control = $LoadMenu
 @onready var option_menu: OptionMenu = $OptionMenu
 
+func _ready() -> void:
+	$EAEventBankMounter.reparent(get_tree().root.get_node("/root/EventAudio"))
+
 func _on_new_game_button_pressed() -> void:
 	main_menu.visible = not main_menu.visible
 	new_game_menu.visible = not new_game_menu.visible
