@@ -1,17 +1,48 @@
-[gd_resource type="Theme" load_steps=24 format=3 uid="uid://ceqm84uqlgmkn"]
+[gd_resource type="Theme" load_steps=38 format=3 uid="uid://ceqm84uqlgmkn"]
 
-[ext_resource type="Texture2D" uid="uid://bh7i38i7ynwk" path="res://assets/textures/ui/default/Disabled Button.png" id="1_6gpx0"]
+[ext_resource type="Texture2D" uid="uid://vsxia1x1lreb" path="res://assets/textures/ui/lc_button_disabled.png" id="1_igv3b"]
+[ext_resource type="Texture2D" uid="uid://dhpfgliapdsrf" path="res://assets/textures/ui/default/Eq tile - glove.png" id="1_um88o"]
 [ext_resource type="Texture2D" uid="uid://dmug8puit8h8i" path="res://assets/textures/ui/lc_button_hover.png" id="2_j665j"]
+[ext_resource type="Texture2D" uid="uid://cd15skuvjf52m" path="res://assets/textures/ui/default/Eq tile - shoe.png" id="2_o5wo6"]
 [ext_resource type="Texture2D" uid="uid://bqv8rvlemjpai" path="res://assets/textures/ui/lc_button_normal.png" id="3_1qfci"]
+[ext_resource type="Texture2D" uid="uid://bkj067qsl05rb" path="res://assets/textures/ui/default/Eq tile - helmet.png" id="3_04to4"]
+[ext_resource type="Texture2D" uid="uid://c4ewsaq6pey5c" path="res://assets/textures/ui/default/Eq tile - pants.png" id="4_ewhd8"]
 [ext_resource type="Texture2D" uid="uid://3ki857ea0wbx" path="res://assets/textures/ui/lc_button_pressed.png" id="4_qwdq2"]
 [ext_resource type="Texture2D" uid="uid://70fjorwx40la" path="res://assets/textures/ui/lc_line_edit.png" id="5_7fo6k"]
 [ext_resource type="Texture2D" uid="uid://bnsl4aw7k415s" path="res://assets/textures/ui/lc_background_panel.png" id="5_7j4o5"]
+[ext_resource type="Texture2D" uid="uid://cclw467ddm782" path="res://assets/textures/ui/default/Eq tile - chestplate.png" id="5_cavvk"]
 [ext_resource type="Texture2D" uid="uid://cjaxp1c10ebrv" path="res://assets/textures/ui/lc_progressbar_fill.png" id="5_xhtqq"]
+[ext_resource type="Texture2D" uid="uid://csnpthtvhr6eb" path="res://assets/textures/ui/default/Eq tile.png" id="5_yjn1a"]
+[ext_resource type="Texture2D" uid="uid://c7ja8gyo4hkdk" path="res://assets/textures/ui/default/Eq tile selected.png" id="6_i8bv4"]
 [ext_resource type="Texture2D" uid="uid://wu3trr2abvsy" path="res://assets/textures/ui/lc_tabbar_background.png" id="8_s0v7t"]
 [ext_resource type="Texture2D" uid="uid://hm55acxwhvgl" path="res://assets/textures/ui/lc_tabbar_hover.png" id="9_tkfwd"]
 
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_xwm54"]
+texture = ExtResource("1_um88o")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_c2tov"]
+texture = ExtResource("2_o5wo6")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ggufc"]
+texture = ExtResource("3_04to4")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_1v65n"]
+texture = ExtResource("4_ewhd8")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_sjhyk"]
+texture = ExtResource("5_cavvk")
+
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_rf6iu"]
-texture = ExtResource("1_6gpx0")
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+texture = ExtResource("1_igv3b")
+texture_margin_left = 20.0
+texture_margin_top = 20.0
+texture_margin_right = 20.0
+texture_margin_bottom = 20.0
+modulate_color = Color(0.807843, 0.807843, 0.807843, 1)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_o1fbm"]
 
@@ -52,6 +83,12 @@ texture_margin_top = 22.0
 texture_margin_right = 22.0
 texture_margin_bottom = 22.0
 
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_tvbgw"]
+texture = ExtResource("5_yjn1a")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_oixt7"]
+texture = ExtResource("6_i8bv4")
+
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_glpaw"]
 texture = ExtResource("5_7j4o5")
 texture_margin_left = 18.0
@@ -82,8 +119,12 @@ texture_margin_right = 8.0
 texture_margin_bottom = 8.0
 modulate_color = Color(0.666569, 0.666569, 0.666569, 1)
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_pse7q"]
-texture = ExtResource("8_s0v7t")
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_typej"]
+texture = ExtResource("5_7j4o5")
+texture_margin_left = 20.0
+texture_margin_top = 20.0
+texture_margin_right = 20.0
+texture_margin_bottom = 20.0
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ilys0"]
 texture = ExtResource("9_tkfwd")
@@ -119,25 +160,30 @@ modulate_color = Color(0.823529, 0.823529, 0.823529, 1)
 
 [resource]
 default_font_size = 48
+ArmorSlotArms/base_type = &"PanelContainer"
+ArmorSlotArms/styles/panel = SubResource("StyleBoxTexture_xwm54")
+ArmorSlotFeet/base_type = &"PanelContainer"
+ArmorSlotFeet/styles/panel = SubResource("StyleBoxTexture_c2tov")
+ArmorSlotHead/base_type = &"PanelContainer"
+ArmorSlotHead/styles/panel = SubResource("StyleBoxTexture_ggufc")
+ArmorSlotLegs/base_type = &"PanelContainer"
+ArmorSlotLegs/styles/panel = SubResource("StyleBoxTexture_1v65n")
+ArmorSlotTorso/base_type = &"PanelContainer"
+ArmorSlotTorso/styles/panel = SubResource("StyleBoxTexture_sjhyk")
 Button/styles/disabled = SubResource("StyleBoxTexture_rf6iu")
 Button/styles/focus = SubResource("StyleBoxEmpty_o1fbm")
 Button/styles/hover = SubResource("StyleBoxTexture_3ki08")
 Button/styles/normal = SubResource("StyleBoxTexture_pqprd")
 Button/styles/pressed = SubResource("StyleBoxTexture_0i586")
+InventorySlot/base_type = &"PanelContainer"
+InventorySlot/styles/panel = SubResource("StyleBoxTexture_tvbgw")
+InventorySlotSelected/base_type = &"PanelContainer"
+InventorySlotSelected/styles/panel = SubResource("StyleBoxTexture_oixt7")
 ItemList/styles/panel = SubResource("StyleBoxTexture_glpaw")
 LineEdit/styles/normal = SubResource("StyleBoxTexture_qpcid")
 ProgressBar/styles/background = SubResource("StyleBoxTexture_86p8m")
 ProgressBar/styles/fill = SubResource("StyleBoxTexture_4vwa6")
-TabBar/icons/close = null
-TabBar/icons/decrement = null
-TabBar/icons/decrement_highlight = null
-TabBar/styles/button_highlight = null
-TabBar/styles/button_pressed = null
-TabBar/styles/tab_disabled = null
-TabBar/styles/tab_focus = null
-TabBar/styles/tab_hovered = null
-TabBar/styles/tab_selected = null
-TabBar/styles/tab_unselected = SubResource("StyleBoxTexture_pse7q")
+TabContainer/styles/panel = SubResource("StyleBoxTexture_typej")
 TabContainer/styles/tab_focus = SubResource("StyleBoxTexture_ilys0")
 TabContainer/styles/tab_hovered = SubResource("StyleBoxTexture_5acmh")
 TabContainer/styles/tab_selected = SubResource("StyleBoxTexture_vs4ao")

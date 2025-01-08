@@ -47,11 +47,12 @@ func _on_fullscreen_button_pressed() -> void:
 func _on_music_slider_value_changed(value: float) -> void:
 	%MusicLabel.text = "Music: " + str(%MusicSlider.value) + "%"
 	Settings.music_volume = _to_db(value)
+	print("Value: %d, db: %d"%[value,Settings.music_volume])
 	config.set_value("MAIN_MENU_SECTION", "MUSIC_SLIDER_VALUE", Settings.music_volume)
 	config.save(SETTINGS_FILE_PATH)
-	#if get_tree().root.has_node("World"):
-		#var world = get_tree().root.get_node("World")
-		#world.update_volume()
+	if get_tree().root.has_node("World"):
+		var world: ProcWorld = get_tree().root.get_node("World")
+		world.update_volume()
 
 func _on_sound_slider_value_changed(value: float) -> void:
 	%SoundLabel.text = "Sound: " + str(%SoundSlider.value) + "%"

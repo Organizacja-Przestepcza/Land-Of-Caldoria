@@ -14,6 +14,7 @@ class_name ProcWorld
 var chunk_loader: ChunkLoader
 var h_noise: FastNoiseLite ## height noise
 var user_seed = WorldData.seed
+var music_player: EventAudio.AudioEmitter2D
 
 var object_tiles: Dictionary = {}
 var floor_tiles: Dictionary = {}
@@ -46,7 +47,8 @@ func _ready() -> void:
 	$CaveManager.reparent(get_tree().root)
 	get_tree().paused = false
 	generate_village()
-	EventAudio.play_2d("overworld_ambient",self)
+	music_player = EventAudio.play_2d("overworld_ambient",self)
+	update_volume()
 	
 func _input(event: InputEvent) -> void:
 	if event is InputEventKey:
@@ -273,3 +275,7 @@ func get_chunk_data(cell_pos: Vector2i, layer: int = 0): ## 0 is object layer, 1
 	return chunk_d
 
 #endregion
+
+func update_volume():
+	if music_player:
+		music_player.player.volume_db = Settings.music_volume

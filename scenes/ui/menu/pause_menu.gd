@@ -31,6 +31,7 @@ func toggle() -> void:
 
 
 func _on_quit_button_pressed() -> void:
+	EventAudio.stop(get_tree().root.get_node("World").music_player)
 	get_tree().paused = false
 	WorldData.seed = -1
 	QuestHandler.reset_manager()
