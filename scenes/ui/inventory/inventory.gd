@@ -177,3 +177,7 @@ func get_item_in_slot(slot: InventorySlot) -> Item:
 	if slot.get_child_count() > 0:
 		return slot.get_child(0).data
 	return
+
+
+func _on_visibility_changed() -> void:
+	if visible:grab_focus()

@@ -7,7 +7,8 @@ class_name Crafting
 @onready var recipe_list: ItemList = $MarginContainer/CraftingContainer/RecipeContainer/RecipeList
 var inventory_list: Dictionary
 
-func open() -> void:
+func open() -> void: 
+	ingredients_list.grab_focus()
 	game.state = Game.State.INVENTORY
 	update_recipe_list()
 	inventory_list = inventory.to_list()
@@ -54,3 +55,7 @@ func _on_craft_button_pressed() -> void:
 		var recipe = recipe_list.get_item_metadata(t[0])
 		inventory.add_item(recipe.result,recipe.amount)
 		inventory_list = inventory.to_list()
+
+
+func _on_visibility_changed() -> void:
+	if visible:recipe_list.grab_focus()

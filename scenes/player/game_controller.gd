@@ -20,6 +20,28 @@ var state: State = State.PLAYING
 
 enum State {PLAYING, INVENTORY, CONSOLE}
 
+# Adjust sensitivity to control how fast the mouse moves
+var sensitivity: float = 3.5
+
+func _physics_process(delta: float) -> void:
+	if Input.get_connected_joypads().size() < 1: return
+# Get raw input from the right analog stick
+	var direction = Vector2()
+	direction.x = int(Input.is_action_pressed("right_stick_right")) - int(Input.is_action_pressed("right_stick_left"))
+	direction.y = int(Input.is_action_pressed("right_stick_down")) - int(Input.is_action_pressed("right_stick_up"))
+	direction.normalized()
+	
+# Create a movement vector and scale it
+	var mouse_movement = direction * sensitivity 
+# Get the current mouse position
+	var mouse_position = get_viewport().get_mouse_position()
+# Update the mouse position
+	mouse_position += mouse_movement
+	# Set the new mouse position
+	
+	# Check if the controller button assigned to "mouse_left_toggle" is pressed
+	
+	Input.warp_mouse(mouse_position)
 func _ready() -> void:
 	SignalBus.player_attacked.connect(_on_player_attacked)
 
@@ -48,6 +70,10 @@ func _input(event: InputEvent) -> void:
 						print($"..".position)
 					elif event.is_action_pressed("LC_switch_ammo"):
 						ammo_selector.open()
+					elif event.is_action_pressed("joypad_next_tab"):
+						hotbar.select_next_slot()
+					elif event.is_action_pressed("joypad_previous_tab"):
+						hotbar.select_previous_slot()
 					elif event is InputEventKey and not event.echo and event.pressed:
 						match event.physical_keycode:
 							KEY_1: hotbar.select_slot(0)
@@ -80,6 +106,10 @@ func _input(event: InputEvent) -> void:
 				elif event.is_action_pressed("ui_cancel"):
 					close_menus()
 					pause_menu.toggle()
+				elif event.is_action_pressed("joypad_next_tab"):
+					tabs.select_next_available()
+				elif event.is_action_pressed("joypad_previous_tab"):
+					tabs.select_previous_available()
 			State.CONSOLE:
 				if event is InputEventKey and event.pressed and event.physical_keycode == KEY_QUOTELEFT:
 					console.close()

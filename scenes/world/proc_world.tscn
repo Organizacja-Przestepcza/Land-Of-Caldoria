@@ -190,3 +190,7 @@ position = Vector2(689, 122)
 [connection signal="chunk_rendered" from="NoiseGenerator/ThreadedBetterTerrainGaeaRenderer" to="." method="_on_chunk_rendered"]
 [connection signal="item_selected" from="Player/Hud/Hotbar" to="Player" method="_on_hotbar_item_selected"]
 [connection signal="tab_changed" from="Player/Interface/Tabs" to="Player/Interface/Tabs" method="_on_tab_changed"]
+[connection signal="visibility_changed" from="Player/Interface/Tabs/Inventory" to="Player/Interface/Tabs/Inventory" method="_on_visibility_changed"]
+[connection signal="visibility_changed" from="Player/Interface/Tabs/Crafting" to="Player/Interface/Tabs/Crafting" method="_on_visibility_changed"]
+[connection signal="visibility_changed" from="Player/Interface/Tabs/Building" to="Player/Interface/Tabs/Building" method="_on_visibility_changed"]
+[connection signal="visibility_changed" from="Player/Interface/Tabs/Stats" to="Player/Interface/Tabs/Stats" method="_on_visibility_changed"]
