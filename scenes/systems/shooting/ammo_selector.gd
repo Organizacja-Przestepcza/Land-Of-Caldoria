@@ -25,3 +25,7 @@ func get_current_ammo() -> Item:
 		var current_ammo = weapon_ammo.get_or_add(current_weap, current_weap.ammo_list.pick_random())
 		return current_ammo
 	return null
+
+
+func _on_visibility_changed() -> void:
+	if visible: $MarginContainer/VBoxContainer/AmmoList.grab_focus()

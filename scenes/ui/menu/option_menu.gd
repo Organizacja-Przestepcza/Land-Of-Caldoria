@@ -70,5 +70,5 @@ func _to_linear(volume_db: float) -> float:
 	return exp((volume_db - (-80)) / (0 - (-80)) * log(101)) - 1
 
 
-func _on_visibility_changed() -> void:
-	if visible: %BackButton.grab_focus()
+func _on_options_container_visibility_changed() -> void:
+	if $OptionsContainer.visible and visible: %BackButton.grab_focus()

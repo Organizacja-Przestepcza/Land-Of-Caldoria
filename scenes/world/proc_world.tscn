@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://bevwwvcr2fdsa"]
+[gd_scene load_steps=32 format=3 uid="uid://bevwwvcr2fdsa"]
 
 [ext_resource type="Script" path="res://scenes/world/proc_world.gd" id="1_75342"]
 [ext_resource type="TileSet" uid="uid://d0pha3g0yk4g8" path="res://tilesets/main.tres" id="2_gbw1p"]
