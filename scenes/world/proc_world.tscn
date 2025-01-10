@@ -1,7 +1,6 @@
 [gd_scene load_steps=33 format=3 uid="uid://bevwwvcr2fdsa"]
 
 [ext_resource type="Script" path="res://scenes/world/proc_world.gd" id="1_75342"]
-[ext_resource type="AudioStream" uid="uid://jdy7g8aivofv" path="res://assets/sfx/ambient/Overworld theme.mp3" id="2_bam7b"]
 [ext_resource type="TileSet" uid="uid://d0pha3g0yk4g8" path="res://tilesets/main.tres" id="2_gbw1p"]
 [ext_resource type="Script" path="res://addons/gaea/generators/2D/noise_generator/noise_generator.gd" id="2_vv2tn"]
 [ext_resource type="Resource" uid="uid://dmxmmyikn85ln" path="res://scenes/world/gaea_settings.tres" id="3_3in7x"]
@@ -36,12 +35,6 @@
 [node name="World" type="Node2D"]
 y_sort_enabled = true
 script = ExtResource("1_75342")
-
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("2_bam7b")
-volume_db = -28.0
-autoplay = true
-parameters/looping = true
 
 [node name="NoiseGenerator" type="Node" parent="."]
 unique_name_in_owner = true
@@ -135,11 +128,14 @@ visible = false
 [node name="Tabs" type="TabContainer" parent="Player/Interface"]
 unique_name_in_owner = true
 visible = false
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+anchors_preset = -1
+anchor_left = 0.1
+anchor_top = 0.05
+anchor_right = 0.9
+anchor_bottom = 0.95
 grow_horizontal = 2
 grow_vertical = 2
+tab_alignment = 1
 current_tab = 0
 script = ExtResource("13_hqbme")
 

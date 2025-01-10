@@ -3,7 +3,7 @@ class_name Stamina
 @onready var player: Player =  $"../../.."
 var stamina_decrease_rate = 0.05
 var stamina_timer = 0.0
-@onready var stamina_progress_bar: ProgressBar = %StaminaProgressBar
+@onready var stamina_progress_bar: TextureProgressBar = %StaminaProgressBar
 
 func _process(delta: float) -> void:
 
