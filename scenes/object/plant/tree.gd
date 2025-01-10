@@ -1,6 +1,6 @@
 extends Destroyable
 
-func _ready() -> void:
+func _init() -> void:
 	health = 20
 	dropped_item = ItemLoader.name("log")
 	required_tool = ItemLoader.name("axe")

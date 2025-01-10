@@ -136,19 +136,19 @@ layout_mode = 2
 [node name="LevelLabel" type="Label" parent="ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "Level:"
+text = "Level: 1"
 
 [node name="PointsLabel" type="Label" parent="ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "Available points:"
+text = "Available points: 0"
 
 [node name="StregnthContainer" type="HBoxContainer" parent="ScrollContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 
 [node name="StrengthLabel" type="Label" parent="ScrollContainer/MarginContainer/VBoxContainer/StregnthContainer"]
 layout_mode = 2
-text = "Strength:"
+text = "Strength: 1"
 
 [node name="StrengthButton" type="Button" parent="ScrollContainer/MarginContainer/VBoxContainer/StregnthContainer"]
 layout_mode = 2
@@ -160,7 +160,7 @@ layout_mode = 2
 
 [node name="EnduranceLabel" type="Label" parent="ScrollContainer/MarginContainer/VBoxContainer/EnduranceContainer"]
 layout_mode = 2
-text = "Endurance:"
+text = "Endurance: 1"
 
 [node name="EnduranceButton" type="Button" parent="ScrollContainer/MarginContainer/VBoxContainer/EnduranceContainer"]
 layout_mode = 2
@@ -172,7 +172,7 @@ layout_mode = 2
 
 [node name="IntelligenceLabel" type="Label" parent="ScrollContainer/MarginContainer/VBoxContainer/IntelligenceContainer"]
 layout_mode = 2
-text = "Intelligence:"
+text = "Intelligence: 1"
 
 [node name="IntelligenceButton" type="Button" parent="ScrollContainer/MarginContainer/VBoxContainer/IntelligenceContainer"]
 layout_mode = 2
@@ -184,7 +184,7 @@ layout_mode = 2
 
 [node name="AgilityLabel" type="Label" parent="ScrollContainer/MarginContainer/VBoxContainer/AgilityContainer"]
 layout_mode = 2
-text = "Agility:"
+text = "Agility: 1"
 
 [node name="AgilityButton" type="Button" parent="ScrollContainer/MarginContainer/VBoxContainer/AgilityContainer"]
 layout_mode = 2
@@ -196,7 +196,7 @@ layout_mode = 2
 
 [node name="LuckLabel" type="Label" parent="ScrollContainer/MarginContainer/VBoxContainer/LuckContainer"]
 layout_mode = 2
-text = "Luck:"
+text = "Luck: 1"
 
 [node name="LuckButton" type="Button" parent="ScrollContainer/MarginContainer/VBoxContainer/LuckContainer"]
 layout_mode = 2

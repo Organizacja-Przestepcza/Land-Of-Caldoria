@@ -3,7 +3,7 @@ class_name Hunger
 @onready var player: Player =  $"../../.."
 var hunger_decrease_rate = 10.0
 var hunger_timer = 0.0
-@onready var hunger_bar: ProgressBar = %HungerProgressBar 
+@onready var hunger_bar: TextureProgressBar = %HungerProgressBar 
 signal death(cause: String)
 
 func _ready() -> void:

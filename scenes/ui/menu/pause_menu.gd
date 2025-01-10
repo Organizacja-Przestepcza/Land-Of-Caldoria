@@ -15,11 +15,13 @@ func show_menu(menu_node: Node) -> void:
 
 func _ready() -> void:
 	hide_menus()
+	
 
 
 func _process(_delta: float) -> void:
 	if game.state == game.State.PLAYING and Input.is_action_just_pressed("ui_cancel"):
 		toggle()
+
 
 
 func toggle() -> void:
@@ -29,6 +31,7 @@ func toggle() -> void:
 
 
 func _on_quit_button_pressed() -> void:
+	EventAudio.stop(get_tree().root.get_node("World").music_player)
 	get_tree().paused = false
 	WorldData.seed = -1
 	QuestHandler.reset_manager()

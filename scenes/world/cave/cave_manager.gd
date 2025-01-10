@@ -62,6 +62,8 @@ func dig():
 	if has_node("Player"):
 		return
 	var mouse_pos = get_local_mouse_position()
+	if mouse_pos.distance_to(WorldData.player.global_position) > 100:
+		return
 	var cell_pos = floor_layer.local_to_map(mouse_pos)
 	if ground_layer.get_cell_source_id(cell_pos) and grass_layer.get_cell_source_id(cell_pos):
 		return

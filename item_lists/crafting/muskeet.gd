@@ -1,8 +1,8 @@
 extends CraftingRecipe
 
 func _init() -> void:
-	id = "crossbow"
-	result = ItemLoader.name("crossbow")
+	id = "muskeet"
+	result = ItemLoader.name("muskeet")
 	amount = 1
 	items = {
 	ItemLoader.name("iron_pipe"): 2,

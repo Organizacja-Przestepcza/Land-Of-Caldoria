@@ -75,7 +75,7 @@ func _on_buy_button_pressed() -> void:
 	var selected_items = buy_list.get_selected_items()
 	if selected_items:
 		var selected_item: ItemInList = buy_list.get_item_metadata(selected_items[0])
-		if money_counter.money < selected_item.value:
+		if money_counter.get_count() < selected_item.value:
 			return
 		money_counter.remove(selected_item.value)
 		curr_npc.inventory[selected_item.data] -= 1
@@ -87,7 +87,7 @@ func _on_buy_all_button_pressed() -> void:
 	var selected_items = buy_list.get_selected_items()
 	if selected_items:
 		var selected_item: ItemInList = buy_list.get_item_metadata(selected_items[0])
-		if money_counter.money < selected_item.value * selected_item.amount:
+		if money_counter.get_count() < selected_item.value * selected_item.amount:
 			return
 		money_counter.remove(selected_item.value)
 		curr_npc.inventory[selected_item.data] -= selected_item.amount
