@@ -188,10 +188,12 @@ shape = SubResource("RectangleShape2D_4y5yq")
 
 [node name="ProgressBar" type="ProgressBar" parent="."]
 visible = false
-offset_left = -18.0
-offset_top = -35.0
-offset_right = 15.0
-offset_bottom = -31.0
+self_modulate = Color(0.89, 0.1513, 0.1513, 1)
+offset_left = -24.0
+offset_top = -37.0
+offset_right = 186.0
+offset_bottom = -21.0
+scale = Vector2(0.2, 0.2)
 step = 1.0
 value = 100.0
 show_percentage = false

@@ -3,15 +3,14 @@ class_name Hotbar
 
 @export var hotbarSize: int = 6
 @export var slotSize: Vector2 = Vector2(64,64)
-var frame: Theme = preload("res://themes/frame.tres")
 var selected_slot: InventorySlot:
 	get:
 		return selected_slot
 	set(new_slot):
 		if selected_slot:
-			selected_slot.theme = null
+			selected_slot.theme_type_variation = &"InventorySlot"
 			selected_slot.is_selected = false
-		new_slot.theme = frame
+		new_slot.theme_type_variation = &"InventorySlotSelected"
 		new_slot.is_selected = true
 		selected_slot = new_slot
 		
@@ -28,6 +27,7 @@ func _ready() -> void:
 		var slot = InventorySlot.new(InventorySlot.Type.MAIN, slotSize)
 		slot.id = i
 		slot.gui_input.connect(_on_slot_clicked.bind(slot))
+		slot.theme_type_variation = &"InventorySlot"
 		hotbar.add_child(slot)
 	selected_slot_number=0
 

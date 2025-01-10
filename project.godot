@@ -27,7 +27,6 @@ BetterTerrain="*res://addons/better-terrain/BetterTerrain.gd"
 QuestHandler="*res://scenes/systems/quests/quest_handler.gd"
 SaveManager="*res://scenes/save_manager.gd"
 EventAudio="*res://addons/event_audio/scenes/event_audio_autoload.tscn"
-EventAudioCSharp="*res://addons/event_audio/EventAudio.cs"
 
 [display]
 

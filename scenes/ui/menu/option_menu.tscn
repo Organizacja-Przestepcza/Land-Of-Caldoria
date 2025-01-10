@@ -30,6 +30,7 @@ anchor_right = 1.0
 anchor_bottom = 0.9
 grow_vertical = 2
 theme_override_constants/separation = 20
+alignment = 1
 metadata/_edit_use_anchors_ = true
 
 [node name="HeaderLabel" type="Label" parent="OptionsContainer"]
@@ -43,24 +44,20 @@ vertical_alignment = 1
 [node name="MusicMargin" type="VBoxContainer" parent="OptionsContainer"]
 layout_mode = 2
 theme_override_constants/separation = 10
+alignment = 1
 
 [node name="MusicLabel" type="Label" parent="OptionsContainer/MusicMargin"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 0
-text = "Template label"
+text = "Music: 0%"
 horizontal_alignment = 1
 
-[node name="MarginContainer" type="MarginContainer" parent="OptionsContainer/MusicMargin"]
-layout_mode = 2
-theme_override_constants/margin_left = 300
-theme_override_constants/margin_right = 300
-
-[node name="MusicSlider" type="HSlider" parent="OptionsContainer/MusicMargin/MarginContainer"]
+[node name="MusicSlider" type="HSlider" parent="OptionsContainer/MusicMargin"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(512, 0)
 layout_mode = 2
-size_flags_vertical = 8
+size_flags_horizontal = 4
 
 [node name="SoundMargin" type="VBoxContainer" parent="OptionsContainer"]
 layout_mode = 2
@@ -70,29 +67,14 @@ theme_override_constants/separation = 10
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_font_sizes/font_size = 48
-text = "Template label"
+text = "Sound: 0%"
 horizontal_alignment = 1
 
-[node name="MarginContainer" type="MarginContainer" parent="OptionsContainer/SoundMargin"]
-layout_mode = 2
-theme_override_constants/margin_left = 300
-theme_override_constants/margin_right = 300
-
-[node name="SoundSlider" type="HSlider" parent="OptionsContainer/SoundMargin/MarginContainer"]
+[node name="SoundSlider" type="HSlider" parent="OptionsContainer/SoundMargin"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(512, 0)
 layout_mode = 2
-
-[node name="ResolutionOptions" type="OptionButton" parent="OptionsContainer"]
-unique_name_in_owner = true
-layout_mode = 2
 size_flags_horizontal = 4
-size_flags_vertical = 4
-selected = 0
-item_count = 2
-popup/item_0/text = "1920x1080 Full HD"
-popup/item_1/text = "1366x768"
-popup/item_1/id = 1
 
 [node name="FullscreenButton" type="Button" parent="OptionsContainer"]
 unique_name_in_owner = true
@@ -134,8 +116,8 @@ layout_mode = 2
 size_flags_horizontal = 3
 
 [connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
-[connection signal="value_changed" from="OptionsContainer/MusicMargin/MarginContainer/MusicSlider" to="." method="_on_music_slider_value_changed"]
-[connection signal="value_changed" from="OptionsContainer/SoundMargin/MarginContainer/SoundSlider" to="." method="_on_sound_slider_value_changed"]
+[connection signal="value_changed" from="OptionsContainer/MusicMargin/MusicSlider" to="." method="_on_music_slider_value_changed"]
+[connection signal="value_changed" from="OptionsContainer/SoundMargin/SoundSlider" to="." method="_on_sound_slider_value_changed"]
 [connection signal="pressed" from="OptionsContainer/FullscreenButton" to="." method="_on_fullscreen_button_pressed"]
 [connection signal="pressed" from="OptionsContainer/KeybindsButton" to="." method="_on_keybinds_button_pressed"]
 [connection signal="pressed" from="OptionsContainer/BackButton" to="." method="_on_back_button_pressed"]

@@ -1,11 +1,40 @@
-[gd_scene load_steps=7 format=3 uid="uid://cvtq0enjtags6"]
+[gd_scene load_steps=15 format=3 uid="uid://cvtq0enjtags6"]
 
-[ext_resource type="PackedScene" uid="uid://rfys7fl6ljbu" path="res://scenes/ui/menu/main_menu.tscn" id="1_aiedp"]
 [ext_resource type="Script" path="res://scenes/start.gd" id="1_odj8b"]
 [ext_resource type="Texture2D" uid="uid://byatqr0oyakgk" path="res://assets/textures/ui/menu/Summer6.png" id="2_ir8uq"]
 [ext_resource type="PackedScene" uid="uid://l72ck6aqcfe8" path="res://scenes/ui/menu/option_menu.tscn" id="2_jsv6s"]
+[ext_resource type="Script" path="res://addons/event_audio/src/ea_event_bank_mounter.gd" id="2_r8226"]
+[ext_resource type="Script" path="res://addons/event_audio/src/ea_event.gd" id="3_a47i7"]
+[ext_resource type="AudioStream" uid="uid://jdy7g8aivofv" path="res://assets/sfx/ambient/Overworld theme.mp3" id="4_u86e1"]
+[ext_resource type="Texture2D" uid="uid://bv3fcq18kx01k" path="res://assets/textures/ui/menu/game_logov2.png" id="4_wlmjk"]
 [ext_resource type="PackedScene" uid="uid://cbghomtojyvih" path="res://scenes/ui/menu/new_game_menu.tscn" id="5_3efak"]
+[ext_resource type="Script" path="res://addons/event_audio/src/ea_event_playback_settings.gd" id="5_gddlr"]
+[ext_resource type="Script" path="res://addons/event_audio/src/ea_event_bank.gd" id="6_wr5it"]
 [ext_resource type="PackedScene" uid="uid://gna421381s1" path="res://scenes/ui/menu/load_menu.tscn" id="6_xfpok"]
+
+[sub_resource type="Resource" id="Resource_5ek53"]
+script = ExtResource("5_gddlr")
+stop_when_source_dies = false
+stationary = true
+volume_db = -10.0
+min_pitch = 1.0
+max_pitch = 1.0
+panning_strength = 1.0
+attenuation = 1.0
+max_distance = 2000
+unit_size = 10.0
+max_db = 3.0
+
+[sub_resource type="Resource" id="Resource_itpnr"]
+script = ExtResource("3_a47i7")
+audio_streams = Array[AudioStream]([ExtResource("4_u86e1")])
+probability_weights = Array[float]([1.0])
+trigger_tags = "overworld_ambient"
+playback_settings = SubResource("Resource_5ek53")
+
+[sub_resource type="Resource" id="Resource_uny8n"]
+script = ExtResource("6_wr5it")
+entries = Array[ExtResource("3_a47i7")]([SubResource("Resource_itpnr")])
 
 [node name="Start" type="Control"]
 layout_mode = 3
@@ -15,6 +44,10 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_odj8b")
+
+[node name="EAEventBankMounter" type="Node" parent="."]
+script = ExtResource("2_r8226")
+_audio_bank_resource = SubResource("Resource_uny8n")
 
 [node name="Background" type="TextureRect" parent="."]
 texture_filter = 1
@@ -29,25 +62,66 @@ offset_bottom = 452.459
 scale = Vector2(0.559672, 0.569865)
 texture = ExtResource("2_ir8uq")
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
+[node name="MainMenu" type="VBoxContainer" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/separation = 10
+alignment = 1
 
-[node name="MainMenu" parent="MarginContainer" instance=ExtResource("1_aiedp")]
+[node name="Logo" type="TextureRect" parent="MainMenu"]
 layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+texture = ExtResource("4_wlmjk")
+stretch_mode = 2
 
-[node name="OptionMenu" parent="MarginContainer" instance=ExtResource("2_jsv6s")]
+[node name="NewGameButton" type="Button" parent="MainMenu"]
+custom_minimum_size = Vector2(220, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Start Game"
+
+[node name="LoadButton" type="Button" parent="MainMenu"]
+custom_minimum_size = Vector2(220, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Load Game"
+
+[node name="OptionButton" type="Button" parent="MainMenu"]
+custom_minimum_size = Vector2(220, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Options"
+
+[node name="ExitButton" type="Button" parent="MainMenu"]
+custom_minimum_size = Vector2(220, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Exit"
+
+[node name="OptionMenu" parent="." instance=ExtResource("2_jsv6s")]
 visible = false
 layout_mode = 2
+anchors_preset = 0
 
-[node name="NewGameMenu" parent="MarginContainer" instance=ExtResource("5_3efak")]
+[node name="NewGameMenu" parent="." instance=ExtResource("5_3efak")]
 visible = false
 layout_mode = 2
+anchors_preset = 0
 
-[node name="LoadMenu" parent="MarginContainer" instance=ExtResource("6_xfpok")]
+[node name="LoadMenu" parent="." instance=ExtResource("6_xfpok")]
 visible = false
 layout_mode = 2
+anchors_preset = 0
+
+[connection signal="pressed" from="MainMenu/NewGameButton" to="." method="_on_new_game_button_pressed"]
+[connection signal="pressed" from="MainMenu/LoadButton" to="." method="_on_load_button_pressed"]
+[connection signal="pressed" from="MainMenu/OptionButton" to="." method="_on_options_button_pressed"]
+[connection signal="pressed" from="MainMenu/ExitButton" to="." method="_on_exit_button_pressed"]
+[connection signal="backbutton_pressed" from="OptionMenu" to="." method="_on_options_button_pressed"]
+[connection signal="backbutton_pressed" from="NewGameMenu" to="." method="_on_new_game_button_pressed"]
+[connection signal="load_cancel_pressed" from="LoadMenu" to="." method="_on_load_button_pressed"]

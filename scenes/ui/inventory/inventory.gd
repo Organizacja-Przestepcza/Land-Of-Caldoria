@@ -1,7 +1,7 @@
 extends Control
 class_name Inventory
-@export var invSize: int = 24
-@export var slotSize: Vector2 = Vector2(64,64)
+@export var inv_size: int = 24
+@export var slot_size: Vector2 = Vector2(64,64)
 @onready var player: Player = %Player
 @onready var hotbar: GridContainer = %Hotbar/MarginContainer/Hotbar
 @onready var main = $HBoxContainer/VBoxContainer/Main
@@ -13,22 +13,27 @@ var lootbag_tscn = preload("res://scenes/object/loot_bag.tscn")
 
 func _ready() -> void:
 	
-	for i in invSize:
-		var slot = InventorySlot.new(InventorySlot.Type.MAIN, slotSize)
+	for i in inv_size:
+		var slot = InventorySlot.new(InventorySlot.Type.MAIN, slot_size)
 		slot.id = i
+		slot.theme_type_variation = &"InventorySlot"
 		main.add_child(slot)
 		
-	var headSlot = InventorySlot.new(InventorySlot.Type.HEAD, slotSize)
-	var torsoSlot = InventorySlot.new(InventorySlot.Type.TORSO, slotSize)
-	var armsSlot = InventorySlot.new(InventorySlot.Type.ARMS, slotSize)
-	var legsSlot = InventorySlot.new(InventorySlot.Type.LEGS, slotSize)
-	var feetSlot = InventorySlot.new(InventorySlot.Type.FEET, slotSize)
-	
-	armor.add_child(headSlot)
-	armor.add_child(torsoSlot)
-	armor.add_child(armsSlot)
-	armor.add_child(legsSlot)
-	armor.add_child(feetSlot)
+	var head_slot = InventorySlot.new(InventorySlot.Type.HEAD, slot_size)
+	var torso_slot = InventorySlot.new(InventorySlot.Type.TORSO, slot_size)
+	var arms_slot = InventorySlot.new(InventorySlot.Type.ARMS, slot_size)
+	var legs_slot = InventorySlot.new(InventorySlot.Type.LEGS, slot_size)
+	var feet_slot = InventorySlot.new(InventorySlot.Type.FEET, slot_size)
+	head_slot.theme_type_variation = &"ArmorSlotHead"
+	torso_slot.theme_type_variation = &"ArmorSlotTorso"
+	arms_slot.theme_type_variation = &"ArmorSlotArms"
+	legs_slot.theme_type_variation = &"ArmorSlotLegs"
+	feet_slot.theme_type_variation = &"ArmorSlotFeet"
+	armor.add_child(head_slot)
+	armor.add_child(torso_slot)
+	armor.add_child(arms_slot)
+	armor.add_child(legs_slot)
+	armor.add_child(feet_slot)
 	
 	add_item(ItemLoader.name("bandage"), 3)
 	add_item(ItemLoader.name("axe"), 1)

@@ -30,19 +30,19 @@ alignment = 1
 
 [node name="RecipeContainer" type="VBoxContainer" parent="MarginContainer/CraftingContainer"]
 layout_mode = 2
+size_flags_horizontal = 3
 theme_override_constants/separation = 15
 
 [node name="RecipeList" type="ItemList" parent="MarginContainer/CraftingContainer/RecipeContainer"]
-custom_minimum_size = Vector2(500, 250)
 layout_mode = 2
 size_flags_vertical = 3
 
 [node name="IngredientsContainer" type="VBoxContainer" parent="MarginContainer/CraftingContainer"]
 layout_mode = 2
+size_flags_horizontal = 3
 theme_override_constants/separation = 15
 
 [node name="IngredientsList" type="ItemList" parent="MarginContainer/CraftingContainer/IngredientsContainer"]
-custom_minimum_size = Vector2(500, 250)
 layout_mode = 2
 size_flags_vertical = 3
 focus_mode = 0

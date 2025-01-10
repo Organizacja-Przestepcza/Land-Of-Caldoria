@@ -1,7 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://cyle35g3r7yjd"]
+[gd_scene load_steps=5 format=3 uid="uid://cyle35g3r7yjd"]
 
 [ext_resource type="Texture2D" uid="uid://c070hiwvmn20" path="res://assets/textures/ui/hud/hunger.png" id="1_be2pv"]
 [ext_resource type="Script" path="res://scenes/ui/hud/hunger/hunger_bar.gd" id="1_f0u64"]
+[ext_resource type="Texture2D" uid="uid://dcwr32ae2cm2m" path="res://assets/textures/ui/default/bar.png" id="3_dusfw"]
+[ext_resource type="Texture2D" uid="uid://cgs5c2jilif4n" path="res://assets/textures/ui/default/progress_bar.png" id="4_dy870"]
 
 [node name="Hunger" type="Control"]
 layout_mode = 3
@@ -9,12 +11,9 @@ anchors_preset = 0
 script = ExtResource("1_f0u64")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
-layout_mode = 1
-anchors_preset = -1
-anchor_right = 0.142361
-anchor_bottom = 0.0493827
+layout_mode = 0
 offset_right = 164.0
-offset_bottom = 42.0
+offset_bottom = 32.0
 metadata/_edit_use_anchors_ = true
 
 [node name="HungerTextureProgressBar" type="TextureRect" parent="HBoxContainer"]
@@ -23,9 +22,14 @@ size_flags_horizontal = 4
 size_flags_vertical = 0
 texture = ExtResource("1_be2pv")
 
-[node name="HungerProgressBar" type="ProgressBar" parent="HBoxContainer"]
+[node name="HungerProgressBar" type="TextureProgressBar" parent="HBoxContainer"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(128, 24)
+custom_minimum_size = Vector2(128, 0)
 layout_mode = 2
-size_flags_vertical = 8
 value = 100.0
+nine_patch_stretch = true
+stretch_margin_left = 8
+stretch_margin_right = 8
+texture_over = ExtResource("3_dusfw")
+texture_progress = ExtResource("4_dy870")
+tint_progress = Color(0.552941, 0.298039, 0.113725, 1)

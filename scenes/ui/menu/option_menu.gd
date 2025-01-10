@@ -28,7 +28,7 @@ func _ready() -> void:
 	if err != OK: 
 		print("opening config file failed" + str(err))
 	settings_controls_setup()
-	
+
 
 func _on_back_button_pressed() -> void:
 	backbutton_pressed.emit()
@@ -40,19 +40,18 @@ func _on_fullscreen_button_pressed() -> void:
 	if is_fullscreen:
 		%FullscreenButton.text = ("Fullscreen: on")
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
-		%ResolutionOptions.disabled = true
 	else:
 		%FullscreenButton.text = ("Fullscreen: off")
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
-		%ResolutionOptions.disabled = false
 
 func _on_music_slider_value_changed(value: float) -> void:
 	%MusicLabel.text = "Music: " + str(%MusicSlider.value) + "%"
 	Settings.music_volume = _to_db(value)
+	print("Value: %d, db: %d"%[value,Settings.music_volume])
 	config.set_value("MAIN_MENU_SECTION", "MUSIC_SLIDER_VALUE", Settings.music_volume)
 	config.save(SETTINGS_FILE_PATH)
 	if get_tree().root.has_node("World"):
-		var world = get_tree().root.get_node("World")
+		var world: ProcWorld = get_tree().root.get_node("World")
 		world.update_volume()
 
 func _on_sound_slider_value_changed(value: float) -> void:

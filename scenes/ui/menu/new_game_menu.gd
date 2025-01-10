@@ -11,15 +11,9 @@ func _on_back_button_pressed() -> void:
 func _on_new_game_button_pressed() -> void:
 	var user_seed: int
 	var seed_string: String = %SeedField.text
-	var size_option = %SizeOption
 	if not seed_string.is_empty():
 		user_seed = seed_string.hash()
 		WorldData.seed = user_seed
-	
-	if size_option.selected == 3:
-		WorldData.size = -1
-	else:
-		WorldData.size = size_option.selected * 32 + 32
 	
 	#small 32
 	#medium 64
