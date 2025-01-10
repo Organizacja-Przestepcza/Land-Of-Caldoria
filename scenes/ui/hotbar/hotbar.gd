@@ -8,9 +8,9 @@ var selected_slot: InventorySlot:
 		return selected_slot
 	set(new_slot):
 		if selected_slot:
-			selected_slot.theme = null
+			selected_slot.theme_type_variation = &"InventorySlot"
 			selected_slot.is_selected = false
-		new_slot.theme = frame
+		new_slot.theme_type_variation = &"InventorySlotSelected"
 		new_slot.is_selected = true
 		selected_slot = new_slot
 		
