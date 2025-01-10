@@ -3,6 +3,7 @@ class_name Game
 
 var state: State = State.PLAYING
 @onready var trading: Trading = $"../Interface/Trading"
+@onready var hint_legend: HintLegend = %HintLegend
 
 @onready var building: BuildMenu = %Building
 @onready var crafting: Crafting = %Crafting
@@ -14,7 +15,7 @@ var state: State = State.PLAYING
 @onready var hotbar: Hotbar = %Hotbar
 @onready var inventory: Inventory = %Inventory
 @onready var player: Player = %Player
-@onready var stats: Control = %Stats
+@onready var stats: Stats = %Stats
 @onready var tabs: TabContainer = %Tabs
 
 enum State {PLAYING, INVENTORY, CONSOLE}
