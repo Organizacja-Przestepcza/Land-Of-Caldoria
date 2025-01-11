@@ -205,7 +205,7 @@ func interact():
 			inventory.add_item(key,nearest_interactable.items[key])
 		nearest_interactable.queue_free()
 	elif nearest_interactable is NPC:
-		nearest_interactable.show_interaction()
+		nearest_interactable.open_dialog()
 	elif nearest_interactable is FurnaceObj:
 		interface.get_node("Furnace").open()
 	elif farming_manager.is_on_field(position):

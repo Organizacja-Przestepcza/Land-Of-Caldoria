@@ -12,7 +12,7 @@ signal new_input_selected(input: InputEvent)
 func _input(event: InputEvent) -> void:
 	if not waiting_for_input:
 		return
-	if event is InputEventKey or event is InputEventMouseButton:
+	if event is InputEventKey:
 		waiting_for_input = false
 		new_input_selected.emit(event)
 

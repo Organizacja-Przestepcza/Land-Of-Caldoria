@@ -42,19 +42,6 @@ alignment = 1
 layout_mode = 2
 theme_override_constants/separation = 15
 
-[node name="ButtonContainer" type="HBoxContainer" parent="MarginContainer/FurnaceContainer/RecipeContainer"]
-layout_mode = 2
-theme_override_constants/separation = 15
-alignment = 2
-
-[node name="SortButton" type="Button" parent="MarginContainer/FurnaceContainer/RecipeContainer/ButtonContainer"]
-layout_mode = 2
-text = "Sort"
-
-[node name="FilterButton" type="Button" parent="MarginContainer/FurnaceContainer/RecipeContainer/ButtonContainer"]
-layout_mode = 2
-text = "Filter"
-
 [node name="RecipeList" type="ItemList" parent="MarginContainer/FurnaceContainer/RecipeContainer"]
 custom_minimum_size = Vector2(500, 250)
 layout_mode = 2
@@ -78,8 +65,8 @@ layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -45.0
-offset_bottom = 46.0
+offset_left = -58.0
+offset_bottom = 58.0
 grow_horizontal = 0
 size_flags_horizontal = 4
 size_flags_vertical = 4

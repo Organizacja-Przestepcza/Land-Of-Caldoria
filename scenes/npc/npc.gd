@@ -8,21 +8,32 @@ var accepted_items: Dictionary
 var interaction_dialog: InteractionDialog
 var has_given_quest: bool = false
 
-func _ready() -> void:
-	add_child(preload("res://scenes/interactable_area.tscn").instantiate())
-	interaction_dialog = preload("res://scenes/npc/interaction_dialog.tscn").instantiate()
-	add_child(interaction_dialog)
-	interaction_dialog.npc_quest.connect(_on_quest_started)
-	interaction_dialog.npc_trade.connect(_on_trade_started)
+var greet_dialogs: Array
 
-func show_interaction():
-	if interaction_dialog.visible:
-		interaction_dialog.hide()
-	else:
-		interaction_dialog.show()
+enum Branch {
+	DEFAULT,
+	MEDIC,
+	BLACKSMITH,
+	LUMBERJACK,
+	WITCH
+}
+
+func _ready() -> void:
+	add_child(load("res://scenes/interactable_area.tscn").instantiate())
+	_setup_dialog()
+	#interaction_dialog = preload("res://scenes/npc/interaction_dialog.tscn").instantiate()
+	#add_child(interaction_dialog)
+	#interaction_dialog.npc_quest.connect(_on_quest_started)
+	#interaction_dialog.npc_trade.connect(_on_trade_started)
+
+func open_dialog():
+	SignalBus.npc_dialogue_opened.emit(self)
+	#if interaction_dialog.visible:
+		#interaction_dialog.hide()
+	#else:
+		#interaction_dialog.show()
 
 func _on_quest_started() -> void:
-	interaction_dialog.hide()
 	if has_given_quest:
 		return
 	var type: int = randi_range(0,QuestHandler.Type.size()-1) # picks random type
@@ -30,14 +41,12 @@ func _on_quest_started() -> void:
 	has_given_quest = true
 
 func _on_trade_started():
-	var node := player.get_node("Interface/Trading")
-	if node is Trading:
-		interaction_dialog.hide()
-		node.open()
-	else:
-		print("couldnt open trading")
+	var node = player.get_node("Interface/Trading") as Trading
+	node.open()
 
 func complete_quest(quest: QuestEntry):
 	has_given_quest = false
 	var reward = quest.get_metadata(QuestHandler._key.REWARD)
-	
+
+func _setup_dialog():
+	print("Dialog for %s not setup"%name)

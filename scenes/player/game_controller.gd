@@ -9,6 +9,7 @@ var state: State = State.PLAYING
 @onready var crafting: Crafting = %Crafting
 @onready var ammo_selector: AmmoSelector = $"../Interface/AmmoSelector"
 @onready var furnace: Furnace = $"../Interface/Furnace"
+@onready var dialog_panel: DialogPanel = $"../Interface/DialogPanel"
 
 @onready var console: Console = $"../Interface/Console"
 @onready var pause_menu: PauseMenu = %PauseMenu
@@ -18,7 +19,7 @@ var state: State = State.PLAYING
 @onready var stats: Stats = %Stats
 @onready var tabs: TabContainer = %Tabs
 
-enum State {PLAYING, INVENTORY, CONSOLE}
+enum State {PLAYING, INVENTORY, DIALOG, CONSOLE}
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventKey and not event.echo:
@@ -37,8 +38,6 @@ func _input(event: InputEvent) -> void:
 						tabs.open(0)
 					elif event.is_action_pressed("LC_crafting_menu"):
 						tabs.open(1)
-					elif event.is_action_pressed("LC_stats"):
-						tabs.open(3)
 					elif event.is_action_pressed("ui_text_backspace"):
 						print($"..".position)
 					elif event.is_action_pressed("LC_switch_ammo"):
@@ -63,7 +62,6 @@ func _input(event: InputEvent) -> void:
 						var item = slot.get_child(0)
 						if item is InventoryItem:
 							player.consume(item,1)
-					
 				elif event.is_action_pressed("LC_crafting_menu"):
 					close_menus()
 				elif event.is_action_pressed("LC_build_menu"):
@@ -75,13 +73,15 @@ func _input(event: InputEvent) -> void:
 				elif event.is_action_pressed("ui_cancel"):
 					close_menus()
 					pause_menu.toggle()
+			State.DIALOG:
+				if event.is_action_pressed("ui_cancel"):
+					pause_menu.toggle()
 			State.CONSOLE:
 				if event.pressed and event.physical_keycode == KEY_QUOTELEFT:
 					console.close()
 				elif event.is_action_pressed("ui_cancel"):
 					console.close()
 					pause_menu.toggle()
-
 
 func get_slot_under_mouse() -> InventorySlot:
 	var mouse_pos = get_viewport().get_mouse_position()

@@ -1,6 +1,7 @@
 extends Node
 
 var quest_manager := QuestManager.new()
+var dialog_engine := DialogueEngine.new()
 
 enum Type {KILL,COLLECT}
 enum _key {TYPE,PROGRESS,TARGET,REQUIRED,GIVER,REWARD}
@@ -9,6 +10,7 @@ signal quest_started(quest: QuestEntry)
 
 func _ready():
 	quest_manager.set_name("Q Manager")
+	dialog_engine.set_name("D Engine")
 	SignalBus.enemy_killed.connect(_on_enemy_killed)
 	SignalBus.item_added.connect(_on_item_added)
 
@@ -54,7 +56,7 @@ func check_quest_completion(quest: QuestEntry) -> void:
 
 func _on_enemy_killed(mob_name: String):
 	for quest in get_quests():
-		if quest.is_active() and quest.get_metadata(_key.TYPE) == Type.KILL:
+		if quest.is_active() and not quest.is_completed() and quest.get_metadata(_key.TYPE) == Type.KILL:
 			if quest.get_metadata(_key.TARGET).mob_name == mob_name:
 				var curr_kill_count = quest.get_metadata(_key.PROGRESS)
 				quest.set_metadata(_key.PROGRESS,curr_kill_count+1)
@@ -62,11 +64,12 @@ func _on_enemy_killed(mob_name: String):
 
 func _on_item_added(item: Item, amount: int):
 	for quest in get_quests():
-		if quest.is_active() and quest.get_metadata(_key.TYPE) == Type.COLLECT:
+		if quest.is_active() and not quest.is_completed() and quest.get_metadata(_key.TYPE) == Type.COLLECT:
 			if quest.get_metadata(_key.TARGET) == item:
 				var progress = quest.get_metadata(_key.PROGRESS)
-				quest.set_metadata(_key.PROGRESS,progress+amount)
-				quest.set_updated()
+				if progress+amount >= 0:
+					quest.set_metadata(_key.PROGRESS,progress+amount)
+					quest.set_updated()
 
 func _on_quest_completed(quest: QuestEntry):
 	var giver = quest.get_metadata(_key.GIVER)

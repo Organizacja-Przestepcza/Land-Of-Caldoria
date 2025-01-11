@@ -27,6 +27,7 @@
 [ext_resource type="PackedScene" uid="uid://npgme5adxp70" path="res://scenes/npc/blacksmith.tscn" id="17_tkbm6"]
 [ext_resource type="PackedScene" uid="uid://dmasf4uhgm1x8" path="res://scenes/systems/furnace/furnace.tscn" id="18_4gc6m"]
 [ext_resource type="PackedScene" uid="uid://b1kkeufchmftp" path="res://scenes/systems/shooting/ammo_selector.tscn" id="19_5qn1l"]
+[ext_resource type="PackedScene" uid="uid://dn05lh0jai164" path="res://scenes/ui/dialog_panel.tscn" id="21_yiyfc"]
 [ext_resource type="PackedScene" uid="uid://4fmaeu4rd0m2" path="res://scenes/systems/quests/quests_tab.tscn" id="24_sgwuo"]
 [ext_resource type="PackedScene" uid="uid://dpk2ucm8f0jch" path="res://scenes/npc/medic.tscn" id="25_5rha6"]
 [ext_resource type="PackedScene" uid="uid://c81rwddnrgmnu" path="res://scenes/npc/lumberjack.tscn" id="26_cixvo"]
@@ -124,6 +125,14 @@ visible = false
 
 [node name="AmmoSelector" parent="Player/Interface" instance=ExtResource("19_5qn1l")]
 visible = false
+
+[node name="DialogPanel" parent="Player/Interface" instance=ExtResource("21_yiyfc")]
+visible = false
+anchors_preset = -1
+anchor_left = 0.02
+anchor_top = 0.02
+anchor_right = 0.98
+anchor_bottom = 0.98
 
 [node name="Tabs" type="TabContainer" parent="Player/Interface"]
 unique_name_in_owner = true
