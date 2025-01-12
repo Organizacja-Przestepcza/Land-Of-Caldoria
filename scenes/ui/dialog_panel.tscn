@@ -23,24 +23,45 @@ script = ExtResource("1_ehxqg")
 custom_minimum_size = Vector2(0, 128)
 layout_mode = 2
 theme_override_styles/normal = SubResource("StyleBoxTexture_xr3xp")
-text = "Bla bla bla - dialog"
+text = "Hello"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Options" type="BoxContainer" parent="."]
+[node name="InitialOptions" type="BoxContainer" parent="."]
 layout_mode = 2
-size_flags_horizontal = 4
+size_flags_horizontal = 0
+vertical = true
 
-[node name="Option" type="Button" parent="Options"]
+[node name="QuestButton" type="Button" parent="InitialOptions"]
 layout_mode = 2
-text = "Option 1"
+text = "Do you have something to do?"
 
-[node name="Option2" type="Button" parent="Options"]
+[node name="TradeButton" type="Button" parent="InitialOptions"]
 layout_mode = 2
-text = "Option 2"
+text = "I'd like to trade some things"
 
-[node name="Option3" type="Button" parent="Options"]
+[node name="PersonalQuestionButton" type="Button" parent="InitialOptions"]
 layout_mode = 2
-text = "Option 3"
+text = "Tell me more about yourself"
+
+[node name="PlaceQuestionButton" type="Button" parent="InitialOptions"]
+layout_mode = 2
+text = "Tell me more about this place"
+
+[node name="SpecialButton" type="Button" parent="InitialOptions"]
+visible = false
+layout_mode = 2
+
+[node name="GoodbyeButton" type="Button" parent="InitialOptions"]
+layout_mode = 2
+text = "Goodbye"
+
+[node name="DialogOptions" type="BoxContainer" parent="."]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 0
+vertical = true
 
 [connection signal="gui_input" from="DialogText" to="." method="_on_dialog_text_gui_input"]
+[connection signal="pressed" from="InitialOptions/GoodbyeButton" to="." method="_on_goodbye_button_pressed"]
+[connection signal="visibility_changed" from="DialogOptions" to="." method="_on_dialog_options_visibility_changed"]

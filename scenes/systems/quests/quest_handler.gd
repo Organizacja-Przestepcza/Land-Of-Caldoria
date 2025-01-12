@@ -9,7 +9,8 @@ enum _key {TYPE,PROGRESS,TARGET,REQUIRED,GIVER,REWARD}
 	ItemLoader.name("log"),
 	ItemLoader.name("blueberry"),
 	ItemLoader.name("stone"),
-	ItemLoader.name("iron ore")
+	ItemLoader.name("iron ore"),
+	ItemLoader.name("coal")
 ]
 
 signal quest_started(quest: QuestEntry)

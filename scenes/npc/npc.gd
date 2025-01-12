@@ -26,8 +26,8 @@ func _on_quest_started() -> void:
 	has_uncompleted_quest = true
 
 func _on_trade_started():
-	var node = player.get_node("Interface/Trading") as Trading
-	node.open()
+	var trade = player.get_node("Interface/Trading") as Trading
+	trade.open()
 
 func complete_quest(quest: QuestEntry):
 	has_uncompleted_quest = false

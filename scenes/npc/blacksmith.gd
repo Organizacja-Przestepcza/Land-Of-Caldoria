@@ -13,4 +13,5 @@ func _ready() -> void:
 
 func _setup_dialog():
 	dialog.add_text_entry("Beautiful weather, isn't it?")
+	dialog.add_text_entry("I love the sound of birds singing in the morning")
 	dialog.add_text_entry("Hello again")
