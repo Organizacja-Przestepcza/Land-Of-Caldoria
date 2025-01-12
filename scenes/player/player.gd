@@ -14,6 +14,7 @@ enum State {
 @onready var stamina_bar:Stamina = $Hud/VBoxContainer/StaminaBar
 @onready var hotbar: Hotbar = %Hotbar
 @onready var money: Money = $Interface/Trading.money_counter
+@onready var game: Game = %Game
 
 @onready var build_manager: BuildManager = $"../BuildManager"
 @onready var cave_manager: CaveManager = $"../CaveManager"
@@ -71,6 +72,8 @@ func update_zoom(zoom):
 		$Camera2D.zoom = zoom
 
 func get_input():
+	if game.state != Game.State.PLAYING:
+		return
 	var input_direction = Input.get_vector("LC_move_left", "LC_move_right", "LC_move_up", "LC_move_down")
 	velocity = input_direction * speed
 	if velocity == Vector2.ZERO:

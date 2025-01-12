@@ -42,3 +42,5 @@ text = "Option 2"
 [node name="Option3" type="Button" parent="Options"]
 layout_mode = 2
 text = "Option 3"
+
+[connection signal="gui_input" from="DialogText" to="." method="_on_dialog_text_gui_input"]

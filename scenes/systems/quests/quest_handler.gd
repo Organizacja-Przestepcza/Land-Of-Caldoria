@@ -17,7 +17,8 @@ signal quest_started(quest: QuestEntry)
 
 func _ready():
 	quest_manager.set_name("Q Manager")
-	dialog_engine.set_name("D Engine")
+	dialog_engine.set_name("Default Dialog")
+	dialog_engine.add_text_entry("What do you want?")
 	SignalBus.enemy_killed.connect(_on_enemy_killed)
 	SignalBus.item_added.connect(_on_item_added)
 

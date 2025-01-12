@@ -7,20 +7,11 @@ var accepted_items: Dictionary
 @onready var player: Player = %Player
 var interaction_dialog: InteractionDialog
 var has_uncompleted_quest: bool = false
-var dialog_branch: Branch = Branch.DEFAULT
-
-var greet_dialogs: Array
-
-enum Branch {
-	DEFAULT,
-	MEDIC,
-	BLACKSMITH,
-	LUMBERJACK,
-	WITCH
-}
+var dialog := DialogueEngine.new()
 
 func _ready() -> void:
 	add_child(load("res://scenes/interactable_area.tscn").instantiate())
+	dialog.set_name(name)
 	_setup_dialog()
 
 func open_dialog():
@@ -42,4 +33,5 @@ func complete_quest(quest: QuestEntry):
 	var reward = quest.get_metadata(QuestHandler._key.REWARD)
 
 func _setup_dialog():
+	dialog.add_text_entry("Hello")
 	print("Dialog for %s not setup"%name)

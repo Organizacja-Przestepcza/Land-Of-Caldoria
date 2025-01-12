@@ -13,9 +13,8 @@ enum TabName {
 func open(tab: TabName) -> void:
 	open_tab(tab)
 	game.state = Game.State.INVENTORY
-	get_tree().paused = true
-	self.visible = true
-	self.current_tab = tab
+	visible = true
+	current_tab = tab
 	
 func open_tab(tab:TabName) -> void:
 	match tab:
@@ -33,8 +32,7 @@ func open_tab(tab:TabName) -> void:
 func close() -> void:
 	$Inventory.close()
 	game.state = Game.State.PLAYING
-	get_tree().paused = false
-	self.visible = false
+	visible = false
 
 
 func _on_tab_changed(tab: int) -> void:

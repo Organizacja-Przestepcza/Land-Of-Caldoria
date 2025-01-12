@@ -5,11 +5,8 @@ class_name Interface
 
 func open() -> void:
 	game.state = Game.State.INVENTORY
-	get_tree().paused = true
-	self.visible = true
+	visible = true
 	
 func close() -> void:
 	game.state = Game.State.PLAYING
-	print("close")
-	get_tree().paused = false
-	self.visible = false
+	visible = false

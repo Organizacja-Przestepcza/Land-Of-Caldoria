@@ -74,7 +74,10 @@ func _input(event: InputEvent) -> void:
 					close_menus()
 					pause_menu.toggle()
 			State.DIALOG:
-				if event.is_action_pressed("ui_cancel"):
+				if event.is_action_pressed("LC_inventory"):
+					dialog_panel.hide()
+				elif event.is_action_pressed("ui_cancel"):
+					dialog_panel.hide()
 					pause_menu.toggle()
 			State.CONSOLE:
 				if event.pressed and event.physical_keycode == KEY_QUOTELEFT:
