@@ -275,6 +275,37 @@ func shoot(weap: Ranged):
 	inventory.remove_item(ammo_selector.get_current_ammo(), 1)
 	get_tree().current_scene.add_child(bullet_instance)
 
+func throw(item: Item):
+	if not item.is_throwable:
+		return
+	var mouse_pos = get_global_mouse_position()
+	var bullet_instance: Bullet = bullet_scene.instantiate()
+	bullet_instance.collision_mask -= 1
+	var offset: Vector2
+	match facing:
+		Direction.Up: 
+			offset = Vector2(0, -32)
+			if mouse_pos.y > global_position.y:
+				return
+		Direction.Down: 
+			offset = Vector2(0, 0)
+			if mouse_pos.y < global_position.y:
+				return
+		Direction.Right: 
+			offset = Vector2(6, -24)
+			if mouse_pos.x < global_position.x:
+				return
+		Direction.Left: 
+			offset = Vector2(-6, -24)
+			if mouse_pos.x > global_position.x:
+				return
+	bullet_instance.position = global_position + offset
+	bullet_instance.set_direction_towards(mouse_pos)
+	bullet_instance.damage = item.weight
+	bullet_instance.hit.connect(_on_bullet_hit)
+	inventory.remove_item(item, 1)
+	get_tree().current_scene.add_child(bullet_instance)
+	
 func _on_bullet_hit(body: Node, damage: int):
 	if body is Mob:
 		damage_victim(body, damage)

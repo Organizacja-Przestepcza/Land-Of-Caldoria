@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://c01gkrnojtn4m"]
+
+[ext_resource type="Script" path="res://scenes/object/furniture/furnace/furnace.gd" id="1_k5ttu"]
+[ext_resource type="Texture2D" uid="uid://6l8xx8ccog7c" path="res://assets/textures/object/furniture/clock.png" id="2_4g2c7"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ykafg"]
+size = Vector2(20, 21)
+
+[node name="Clock" type="StaticBody2D"]
+script = ExtResource("1_k5ttu")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_4g2c7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 1.5)
+shape = SubResource("RectangleShape2D_ykafg")

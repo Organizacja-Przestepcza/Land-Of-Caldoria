@@ -1,19 +1,19 @@
 [gd_resource type="Resource" script_class="Consumable" load_steps=3 format=3 uid="uid://db7lae0yyoww2"]
 
 [ext_resource type="Script" path="res://items/consumable.gd" id="1_2s8t2"]
-[ext_resource type="Texture2D" uid="uid://d283vkd8sr1pb" path="res://assets/textures/item/food/apple.png" id="2_1p4me"]
+[ext_resource type="Texture2D" uid="uid://cqqpf0cf5kw1y" path="res://assets/textures/item/food/steak.png" id="2_cpo52"]
 
 [resource]
 script = ExtResource("1_2s8t2")
-hunger_value = 6
+hunger_value = 12
 health_value = 0
 is_plantable = false
 atlas_id = -1
 slot = 0
-name = "Apple"
+name = "Steak"
 weight = 1
-texture = ExtResource("2_1p4me")
+texture = ExtResource("2_cpo52")
 max_stack_size = 8
 description = "Restores 6 hunger"
 value = 6
-is_throwable = false
+is_throwable = true

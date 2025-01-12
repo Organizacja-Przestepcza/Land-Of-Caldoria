@@ -66,6 +66,10 @@ func _input(event: InputEvent) -> void:
 						inventory.drop_item_in_slot(hotbar.selected_slot,1)
 					elif event.is_action_pressed("LC_interact"):
 						player.interact()
+					elif event.is_action_pressed("LC_throw"):
+						var item = hotbar.get_held_item()
+						if item and item.is_throwable:
+							player.throw(item)
 					elif event.is_action_pressed("LC_build_menu"):
 						tabs.open(2)
 					elif event.is_action_pressed("LC_inventory"):
