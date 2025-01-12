@@ -17,7 +17,15 @@ var state: State = State.PLAYING
 @onready var player: Player = %Player
 @onready var stats: Stats = %Stats
 @onready var tabs: TabContainer = %Tabs
-
+var joypad_selected_slot: InventorySlot:
+	get:
+		return joypad_selected_slot
+	set(new_slot):
+		if joypad_selected_slot:
+			joypad_selected_slot.theme_type_variation = &"InventorySlot"
+		if new_slot: 
+			new_slot.theme_type_variation = &"InventorySlotSelected"
+		joypad_selected_slot = new_slot
 enum State {PLAYING, INVENTORY, CONSOLE}
 
 # Adjust sensitivity to control how fast the mouse moves
@@ -88,6 +96,19 @@ func _input(event: InputEvent) -> void:
 					var slot = get_slot_under_mouse()
 					if slot:
 						inventory.drop_item_in_slot(slot,1)
+				elif event.is_action_pressed("joypad_drag_and_drop"):
+					var slot = get_slot_under_mouse()
+					if slot:
+						if joypad_selected_slot: 
+							var selected_slot_item = joypad_selected_slot.get_child(0)
+							var new_slot_item = slot.get_child(0)
+							if selected_slot_item:
+								selected_slot_item.reparent(slot)
+							if new_slot_item:
+								new_slot_item.reparent(joypad_selected_slot)
+							joypad_selected_slot = null
+						else:
+							joypad_selected_slot = slot
 				elif event.is_action_pressed("LC_use"):
 					var slot = get_slot_under_mouse()
 					if slot and slot.get_child_count() > 0:
