@@ -102,6 +102,7 @@ layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.0
 anchor_bottom = 1.0
+follow_focus = true
 script = ExtResource("3_nn42t")
 
 [node name="MarginContainer" type="MarginContainer" parent="KeybindsContainer"]
@@ -115,8 +116,10 @@ custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 
+[connection signal="visibility_changed" from="OptionsContainer" to="." method="_on_options_container_visibility_changed"]
 [connection signal="value_changed" from="OptionsContainer/MusicMargin/MusicSlider" to="." method="_on_music_slider_value_changed"]
 [connection signal="value_changed" from="OptionsContainer/SoundMargin/SoundSlider" to="." method="_on_sound_slider_value_changed"]
 [connection signal="pressed" from="OptionsContainer/FullscreenButton" to="." method="_on_fullscreen_button_pressed"]
 [connection signal="pressed" from="OptionsContainer/KeybindsButton" to="." method="_on_keybinds_button_pressed"]
 [connection signal="pressed" from="OptionsContainer/BackButton" to="." method="_on_back_button_pressed"]
+[connection signal="visibility_changed" from="KeybindsContainer" to="KeybindsContainer" method="_on_visibility_changed"]

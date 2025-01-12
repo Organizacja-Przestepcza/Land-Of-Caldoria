@@ -70,6 +70,7 @@ func _ready() -> void:
 
 func open() -> void:
 	set_stats()
+	strength_button.grab_focus()
 
 func set_stats() -> void:
 	update_health()
@@ -132,3 +133,7 @@ func _on_button_pressed(btn_value: String) -> void:
 		"luck": 
 			luck += 1
 	set_stats()
+
+
+func _on_visibility_changed() -> void:
+	if visible: strength_button.grab_focus()

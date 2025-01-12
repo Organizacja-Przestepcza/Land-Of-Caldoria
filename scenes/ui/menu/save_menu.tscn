@@ -60,20 +60,24 @@ theme_override_constants/separation = 100
 
 [node name="CancelButton" type="Button" parent="VBoxContainer/HBoxContainer"]
 layout_mode = 2
+focus_neighbor_bottom = NodePath("../SaveButton")
 theme_override_font_sizes/font_size = 48
 text = "Cancel
 "
 
 [node name="SaveButton" type="Button" parent="VBoxContainer/HBoxContainer"]
 layout_mode = 2
+focus_neighbor_bottom = NodePath("../DeleteButton")
 theme_override_font_sizes/font_size = 48
 text = "Save
 "
 
 [node name="DeleteButton" type="Button" parent="VBoxContainer/HBoxContainer"]
 layout_mode = 2
+focus_neighbor_bottom = NodePath("../CancelButton")
 text = "Delete"
 
+[connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
 [connection signal="text_changed" from="VBoxContainer/SaveName" to="." method="_on_save_name_text_changed"]
 [connection signal="empty_clicked" from="VBoxContainer/SavesList" to="." method="_on_saves_list_empty_clicked"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/CancelButton" to="." method="_on_cancel_button_pressed"]

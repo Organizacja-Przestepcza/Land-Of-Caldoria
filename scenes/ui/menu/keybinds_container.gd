@@ -6,13 +6,13 @@ extends ScrollContainer
 var custom_actions = InputMap.get_actions().filter(func(action: StringName): return action.begins_with("LC"))
 var waiting_for_input: bool = false
 var selected_action: StringName
-
+var exit_button: Button
 signal new_input_selected(input: InputEvent)
 
 func _input(event: InputEvent) -> void:
 	if not waiting_for_input:
 		return
-	if event is InputEventKey:
+	if not event is InputEventMouseMotion:
 		waiting_for_input = false
 		new_input_selected.emit(event)
 
@@ -69,7 +69,7 @@ func populate_keybinds():
 	hbox.alignment = BoxContainer.ALIGNMENT_CENTER
 	vbox.add_child(hbox)
 	# Exit button
-	var exit_button := Button.new()
+	exit_button = Button.new()
 	exit_button.text = "Back"
 	exit_button.pressed.connect(_on_exit_button_pressed)
 	hbox.add_child(exit_button)
@@ -95,7 +95,7 @@ func _on_button_pressed(action: StringName, button: Button, input: InputEvent) -
 	button.text = "..."
 	waiting_for_input = true
 	var new_input: InputEvent = await new_input_selected
-	if new_input is InputEventKey and new_input.get_physical_keycode_with_modifiers() == KEY_ESCAPE:
+	if new_input is InputEventKey and new_input.get_physical_keycode_with_modifiers() == KEY_ESCAPE or new_input is InputEventJoypadButton or new_input is InputEventJoypadMotion:
 		button.text = temp
 		return
 	InputMap.action_erase_event(action,input)
@@ -135,3 +135,7 @@ func find_mouse_button_from_string(button_name: String) -> int:
 		"thumb button 1": return MOUSE_BUTTON_XBUTTON1  # Thumb button 1
 		"thumb button 2": return MOUSE_BUTTON_XBUTTON2  # Thumb button 2
 		_: return MOUSE_BUTTON_NONE  # Invalid or unknown button
+
+
+func _on_visibility_changed() -> void:
+	if visible: exit_button.grab_focus()

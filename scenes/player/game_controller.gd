@@ -18,11 +18,46 @@ var state: State = State.PLAYING
 @onready var player: Player = %Player
 @onready var stats: Stats = %Stats
 @onready var tabs: TabContainer = %Tabs
-
+var joypad_selected_slot: InventorySlot:
+	get:
+		return joypad_selected_slot
+	set(new_slot):
+		if joypad_selected_slot:
+			joypad_selected_slot.theme_type_variation = &"InventorySlot"
+		if new_slot: 
+			new_slot.theme_type_variation = &"InventorySlotSelected"
+		joypad_selected_slot = new_slot
 enum State {PLAYING, INVENTORY, DIALOG, CONSOLE}
 
+# Adjust sensitivity to control how fast the mouse moves
+var sensitivity: float = 3.5
+
+func _physics_process(delta: float) -> void:
+	if Input.get_connected_joypads().size() < 1: return
+# Get raw input from the right analog stick
+	var direction = Vector2()
+	direction.x = int(Input.is_action_pressed("right_stick_right")) - int(Input.is_action_pressed("right_stick_left"))
+	direction.y = int(Input.is_action_pressed("right_stick_down")) - int(Input.is_action_pressed("right_stick_up"))
+	direction.normalized()
+	
+# Create a movement vector and scale it
+	var mouse_movement = direction * sensitivity 
+# Get the current mouse position
+	var mouse_position = get_viewport().get_mouse_position()
+# Update the mouse position
+	mouse_position += mouse_movement
+	# Set the new mouse position
+	
+	# Check if the controller button assigned to "mouse_left_toggle" is pressed
+	
+	Input.warp_mouse(mouse_position)
+func _ready() -> void:
+	SignalBus.player_attacked.connect(_on_player_attacked)
+
+func _on_player_attacked(mob,damage):
+	var controller= Input.get_connected_joypads().front()
+	Input.start_joy_vibration(controller,0.1,0.5,0.2)
 func _input(event: InputEvent) -> void:
-	if event is InputEventKey and not event.echo:
 		match state:
 			State.PLAYING:
 				if get_tree().paused == false:
@@ -42,7 +77,11 @@ func _input(event: InputEvent) -> void:
 						print($"..".position)
 					elif event.is_action_pressed("LC_switch_ammo"):
 						ammo_selector.open()
-					elif event.pressed:
+					elif event.is_action_pressed("joypad_next_tab"):
+						hotbar.select_next_slot()
+					elif event.is_action_pressed("joypad_previous_tab"):
+						hotbar.select_previous_slot()
+					elif event is InputEventKey and not event.echo and event.pressed:
 						match event.physical_keycode:
 							KEY_1: hotbar.select_slot(0)
 							KEY_2: hotbar.select_slot(1)
@@ -56,6 +95,19 @@ func _input(event: InputEvent) -> void:
 					var slot = get_slot_under_mouse()
 					if slot:
 						inventory.drop_item_in_slot(slot,1)
+				elif event.is_action_pressed("joypad_drag_and_drop"):
+					var slot = get_slot_under_mouse()
+					if slot:
+						if joypad_selected_slot: 
+							var selected_slot_item = joypad_selected_slot.get_child(0)
+							var new_slot_item = slot.get_child(0)
+							if selected_slot_item:
+								selected_slot_item.reparent(slot)
+							if new_slot_item:
+								new_slot_item.reparent(joypad_selected_slot)
+							joypad_selected_slot = null
+						else:
+							joypad_selected_slot = slot
 				elif event.is_action_pressed("LC_use"):
 					var slot = get_slot_under_mouse()
 					if slot and slot.get_child_count() > 0:
@@ -79,8 +131,12 @@ func _input(event: InputEvent) -> void:
 				elif event.is_action_pressed("ui_cancel"):
 					dialog_panel.hide()
 					pause_menu.toggle()
+				elif event.is_action_pressed("joypad_next_tab"):
+					tabs.select_next_available()
+				elif event.is_action_pressed("joypad_previous_tab"):
+					tabs.select_previous_available()
 			State.CONSOLE:
-				if event.pressed and event.physical_keycode == KEY_QUOTELEFT:
+				if event is InputEventKey and event.pressed and event.physical_keycode == KEY_QUOTELEFT:
 					console.close()
 				elif event.is_action_pressed("ui_cancel"):
 					console.close()

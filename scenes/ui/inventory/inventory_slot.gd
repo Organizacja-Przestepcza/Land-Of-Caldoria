@@ -35,3 +35,4 @@ func _drop_data(_at_position: Vector2, dropped_item: Variant) -> void:
 		dropped_item.reparent(self)
 		if is_selected:
 			SignalBus.selected_item_changed.emit(dropped_item.data)
+		
