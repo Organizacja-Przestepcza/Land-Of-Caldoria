@@ -34,9 +34,6 @@ func new_random_quest(type: Type, giver: Variant = null, reward: Variant = null)
 	elif type == Type.COLLECT:
 		required = randi_range(4,10)
 		target = _possible_items.pick_random()
-		if not target:
-			push_warning("Item is null")
-			return
 		title = "Item collector: " + target.name
 		description = "Collect %d %s" % [required, target.name]
 		reward = target.value * (1 + required)
