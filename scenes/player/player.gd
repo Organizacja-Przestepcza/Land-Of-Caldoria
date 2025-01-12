@@ -2,8 +2,9 @@ class_name Player
 extends CharacterBody2D
 enum State {
 	IDLE,
-	WALK,
-	SPRINT
+	WALK =0,
+	SPRINT =1,
+	SWIM =2
 }
 
 @export var speed = 80
@@ -76,7 +77,10 @@ func get_input():
 	if velocity == Vector2.ZERO:
 		state = State.IDLE
 		return
-	if Input.is_action_pressed("LC_sprint") and stamina > 0:
+	if get_parent().has_method("is_only_water") and get_parent().is_only_water(position):
+			state = State.SWIM
+			print("SWIM")
+	elif Input.is_action_pressed("LC_sprint") and stamina > 0:
 		velocity = velocity * 2
 		state = State.SPRINT
 	else:
@@ -91,10 +95,8 @@ func play_animation() -> void:
 	else:
 		$AnimatedSprite2D.stop()
 		$AudioStreamPlayer.stream_paused = true
-	var animations: Array = ["walk_side", "walk_down", "walk_up", "run_side", "run_down", "run_up"]
-	var i: int = 0
-	if Input.is_action_pressed("LC_sprint"):
-		i = 3
+	var animations: Array = ["walk_side", "walk_down", "walk_up", "run_side", "run_down", "run_up", "swim_side", "swim_down", "swim_up"]
+	var i: int = 3 * state
 	if velocity.x != 0:
 		$AnimatedSprite2D.animation = animations[i]
 		$AnimatedSprite2D.flip_h = velocity.x < 0
