@@ -12,3 +12,4 @@ texture = ExtResource("2_qj8i5")
 max_stack_size = 5
 description = ""
 value = 7
+is_throwable = true

@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://bklifknlhwuti"]
+
+[ext_resource type="Script" path="res://scenes/object/furniture/furnace/furnace.gd" id="1_vhvgy"]
+[ext_resource type="Texture2D" uid="uid://udtlakg7h6rd" path="res://assets/textures/object/furniture/bookshelf.png" id="2_ov61v"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ykafg"]
+size = Vector2(20, 21)
+
+[node name="Bookshelf" type="StaticBody2D"]
+script = ExtResource("1_vhvgy")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_ov61v")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 1.5)
+shape = SubResource("RectangleShape2D_ykafg")

@@ -12,3 +12,4 @@ texture = ExtResource("2_o7da0")
 max_stack_size = 12
 description = "I don't like sand"
 value = 1
+is_throwable = true

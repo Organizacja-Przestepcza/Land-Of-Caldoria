@@ -16,3 +16,4 @@ texture = ExtResource("2_noshp")
 max_stack_size = 8
 description = "Restores 5 hunger"
 value = 5
+is_throwable = true
