@@ -102,18 +102,7 @@ func _input(event: InputEvent) -> void:
 					if slot:
 						inventory.drop_item_in_slot(slot,1)
 				elif event.is_action_pressed("joypad_drag_and_drop"):
-					var slot = get_slot_under_mouse()
-					if slot:
-						if joypad_selected_slot: 
-							var selected_slot_item = joypad_selected_slot.get_child(0)
-							var new_slot_item = slot.get_child(0)
-							if selected_slot_item:
-								selected_slot_item.reparent(slot)
-							if new_slot_item:
-								new_slot_item.reparent(joypad_selected_slot)
-							joypad_selected_slot = null
-						else:
-							joypad_selected_slot = slot
+					joypad_drag_and_drop()
 				elif event.is_action_pressed("LC_use"):
 					var slot = get_slot_under_mouse()
 					if slot and slot.get_child_count() > 0:
@@ -143,7 +132,21 @@ func _input(event: InputEvent) -> void:
 					console.close()
 					pause_menu.toggle()
 
-
+func joypad_drag_and_drop():
+	
+	var slot = get_slot_under_mouse()
+	if slot:
+		if joypad_selected_slot and joypad_selected_slot.get_child_count() > 0: 
+			var selected_slot_item = joypad_selected_slot.get_child(0) as InventoryItem
+			var new_slot_item = slot.get_child(0) as InventoryItem
+			if selected_slot_item:
+				selected_slot_item.reparent(slot)
+			if new_slot_item:
+				new_slot_item.reparent(joypad_selected_slot)
+			joypad_selected_slot = null
+		else:
+			joypad_selected_slot = slot
+			
 func get_slot_under_mouse() -> InventorySlot:
 	var mouse_pos = get_viewport().get_mouse_position()
 	for container in inventory.containers:
