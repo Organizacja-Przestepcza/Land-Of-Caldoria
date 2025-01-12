@@ -46,3 +46,7 @@ func _on_save_button_pressed() -> void:
 
 func _on_load_button_pressed() -> void:
 	show_menu($LoadMenu)
+
+
+func _on_texture_rect_visibility_changed() -> void:
+	if $TextureRect.visible==true:$TextureRect/VBoxContainer/ContinueButton.grab_focus()

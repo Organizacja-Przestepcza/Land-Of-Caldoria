@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="Consumable" load_steps=3 format=3 uid="uid://dpj0mj0y0hhas"]
+
+[ext_resource type="Script" path="res://items/consumable.gd" id="1_mgiti"]
+[ext_resource type="Texture2D" uid="uid://kiwcl17l7xog" path="res://assets/textures/item/food/raw_steak.png" id="2_urw1b"]
+
+[resource]
+script = ExtResource("1_mgiti")
+hunger_value = 10
+health_value = 0
+is_plantable = false
+atlas_id = -1
+slot = 0
+name = "Raw Steak"
+weight = 1
+texture = ExtResource("2_urw1b")
+max_stack_size = 4
+description = "Restores 10 hunger"
+value = 20
+is_throwable = false

@@ -10,7 +10,7 @@ var inventory_list
 
 func open() -> void:
 	update_build_list()
-	
+	build_list.grab_focus()
 func update_build_list():
 	build_list.clear()
 	for recipe: BuildRecipe in ListLoader.build_recipes.values():
@@ -57,3 +57,7 @@ func get_current_recipe() -> BuildRecipe:
 		if recipe is BuildRecipe:
 			return recipe
 	return null
+
+
+func _on_visibility_changed() -> void:
+	if visible :build_list.grab_focus()

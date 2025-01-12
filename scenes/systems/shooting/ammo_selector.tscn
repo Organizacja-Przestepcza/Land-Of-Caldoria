@@ -33,4 +33,5 @@ custom_minimum_size = Vector2(500, 250)
 layout_mode = 2
 size_flags_vertical = 3
 
+[connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
 [connection signal="item_selected" from="MarginContainer/VBoxContainer/AmmoList" to="." method="_on_ammo_list_item_selected"]

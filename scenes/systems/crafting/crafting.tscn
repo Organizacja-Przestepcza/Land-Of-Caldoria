@@ -45,6 +45,7 @@ theme_override_constants/separation = 15
 [node name="IngredientsList" type="ItemList" parent="MarginContainer/CraftingContainer/IngredientsContainer"]
 layout_mode = 2
 size_flags_vertical = 3
+focus_mode = 0
 
 [node name="CraftButton" type="Button" parent="MarginContainer/CraftingContainer/IngredientsContainer"]
 layout_mode = 2

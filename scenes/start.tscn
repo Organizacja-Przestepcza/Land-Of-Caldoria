@@ -118,6 +118,7 @@ visible = false
 layout_mode = 2
 anchors_preset = 0
 
+[connection signal="visibility_changed" from="MainMenu" to="." method="_on_main_menu_visibility_changed"]
 [connection signal="pressed" from="MainMenu/NewGameButton" to="." method="_on_new_game_button_pressed"]
 [connection signal="pressed" from="MainMenu/LoadButton" to="." method="_on_load_button_pressed"]
 [connection signal="pressed" from="MainMenu/OptionButton" to="." method="_on_options_button_pressed"]

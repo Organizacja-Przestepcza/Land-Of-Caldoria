@@ -28,3 +28,7 @@ func _on_load_button_pressed() -> void:
 
 func _on_load_list_item_selected(_index: int) -> void:
 	$VBoxContainer/HBoxContainer/LoadButton.disabled = false
+
+
+func _on_visibility_changed() -> void:
+	if visible == true: $VBoxContainer/HBoxContainer/CancelButton.grab_focus()
