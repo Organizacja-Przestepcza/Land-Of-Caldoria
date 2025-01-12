@@ -3,8 +3,15 @@ extends Node
 var quest_manager := QuestManager.new()
 var dialog_engine := DialogueEngine.new()
 
-enum Type {KILL,COLLECT}
+enum Type {KILL,COLLECT,SPECIAL}
 enum _key {TYPE,PROGRESS,TARGET,REQUIRED,GIVER,REWARD}
+
+var _possible_items: Array[Item] = [
+	ItemLoader.name("log"),
+	ItemLoader.name("blueberry"),
+	ItemLoader.name("stone"),
+	ItemLoader.name("iron ore")
+]
 
 signal quest_started(quest: QuestEntry)
 
@@ -14,7 +21,7 @@ func _ready():
 	SignalBus.enemy_killed.connect(_on_enemy_killed)
 	SignalBus.item_added.connect(_on_item_added)
 
-func new_quest(type: Type, giver: Variant = null, reward: Variant = null):
+func new_random_quest(type: Type, giver: Variant = null, reward: Variant = null):
 	randomize()
 	var required: int
 	var target # string or Item
@@ -28,10 +35,10 @@ func new_quest(type: Type, giver: Variant = null, reward: Variant = null):
 		reward = target.health/2
 	elif type == Type.COLLECT:
 		required = randi_range(4,10)
-		target = ItemLoader.name("log") # needs to be changed for a random item
+		target = _possible_items.pick_random()
 		title = "Item collector: " + target.name
 		description = "Collect %d %s" % [required, target.name]
-		reward = target.value * required
+		reward = target.value * (1 + required)
 	var quest: QuestEntry = quest_manager.add_quest(title, description)
 	
 	quest.quest_updated.connect(check_quest_completion)

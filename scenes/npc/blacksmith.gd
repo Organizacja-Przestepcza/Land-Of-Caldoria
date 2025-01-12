@@ -9,8 +9,9 @@ func _ready() -> void:
 		ItemLoader.items["coal"] : 0.5,
 		ItemLoader.items["hammer"] : 0.4
 	}
+	dialog_branch = Branch.BLACKSMITH
 
 func _setup_dialog():
 	var dialog = QuestHandler.dialog_engine
 	# Initial dialogs
-	dialog.add_text_entry("Beautiful weather, isn't it?", Branch.BLACKSMITH)
+	dialog.add_text_entry("Beautiful weather, isn't it?", dialog_branch)

@@ -142,7 +142,7 @@ func get_victim():
 	hitbox.shape = RectangleShape2D.new()
 	hitbox.position = Vector2i(0,-16)
 	hitbox.max_results = 3
-	hitbox.collision_mask = 2+8
+	hitbox.collision_mask = 2+8+16
 	match facing:
 		Direction.Down:
 			hitbox.shape.size.y = reach/2
@@ -229,13 +229,15 @@ func damage_victim(victim, damage):
 			notifications.add_notification("Killed %s : + %d exp"%[victim.mob_name,total_exp])
 			if victim.dropped_item:
 				inventory.add_item(victim.dropped_item, 1)
-	if victim is Destroyable:
+	elif victim is Destroyable:
 		if victim.required_tool == hotbar.get_held_item() or victim.required_tool == null:
 			if victim.take_damage(damage):
 				var tile_pos = victim.get_parent().local_to_map(victim.global_position)
 				if get_parent().has_method(&"delete_object_at"):
 					get_parent().delete_object_at(tile_pos)
 				inventory.add_item(victim.get_drop(), 1)
+	elif victim is NPC:
+		print(victim, " hurt")
 	
 func consume(item: InventoryItem, amount: int) -> void:
 	if item.data is Consumable:

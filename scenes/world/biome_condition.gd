@@ -1,0 +1,1 @@
+extends AdvancedModifierCondition2D

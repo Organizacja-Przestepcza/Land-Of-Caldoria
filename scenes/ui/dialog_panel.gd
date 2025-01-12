@@ -6,4 +6,4 @@ func _ready() -> void:
 	
 
 func start_dialog(npc: NPC):
-	pass 
+	pass

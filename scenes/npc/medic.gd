@@ -2,7 +2,7 @@ extends NPC
 
 func _ready() -> void: 
 	super()
-	health = 100
+	health = 1000
 	accepted_items = {
 		ItemLoader.items["bandage"] : 0.5,
 		ItemLoader.items["blueberry"] : 2,

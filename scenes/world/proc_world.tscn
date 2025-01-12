@@ -3,9 +3,9 @@
 [ext_resource type="Script" path="res://scenes/world/proc_world.gd" id="1_75342"]
 [ext_resource type="TileSet" uid="uid://d0pha3g0yk4g8" path="res://tilesets/main.tres" id="2_gbw1p"]
 [ext_resource type="Script" path="res://addons/gaea/generators/2D/noise_generator/noise_generator.gd" id="2_vv2tn"]
-[ext_resource type="Resource" uid="uid://dmxmmyikn85ln" path="res://scenes/world/gaea_settings.tres" id="3_3in7x"]
+[ext_resource type="Resource" uid="uid://ctfd2del08qq4" path="res://scenes/world/gaea_settings.tres" id="3_3in7x"]
 [ext_resource type="Script" path="res://scenes/build_manager.gd" id="4_26fgq"]
-[ext_resource type="Script" path="res://scenes/player/threaded_better_terrain_gaea_renderer.gd" id="5_bdqx5"]
+[ext_resource type="Script" path="res://addons/better-terrain-in-gaea/better_terrain_gaea_renderer.gd" id="4_alwb3"]
 [ext_resource type="PackedScene" uid="uid://byb1nycwprtqb" path="res://scenes/player/player.tscn" id="5_j0bro"]
 [ext_resource type="PackedScene" uid="uid://d26rkh5gvtfkh" path="res://scenes/ui/hud/hud.tscn" id="6_ai4l1"]
 [ext_resource type="TileSet" uid="uid://dgn2sg8mjagkv" path="res://tilesets/objects.tres" id="6_ei8fs"]
@@ -46,7 +46,7 @@ generate_on_ready = false
 random_seed = false
 
 [node name="ThreadedBetterTerrainGaeaRenderer" type="Node" parent="NoiseGenerator" node_paths=PackedStringArray("tile_map_layers", "generator")]
-script = ExtResource("5_bdqx5")
+script = ExtResource("4_alwb3")
 tile_map_layers = [NodePath("../../WaterLayer"), NodePath("../../SandLayer"), NodePath("../../GroundLayer"), NodePath("../../GrassLayer")]
 generator = NodePath("..")
 
@@ -64,6 +64,10 @@ z_index = -2
 tile_set = ExtResource("2_gbw1p")
 
 [node name="GrassLayer" type="TileMapLayer" parent="."]
+z_index = -2
+tile_set = ExtResource("2_gbw1p")
+
+[node name="BiomeDecorLayer" type="TileMapLayer" parent="."]
 z_index = -2
 tile_set = ExtResource("2_gbw1p")
 
@@ -192,6 +196,8 @@ position = Vector2(210, 304)
 [node name="Lumberjack" parent="." instance=ExtResource("26_cixvo")]
 position = Vector2(689, 122)
 
+[connection signal="chunk_generation_finished" from="NoiseGenerator" to="." method="_on_chunk_generation_finished"]
 [connection signal="chunk_rendered" from="NoiseGenerator/ThreadedBetterTerrainGaeaRenderer" to="." method="_on_chunk_rendered"]
+[connection signal="grid_rendered" from="NoiseGenerator/ThreadedBetterTerrainGaeaRenderer" to="." method="_on_threaded_better_terrain_gaea_renderer_grid_rendered"]
 [connection signal="item_selected" from="Player/Hud/Hotbar" to="Player" method="_on_hotbar_item_selected"]
 [connection signal="tab_changed" from="Player/Interface/Tabs" to="Player/Interface/Tabs" method="_on_tab_changed"]
