@@ -13,6 +13,7 @@ func _ready() -> void:
 	add_child(load("res://scenes/interactable_area.tscn").instantiate())
 	dialog.set_name(name)
 	_setup_dialog()
+	QuestHandler.new_random_quest(QuestHandler.Type.COLLECT)
 
 func open_dialog():
 	SignalBus.npc_dialog_opened.emit(self)

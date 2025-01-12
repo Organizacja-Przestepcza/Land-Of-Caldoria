@@ -1,12 +1,11 @@
 extends Node
 
 var quest_manager := QuestManager.new()
-var dialog_engine := DialogueEngine.new()
 
 enum Type {KILL,COLLECT,SPECIAL}
 enum _key {TYPE,PROGRESS,TARGET,REQUIRED,GIVER,REWARD}
 
-var _possible_items: Array[Item] = [
+@onready var _possible_items: Array = [
 	ItemLoader.name("log"),
 	ItemLoader.name("blueberry"),
 	ItemLoader.name("stone"),
@@ -17,8 +16,6 @@ signal quest_started(quest: QuestEntry)
 
 func _ready():
 	quest_manager.set_name("Q Manager")
-	dialog_engine.set_name("Default Dialog")
-	dialog_engine.add_text_entry("What do you want?")
 	SignalBus.enemy_killed.connect(_on_enemy_killed)
 	SignalBus.item_added.connect(_on_item_added)
 
@@ -37,6 +34,9 @@ func new_random_quest(type: Type, giver: Variant = null, reward: Variant = null)
 	elif type == Type.COLLECT:
 		required = randi_range(4,10)
 		target = _possible_items.pick_random()
+		if not target:
+			push_warning("Item is null")
+			return
 		title = "Item collector: " + target.name
 		description = "Collect %d %s" % [required, target.name]
 		reward = target.value * (1 + required)
@@ -59,7 +59,7 @@ func new_random_quest(type: Type, giver: Variant = null, reward: Variant = null)
 func check_quest_completion(quest: QuestEntry) -> void:
 	var metadata: Dictionary = quest.get_metadata_data()
 	if metadata.get(_key.TYPE) in [Type.KILL, Type.COLLECT]:
-		if metadata.get(_key.PROGRESS) == metadata.get(_key.REQUIRED):
+		if metadata.get(_key.PROGRESS) >= metadata.get(_key.REQUIRED):
 			quest.set_completed()
 
 func _on_enemy_killed(mob_name: String):
