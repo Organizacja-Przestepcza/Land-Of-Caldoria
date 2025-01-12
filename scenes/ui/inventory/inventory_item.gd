@@ -3,11 +3,18 @@ extends TextureRect
 
 @export var data: Item
 var count: int
+var durability: int =-1:
+	get: return durability
+	set(value): 
+		durability = value
+		tooltip_text = "%s\n%d/%d" % [data.name, durability, data.durability] 
 var c_label: Label ## Label for displaying count
 
 func _init(d: Item, a: int):
 	data = d
 	count = a
+	if data is Tool or data is Armor:
+		durability = data.durability
 	SignalBus.item_added.emit(d,a)
 	c_label = Label.new()
 	add_child(c_label)
@@ -17,7 +24,10 @@ func _ready() -> void:
 	expand_mode = TextureRect.EXPAND_IGNORE_SIZE
 	stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
 	texture = data.texture
-	tooltip_text = "%s" % [data.name]
+	if data is Tool or data is Armor:
+		tooltip_text = "%s\n%d/%d" % [data.name, durability, data.durability] 
+	else:
+		tooltip_text = "%s" % [data.name]
 	var inv_slot: InventorySlot = get_parent()
 	if inv_slot.is_selected:
 		SignalBus.selected_item_changed.emit(data)
@@ -68,3 +78,15 @@ func display_count() -> void:
 		c_label.visible = true
 	else:
 		c_label.visible = false
+		
+func decrease_durability(value: int) -> void:
+	if (not data is Tool) && (not data is Armor):
+		return
+	durability-=value
+	if durability <=0:
+		remove(1)
+func repair():
+	if (not data is Tool) && (not data is Armor):
+		return
+	durability=data.durability
+	

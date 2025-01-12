@@ -55,3 +55,6 @@ func get_held_item() -> Item:
 	if inv_item is InventoryItem:
 		return inv_item.data
 	return null
+func get_held_inventory_item() -> InventoryItem:
+	var inv_item = selected_slot.get_child(0) if selected_slot.get_child_count() > 0 else null
+	return inv_item
