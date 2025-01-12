@@ -274,6 +274,16 @@ func get_chunk_data(cell_pos: Vector2i, layer: int = 0): ## 0 is object layer, 1
 	var chunk_d: Dictionary = tiles.get_or_add(chunk, {})
 	return chunk_d
 
+func is_only_water(pos: Vector2):
+	var cell_pos = grass_layer.local_to_map(pos)
+	if grass_layer.get_cell_source_id(cell_pos) != -1:
+		return false
+	if ground_layer.get_cell_source_id(cell_pos) != -1:
+		return false
+	if sand_layer.get_cell_source_id(cell_pos) != -1:
+		return false
+	return true
+
 #endregion
 
 func update_volume():

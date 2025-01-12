@@ -10,7 +10,7 @@ func _process(delta: float) -> void:
 	match player.state:
 		player.State.IDLE: modify_stamina(1)
 		player.State.WALK: modify_stamina(0)
-		player.State.SPRINT: 
+		player.State.SPRINT, player.State.SWIM: 
 			stamina_timer+=delta
 			if stamina_timer >= stamina_decrease_rate:
 				modify_stamina(-1)
