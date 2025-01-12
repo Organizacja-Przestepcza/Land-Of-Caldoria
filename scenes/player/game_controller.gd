@@ -55,7 +55,7 @@ func _ready() -> void:
 
 func _on_player_attacked(mob,damage):
 	var controller= Input.get_connected_joypads().front()
-	Input.start_joy_vibration(controller,0.1,0.5,0.2)
+	#Input.start_joy_vibration(controller,0.1,0.5,0.2)
 func _input(event: InputEvent) -> void:
 		match state:
 			State.PLAYING:
