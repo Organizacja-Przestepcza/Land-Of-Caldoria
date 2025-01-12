@@ -225,7 +225,6 @@ func attack(tool: Tool):
 	
 func damage_victim(victim, damage):
 	if victim is Mob:
-		notifications.add_notification("Attacked " + victim.mob_name + " : -" + str(damage) + "hp")
 		if victim.take_damage(damage):
 			var total_exp = victim.exp + roundi(((victim.exp * level)/10)-1)
 			stats.add_exp(total_exp)
@@ -240,7 +239,8 @@ func damage_victim(victim, damage):
 					get_parent().delete_object_at(tile_pos)
 				inventory.add_item(victim.get_drop(), 1)
 	elif victim is NPC:
-		print(victim, " hurt")
+		if victim.take_damage(damage):
+			print("kill")
 	
 func consume(item: InventoryItem, amount: int) -> void:
 	if item.data is Consumable:
@@ -281,7 +281,7 @@ func shoot(weap: Ranged):
 	get_tree().current_scene.add_child(bullet_instance)
 
 func _on_bullet_hit(body: Node, damage: int):
-	if body is Mob:
+	if body is Mob or body is NPC:
 		damage_victim(body, damage)
 
 

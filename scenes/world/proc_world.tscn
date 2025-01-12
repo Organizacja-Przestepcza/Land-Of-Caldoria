@@ -90,7 +90,7 @@ visible = false
 
 [node name="Player" parent="." instance=ExtResource("5_j0bro")]
 unique_name_in_owner = true
-position = Vector2(469, 284)
+position = Vector2(433, 212)
 
 [node name="Hud" parent="Player" instance=ExtResource("6_ai4l1")]
 unique_name_in_owner = true
@@ -188,13 +188,13 @@ process_mode = 3
 script = ExtResource("13_xk8dt")
 
 [node name="Blacksmith" parent="." instance=ExtResource("17_tkbm6")]
-position = Vector2(620, 253)
+position = Vector2(645, 307)
 
 [node name="Medic" parent="." instance=ExtResource("25_5rha6")]
-position = Vector2(210, 304)
+position = Vector2(235, 268)
 
 [node name="Lumberjack" parent="." instance=ExtResource("26_cixvo")]
-position = Vector2(689, 122)
+position = Vector2(759, 95)
 
 [connection signal="chunk_generation_finished" from="NoiseGenerator" to="." method="_on_chunk_generation_finished"]
 [connection signal="chunk_rendered" from="NoiseGenerator/ThreadedBetterTerrainGaeaRenderer" to="." method="_on_chunk_rendered"]

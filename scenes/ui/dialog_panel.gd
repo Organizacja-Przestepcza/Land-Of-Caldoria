@@ -24,20 +24,11 @@ func _ready() -> void:
 		)
 
 func start_dialog(npc: NPC):
-	p_dialog = npc.dialog
-	p_dialog.reset()
-	if not p_dialog.dialogue_continued.is_connected(_dialog_continued):
-		p_dialog.dialogue_continued.connect(_dialog_continued)
 	show()
 	game.state = game.State.DIALOG
 	get_tree().paused = true
 	goodbye_button.grab_focus()
-	p_dialog.advance()
-	dialog_text.text = npc.dialog.get_current_entry().get_text()
-
-func _dialog_continued(dialog_entry: DialogueEntry):
-	dialog_text.text = dialog_entry.get_text()
-
+	dialog_text.text = npc.greet_dialogs.pick_random()
 
 func _on_goodbye_button_pressed() -> void:
 	hide()

@@ -9,9 +9,11 @@ func _ready() -> void:
 		ItemLoader.items["coal"] : 0.5,
 		ItemLoader.items["hammer"] : 0.4
 	}
-	dialog.set_name("Blacksmith")
 
 func _setup_dialog():
-	dialog.add_text_entry("Beautiful weather, isn't it?")
-	dialog.add_text_entry("I love the sound of birds singing in the morning")
-	dialog.add_text_entry("Hello again")
+	dialogs[Dialog.GREET] = {
+		0:"Beautiful weather, isn't it?",
+		1:"I love the sound of birds singing in the morning",
+		2:"Hello again"
+		}
+	#dialogs[Dialog.PERSONAL]
