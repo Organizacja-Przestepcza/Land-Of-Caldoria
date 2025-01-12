@@ -179,25 +179,30 @@ func get_victim():
 		return hitbox.get_collider(0)
 
 func use_item() -> void:
-	var held_item = hotbar.get_held_item()
-	if held_item == ItemLoader.name("hammer"):
+	var held_item = hotbar.get_held_inventory_item()
+	if not held_item: 
+		return
+	if held_item.data == ItemLoader.name("hammer"):
 		build_manager.build()
-	elif held_item == ItemLoader.name("shovel"):
+	elif held_item.data == ItemLoader.name("shovel"):
 		cave_manager.dig()
-	elif held_item == ItemLoader.name("hoe"):
+	elif held_item.data == ItemLoader.name("hoe"):
 		if not farming_manager.till_ground():
 			farming_manager.harvest()
-	elif held_item == ItemLoader.name("bucket"):
+	elif held_item.data == ItemLoader.name("bucket"):
 		farming_manager.fill_bucket()
-	elif held_item == ItemLoader.name("water_bucket"):
+	elif held_item.data == ItemLoader.name("water_bucket"):
 		farming_manager.water_crop()
-	elif held_item is Consumable:
+	elif held_item.data  is Consumable:
 		consume(hotbar.selected_slot.get_child(0),1)
-	elif held_item is Ranged:
-		shoot(held_item)
-	elif held_item is Tool:
-		attack(held_item)
-
+	elif held_item.data  is Ranged:
+		shoot(held_item.data)
+	elif held_item.data  is Tool:
+		var tmp = await attack(held_item.data)
+		
+		if tmp:
+			held_item.decrease_durability(1)
+			print(held_item.durability)
 
 func interact():
 	if nearest_interactable is LootBag:
@@ -218,7 +223,9 @@ func interact():
 func attack(tool: Tool):
 	attack_cooldown = tool.cooldown if tool.cooldown else 0.5
 	var victim = await get_victim()
-	damage_victim(victim, tool.damage)
+	if victim:
+		damage_victim(victim, tool.damage)
+		return true
 	
 func damage_victim(victim, damage):
 	if victim is Mob:
