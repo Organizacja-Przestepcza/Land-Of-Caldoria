@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://cbghomtojyvih"]
+[gd_scene load_steps=4 format=3 uid="uid://cbghomtojyvih"]
 
 [ext_resource type="Script" path="res://scenes/ui/menu/new_game_menu.gd" id="1_ptwxn"]
 [ext_resource type="Texture2D" uid="uid://dkmsxfnm2ad7s" path="res://assets/textures/ui/menu/bg_darkener.png" id="2_xdtma"]
+[ext_resource type="ButtonGroup" uid="uid://q4xy075uy30e" path="res://skin_changer.tres" id="3_dejeo"]
 
 [node name="NewGameMenu" type="Control"]
 layout_mode = 3
@@ -52,6 +53,23 @@ layout_mode = 2
 size_flags_vertical = 4
 placeholder_text = "Game seed here..."
 
+[node name="SkinChanger" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="White" type="Button" parent="VBoxContainer/SkinChanger"]
+layout_mode = 2
+toggle_mode = true
+button_group = ExtResource("3_dejeo")
+text = "White"
+
+[node name="Black" type="Button" parent="VBoxContainer/SkinChanger"]
+layout_mode = 2
+toggle_mode = true
+button_pressed = true
+button_group = ExtResource("3_dejeo")
+text = "Black"
+
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
@@ -75,5 +93,7 @@ text = "Create"
 
 [connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
 [connection signal="text_changed" from="VBoxContainer/NameField" to="." method="_on_name_field_text_changed"]
+[connection signal="toggled" from="VBoxContainer/SkinChanger/White" to="." method="_on_white_toggled"]
+[connection signal="toggled" from="VBoxContainer/SkinChanger/Black" to="." method="_on_black_toggled"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/BackButton" to="." method="_on_back_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/NewGameButton" to="." method="_on_new_game_button_pressed"]

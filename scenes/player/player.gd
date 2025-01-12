@@ -45,7 +45,7 @@ var bullet_scene = preload("res://scenes/systems/shooting/bullet.tscn")
 var reach = 30
 var can_attack: bool = true
 var attack_cooldown: float = 0.5
-
+@onready var sprite = $AnimatedSprite2D
 var nearest_interactable:
 	get:
 		return nearest_interactable
@@ -66,6 +66,11 @@ enum Direction {Down, Up, Right, Left}
 func _ready() -> void:
 	update_zoom(camera_zoom)
 	WorldData.player = self
+	
+	if WorldData.is_black:
+		sprite = $BlackAnimatedSprite2D
+	sprite.visible = true
+		
 
 func update_zoom(zoom):
 	if zoom is Vector2:
@@ -89,10 +94,10 @@ func get_input():
 func play_animation() -> void:
 	if velocity.length() > 0:
 		velocity = velocity.normalized() * speed
-		$AnimatedSprite2D.play()
+		sprite.play()
 		$AudioStreamPlayer.stream_paused = false
 	else:
-		$AnimatedSprite2D.stop()
+		sprite.stop()
 		$AudioStreamPlayer.stream_paused = true
 	var animations: Array = ["walk_side", "walk_down", "walk_up", "run_side", "run_down", "run_up", "water_side", "water_down", "water_up"]
 	var i: int 
@@ -101,16 +106,16 @@ func play_animation() -> void:
 	elif state == State.SPRINT:
 		i=3
 	if velocity.x != 0:
-		$AnimatedSprite2D.animation = animations[i]
-		$AnimatedSprite2D.flip_h = velocity.x < 0
+		sprite.animation = animations[i]
+		sprite.flip_h = velocity.x < 0
 		facing = Direction.Left if velocity.x < 0 else Direction.Right
 	elif velocity.y > 0:
-		$AnimatedSprite2D.animation = animations[i+1]
-		$AnimatedSprite2D.flip_h = 0
+		sprite.animation = animations[i+1]
+		sprite.flip_h = 0
 		facing = Direction.Down
 	elif velocity.y < 0:
-		$AnimatedSprite2D.animation = animations[i+2]
-		$AnimatedSprite2D.flip_h = 0
+		sprite.animation = animations[i+2]
+		sprite.flip_h = 0
 		facing = Direction.Up
 
 func _physics_process(_delta):

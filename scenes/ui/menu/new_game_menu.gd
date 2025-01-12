@@ -23,3 +23,11 @@ func _on_new_game_button_pressed() -> void:
 
 func _on_visibility_changed() -> void:
 	if visible: %BackButton.grab_focus()
+
+
+func _on_black_toggled(toggled_on: bool) -> void:
+	WorldData.is_black = toggled_on
+
+
+func _on_white_toggled(toggled_on: bool) -> void:
+	WorldData.is_black = not toggled_on
