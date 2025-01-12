@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://bipcprw7rrykq" path="res://assets/textures/tilesets/water.png" id="2_48o0x"]
 [ext_resource type="Texture2D" uid="uid://ks4oglinul48" path="res://assets/textures/tilesets/water2.png" id="2_cucfj"]
 [ext_resource type="Texture2D" uid="uid://bckkwild73lty" path="res://assets/textures/tilesets/snow_biome_tileset.png" id="4_ay8lk"]
-[ext_resource type="Texture2D" uid="uid://bpqi8w4qr5lfh" path="res://assets/textures/tilesets/war_field_tileset.png" id="5_8wb2o"]
+[ext_resource type="Texture2D" uid="uid://cwwdyrhtcj1d3" path="res://assets/textures/tilesets/war_field_tileset.png" id="5_8wb2o"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_7bppt"]
 resource_name = "ground"

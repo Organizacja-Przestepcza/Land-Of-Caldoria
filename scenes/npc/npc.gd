@@ -9,7 +9,7 @@ var interaction_dialog: InteractionDialog
 var has_uncompleted_quest: bool = false
 var dialogs: Dictionary
 
-enum Dialog {GREET,PERSONAL,PLACE,QUEST}
+enum Dialog {GREET,PERSONAL,PLACE,QUEST,SPECIAL}
 
 func _ready() -> void:
 	add_child(load("res://scenes/interactable_area.tscn").instantiate())
