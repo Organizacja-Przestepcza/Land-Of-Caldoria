@@ -40,7 +40,6 @@ func new_random_quest(type: Type, giver: Variant = null, reward: Variant = null)
 		reward = target.value * (1 + required)
 	var quest: QuestEntry = quest_manager.add_quest(title, description)
 	
-	quest.quest_updated.connect(check_quest_completion)
 	quest.quest_completed.connect(_on_quest_completed)
 
 	quest.set_metadata(_key.TYPE, type)
@@ -51,6 +50,8 @@ func new_random_quest(type: Type, giver: Variant = null, reward: Variant = null)
 	quest.set_metadata(_key.REWARD, reward)
 	
 	quest.set_active()
+	if giver is NPC:
+		giver.quests.append(quest)
 
 	quest_started.emit(quest)
 
@@ -81,9 +82,11 @@ func _on_quest_completed(quest: QuestEntry):
 	var giver = quest.get_metadata(_key.GIVER)
 	var reward = quest.get_metadata(_key.REWARD)
 	if giver is NPC:
-		giver.has_given_quest = false
+		giver.has_uncompleted_quest = false
 	if reward is int:
 		WorldData.player.money.add(reward)
+	elif reward is Item:
+		WorldData.player.inventory.add_item(reward, 1)
 	print("Quest %d completed" % quest.get_id())
 
 func get_quests() -> Array[QuestEntry]:
@@ -91,3 +94,34 @@ func get_quests() -> Array[QuestEntry]:
 
 func reset_manager() -> void:
 	quest_manager.set_data([])
+
+func _setup_blacksmith_quests(blacksmith: NPC):
+	var quest = QuestHandler.quest_manager.add_quest("Blacksmith - 1", "Bring 5 iron ore")
+	quest.set_metadata(_key.TYPE, Type.COLLECT)
+	quest.set_metadata(_key.PROGRESS, 0)
+	quest.set_metadata(_key.TARGET, ItemLoader.name("iron ore"))
+	quest.set_metadata(_key.REQUIRED, 5)
+	quest.set_metadata(_key.GIVER, blacksmith)
+	quest.set_metadata(_key.REWARD, ItemLoader.name("iron chestplate"))
+	quest.quest_completed.connect(_on_quest_completed)
+	blacksmith.quests.append(quest)
+	
+	quest = QuestHandler.quest_manager.add_quest("Blacksmith - 2", "Bring 10 coal")
+	quest.set_metadata(_key.TYPE, Type.COLLECT)
+	quest.set_metadata(_key.PROGRESS, 0)
+	quest.set_metadata(_key.TARGET, ItemLoader.name("coal"))
+	quest.set_metadata(_key.REQUIRED, 10)
+	quest.set_metadata(_key.GIVER, blacksmith)
+	quest.set_metadata(_key.REWARD, ItemLoader.name("iron boots"))
+	quest.quest_completed.connect(_on_quest_completed)
+	blacksmith.quests.append(quest)
+	
+	quest = QuestHandler.quest_manager.add_quest("Blacksmith - 3", "Bring 3 stamina potions")
+	quest.set_metadata(_key.TYPE, Type.COLLECT)
+	quest.set_metadata(_key.PROGRESS, 0)
+	quest.set_metadata(_key.TARGET, ItemLoader.name("stamina potion"))
+	quest.set_metadata(_key.REQUIRED, 3)
+	quest.set_metadata(_key.GIVER, blacksmith)
+	quest.set_metadata(_key.REWARD, ItemLoader.name("iron boots"))
+	quest.quest_completed.connect(_on_quest_completed)
+	blacksmith.quests.append(quest)

@@ -96,7 +96,7 @@ func play_animation() -> void:
 		$AudioStreamPlayer.stream_paused = true
 	var animations: Array = ["walk_side", "walk_down", "walk_up", "run_side", "run_down", "run_up"]
 	var i: int = 0
-	if Input.is_action_pressed("LC_sprint"):
+	if state == State.SPRINT:
 		i = 3
 	if velocity.x != 0:
 		$AnimatedSprite2D.animation = animations[i]
@@ -201,6 +201,8 @@ func use_item() -> void:
 	elif held_item is Tool:
 		attack(held_item)
 
+func give(item: Item, amount: int):
+	inventory.add_item(item,amount)
 
 func interact():
 	if nearest_interactable is LootBag:

@@ -9,4 +9,5 @@ func open() -> void:
 	
 func close() -> void:
 	game.state = Game.State.PLAYING
+	get_tree().paused = false
 	visible = false
