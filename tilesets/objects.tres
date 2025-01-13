@@ -1,4 +1,4 @@
-[gd_resource type="TileSet" load_steps=26 format=3 uid="uid://dgn2sg8mjagkv"]
+[gd_resource type="TileSet" load_steps=29 format=3 uid="uid://dgn2sg8mjagkv"]
 
 [ext_resource type="PackedScene" uid="uid://co4rbbidq8odq" path="res://scenes/object/plant/tree/tree_1.tscn" id="3_mmxfu"]
 [ext_resource type="PackedScene" uid="uid://b0t557dst46s0" path="res://scenes/object/plant/tree/tree_2.tscn" id="4_f3enp"]
@@ -11,13 +11,18 @@
 [ext_resource type="PackedScene" uid="uid://dr35ikyrrpmhi" path="res://scenes/object/furniture/chest/chest.tscn" id="12_76ogm"]
 [ext_resource type="PackedScene" uid="uid://b50ew3ar0cmlr" path="res://scenes/object/furniture/furnace/furnace.tscn" id="13_wxo0e"]
 [ext_resource type="PackedScene" uid="uid://d30y7r8jbuhks" path="res://scenes/object/ore/stone/stone_1.tscn" id="14_y4fr7"]
+[ext_resource type="PackedScene" path="res://scenes/object/furniture/table.tscn" id="15_sgxmx"]
 [ext_resource type="PackedScene" uid="uid://bs4i13d63rlmv" path="res://scenes/object/ore/stone/stone_2.tscn" id="15_snk0o"]
 [ext_resource type="Texture2D" uid="uid://cw1qksgtgwkk2" path="res://assets/textures/tilesets/Fences.png" id="16_2kp4c"]
 [ext_resource type="PackedScene" uid="uid://dogxypalihf1n" path="res://scenes/object/ore/stone/stone_3.tscn" id="16_e80n3"]
 [ext_resource type="Texture2D" uid="uid://jedrukyooxy3" path="res://assets/textures/object/plant/carrot/growing_carrot.png" id="16_mokmt"]
 [ext_resource type="Texture2D" uid="uid://dgm5u3x0tkox4" path="res://assets/textures/tilesets/door.png" id="17_to7kc"]
+[ext_resource type="PackedScene" path="res://scenes/object/furniture/stand.tscn" id="16_rwbnp"]
+[ext_resource type="PackedScene" path="res://scenes/object/furniture/clock.tscn" id="17_1b6qb"]
 [ext_resource type="PackedScene" uid="uid://r676xfcfj0hg" path="res://scenes/object/ore/stone/stone_4.tscn" id="17_uay60"]
 [ext_resource type="PackedScene" uid="uid://bf6msv0efjgt4" path="res://scenes/object/ore/stone/stone_5.tscn" id="18_q682w"]
+[ext_resource type="PackedScene" path="res://scenes/object/furniture/bookshelf.tscn" id="18_wlnnh"]
+[ext_resource type="PackedScene" path="res://scenes/object/furniture/anvil.tscn" id="19_ldj8h"]
 
 [sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_ln6n1"]
 resource_name = "plant"
@@ -41,6 +46,11 @@ scenes/5/scene = ExtResource("18_q682w")
 resource_name = "furniture"
 scenes/1/scene = ExtResource("12_76ogm")
 scenes/2/scene = ExtResource("13_wxo0e")
+scenes/3/scene = ExtResource("15_sgxmx")
+scenes/4/scene = ExtResource("16_rwbnp")
+scenes/5/scene = ExtResource("17_1b6qb")
+scenes/6/scene = ExtResource("18_wlnnh")
+scenes/7/scene = ExtResource("19_ldj8h")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_wlael"]
 resource_name = "wall"

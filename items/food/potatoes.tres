@@ -16,3 +16,4 @@ texture = ExtResource("2_logqd")
 max_stack_size = 8
 description = "Restores 4 hunger"
 value = 4
+is_throwable = true

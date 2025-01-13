@@ -22,7 +22,7 @@
 [ext_resource type="Script" path="res://scenes/world/tabs.gd" id="13_hqbme"]
 [ext_resource type="Script" path="res://scenes/player/game_controller.gd" id="13_xk8dt"]
 [ext_resource type="PackedScene" uid="uid://dwxv43ipd2lgd" path="res://scenes/ui/hud/hints/hint_legend.tscn" id="15_exyb5"]
-[ext_resource type="PackedScene" uid="uid://xxmv67orn38r" path="res://scenes/player/console.tscn" id="15_jbsup"]
+[ext_resource type="PackedScene" path="res://scenes/player/console.tscn" id="15_jbsup"]
 [ext_resource type="PackedScene" uid="uid://0v860522ctv3" path="res://scenes/ui/stats/stats.tscn" id="17_iykmo"]
 [ext_resource type="PackedScene" uid="uid://npgme5adxp70" path="res://scenes/npc/blacksmith.tscn" id="17_tkbm6"]
 [ext_resource type="PackedScene" uid="uid://dmasf4uhgm1x8" path="res://scenes/systems/furnace/furnace.tscn" id="18_4gc6m"]

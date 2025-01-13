@@ -3,7 +3,8 @@ extends CharacterBody2D
 enum State {
 	IDLE,
 	WALK,
-	SPRINT
+	SPRINT,
+	SWIM
 }
 
 @export var speed = 80
@@ -45,7 +46,7 @@ var bullet_scene = preload("res://scenes/systems/shooting/bullet.tscn")
 var reach = 30
 var can_attack: bool = true
 var attack_cooldown: float = 0.5
-
+@onready var sprite = $AnimatedSprite2D
 var nearest_interactable:
 	get:
 		return nearest_interactable
@@ -66,6 +67,11 @@ enum Direction {Down, Up, Right, Left}
 func _ready() -> void:
 	update_zoom(camera_zoom)
 	WorldData.player = self
+	
+	if WorldData.is_black:
+		sprite = $BlackAnimatedSprite2D
+	sprite.visible = true
+		
 	QuestHandler.quest_manager.add_quest("Where am i?","Leave this place")
 
 func update_zoom(zoom):
@@ -80,36 +86,40 @@ func get_input():
 	if velocity == Vector2.ZERO:
 		state = State.IDLE
 		return
-	if Input.is_action_pressed("LC_sprint") and stamina > 0:
+	if get_parent().has_method("is_only_water") and get_parent().is_only_water(position):
+			state = State.SWIM
+			velocity = velocity * 0.8 if stamina > 0 else velocity * 0.4
+	elif Input.is_action_pressed("LC_sprint") and stamina > 0:
 		velocity = velocity * 2
 		state = State.SPRINT
 	else:
 		state = State.WALK
-		
 
 func play_animation() -> void:
 	if velocity.length() > 0:
 		velocity = velocity.normalized() * speed
-		$AnimatedSprite2D.play()
+		sprite.play()
 		$AudioStreamPlayer.stream_paused = false
 	else:
-		$AnimatedSprite2D.stop()
+		sprite.stop()
 		$AudioStreamPlayer.stream_paused = true
-	var animations: Array = ["walk_side", "walk_down", "walk_up", "run_side", "run_down", "run_up"]
-	var i: int = 0
-	if state == State.SPRINT:
-		i = 3
+	var animations: Array = ["walk_side", "walk_down", "walk_up", "run_side", "run_down", "run_up", "water_side", "water_down", "water_up"]
+	var i: int 
+	if state == State.SWIM:
+		i=6
+	elif state == State.SPRINT:
+		i=3
 	if velocity.x != 0:
-		$AnimatedSprite2D.animation = animations[i]
-		$AnimatedSprite2D.flip_h = velocity.x < 0
+		sprite.animation = animations[i]
+		sprite.flip_h = velocity.x < 0
 		facing = Direction.Left if velocity.x < 0 else Direction.Right
 	elif velocity.y > 0:
-		$AnimatedSprite2D.animation = animations[i+1]
-		$AnimatedSprite2D.flip_h = 0
+		sprite.animation = animations[i+1]
+		sprite.flip_h = 0
 		facing = Direction.Down
 	elif velocity.y < 0:
-		$AnimatedSprite2D.animation = animations[i+2]
-		$AnimatedSprite2D.flip_h = 0
+		sprite.animation = animations[i+2]
+		sprite.flip_h = 0
 		facing = Direction.Up
 
 func _physics_process(_delta):
@@ -183,27 +193,30 @@ func get_victim():
 		return hitbox.get_collider(0)
 
 func use_item() -> void:
-	var held_item = hotbar.get_held_item()
-	if held_item == ItemLoader.name("hammer"):
+	var held_item = hotbar.get_held_inventory_item()
+	if not held_item: 
+		return
+	if held_item.data == ItemLoader.name("hammer"):
 		build_manager.build()
-	elif held_item == ItemLoader.name("shovel"):
+	elif held_item.data == ItemLoader.name("shovel"):
 		cave_manager.dig()
-	elif held_item == ItemLoader.name("hoe"):
+	elif held_item.data == ItemLoader.name("hoe"):
 		if not farming_manager.till_ground():
 			farming_manager.harvest()
-	elif held_item == ItemLoader.name("bucket"):
+	elif held_item.data == ItemLoader.name("bucket"):
 		farming_manager.fill_bucket()
-	elif held_item == ItemLoader.name("water_bucket"):
+	elif held_item.data == ItemLoader.name("water_bucket"):
 		farming_manager.water_crop()
-	elif held_item is Consumable:
+	elif held_item.data  is Consumable:
 		consume(hotbar.selected_slot.get_child(0),1)
-	elif held_item is Ranged:
-		shoot(held_item)
-	elif held_item is Tool:
-		attack(held_item)
-
-func give(item: Item, amount: int):
-	inventory.add_item(item,amount)
+	elif held_item.data  is Ranged:
+		shoot(held_item.data)
+	elif held_item.data  is Tool:
+		var tmp = await attack(held_item.data)
+		
+		if tmp:
+			held_item.decrease_durability(1)
+			print(held_item.durability)
 
 func interact():
 	if nearest_interactable is LootBag:
@@ -224,7 +237,9 @@ func interact():
 func attack(tool: Tool):
 	attack_cooldown = tool.cooldown if tool.cooldown else 0.5
 	var victim = await get_victim()
-	damage_victim(victim, tool.damage)
+	if victim:
+		damage_victim(victim, tool.damage)
+		return true
 	
 func damage_victim(victim, damage):
 	if victim is Mob:
@@ -283,6 +298,37 @@ func shoot(weap: Ranged):
 	inventory.remove_item(ammo_selector.get_current_ammo(), 1)
 	get_tree().current_scene.add_child(bullet_instance)
 
+func throw(item: Item):
+	if not item.is_throwable:
+		return
+	var mouse_pos = get_global_mouse_position()
+	var bullet_instance: Bullet = bullet_scene.instantiate()
+	bullet_instance.collision_mask -= 1
+	var offset: Vector2
+	match facing:
+		Direction.Up: 
+			offset = Vector2(0, -32)
+			if mouse_pos.y > global_position.y:
+				return
+		Direction.Down: 
+			offset = Vector2(0, 0)
+			if mouse_pos.y < global_position.y:
+				return
+		Direction.Right: 
+			offset = Vector2(6, -24)
+			if mouse_pos.x < global_position.x:
+				return
+		Direction.Left: 
+			offset = Vector2(-6, -24)
+			if mouse_pos.x > global_position.x:
+				return
+	bullet_instance.position = global_position + offset
+	bullet_instance.set_direction_towards(mouse_pos)
+	bullet_instance.damage = item.weight
+	bullet_instance.hit.connect(_on_bullet_hit)
+	inventory.remove_item(item, 1)
+	get_tree().current_scene.add_child(bullet_instance)
+	
 func _on_bullet_hit(body: Node, damage: int):
 	if body is Mob or body is NPC:
 		damage_victim(body, damage)

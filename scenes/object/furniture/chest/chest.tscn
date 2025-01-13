@@ -1,11 +1,14 @@
-[gd_scene load_steps=3 format=3 uid="uid://dr35ikyrrpmhi"]
+[gd_scene load_steps=5 format=3 uid="uid://dr35ikyrrpmhi"]
 
 [ext_resource type="Texture2D" uid="uid://bb3uiqw7lb847" path="res://assets/textures/object/furniture/chest/chest.png" id="1_c0v1a"]
+[ext_resource type="Script" path="res://scenes/object/furniture/chest/chest.gd" id="1_uxpd4"]
+[ext_resource type="Script" path="res://scenes/interactable_area.gd" id="3_s8ekp"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_l05xa"]
 size = Vector2(18, 14)
 
 [node name="Chest" type="StaticBody2D"]
+script = ExtResource("1_uxpd4")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_c0v1a")
@@ -13,3 +16,6 @@ texture = ExtResource("1_c0v1a")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 5)
 shape = SubResource("RectangleShape2D_l05xa")
+
+[node name="InteractableArea" type="Area2D" parent="."]
+script = ExtResource("3_s8ekp")

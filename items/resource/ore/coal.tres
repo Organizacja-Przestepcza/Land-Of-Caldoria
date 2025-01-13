@@ -12,3 +12,4 @@ texture = ExtResource("2_0mobl")
 max_stack_size = 4
 description = "My xmas present"
 value = 4
+is_throwable = true
