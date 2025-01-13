@@ -4,12 +4,14 @@ class_name Inventory
 @export var slot_size: Vector2 = Vector2(64,64)
 @onready var player: Player = %Player
 @onready var hotbar: GridContainer = %Hotbar/MarginContainer/Hotbar
-@onready var main = $HBoxContainer/VBoxContainer/Main
-@onready var armor = $HBoxContainer/Armor
+@onready var main: GridContainer = $HBoxContainer/VBoxContainer/Main
+@onready var backpack: GridContainer = $HBoxContainer/Backpack
+@onready var armor: GridContainer = $HBoxContainer/Armor
 @onready var hotbar_container = %Hotbar/MarginContainer
 @onready var containers: Array[GridContainer] = [hotbar, main]
 var inventory_keys = ["hotbar", "main", "armor"]
 var lootbag_tscn = preload("res://scenes/object/loot_bag.tscn")
+var torso_slot: InventorySlot
 
 func _ready() -> void:
 	
@@ -18,9 +20,16 @@ func _ready() -> void:
 		slot.id = i
 		slot.theme_type_variation = &"InventorySlot"
 		main.add_child(slot)
-		
+	for i in 14:
+		var slot = InventorySlot.new(InventorySlot.Type.MAIN, slot_size)
+		slot.id = i
+		slot.theme_type_variation = &"InventorySlot"
+		slot.is_backpack = true
+		backpack.add_child(slot)
+	
 	var head_slot = InventorySlot.new(InventorySlot.Type.HEAD, slot_size)
-	var torso_slot = InventorySlot.new(InventorySlot.Type.TORSO, slot_size)
+	torso_slot = InventorySlot.new(InventorySlot.Type.TORSO, slot_size)
+	torso_slot.is_torso = true
 	var arms_slot = InventorySlot.new(InventorySlot.Type.ARMS, slot_size)
 	var legs_slot = InventorySlot.new(InventorySlot.Type.LEGS, slot_size)
 	var feet_slot = InventorySlot.new(InventorySlot.Type.FEET, slot_size)
@@ -40,7 +49,17 @@ func _ready() -> void:
 	add_item(ItemLoader.name("pickaxe"), 1)
 	add_item(ItemLoader.name("hammer"), 1)
 	
-	
+	SignalBus.torso_item.connect(wear_backpack)
+
+func wear_backpack():
+	print("drop")
+	if torso_slot.get_child_count() > 0:
+		print("in")
+		var inv_item = torso_slot.get_child(0) as InventoryItem
+		backpack.visible = inv_item.data == ItemLoader.name("backpack")
+	else:
+		backpack.hide()
+
 func open():
 	hotbar.reparent(get_node("HBoxContainer/VBoxContainer"))
 	main.grab_focus()

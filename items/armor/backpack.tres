@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="Armor" load_steps=3 format=3 uid="uid://bh5wq6jrj3wiu"]
+
+[ext_resource type="Script" path="res://items/armor.gd" id="1_i8fio"]
+[ext_resource type="Texture2D" uid="uid://d4ncf52vqlgu8" path="res://assets/textures/item/tools/backpack.png" id="2_odlsx"]
+
+[resource]
+script = ExtResource("1_i8fio")
+durability = 0
+protection = 0
+bonuses = {}
+slot = 3
+name = "Backpack"
+weight = 5
+texture = ExtResource("2_odlsx")
+max_stack_size = 1
+description = "You can put stuff in it"
+value = 40
+is_throwable = false
