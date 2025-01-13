@@ -1,6 +1,4 @@
-
 [gd_scene load_steps=99 format=3 uid="uid://byb1nycwprtqb"]
-
 
 [ext_resource type="Script" path="res://scenes/player/player.gd" id="1_g8p60"]
 [ext_resource type="AudioStream" uid="uid://c7p55ikoqr77h" path="res://assets/sfx/ambient/Steps.mp3" id="2_jle88"]
@@ -235,7 +233,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"run_down",
-"speed": 5.0
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -264,7 +262,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"run_side",
-"speed": 5.0
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -293,7 +291,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"run_up",
-"speed": 5.0
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -544,7 +542,6 @@ region = Rect2(128, 0, 32, 64)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_u1j7s"]
 resource_name = "BlackFrames"
-
 animations = [{
 "frames": [{
 "duration": 1.0,
@@ -754,14 +751,14 @@ visible = false
 position = Vector2(0, -23)
 scale = Vector2(0.9, 0.9)
 sprite_frames = SubResource("SpriteFrames_sbsgf")
-animation = &"walk_side"
+animation = &"run_down"
 
 [node name="BlackAnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 visible = false
 position = Vector2(0, -23)
 scale = Vector2(0.9, 0.9)
 sprite_frames = SubResource("SpriteFrames_u1j7s")
-animation = &"walk_down"
+animation = &"run_down"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_6ipx2")
