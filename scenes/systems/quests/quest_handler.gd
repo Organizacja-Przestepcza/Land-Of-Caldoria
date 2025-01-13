@@ -2,7 +2,7 @@ extends Node
 
 var quest_manager := QuestManager.new()
 
-enum Type {KILL,COLLECT,SPECIAL}
+enum Type {KILL,COLLECT,SPECIAL,MULTI}
 enum _key {TYPE,PROGRESS,TARGET,REQUIRED,GIVER,REWARD}
 
 @onready var _possible_items: Array = [
@@ -57,7 +57,10 @@ func new_random_quest(type: Type, giver: Variant = null, reward: Variant = null)
 
 func check_quest_completion(quest: QuestEntry) -> void:
 	var metadata: Dictionary = quest.get_metadata_data()
-	if metadata.get(_key.TYPE) in [Type.KILL, Type.COLLECT]:
+	if quest.has_subquests():
+		if quest.are_subquests_completed():
+			quest.set_completed()
+	elif metadata.get(_key.TYPE) in [Type.KILL, Type.COLLECT]:
 		if metadata.get(_key.PROGRESS) >= metadata.get(_key.REQUIRED):
 			quest.set_completed()
 
@@ -72,11 +75,13 @@ func _on_enemy_killed(mob_name: String):
 func _on_item_added(item: Item, amount: int):
 	for quest in get_quests():
 		if quest.is_active() and not quest.is_completed() and quest.get_metadata(_key.TYPE) == Type.COLLECT:
-			if quest.get_metadata(_key.TARGET) == item:
+			var target = quest.get_metadata(_key.TARGET)
+			if target == item:
 				var progress = quest.get_metadata(_key.PROGRESS)
 				if progress+amount >= 0:
 					quest.set_metadata(_key.PROGRESS,progress+amount)
 					quest.set_updated()
+				
 
 func _on_quest_completed(quest: QuestEntry):
 	var giver = quest.get_metadata(_key.GIVER)
@@ -125,3 +130,14 @@ func _setup_blacksmith_quests(blacksmith: NPC):
 	quest.set_metadata(_key.REWARD, ItemLoader.name("iron boots"))
 	quest.quest_completed.connect(_on_quest_completed)
 	blacksmith.quests.append(quest)
+
+func _setup_medic_quests(medic: NPC):
+	var quest = QuestHandler.quest_manager.add_quest("Medic - 1", "Bring 10 berries, 2 coal, 2 buckets of water")
+	quest.set_metadata(_key.TYPE, Type.COLLECT)
+	quest.set_metadata(_key.PROGRESS, 0)
+	quest.set_metadata(_key.TARGET, ItemLoader.name("iron ore"))
+	quest.set_metadata(_key.REQUIRED, 5)
+	quest.set_metadata(_key.GIVER, medic)
+	quest.set_metadata(_key.REWARD, ItemLoader.name("iron chestplate"))
+	quest.quest_completed.connect(_on_quest_completed)
+	medic.quests.append(quest)

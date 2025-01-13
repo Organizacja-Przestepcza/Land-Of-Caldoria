@@ -15,4 +15,5 @@ func update_check(quest: QuestEntry):
 	check.visible = quest.is_completed()
 
 func update_progress(quest: QuestEntry):
-	progress.text = "%d/%d" % [quest.get_metadata(QuestHandler._key.PROGRESS),quest.get_metadata(QuestHandler._key.REQUIRED)]
+	if quest.get_metadata(QuestHandler._key.TYPE) in [QuestHandler.Type.KILL,QuestHandler.Type.COLLECT]:
+		progress.text = "%d/%d" % [quest.get_metadata(QuestHandler._key.PROGRESS),quest.get_metadata(QuestHandler._key.REQUIRED)]

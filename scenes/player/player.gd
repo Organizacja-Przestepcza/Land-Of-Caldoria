@@ -66,6 +66,7 @@ enum Direction {Down, Up, Right, Left}
 func _ready() -> void:
 	update_zoom(camera_zoom)
 	WorldData.player = self
+	QuestHandler.quest_manager.add_quest("Where am i?","Leave this place")
 
 func update_zoom(zoom):
 	if zoom is Vector2:

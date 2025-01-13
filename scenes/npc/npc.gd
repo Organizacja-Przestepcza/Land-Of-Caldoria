@@ -25,7 +25,6 @@ enum Dialog {
 func _ready() -> void:
 	add_child(load("res://scenes/interactable_area.tscn").instantiate())
 	_setup_dialog()
-	QuestHandler.new_random_quest(QuestHandler.Type.COLLECT)
 
 func take_damage(damage: int) -> bool: ## returns true if the npc was killed
 	health = health - damage
