@@ -22,16 +22,13 @@ func _setup_dialog():
 			0:"I'm Stanley, a lumberjack and a carpenter.",
 		},
 		Dialog.P_JOB: {
-			0:"If you get hurt, I can patch you up. For a right price, of course.",
-			1:"I can take care of some bruises and scratches.",
-			2:"I can sell you some medicaments or potions.",
+			0:"I cut trees and build houses",
+			1:"Sometimes I make furniture for others"
 		},
 		Dialog.P_PAST: {
-			0:"None of your business.",
-			1:"I don't wanna talk about it.",
-			2:"Don't bother me with such nonsense questions.",
-			3:"Past is gone. End of story.",
-			4:"I'd rather not.",
+			0:"I used to work for the ruler of Caldoria",
+			1:"During the war, I fought alongside many.",
+			2:"The war has destroyed my village",
 		}
 	}
 	dialogs[Dialog.PLACE] = {

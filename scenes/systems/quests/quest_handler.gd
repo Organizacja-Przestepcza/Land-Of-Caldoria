@@ -55,14 +55,17 @@ func new_random_quest(type: Type, giver: Variant = null, reward: Variant = null)
 
 	quest_started.emit(quest)
 
-func check_quest_completion(quest: QuestEntry) -> void:
+func check_quest_completion(quest: QuestEntry) -> bool:
 	var metadata: Dictionary = quest.get_metadata_data()
 	if quest.has_subquests():
 		if quest.are_subquests_completed():
 			quest.set_completed()
+			return true
 	elif metadata.get(_key.TYPE) in [Type.KILL, Type.COLLECT]:
 		if metadata.get(_key.PROGRESS) >= metadata.get(_key.REQUIRED):
 			quest.set_completed()
+			return true
+	return false
 
 func _on_enemy_killed(mob_name: String):
 	for quest in get_quests():
@@ -86,12 +89,16 @@ func _on_item_added(item: Item, amount: int):
 func _on_quest_completed(quest: QuestEntry):
 	var giver = quest.get_metadata(_key.GIVER)
 	var reward = quest.get_metadata(_key.REWARD)
+	var target = quest.get_metadata(_key.TARGET)
+	var required = quest.get_metadata(_key.REQUIRED)
 	if giver is NPC:
 		giver.has_uncompleted_quest = false
 	if reward is int:
 		WorldData.player.money.add(reward)
 	elif reward is Item:
 		WorldData.player.inventory.add_item(reward, 1)
+	if target is Item:
+		WorldData.player.inventory.remove_item(target,required)
 	print("Quest %d completed" % quest.get_id())
 
 func get_quests() -> Array[QuestEntry]:
@@ -138,6 +145,16 @@ func _setup_lumberjack_quests(lumberjack: NPC):
 	quest.set_metadata(_key.REQUIRED, 4)
 	quest.set_metadata(_key.GIVER, lumberjack)
 	quest.set_metadata(_key.REWARD, 70)
+	quest.quest_completed.connect(_on_quest_completed)
+	lumberjack.quests.append(quest)
+	
+	quest = QuestHandler.quest_manager.add_quest("Lumberjack - 5", "Bring machete")
+	quest.set_metadata(_key.TYPE, Type.COLLECT)
+	quest.set_metadata(_key.PROGRESS, 0)
+	quest.set_metadata(_key.TARGET, ItemLoader.name("machete"))
+	quest.set_metadata(_key.REQUIRED, 1)
+	quest.set_metadata(_key.GIVER, lumberjack)
+	quest.set_metadata(_key.REWARD, 100)
 	quest.quest_completed.connect(_on_quest_completed)
 	lumberjack.quests.append(quest)
 

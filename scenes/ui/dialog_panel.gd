@@ -80,7 +80,11 @@ func _on_special_button_pressed() -> void:
 func _on_accept_button_pressed() -> void:
 	if p_npc.has_uncompleted_quest:
 		if p_npc.next_quest_id < p_npc.quests.size():
-			QuestHandler.check_quest_completion(p_npc.quests[p_npc.next_quest_id])
+			if QuestHandler.check_quest_completion(p_npc.quests[p_npc.next_quest_id]):
+				_goto_main()
+				return
+			else:
+				dialog_text.text = "No you didn't"
 	else:
 		if p_npc.dialogs.get(NPC.Dialog.QUEST, {}).size() <= p_npc.next_quest_id: # if no more quests
 			QuestHandler.new_random_quest(randi_range(0,1),p_npc)
