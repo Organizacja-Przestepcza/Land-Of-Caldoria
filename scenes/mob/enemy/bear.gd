@@ -2,6 +2,7 @@ extends Enemy
 
 func _init() -> void:
 	mob_name = "bear"
+	dropped_item = ItemLoader.name("raw_steak")
 	health = 40
 	speed = 30
 	exp = 20

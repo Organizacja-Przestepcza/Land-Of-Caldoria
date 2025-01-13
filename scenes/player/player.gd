@@ -15,6 +15,7 @@ enum State {
 @onready var stamina_bar:Stamina = $Hud/VBoxContainer/StaminaBar
 @onready var hotbar: Hotbar = %Hotbar
 @onready var money: Money = $Interface/Trading.money_counter
+@onready var game: Game = %Game
 
 @onready var build_manager: BuildManager = $"../BuildManager"
 @onready var cave_manager: CaveManager = $"../CaveManager"
@@ -26,6 +27,7 @@ enum State {
 @onready var stats: Stats = %Stats
 @onready var notifications: Notifications = %Notifications
 @onready var ammo_selector: AmmoSelector = $Interface/AmmoSelector
+@onready var point_light: PointLight2D = $PointLight2D
 
 var state: State = State.IDLE
 
@@ -70,13 +72,22 @@ func _ready() -> void:
 	if WorldData.is_black:
 		sprite = $BlackAnimatedSprite2D
 	sprite.visible = true
-		
+	
+	SignalBus.selected_item_changed.connect(turn_on_light)
+	
+	QuestHandler.quest_started.emit(QuestHandler.quest_manager.add_quest("Where am i?","Leave this place"))
+
+func turn_on_light(item: Item):
+	point_light.visible = item == ItemLoader.name("lamp")
+	
 
 func update_zoom(zoom):
 	if zoom is Vector2:
 		$Camera2D.zoom = zoom
 
 func get_input():
+	if game.state != Game.State.PLAYING:
+		return
 	var input_direction = Input.get_vector("LC_move_left", "LC_move_right", "LC_move_up", "LC_move_down")
 	velocity = input_direction * speed
 	if velocity == Vector2.ZERO:
@@ -152,7 +163,7 @@ func get_victim():
 	hitbox.shape = RectangleShape2D.new()
 	hitbox.position = Vector2i(0,-16)
 	hitbox.max_results = 3
-	hitbox.collision_mask = 2+8
+	hitbox.collision_mask = 2+8+16
 	match facing:
 		Direction.Down:
 			hitbox.shape.size.y = reach/2
@@ -199,6 +210,8 @@ func use_item() -> void:
 	elif held_item.data == ItemLoader.name("hoe"):
 		if not farming_manager.till_ground():
 			farming_manager.harvest()
+	elif held_item.data == ItemLoader.name("shears"):
+		print_debug("shears")
 	elif held_item.data == ItemLoader.name("bucket"):
 		farming_manager.fill_bucket()
 	elif held_item.data == ItemLoader.name("water_bucket"):
@@ -220,7 +233,7 @@ func interact():
 			inventory.add_item(key,nearest_interactable.items[key])
 		nearest_interactable.queue_free()
 	elif nearest_interactable is NPC:
-		nearest_interactable.show_interaction()
+		nearest_interactable.open_dialog()
 	elif nearest_interactable is FurnaceObj:
 		interface.get_node("Furnace").open()
 	elif farming_manager.is_on_field(position):
@@ -239,20 +252,22 @@ func attack(tool: Tool):
 	
 func damage_victim(victim, damage):
 	if victim is Mob:
-		notifications.add_notification("Attacked " + victim.mob_name + " : -" + str(damage) + "hp")
 		if victim.take_damage(damage):
 			var total_exp = victim.exp + roundi(((victim.exp * level)/10)-1)
 			stats.add_exp(total_exp)
 			notifications.add_notification("Killed %s : + %d exp"%[victim.mob_name,total_exp])
 			if victim.dropped_item:
 				inventory.add_item(victim.dropped_item, 1)
-	if victim is Destroyable:
+	elif victim is Destroyable:
 		if victim.required_tool == hotbar.get_held_item() or victim.required_tool == null:
 			if victim.take_damage(damage):
 				var tile_pos = victim.get_parent().local_to_map(victim.global_position)
 				if get_parent().has_method(&"delete_object_at"):
 					get_parent().delete_object_at(tile_pos)
 				inventory.add_item(victim.get_drop(), 1)
+	elif victim is NPC:
+		if victim.take_damage(damage):
+			print("kill")
 	
 func consume(item: InventoryItem, amount: int) -> void:
 	if item.data is Consumable:
@@ -324,7 +339,7 @@ func throw(item: Item):
 	get_tree().current_scene.add_child(bullet_instance)
 	
 func _on_bullet_hit(body: Node, damage: int):
-	if body is Mob:
+	if body is Mob or body is NPC:
 		damage_victim(body, damage)
 
 

@@ -6,38 +6,45 @@ var health : int
 var accepted_items: Dictionary
 @onready var player: Player = %Player
 var interaction_dialog: InteractionDialog
-var has_given_quest: bool = false
+var has_uncompleted_quest: bool = false
+var next_quest_id: int = 0
+var dialogs: Dictionary
+var quests: Array[QuestEntry]
+
+enum Dialog {
+	GREET,
+	PERSONAL,
+	PLACE,
+	QUEST,
+	SPECIAL,
+	P_SELF,
+	P_JOB,
+	P_PAST
+}
 
 func _ready() -> void:
-	add_child(preload("res://scenes/interactable_area.tscn").instantiate())
-	interaction_dialog = preload("res://scenes/npc/interaction_dialog.tscn").instantiate()
-	add_child(interaction_dialog)
-	interaction_dialog.npc_quest.connect(_on_quest_started)
-	interaction_dialog.npc_trade.connect(_on_trade_started)
+	add_child(load("res://scenes/interactable_area.tscn").instantiate())
+	_setup_dialog()
 
-func show_interaction():
-	if interaction_dialog.visible:
-		interaction_dialog.hide()
-	else:
-		interaction_dialog.show()
+func take_damage(damage: int) -> bool: ## returns true if the npc was killed
+	health = health - damage
+	if health <= 0:
+		hide()
+		process_mode = PROCESS_MODE_DISABLED
+		SignalBus.npc_killed.emit(self)
+		return true
+	return false
 
-func _on_quest_started() -> void:
-	interaction_dialog.hide()
-	if has_given_quest:
-		return
-	var type: int = randi_range(0,QuestHandler.Type.size()-1) # picks random type
-	QuestHandler.new_quest(type, self)
-	has_given_quest = true
-
-func _on_trade_started():
-	var node := player.get_node("Interface/Trading")
-	if node is Trading:
-		interaction_dialog.hide()
-		node.open()
-	else:
-		print("couldnt open trading")
+func open_dialog():
+	SignalBus.npc_dialog_opened.emit(self)
 
 func complete_quest(quest: QuestEntry):
-	has_given_quest = false
+	has_uncompleted_quest = false
+	next_quest_id += 1
 	var reward = quest.get_metadata(QuestHandler._key.REWARD)
-	
+
+func _setup_dialog():
+	print("Dialog for %s not setup"%name)
+
+func _setup_quests():
+	pass

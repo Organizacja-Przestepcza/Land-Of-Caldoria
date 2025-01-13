@@ -1,0 +1,108 @@
+[gd_scene load_steps=4 format=3 uid="uid://dn05lh0jai164"]
+
+[ext_resource type="Script" path="res://scenes/ui/dialog_panel.gd" id="1_ehxqg"]
+[ext_resource type="Texture2D" uid="uid://bnsl4aw7k415s" path="res://assets/textures/ui/lc_background_panel.png" id="1_vhe5j"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_xr3xp"]
+texture = ExtResource("1_vhe5j")
+texture_margin_left = 16.0
+texture_margin_top = 16.0
+texture_margin_right = 16.0
+texture_margin_bottom = 16.0
+
+[node name="DialogPanel" type="BoxContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+vertical = true
+script = ExtResource("1_ehxqg")
+
+[node name="DialogText" type="Label" parent="."]
+custom_minimum_size = Vector2(0, 128)
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxTexture_xr3xp")
+text = "Hello"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="InitialOptions" type="BoxContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 0
+vertical = true
+
+[node name="QuestButton" type="Button" parent="InitialOptions"]
+layout_mode = 2
+text = "Do you have something to do?"
+
+[node name="TradeButton" type="Button" parent="InitialOptions"]
+layout_mode = 2
+text = "I'd like to trade some things"
+
+[node name="PersonalQuestionButton" type="Button" parent="InitialOptions"]
+layout_mode = 2
+text = "Tell me more about yourself"
+
+[node name="PlaceQuestionButton" type="Button" parent="InitialOptions"]
+layout_mode = 2
+text = "Tell me more about this place"
+
+[node name="SpecialButton" type="Button" parent="InitialOptions"]
+visible = false
+layout_mode = 2
+
+[node name="GoodbyeButton" type="Button" parent="InitialOptions"]
+layout_mode = 2
+text = "Goodbye"
+
+[node name="DialogOptions" type="BoxContainer" parent="."]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 0
+vertical = true
+
+[node name="PSelfButton" type="Button" parent="DialogOptions"]
+layout_mode = 2
+text = "Who are you?"
+
+[node name="PJobButton" type="Button" parent="DialogOptions"]
+layout_mode = 2
+text = "What do you do here?"
+
+[node name="PPastButon" type="Button" parent="DialogOptions"]
+layout_mode = 2
+text = "Tell me about your past"
+
+[node name="BackButton" type="Button" parent="DialogOptions"]
+layout_mode = 2
+text = "Nevermind"
+
+[node name="QuestOptions" type="BoxContainer" parent="."]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 0
+vertical = true
+
+[node name="AcceptButton" type="Button" parent="QuestOptions"]
+layout_mode = 2
+text = "Accept"
+
+[node name="RejectButton" type="Button" parent="QuestOptions"]
+layout_mode = 2
+text = "Accept"
+
+[connection signal="gui_input" from="DialogText" to="." method="_on_dialog_text_gui_input"]
+[connection signal="pressed" from="InitialOptions/QuestButton" to="." method="_on_quest_button_pressed"]
+[connection signal="pressed" from="InitialOptions/TradeButton" to="." method="_on_trade_button_pressed"]
+[connection signal="pressed" from="InitialOptions/PersonalQuestionButton" to="." method="_on_personal_question_button_pressed"]
+[connection signal="pressed" from="InitialOptions/PlaceQuestionButton" to="." method="_on_place_question_button_pressed"]
+[connection signal="pressed" from="InitialOptions/SpecialButton" to="." method="_on_special_button_pressed"]
+[connection signal="pressed" from="InitialOptions/GoodbyeButton" to="." method="_on_goodbye_button_pressed"]
+[connection signal="pressed" from="DialogOptions/PSelfButton" to="." method="_on_p_self_button_pressed"]
+[connection signal="pressed" from="DialogOptions/PJobButton" to="." method="_on_p_job_button_pressed"]
+[connection signal="pressed" from="DialogOptions/PPastButon" to="." method="_on_p_past_buton_pressed"]
+[connection signal="pressed" from="DialogOptions/BackButton" to="." method="_on_back_button_pressed"]
+[connection signal="pressed" from="QuestOptions/AcceptButton" to="." method="_on_accept_button_pressed"]
+[connection signal="pressed" from="QuestOptions/RejectButton" to="." method="_on_reject_button_pressed"]

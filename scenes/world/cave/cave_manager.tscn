@@ -122,3 +122,6 @@ tile_set = ExtResource("9_nxgtn")
 [node name="WallsLayer" type="TileMapLayer" parent="."]
 y_sort_enabled = true
 tile_set = ExtResource("9_nxgtn")
+
+[node name="Darkness" type="CanvasModulate" parent="."]
+color = Color(0.133333, 0.133333, 0.133333, 1)

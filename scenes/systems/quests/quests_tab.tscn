@@ -1,10 +1,16 @@
-[gd_scene format=3 uid="uid://4fmaeu4rd0m2"]
+[gd_scene load_steps=2 format=3 uid="uid://4fmaeu4rd0m2"]
 
-[node name="Quests" type="VBoxContainer"]
-anchors_preset = -1
-anchor_left = 0.152778
-anchor_right = 0.847222
+[ext_resource type="Script" path="res://scenes/systems/quests/quest_tab.gd" id="1_nm4ko"]
+
+[node name="Quests" type="ScrollContainer"]
+anchors_preset = 15
+anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-metadata/_edit_use_anchors_ = true
+script = ExtResource("1_nm4ko")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3

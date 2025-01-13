@@ -9,6 +9,7 @@ var state: State = State.PLAYING
 @onready var crafting: Crafting = %Crafting
 @onready var ammo_selector: AmmoSelector = $"../Interface/AmmoSelector"
 @onready var furnace: Furnace = $"../Interface/Furnace"
+@onready var dialog_panel: DialogPanel = $"../Interface/DialogPanel"
 
 @onready var console: Console = $"../Interface/Console"
 @onready var pause_menu: PauseMenu = %PauseMenu
@@ -26,7 +27,7 @@ var joypad_selected_slot: InventorySlot:
 		if new_slot: 
 			new_slot.theme_type_variation = &"InventorySlotSelected"
 		joypad_selected_slot = new_slot
-enum State {PLAYING, INVENTORY, CONSOLE}
+enum State {PLAYING, INVENTORY, DIALOG, CONSOLE}
 
 # Adjust sensitivity to control how fast the mouse moves
 var sensitivity: float = 3.5
@@ -77,8 +78,6 @@ func _input(event: InputEvent) -> void:
 						tabs.open(0)
 					elif event.is_action_pressed("LC_crafting_menu"):
 						tabs.open(1)
-					elif event.is_action_pressed("LC_stats"):
-						tabs.open(3)
 					elif event.is_action_pressed("ui_text_backspace"):
 						print($"..".position)
 					elif event.is_action_pressed("LC_switch_ammo"):
@@ -109,7 +108,6 @@ func _input(event: InputEvent) -> void:
 						var item = slot.get_child(0)
 						if item is InventoryItem:
 							player.consume(item,1)
-					
 				elif event.is_action_pressed("LC_crafting_menu"):
 					close_menus()
 				elif event.is_action_pressed("LC_build_menu"):
@@ -120,6 +118,12 @@ func _input(event: InputEvent) -> void:
 					close_menus()
 				elif event.is_action_pressed("ui_cancel"):
 					close_menus()
+					pause_menu.toggle()
+			State.DIALOG:
+				if event.is_action_pressed("LC_inventory"):
+					dialog_panel.hide()
+				elif event.is_action_pressed("ui_cancel"):
+					dialog_panel.hide()
 					pause_menu.toggle()
 				elif event.is_action_pressed("joypad_next_tab"):
 					tabs.select_next_available()

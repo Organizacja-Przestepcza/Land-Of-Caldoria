@@ -6,11 +6,14 @@
 [resource]
 script = ExtResource("1_qwwjp")
 hunger_value = 0
-health_value = 0
+health_value = 40
+is_plantable = false
+atlas_id = -1
 slot = 0
-name = "hp_potion"
+name = "Health Potion"
 weight = 2
 texture = ExtResource("2_urhbr")
 max_stack_size = 1
 description = "amarena"
 value = 11
+is_throwable = false

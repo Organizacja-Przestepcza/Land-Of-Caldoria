@@ -1,4 +1,4 @@
-[gd_resource type="TileSet" load_steps=29 format=3 uid="uid://dgn2sg8mjagkv"]
+[gd_resource type="TileSet" load_steps=31 format=3 uid="uid://dgn2sg8mjagkv"]
 
 [ext_resource type="PackedScene" uid="uid://co4rbbidq8odq" path="res://scenes/object/plant/tree/tree_1.tscn" id="3_mmxfu"]
 [ext_resource type="PackedScene" uid="uid://b0t557dst46s0" path="res://scenes/object/plant/tree/tree_2.tscn" id="4_f3enp"]
@@ -11,17 +11,18 @@
 [ext_resource type="PackedScene" uid="uid://dr35ikyrrpmhi" path="res://scenes/object/furniture/chest/chest.tscn" id="12_76ogm"]
 [ext_resource type="PackedScene" uid="uid://b50ew3ar0cmlr" path="res://scenes/object/furniture/furnace/furnace.tscn" id="13_wxo0e"]
 [ext_resource type="PackedScene" uid="uid://d30y7r8jbuhks" path="res://scenes/object/ore/stone/stone_1.tscn" id="14_y4fr7"]
-[ext_resource type="PackedScene" path="res://scenes/object/furniture/table.tscn" id="15_sgxmx"]
+[ext_resource type="PackedScene" uid="uid://b4nqbf06ipv28" path="res://scenes/object/furniture/table.tscn" id="15_sgxmx"]
 [ext_resource type="PackedScene" uid="uid://bs4i13d63rlmv" path="res://scenes/object/ore/stone/stone_2.tscn" id="15_snk0o"]
 [ext_resource type="Texture2D" uid="uid://cw1qksgtgwkk2" path="res://assets/textures/tilesets/Fences.png" id="16_2kp4c"]
 [ext_resource type="PackedScene" uid="uid://dogxypalihf1n" path="res://scenes/object/ore/stone/stone_3.tscn" id="16_e80n3"]
 [ext_resource type="Texture2D" uid="uid://jedrukyooxy3" path="res://assets/textures/object/plant/carrot/growing_carrot.png" id="16_mokmt"]
-[ext_resource type="PackedScene" path="res://scenes/object/furniture/stand.tscn" id="16_rwbnp"]
-[ext_resource type="PackedScene" path="res://scenes/object/furniture/clock.tscn" id="17_1b6qb"]
+[ext_resource type="PackedScene" uid="uid://3278fl1modwe" path="res://scenes/object/furniture/stand.tscn" id="16_rwbnp"]
+[ext_resource type="PackedScene" uid="uid://c01gkrnojtn4m" path="res://scenes/object/furniture/clock.tscn" id="17_1b6qb"]
+[ext_resource type="Texture2D" uid="uid://dgm5u3x0tkox4" path="res://assets/textures/tilesets/door.png" id="17_to7kc"]
 [ext_resource type="PackedScene" uid="uid://r676xfcfj0hg" path="res://scenes/object/ore/stone/stone_4.tscn" id="17_uay60"]
 [ext_resource type="PackedScene" uid="uid://bf6msv0efjgt4" path="res://scenes/object/ore/stone/stone_5.tscn" id="18_q682w"]
-[ext_resource type="PackedScene" path="res://scenes/object/furniture/bookshelf.tscn" id="18_wlnnh"]
-[ext_resource type="PackedScene" path="res://scenes/object/furniture/anvil.tscn" id="19_ldj8h"]
+[ext_resource type="PackedScene" uid="uid://bklifknlhwuti" path="res://scenes/object/furniture/bookshelf.tscn" id="18_wlnnh"]
+[ext_resource type="PackedScene" uid="uid://cm2xawv1okafk" path="res://scenes/object/furniture/anvil.tscn" id="19_ldj8h"]
 
 [sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_ln6n1"]
 resource_name = "plant"
@@ -463,6 +464,17 @@ texture_region_size = Vector2i(32, 32)
 0:0/0 = 0
 1:0/0 = 0
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_l814u"]
+texture = ExtResource("17_to7kc")
+texture_region_size = Vector2i(32, 64)
+0:0/0 = 0
+0:0/0/texture_origin = Vector2i(0, 16)
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -8, 16, -8, 16, 11, -16, 11)
+3:0/0 = 0
+3:0/0/texture_origin = Vector2i(0, 16)
+3:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -8, -9.6, -8, -9.5, 11, -16, 11)
+3:0/0/physics_layer_0/polygon_1/points = PackedVector2Array(10, -8, 16, -8, 16, 11, 10, 11)
+
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_yhex4"]
 texture = ExtResource("16_2kp4c")
 texture_region_size = Vector2i(32, 32)
@@ -588,6 +600,7 @@ sources/1 = SubResource("TileSetScenesCollectionSource_4d2k2")
 sources/2 = SubResource("TileSetScenesCollectionSource_3jd21")
 sources/7 = SubResource("TileSetAtlasSource_yhex4")
 sources/4 = SubResource("TileSetAtlasSource_27me2")
+sources/5 = SubResource("TileSetAtlasSource_l814u")
 metadata/_better_terrain = {
 "decoration": ["Decoration", Color(0.411765, 0.411765, 0.411765, 1), 3, [], {
 "path": "res://addons/better-terrain/icons/Decoration.svg"

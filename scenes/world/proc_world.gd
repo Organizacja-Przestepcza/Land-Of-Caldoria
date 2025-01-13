@@ -7,14 +7,17 @@ class_name ProcWorld
 @onready var grass_layer: TileMapLayer = $GrassLayer
 @onready var object_layer: TileMapLayer = $ObjectLayer
 @onready var floor_layer: TileMapLayer = $FloorLayer
+@onready var biome_decor_layer: TileMapLayer = $BiomeDecorLayer
 
 @onready var noise_generator: NoiseGenerator = $NoiseGenerator
-@onready var terrain_renderer: ThreadedBetterTerrainGaeaRenderer = $NoiseGenerator/ThreadedBetterTerrainGaeaRenderer
+@onready var terrain_renderer: BetterTerrainGaeaRenderer = $NoiseGenerator/ThreadedBetterTerrainGaeaRenderer
 @onready var player: Player = %Player
 var chunk_loader: ChunkLoader
-var h_noise: FastNoiseLite ## height noise
 var user_seed = WorldData.seed
 var music_player: EventAudio.AudioEmitter2D
+
+var biome_noise := FastNoiseLite.new()
+var biome_salt := 51378
 
 var object_tiles: Dictionary = {}
 var floor_tiles: Dictionary = {}
@@ -30,13 +33,18 @@ func _ready() -> void:
 		user_seed = randi()
 	noise_generator.settings.noise.seed = user_seed
 	WorldData.seed = user_seed
+	# Biomes setup
+	biome_noise.seed = user_seed + biome_salt
+	
+	# Chunkloader creation
 	chunk_loader = ChunkLoader.new()
-	#chunk_loader.unload_chunks = false
+	chunk_loader.unload_chunks = Settings.unload_chunks
 	chunk_loader.loading_radius = Vector2i(1,1)
 	chunk_loader.actor = player
 	chunk_loader.update_rate = 100
 	chunk_loader.generator = noise_generator
 	chunk_loader.connect("chunk_changed", _on_chunk_changed)
+	# Loading data
 	if WorldData.load:
 		player.inventory.load_data()
 		player.global_position = WorldData.load.player_global_position
@@ -78,7 +86,7 @@ func generate_objects(chunk_pos: Vector2i):
 				var tile_pos = Vector2i(x,y)
 				if not object_layer.get_cell_source_id(tile_pos) == -1: # if tile is not empty (aka there is an object there) - skip
 					continue
-				if h_noise_val > 0.1 and y % randi_range(2,5) == x % randi_range(2,5) and randi_range(0,100) < 25:
+				if h_noise_val > 0.1 and y % randi_range(2,5) == x % randi_range(2,5) and randi_range(0,100) < 25 and biome_decor_layer.get_cell_source_id(Vector2i(x,y)) != 4:
 					object_layer.set_cell(tile_pos, 0, Vector2i(0, 0), randi_range(1,7))
 					chunk_d[tile_pos] = {
 						"type": ObjType.NATURAL,
@@ -158,6 +166,7 @@ func generate_village() -> void:
 	# update layers
 	BetterTerrain.update_terrain_cells(object_layer,build.get_used_cells())
 	BetterTerrain.update_terrain_cells(floor_layer,floor.get_used_cells())
+	
 	village.get_node("Objects").clear()
 	village.get_node("Floor").clear()
 	
@@ -220,9 +229,13 @@ func _on_chunk_rendered(chunk_position: Vector2i) -> void:
 	elif object_tiles.has(chunk_position): # if the chunk has objects, but is NOT in loading radius
 		return
 	elif chunk_position != Vector2i(0,0) and chunk_position != Vector2i(1,0): # generate new chunk
+		if chunk_position.abs() > Vector2i(2,2):
+			generate_biomes(chunk_position)
 		generate_objects(chunk_position)
 		generate_mobs_on_chunk(chunk_position)
 		generate_buildings_on_chunk(chunk_position)
+
+		
 
 func _on_chunk_changed(chunk_position: Vector2i): # this function could probably be done better, so it unloads just unloaded chunks
 	for chunk in object_tiles.keys(): 
@@ -286,6 +299,28 @@ func is_only_water(pos: Vector2):
 
 #endregion
 
+#region Biomes
+
+func generate_biomes(chunk_position: Vector2i):
+	var pos = _chunk_to_map(chunk_position)
+	var _cell_arr_snow: Array
+	var _cell_arr_war: Array
+	for x in range(pos.x,pos.x+noise_generator.chunk_size.x):
+		for y in range(pos.y,pos.y+noise_generator.chunk_size.y):
+			if biome_noise.get_noise_2d(x,y) > 0.2 and noise_generator.settings.noise.get_noise_2d(x,y) > 0.02:
+				_cell_arr_snow.append(Vector2i(x,y))
+				BetterTerrain.set_cell(biome_decor_layer,Vector2i(x,y),5)
+			elif biome_noise.get_noise_2d(x,y) < -0.3 and noise_generator.settings.noise.get_noise_2d(x,y) > 0.04:
+				_cell_arr_war.append(Vector2i(x,y))
+				BetterTerrain.set_cell(biome_decor_layer,Vector2i(x,y),6)
+	BetterTerrain.update_terrain_cells(biome_decor_layer,_cell_arr_snow)
+	BetterTerrain.update_terrain_cells(biome_decor_layer,_cell_arr_war)
+#endregion
+
 func update_volume():
 	if music_player:
 		music_player.player.volume_db = Settings.music_volume
+
+
+func _on_chunk_generation_finished(chunk_position: Vector2i) -> void:
+	pass # Replace with function body.

@@ -51,6 +51,8 @@ func load_last_save():
 	var last_save = _saves.back()
 	if last_save is SaveData:
 		load_game(last_save)
+	else:
+		print("No saved games")
 
 func remove_save(name: String) -> Error: # returns true if succesful
 	var name_d: PackedStringArray = name.split(" - ") # 0 worldname, 1 savename, 2 time

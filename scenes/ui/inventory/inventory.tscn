@@ -34,3 +34,9 @@ metadata/_edit_use_anchors_ = true
 [node name="Armor" type="GridContainer" parent="HBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 4
+
+[node name="Backpack" type="GridContainer" parent="HBoxContainer"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 4
+columns = 2
