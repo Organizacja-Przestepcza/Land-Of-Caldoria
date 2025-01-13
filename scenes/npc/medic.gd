@@ -9,7 +9,9 @@ func _ready() -> void:
 		ItemLoader.items["knife"] : 3
 	}
 	inventory = {
-		ItemLoader.name("bandage"): 2
+		ItemLoader.name("bandage"): 2,
+		ItemLoader.name("health potion"): 3,
+		ItemLoader.name("stamina potion"): 3
 	}
 	QuestHandler
 

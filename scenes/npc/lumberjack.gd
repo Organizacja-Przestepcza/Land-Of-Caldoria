@@ -4,10 +4,15 @@ func _ready() -> void:
 	super()
 	health = 100
 	accepted_items = {
-		ItemLoader.items["log"] : 0.5,
-		ItemLoader.items["axe"] : 3,
-		ItemLoader.items["bandage"] : 2,
-		ItemLoader.items["blueberry"] : 0.5
+		ItemLoader.name("log") : 0.5,
+		ItemLoader.name("axe") : 3,
+		ItemLoader.name("bandage") : 2,
+		ItemLoader.name("blueberry") : 0.5
+	}
+	inventory = {
+		ItemLoader.name("log"): 10,
+		ItemLoader.name("plank"): 5,
+		ItemLoader.name("wool"): 20
 	}
 	
 func _setup_dialog():

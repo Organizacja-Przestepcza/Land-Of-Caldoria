@@ -9,6 +9,13 @@ func _ready() -> void:
 		ItemLoader.items["coal"] : 0.5,
 		ItemLoader.items["hammer"] : 0.4
 	}
+	inventory = {
+		ItemLoader.name("machete"): 1,
+		ItemLoader.name("hoe"): 1,
+		ItemLoader.name("shovel"): 1,
+		ItemLoader.name("hammer"): 1,
+		ItemLoader.name("iron ingot"): 8
+	}
 	QuestHandler._setup_blacksmith_quests(self)
 
 func _setup_dialog():
