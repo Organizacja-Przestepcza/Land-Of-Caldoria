@@ -32,6 +32,14 @@ func start_dialog(npc: NPC):
 	game.state = game.State.DIALOG
 	get_tree().paused = true
 	p_npc = npc
+	if npc.name == "Blacksmith":
+		special_button.text = "Can you repair this?"
+		special_button.show()
+	elif npc.name == "Medic":
+		special_button.text = "Heal me please"
+		special_button.show()
+	else:
+		special_button.hide()
 	_goto_main()
 
 func _on_goodbye_button_pressed() -> void:
@@ -75,7 +83,23 @@ func _on_place_question_button_pressed() -> void:
 		dialog_text.text = dialogs.values().pick_random()
 
 func _on_special_button_pressed() -> void:
-	pass # Replace with function body.
+	if p_npc.name == "Blacksmith":
+		var inv_item = WorldData.player.hotbar.get_held_inventory_item()
+		if inv_item is InventoryItem and inv_item.data is Tool and inv_item.durability < inv_item.data.durability:
+			inv_item.repair()
+			dialog_text.text = "There you go, good as new."
+		else:
+			dialog_text.text = "Sorry, I don't think I can repair this."
+	elif p_npc.name == "Medic":
+		if WorldData.player.money.get_count() < 20:
+			dialog_text.text = "You expect me to work for free? I need 20 coins at least"
+		elif WorldData.player.health == WorldData.player.max_health:
+			dialog_text.text = "You look fine, stop complaining"
+		else:
+			WorldData.player.money.remove(20)
+			WorldData.player.health = WorldData.player.max_health
+			WorldData.player.health_bar.update_display()
+			dialog_text.text = "I did what I could, you should feel better"
 
 func _on_accept_button_pressed() -> void:
 	if p_npc.has_uncompleted_quest:

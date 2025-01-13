@@ -210,6 +210,8 @@ func use_item() -> void:
 	elif held_item.data == ItemLoader.name("hoe"):
 		if not farming_manager.till_ground():
 			farming_manager.harvest()
+	elif held_item.data == ItemLoader.name("shears"):
+		print_debug("shears")
 	elif held_item.data == ItemLoader.name("bucket"):
 		farming_manager.fill_bucket()
 	elif held_item.data == ItemLoader.name("water_bucket"):
