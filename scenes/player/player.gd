@@ -27,6 +27,7 @@ enum State {
 @onready var stats: Stats = %Stats
 @onready var notifications: Notifications = %Notifications
 @onready var ammo_selector: AmmoSelector = $Interface/AmmoSelector
+@onready var point_light: PointLight2D = $PointLight2D
 
 var state: State = State.IDLE
 
@@ -71,8 +72,14 @@ func _ready() -> void:
 	if WorldData.is_black:
 		sprite = $BlackAnimatedSprite2D
 	sprite.visible = true
-		
-	QuestHandler.quest_manager.add_quest("Where am i?","Leave this place")
+	
+	SignalBus.selected_item_changed.connect(turn_on_light)
+	
+	QuestHandler.quest_started.emit(QuestHandler.quest_manager.add_quest("Where am i?","Leave this place"))
+
+func turn_on_light(item: Item):
+	point_light.visible = item == ItemLoader.name("lamp")
+	
 
 func update_zoom(zoom):
 	if zoom is Vector2:

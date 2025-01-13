@@ -1,4 +1,4 @@
-[gd_scene load_steps=99 format=3 uid="uid://byb1nycwprtqb"]
+[gd_scene load_steps=100 format=3 uid="uid://byb1nycwprtqb"]
 
 [ext_resource type="Script" path="res://scenes/player/player.gd" id="1_g8p60"]
 [ext_resource type="AudioStream" uid="uid://c7p55ikoqr77h" path="res://assets/sfx/ambient/Steps.mp3" id="2_jle88"]
@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://cxa8kysn21nhw" path="res://assets/textures/player/player_male_front_in_water.png" id="6_w54aa"]
 [ext_resource type="Texture2D" uid="uid://b8blwevskhrus" path="res://assets/textures/player/player_male_side_in_water.png" id="7_q37wy"]
 [ext_resource type="Texture2D" uid="uid://blfeuk8r65xmd" path="res://assets/textures/player/player_male_back_in_water.png" id="8_l5jfu"]
+[ext_resource type="Texture2D" uid="uid://s5ibd65wqaw3" path="res://assets/textures/player/light.png" id="12_81hnl"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_evn8g"]
 atlas = ExtResource("2_tw27j")
@@ -766,3 +767,10 @@ shape = SubResource("RectangleShape2D_6ipx2")
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(0, -23)
 zoom = Vector2(3, 3)
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+visible = false
+blend_mode = 2
+texture = ExtResource("12_81hnl")
+offset = Vector2(0, -14)
+texture_scale = 3.0
