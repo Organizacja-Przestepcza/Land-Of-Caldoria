@@ -13,7 +13,7 @@ func _ready() -> void:
 		ItemLoader.name("health potion"): 3,
 		ItemLoader.name("stamina potion"): 3
 	}
-	QuestHandler
+	QuestHandler._setup_medic_quests(self)
 
 func _setup_dialog():
 	dialogs[Dialog.GREET] = {

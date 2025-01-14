@@ -38,6 +38,7 @@ func _on_line_edit_text_submitted(_new_text: String) -> void:
 			return
 		"camera": camera(args[1])
 		"spawn": spawn(args[1])
+		"quest": quest(args[1], args[2])
 		"render": 
 			var err = render(args[1],args[2])
 			if err:
@@ -65,6 +66,27 @@ func _input(event: InputEvent) -> void:
 						history_index -= 1
 						line_edit.clear()
 
+func quest(command: String, id_str: String):
+	print("Command doesn't work, sorry")
+	return
+	if command.is_empty():
+		print("Available args: complete")
+		return
+	if not id_str.is_valid_int():
+		print("Wrong id format")
+		return
+	var id = id_str.to_int()
+	print("Trying to %s quest with id %d"%[command,id])
+	if not QuestHandler.quest_manager.has_quest(id):
+		print("Quest with this id doesn't exist")
+		return
+	var q_entry = QuestHandler.quest_manager.get_quest(id) as QuestEntry
+	if q_entry.is_active():
+		q_entry.set_completed()
+	else:
+		print("Quest not active")
+	
+
 func teleport(args: PackedStringArray):
 	if args.size() > 0:
 		if not args[0].is_valid_float():
@@ -85,6 +107,10 @@ func give(item_name: String, amount_str: String):
 		amount_str="1"
 	var amount = amount_str.to_int()
 	print(item_name)
+	if item_name == "money" or item_name == "coin":
+		player.money.add(amount)
+		SignalBus.coins_changed.emit(amount)
+		return
 	var item = ItemLoader.name(item_name)
 	if item is Item:
 		inventory.add_item(item,abs(amount))

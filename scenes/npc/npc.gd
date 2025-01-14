@@ -38,11 +38,6 @@ func take_damage(damage: int) -> bool: ## returns true if the npc was killed
 func open_dialog():
 	SignalBus.npc_dialog_opened.emit(self)
 
-func complete_quest(quest: QuestEntry):
-	has_uncompleted_quest = false
-	next_quest_id += 1
-	var reward = quest.get_metadata(QuestHandler._key.REWARD)
-
 func _setup_dialog():
 	print("Dialog for %s not setup"%name)
 

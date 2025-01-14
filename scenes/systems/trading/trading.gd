@@ -61,6 +61,7 @@ func _on_sell_button_pressed() -> void:
 		var selected_item: ItemInList = sell_list.get_item_metadata(selected_items[0])
 		inventory.remove_item(selected_item.data,1)
 		money_counter.add(selected_item.value)
+		SignalBus.coins_changed.emit(selected_item.value)
 		update_sell_list()
 
 func _on_sell_all_button_pressed() -> void:
@@ -69,6 +70,7 @@ func _on_sell_all_button_pressed() -> void:
 		var selected_item: ItemInList = sell_list.get_item_metadata(selected_items[0])
 		inventory.remove_item(selected_item.data,selected_item.amount)
 		money_counter.add(selected_item.value * selected_item.amount)
+		SignalBus.coins_changed.emit(selected_item.value * selected_item.amount)
 		update_sell_list()
 
 func _on_buy_button_pressed() -> void:
@@ -78,6 +80,7 @@ func _on_buy_button_pressed() -> void:
 		if money_counter.get_count() < selected_item.value:
 			return
 		money_counter.remove(selected_item.value)
+		SignalBus.coins_changed.emit(-selected_item.value)
 		curr_npc.inventory[selected_item.data] -= 1
 		inventory.add_item(selected_item.data,1)
 		update_buy_list()
@@ -90,6 +93,7 @@ func _on_buy_all_button_pressed() -> void:
 		if money_counter.get_count() < selected_item.value * selected_item.amount:
 			return
 		money_counter.remove(selected_item.value)
+		SignalBus.coins_changed.emit(-selected_item.value * selected_item.amount)
 		curr_npc.inventory[selected_item.data] -= selected_item.amount
 		inventory.add_item(selected_item.data,selected_item.amount)
 		update_buy_list()

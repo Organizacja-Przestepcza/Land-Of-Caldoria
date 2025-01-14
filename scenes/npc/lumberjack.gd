@@ -14,6 +14,7 @@ func _ready() -> void:
 		ItemLoader.name("plank"): 5,
 		ItemLoader.name("wool"): 20
 	}
+	QuestHandler._setup_lumberjack_quests(self)
 	
 func _setup_dialog():
 	dialogs[Dialog.GREET] = {
