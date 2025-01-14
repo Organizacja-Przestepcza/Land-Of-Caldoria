@@ -55,7 +55,7 @@ func _ready() -> void:
 	$CaveManager.reparent(get_tree().root)
 	get_tree().paused = false
 	generate_village()
-	music_player = EventAudio.play_2d("overworld_ambient",self)
+	music_player = EventAudio.play_2d("overworld_ambient",player)
 	update_volume()
 	
 func _input(event: InputEvent) -> void:

@@ -15,7 +15,7 @@
 [sub_resource type="Resource" id="Resource_5ek53"]
 script = ExtResource("5_gddlr")
 stop_when_source_dies = false
-stationary = true
+stationary = false
 volume_db = -10.0
 min_pitch = 1.0
 max_pitch = 1.0
