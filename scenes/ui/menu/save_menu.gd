@@ -15,8 +15,9 @@ func _ready() -> void:
 
 func display_saves() -> void:
 	saves_list.clear()
-	for save:String in SaveManager.get_save_names():
-		saves_list.add_item(save)
+	for save in SaveManager.get_save_names():
+		if save is String:
+			saves_list.add_item(save)
 
 
 func _on_save_button_pressed() -> void:

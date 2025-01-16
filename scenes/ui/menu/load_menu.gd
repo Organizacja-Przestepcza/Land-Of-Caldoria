@@ -9,8 +9,9 @@ func _ready() -> void:
 	
 func display_saves() -> void:
 	$VBoxContainer/LoadList.clear()
-	for save: String in SaveManager.get_save_names():
-		$VBoxContainer/LoadList.add_item(save)
+	for save in SaveManager.get_save_names():
+		if save is String:
+			$VBoxContainer/LoadList.add_item(save)
 
 func _on_cancel_button_pressed() -> void:
 	load_cancel_pressed.emit()

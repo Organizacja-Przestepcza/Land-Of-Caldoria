@@ -74,4 +74,4 @@ func load_all() -> void:
 		_saves.append(save_data)
 
 func get_save_names():
-	return _saves.map(func(element: SaveData): return element.world_name+" - "+element.save_name+" - "+element.time)
+	return _saves.map(func(element: SaveData): if element: return element.world_name+" - "+element.save_name+" - "+element.time)

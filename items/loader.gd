@@ -13,12 +13,13 @@ func load_all_items(path: String):
 		var file_name = dir.get_next()
 		while file_name != "":
 			if dir.current_is_dir():
-				load_all_items(dir.get_current_dir() +"/"+ file_name + "/")
+				load_all_items(path + file_name + "/")
 			else:
-				if file_name.get_extension() != "tres":
+				if not file_name.get_extension() in ["tres","remap"]:
+					print("not tres ", file_name)
 					file_name = dir.get_next()
 					continue
-				var item = load(path + file_name)
+				var item = load(path + file_name.trim_suffix(".remap"))
 				if item:
 					items[item.name.to_lower().replace(" ", "_")] = item
 			file_name = dir.get_next()
