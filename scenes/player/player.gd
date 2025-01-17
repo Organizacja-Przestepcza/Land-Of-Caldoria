@@ -133,6 +133,8 @@ func _physics_process(_delta):
 	get_input()
 	move_and_slide()
 	play_animation()
+	if game.state != Game.State.PLAYING:
+		velocity = Vector2.ZERO
 
 func hit(value: int):
 	var armor_protection: int = 0
