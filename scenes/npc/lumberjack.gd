@@ -1,8 +1,9 @@
 extends NPC
 
 func _ready() -> void: 
+	base_health = 200
+	health = 200
 	super()
-	health = 100
 	accepted_items = {
 		ItemLoader.name("log") : 0.5,
 		ItemLoader.name("axe") : 3,
