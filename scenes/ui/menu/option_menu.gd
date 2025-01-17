@@ -72,3 +72,7 @@ func _to_linear(volume_db: float) -> float:
 
 func _on_options_container_visibility_changed() -> void:
 	if $OptionsContainer.visible and visible: %BackButton.grab_focus()
+
+
+func _on_notifications_button_toggled(toggled_on: bool) -> void:
+	Settings.item_notifications = toggled_on

@@ -16,11 +16,11 @@ func _on_quest_started(_quest: QuestEntry):
 	add_notification("New quest started")
 	
 func _on_item_added(item: Item, amount: int):
-	if not item:
+	if not item or not Settings.item_notifications:
 		return
 	var msg = "Added" if amount > 0 else "Removed"
 	if absi(amount) > 1:
-		add_notification("%s %d %s" % [msg,amount,item.name])
+		add_notification("%s %d %s" % [msg,absi(amount),item.name])
 	else:
 		add_notification("%s %s" % [msg,item.name])
 
