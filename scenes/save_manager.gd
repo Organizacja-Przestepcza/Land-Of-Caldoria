@@ -20,10 +20,11 @@ func create_save_data() -> SaveData:
 	s.caves = cave_manager.caves.duplicate(true)
 	return s
 
-func save(name:String = "autosave"):
-	if name.is_empty(): name = "autosave"
+func save(s_name:String = "autosave"):
+	if s_name.is_empty(): 
+		s_name = "autosave"
 	var data = create_save_data()
-	data.save_name = name
+	data.save_name = s_name
 	var save_path: String = "%s_%s_%s.tres"%[data.world_name,data.save_name,data.time]
 	var error = ResourceSaver.save(data, SAVE_GAME_DIR + save_path)
 	if error:
@@ -40,8 +41,8 @@ func load_game(load_data: SaveData):
 	get_tree().root.get_node("CaveManager").queue_free()
 	get_tree().change_scene_to_file("res://scenes/world/proc_world.tscn")
 
-func load_game_by_name(name:String):
-	var name_d: PackedStringArray = name.split(" - ") # 0 worldname, 1 savename, 2 time
+func load_game_by_name(s_name:String):
+	var name_d: PackedStringArray = s_name.split(" - ") # 0 worldname, 1 savename, 2 time
 	var load_data_arr = _saves.filter(func(element: SaveData): if element.world_name+element.save_name+element.time == "".join(name_d): return element)
 	#var load_data_arr = ResourceLoader.load(SAVE_GAME_DIR + "_".join(name_d) + ".tres") - backup
 	if load_data_arr.front() is SaveData:
@@ -54,8 +55,8 @@ func load_last_save():
 	else:
 		print("No saved games")
 
-func remove_save(name: String) -> Error: # returns true if succesful
-	var name_d: PackedStringArray = name.split(" - ") # 0 worldname, 1 savename, 2 time
+func remove_save(s_name: String) -> Error: # returns true if succesful
+	var name_d: PackedStringArray = s_name.split(" - ") # 0 worldname, 1 savename, 2 time
 	var err = DirAccess.remove_absolute(SAVE_GAME_DIR + "_".join(name_d) + ".tres")
 	if err:
 		return err

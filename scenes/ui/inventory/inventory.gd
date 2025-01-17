@@ -62,7 +62,6 @@ func wear_backpack():
 
 func open():
 	hotbar.reparent(get_node("HBoxContainer/VBoxContainer"))
-	main.grab_focus()
 	$HBoxContainer/VBoxContainer.move_child(hotbar, 0)
 
 func close():
@@ -201,7 +200,3 @@ func get_item_in_slot(slot: InventorySlot) -> Item:
 	if slot.get_child_count() > 0:
 		return slot.get_child(0).data
 	return
-
-
-func _on_visibility_changed() -> void:
-	if visible:grab_focus()

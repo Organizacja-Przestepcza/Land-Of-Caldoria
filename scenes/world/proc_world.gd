@@ -322,5 +322,5 @@ func update_volume():
 		music_player.player.volume_db = Settings.music_volume
 
 
-func _on_chunk_generation_finished(chunk_position: Vector2i) -> void:
+func _on_chunk_generation_finished(_chunk_position: Vector2i) -> void:
 	pass # Replace with function body.

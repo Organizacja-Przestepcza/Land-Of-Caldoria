@@ -111,7 +111,6 @@ func _on_apply_button_pressed() -> void:
 	for button in get_tree().get_nodes_in_group(&"keybind_buttons"):
 		var action_name = button.get_meta(&"action_name")
 		var key = OS.find_keycode_from_string(button.text)
-		InputEventMouseButton
 		config.set_value("KEYBINDS",action_name,button.text)
 	config.save(OptionMenu.SETTINGS_FILE_PATH)
 

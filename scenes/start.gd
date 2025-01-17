@@ -27,4 +27,5 @@ func _on_exit_button_pressed() -> void:
 
 
 func _on_main_menu_visibility_changed() -> void:
-	if $MainMenu.visible: $MainMenu/NewGameButton.grab_focus()
+	if $MainMenu.visible:
+		$MainMenu/NewGameButton.grab_focus()

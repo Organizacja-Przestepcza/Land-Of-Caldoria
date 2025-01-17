@@ -135,7 +135,7 @@ func _physics_process(_delta):
 	play_animation()
 
 func hit(value: int):
-	var armor_protection: int
+	var armor_protection: int = 0
 	var armor_array = inventory.get_armor()
 	for armor_piece in armor_array:
 		if armor_piece is Armor:

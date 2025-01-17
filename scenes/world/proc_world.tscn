@@ -76,7 +76,7 @@ tile_set = ExtResource("6_wfmau")
 
 [node name="ObjectLayer" type="TileMapLayer" parent="."]
 y_sort_enabled = true
-tile_map_data = PackedByteArray("AAAGAAkABQADAAAAAAATAAgABQADAAAAAAAVAAQABQADAAAAAAATAAoAAgAAAAAABwAYAAEAAgAAAAAABgAHAAYAAgAAAAAABQAHAAcAAgAAAAAAAwA=")
+tile_map_data = PackedByteArray("AAAGAAkABQADAAAAAAATAAgABQADAAAAAAAVAAQABQADAAAAAAATAAoAAgAAAAAABwAYAAEAAgAAAAAABgAHAAYAAgAAAAAABQAHAAcAAgAAAAAAAwAVAAoAAgAAAAAAAgA=")
 tile_set = ExtResource("6_ei8fs")
 
 [node name="BuildManager" type="Node2D" parent="."]
@@ -200,7 +200,6 @@ position = Vector2(715, 63)
 [connection signal="grid_rendered" from="NoiseGenerator/ThreadedBetterTerrainGaeaRenderer" to="." method="_on_threaded_better_terrain_gaea_renderer_grid_rendered"]
 [connection signal="item_selected" from="Player/Hud/Hotbar" to="Player" method="_on_hotbar_item_selected"]
 [connection signal="tab_changed" from="Player/Interface/Tabs" to="Player/Interface/Tabs" method="_on_tab_changed"]
-[connection signal="visibility_changed" from="Player/Interface/Tabs/Inventory" to="Player/Interface/Tabs/Inventory" method="_on_visibility_changed"]
 [connection signal="visibility_changed" from="Player/Interface/Tabs/Crafting" to="Player/Interface/Tabs/Crafting" method="_on_visibility_changed"]
 [connection signal="visibility_changed" from="Player/Interface/Tabs/Building" to="Player/Interface/Tabs/Building" method="_on_visibility_changed"]
 [connection signal="visibility_changed" from="Player/Interface/Tabs/Stats" to="Player/Interface/Tabs/Stats" method="_on_visibility_changed"]

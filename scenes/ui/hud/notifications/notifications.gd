@@ -12,7 +12,7 @@ func _ready() -> void:
 func _on_player_attacked(mob: String, damage: int):
 	add_notification(mob+" hit player: -"+ str(damage) + "hp")
 
-func _on_quest_started(quest: QuestEntry):
+func _on_quest_started(_quest: QuestEntry):
 	add_notification("New quest started")
 	
 func _on_item_added(item: Item, amount: int):

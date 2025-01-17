@@ -54,7 +54,7 @@ func _physics_process(delta: float) -> void:
 func _ready() -> void:
 	SignalBus.player_attacked.connect(_on_player_attacked)
 
-func _on_player_attacked(mob,damage):
+func _on_player_attacked(_mob,_damage):
 	var controller= Input.get_connected_joypads().front()
 	if controller is int:
 		Input.start_joy_vibration(controller,0.1,0.5,0.2)
