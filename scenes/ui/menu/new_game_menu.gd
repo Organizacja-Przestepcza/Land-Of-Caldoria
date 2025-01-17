@@ -25,9 +25,6 @@ func _on_visibility_changed() -> void:
 	if visible: %BackButton.grab_focus()
 
 
-func _on_black_toggled(toggled_on: bool) -> void:
+func _on_check_button_toggled(toggled_on: bool) -> void:
 	WorldData.is_black = toggled_on
-
-
-func _on_white_toggled(toggled_on: bool) -> void:
-	WorldData.is_black = not toggled_on
+	$VBoxContainer/CheckButton.text = "Black" if toggled_on else "White"
