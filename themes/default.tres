@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=38 format=3 uid="uid://ceqm84uqlgmkn"]
+[gd_resource type="Theme" load_steps=39 format=3 uid="uid://ceqm84uqlgmkn"]
 
 [ext_resource type="Texture2D" uid="uid://vsxia1x1lreb" path="res://assets/textures/ui/lc_button_disabled.png" id="1_igv3b"]
 [ext_resource type="Texture2D" uid="uid://dhpfgliapdsrf" path="res://assets/textures/ui/default/Eq tile - glove.png" id="1_um88o"]
@@ -74,6 +74,18 @@ expand_margin_top = 2.0
 expand_margin_right = 2.0
 expand_margin_bottom = 2.0
 
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_yew85"]
+content_margin_left = 10.0
+content_margin_top = 10.0
+content_margin_right = 10.0
+content_margin_bottom = 10.0
+texture = ExtResource("2_j665j")
+texture_margin_left = 20.0
+texture_margin_top = 20.0
+texture_margin_right = 20.0
+texture_margin_bottom = 20.0
+modulate_color = Color(0.866667, 0.866667, 0.866667, 1)
+
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_pqprd"]
 content_margin_left = 10.0
 content_margin_top = 10.0
@@ -86,10 +98,10 @@ texture_margin_right = 20.0
 texture_margin_bottom = 20.0
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_0i586"]
-content_margin_left = 0.0
-content_margin_top = 0.0
-content_margin_right = 0.0
-content_margin_bottom = 0.0
+content_margin_left = 10.0
+content_margin_top = 10.0
+content_margin_right = 10.0
+content_margin_bottom = 10.0
 texture = ExtResource("4_qwdq2")
 texture_margin_left = 22.0
 texture_margin_top = 22.0
@@ -186,6 +198,7 @@ ArmorSlotTorso/styles/panel = SubResource("StyleBoxTexture_sjhyk")
 Button/styles/disabled = SubResource("StyleBoxTexture_rf6iu")
 Button/styles/focus = SubResource("StyleBoxTexture_2qukf")
 Button/styles/hover = SubResource("StyleBoxTexture_3ki08")
+Button/styles/hover_pressed = SubResource("StyleBoxTexture_yew85")
 Button/styles/normal = SubResource("StyleBoxTexture_pqprd")
 Button/styles/pressed = SubResource("StyleBoxTexture_0i586")
 InventorySlot/base_type = &"PanelContainer"
