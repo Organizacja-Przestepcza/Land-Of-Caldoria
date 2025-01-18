@@ -14,7 +14,7 @@ var sprite: AnimatedSprite2D:
 		sprite = new_sprite
 
 func _ready() -> void:
-	world = get_parent()
+	world = get_tree().root.get_node("World")
 	world.chunk_loader.chunk_changed.connect(despawn)
 	player = WorldData.player
 	if has_node("HealthBar"):
@@ -22,6 +22,7 @@ func _ready() -> void:
 		$HealthBar.hide()
 	if has_node("AnimatedSprite2D"):
 		sprite = $AnimatedSprite2D
+
 func despawn(_chunk_position):
 	var dist_to_player = self.global_position.distance_squared_to(player.global_position)
 	if dist_to_player > 3000000:

@@ -3,7 +3,7 @@ extends Enemy
 func _init() -> void:
 	mob_name = "crab"
 	health = 10
-	speed = 100
+	speed = randi_range(90,105)
 	exp = 5
 	strength = 5
 

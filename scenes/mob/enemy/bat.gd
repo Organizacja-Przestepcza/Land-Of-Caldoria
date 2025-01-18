@@ -3,16 +3,18 @@ extends Enemy
 func _init() -> void:
 	mob_name = "bat"
 	health = 10
-	speed = 40
+	speed = randi_range(60,80)
 	strength = 5
 	exp = 5
 
 func _ready() -> void:
-	add_to_group("enemies")
+	super()
+	add_to_group("cave_enemies")
 
-func _physics_process(delta: float) -> void:
-	if chase_player:
-		move_towards_player(player, delta)
+func attack() -> void:
+	player.hit(strength)
+	var damage = strength
+	SignalBus.player_attacked.emit(mob_name,damage)
 
 func _on_detection_area_body_entered(body: Node2D) -> void:
 	chase_player = true

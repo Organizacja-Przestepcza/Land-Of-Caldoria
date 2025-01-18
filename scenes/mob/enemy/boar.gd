@@ -4,7 +4,7 @@ func _init() -> void:
 	mob_name = "boar"
 	dropped_item = ItemLoader.name("raw_steak")
 	health = 30
-	speed = 50
+	speed = randi_range(45,60)
 	exp = 10
 	strength = 10
 	bounce_force = 200
