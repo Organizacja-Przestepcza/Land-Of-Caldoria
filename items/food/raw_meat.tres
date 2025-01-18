@@ -6,7 +6,7 @@
 [resource]
 script = ExtResource("1_0gm16")
 hunger_value = 5
-health_value = 0
+health_value = -5
 is_plantable = false
 atlas_id = -1
 slot = 0

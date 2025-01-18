@@ -5,8 +5,8 @@
 
 [resource]
 script = ExtResource("1_2s8t2")
-hunger_value = 12
-health_value = 0
+hunger_value = 25
+health_value = 10
 is_plantable = false
 atlas_id = -1
 slot = 0
