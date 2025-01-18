@@ -15,4 +15,5 @@ weight = 3
 texture = SubResource("AtlasTexture_kbg8x")
 max_stack_size = 1
 description = "Fresh (maybe?) from the cow"
-value = 15
+value = 28
+is_throwable = false

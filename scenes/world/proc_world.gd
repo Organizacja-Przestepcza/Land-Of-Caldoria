@@ -297,6 +297,16 @@ func is_only_water(pos: Vector2):
 		return false
 	return true
 
+func is_only_sand(pos: Vector2):
+	var cell_pos = grass_layer.local_to_map(pos)
+	if grass_layer.get_cell_source_id(cell_pos) != -1:
+		return false
+	if ground_layer.get_cell_source_id(cell_pos) != -1:
+		return false
+	if sand_layer.get_cell_source_id(cell_pos) == -1:
+		return false
+	return true
+
 #endregion
 
 #region Biomes

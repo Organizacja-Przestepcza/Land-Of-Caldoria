@@ -6,13 +6,15 @@
 [resource]
 script = ExtResource("1_xj6ab")
 damage = 2
-durability = 100
+durability = 65
 knockback = 1
 range = 1.0
+cooldown = 0.0
 slot = 0
 name = "Shovel"
 weight = 3
 texture = ExtResource("2_uki2w")
 max_stack_size = 1
 description = "You can dig with it"
-value = 20
+value = 35
+is_throwable = false

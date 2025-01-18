@@ -19,4 +19,5 @@ weight = 7
 texture = ExtResource("2_qeuak")
 max_stack_size = 1
 description = "takes forever to load"
-value = 30
+value = 90
+is_throwable = false

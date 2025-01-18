@@ -17,6 +17,7 @@ enum State {
 @onready var money: Money = $Interface/Trading.money_counter
 @onready var game: Game = %Game
 
+@onready var world: ProcWorld = $".."
 @onready var build_manager: BuildManager = $"../BuildManager"
 @onready var cave_manager: CaveManager = $"../CaveManager"
 @onready var farming_manager: FarmingManager = $"../FarmingManager"
@@ -206,14 +207,20 @@ func use_item() -> void:
 	if not held_item: 
 		return
 	if held_item.data == ItemLoader.name("hammer"):
-		build_manager.build()
+		if build_manager.build():
+			held_item.decrease_durability(1)
 	elif held_item.data == ItemLoader.name("shovel"):
-		cave_manager.dig()
+		var mouse_pos = get_global_mouse_position()
+		if mouse_pos.distance_to(position) > 100:
+			return
+		if world.is_only_sand(mouse_pos):
+			inventory.add_item(ItemLoader.name("sand"),1)
+			held_item.decrease_durability(1)
+		elif cave_manager.dig():
+			held_item.decrease_durability(1)
 	elif held_item.data == ItemLoader.name("hoe"):
 		if not farming_manager.till_ground():
 			farming_manager.harvest()
-	elif held_item.data == ItemLoader.name("shears"):
-		print_debug("shears")
 	elif held_item.data == ItemLoader.name("bucket"):
 		farming_manager.fill_bucket()
 	elif held_item.data == ItemLoader.name("water_bucket"):
@@ -223,9 +230,8 @@ func use_item() -> void:
 	elif held_item.data  is Ranged:
 		shoot(held_item.data)
 	elif held_item.data  is Tool:
-		var tmp = await attack(held_item.data)
-		
-		if tmp:
+		var is_something_hit = await attack(held_item.data)
+		if is_something_hit:
 			held_item.decrease_durability(1)
 			print(held_item.durability)
 

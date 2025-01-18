@@ -6,7 +6,7 @@
 [resource]
 script = ExtResource("1_qqc8l")
 damage = 5
-durability = 50
+durability = 30
 knockback = 1
 range = 1.0
 cooldown = 0.0
@@ -16,5 +16,5 @@ weight = 5
 texture = ExtResource("2_ubld3")
 max_stack_size = 1
 description = "Chop chop"
-value = 20
+value = 35
 is_throwable = false

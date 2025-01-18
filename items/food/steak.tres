@@ -15,5 +15,5 @@ weight = 1
 texture = ExtResource("2_cpo52")
 max_stack_size = 8
 description = "Restores 6 hunger"
-value = 6
+value = 28
 is_throwable = true

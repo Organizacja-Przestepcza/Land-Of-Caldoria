@@ -6,11 +6,14 @@
 [resource]
 script = ExtResource("1_vdp2h")
 hunger_value = 0
-health_value = 10
+health_value = 20
+is_plantable = false
+atlas_id = -1
 slot = 0
 name = "Bandage"
 weight = 1
 texture = ExtResource("2_kddxw")
 max_stack_size = 8
 description = "Restores 5 health"
-value = 8
+value = 20
+is_throwable = false

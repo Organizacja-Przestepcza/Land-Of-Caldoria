@@ -15,5 +15,5 @@ weight = 1
 texture = ExtResource("2_urw1b")
 max_stack_size = 4
 description = "Restores 10 hunger"
-value = 20
+value = 11
 is_throwable = true

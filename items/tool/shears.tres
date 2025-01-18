@@ -1,12 +1,12 @@
 [gd_resource type="Resource" script_class="Tool" load_steps=3 format=3 uid="uid://b2fkxa77o3yo7"]
 
 [ext_resource type="Script" path="res://items/tool.gd" id="1_u1s12"]
-[ext_resource type="Texture2D" uid="uid://cc6tt0ucmx8r1" path="res://assets/textures/item/tools/shears/shears.png" id="2_dia2i"]
+[ext_resource type="Texture2D" uid="uid://cc6tt0ucmx8r1" path="res://assets/textures/item/tools/shears.png" id="2_dia2i"]
 
 [resource]
 script = ExtResource("1_u1s12")
 damage = 2
-durability = 0
+durability = 80
 knockback = 0
 range = 1.0
 cooldown = 0.5
@@ -16,4 +16,5 @@ weight = 2
 texture = ExtResource("2_dia2i")
 max_stack_size = 1
 description = ""
-value = 5
+value = 28
+is_throwable = false

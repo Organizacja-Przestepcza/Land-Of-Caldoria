@@ -16,4 +16,5 @@ weight = 5
 texture = ExtResource("2_qvw5l")
 max_stack_size = 1
 description = "Sturdy torso protection"
-value = 60
+value = 120
+is_throwable = false

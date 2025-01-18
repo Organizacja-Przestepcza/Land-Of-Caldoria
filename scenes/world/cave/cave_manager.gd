@@ -58,15 +58,13 @@ func is_valid_exit(pos: Vector2):
 	var cell_pos = cave_floor_layer.local_to_map(pos)
 	return cave_floor_layer.get_cell_atlas_coords(cell_pos) == Vector2i(7,2) # this is the exit floor tile
 
-func dig():
+func dig() -> bool:
 	if has_node("Player"):
-		return
+		return false
 	var mouse_pos = get_local_mouse_position()
-	if mouse_pos.distance_to(WorldData.player.global_position) > 100:
-		return
 	var cell_pos = floor_layer.local_to_map(mouse_pos)
 	if ground_layer.get_cell_source_id(cell_pos) and grass_layer.get_cell_source_id(cell_pos):
-		return
+		return false
 	
 	var chunk_d: Dictionary = world.get_chunk_data(cell_pos, 1)
 	if floor_layer.get_cell_source_id(cell_pos) == -1:
@@ -79,6 +77,7 @@ func dig():
 			}
 	elif floor_layer.get_cell_source_id(cell_pos) == 1:
 		floor_layer.erase_cell(cell_pos)
+	return true
 
 func _generate_objects():
 	var objects = {

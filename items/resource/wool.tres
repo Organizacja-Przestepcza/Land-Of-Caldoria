@@ -11,4 +11,5 @@ weight = 1
 texture = ExtResource("2_un2mf")
 max_stack_size = 6
 description = "Very comfortable"
-value = 5
+value = 15
+is_throwable = false

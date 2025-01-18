@@ -19,4 +19,5 @@ weight = 3
 texture = ExtResource("2_yexgl")
 max_stack_size = 1
 description = "Medieval sniper rifle"
-value = 30
+value = 50
+is_throwable = false

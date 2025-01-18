@@ -8,16 +8,16 @@ class_name BuildManager
 
 @onready var layers: Array = [floor_layer,object_layer]
 
-func build():
+func build() -> bool:
 	var mouse_pos = get_local_mouse_position()
 	if mouse_pos.distance_to(WorldData.player.position) > 150:
-		return
+		return false
 	var cell_pos = object_layer.local_to_map(mouse_pos)
 	
 	var recipe = build_menu.get_current_recipe()
 	if not recipe:
 		print("no recipe selected")
-		return
+		return false
 	
 	var layer = object_layer if recipe.layer == BuildRecipe.Layer.Object else floor_layer
 	var tiles = world.object_tiles if recipe.layer == BuildRecipe.Layer.Object else world.floor_tiles
@@ -27,12 +27,12 @@ func build():
 	# aborts if at specified tile there exists an object that is not manmade
 	var type = chunk_d.get(cell_pos, {}).get("type")
 	if type and not type == ProcWorld.ObjType.MANMADE:
-		return
+		return false
 				
 
 	if not build_menu.has_required_ingredients():
 		print("cant build")
-		return
+		return false
 	
 	if recipe.result == -1:
 		if chunk_d.erase(cell_pos):
@@ -57,3 +57,4 @@ func build():
 			"alt_tile": alt_tile
 			}
 		build_menu.use_ingredients()
+	return true

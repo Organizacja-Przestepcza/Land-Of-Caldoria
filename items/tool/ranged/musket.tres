@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Ranged" load_steps=5 format=3 uid="uid://dmiedj0dbxo6f"]
+[gd_resource type="Resource" script_class="Ranged" load_steps=5 format=3 uid="uid://ceykgosfrqila"]
 
 [ext_resource type="Script" path="res://items/item.gd" id="1_3qvc2"]
 [ext_resource type="Script" path="res://items/ranged.gd" id="1_xyv4c"]
@@ -19,5 +19,5 @@ weight = 10
 texture = ExtResource("2_pjkpo")
 max_stack_size = 1
 description = "Not water proof"
-value = 30
+value = 200
 is_throwable = false

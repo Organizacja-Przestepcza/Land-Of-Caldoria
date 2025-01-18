@@ -16,5 +16,5 @@ weight = 1
 texture = ExtResource("2_3n3rq")
 max_stack_size = 1
 description = "Stick"
-value = 20
+value = 10
 is_throwable = true
