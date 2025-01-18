@@ -234,6 +234,8 @@ func interact():
 		for key in nearest_interactable.items.keys():
 			inventory.add_item(key,nearest_interactable.items[key])
 		nearest_interactable.queue_free()
+	elif nearest_interactable is MobSheep and hotbar.get_held_item() == ItemLoader.name("shears"):
+		nearest_interactable.shear()
 	elif nearest_interactable is NPC:
 		nearest_interactable.open_dialog()
 	elif nearest_interactable is FurnaceObj:

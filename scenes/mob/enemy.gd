@@ -5,17 +5,17 @@ var strength: int
 var bounce_force: int = 300
 var chase_player = false:
 	set(state):
-		$AnimatedSprite2D.animation = "walk" if state else "idle"
+		sprite.animation = "walk" if state else "idle"
 		chase_player = state
 		
 
 func _physics_process(delta: float) -> void:
 	if chase_player:
 		move_towards_player(player, delta)
-		if $AnimatedSprite2D.animation == "attack":
-			$AnimatedSprite2D.flip_h= velocity.x > 0
+		if sprite.animation == "attack":
+			sprite.flip_h= velocity.x > 0
 		else:
-			$AnimatedSprite2D.flip_h= velocity.x < 0
+			sprite.flip_h= velocity.x < 0
 
 func move_towards_player(target, delta) -> void:
 	if target == null:
@@ -38,29 +38,29 @@ func attack() -> void:
 	player.hit(strength)
 	var damage = strength
 	SignalBus.player_attacked.emit(mob_name,damage)
-	$AnimatedSprite2D.play("attack")
+	sprite.play("attack")
 	play_attack()
-	$AnimatedSprite2D.animation_looped.connect(func (): $AnimatedSprite2D.animation = "walk" if chase_player else "idle")
+	sprite.animation_looped.connect(func (): sprite.animation = "walk" if chase_player else "idle")
 	
 func bounce_back(collision: KinematicCollision2D) -> void:
 	var bounce_direction = velocity.bounce(collision.get_normal()).normalized()
 	velocity = bounce_direction * bounce_force
 
 func _on_detection_area_body_entered(body: Node2D) -> void:
-	if body is Player and $AnimatedSprite2D.animation != "death":
+	if body is Player and sprite.animation != "death":
 		chase_player = true
 		play_chase()
-		$AnimatedSprite2D.play("walk")
+		sprite.play("walk")
 
 func _on_detection_area_body_exited(body: Node2D) -> void:
-	if body is Player and $AnimatedSprite2D.animation != "death":
+	if body is Player and sprite.animation != "death":
 		chase_player = false
-		$AnimatedSprite2D.play("idle")
+		sprite.play("idle")
 
 func take_damage(damage: int) -> bool: ## returns true if the object was destroyed
 	chase_player = true
 	if health <= 0:
-		if $AnimatedSprite2D.animation != "death":
+		if sprite.animation != "death":
 			queue_free()
 		return false
 	health = health - damage
@@ -73,9 +73,9 @@ func take_damage(damage: int) -> bool: ## returns true if the object was destroy
 func die():
 	chase_player = false
 	SignalBus.enemy_killed.emit(mob_name)
-	$AnimatedSprite2D.play("death")
-	$AnimatedSprite2D.animation_finished.connect(func (): queue_free())
-	
+	sprite.play("death")
+	sprite.animation_finished.connect(func (): queue_free())
+
 func play_chase() -> void:
 	print(mob_name, " chase sound")
 

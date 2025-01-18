@@ -7,7 +7,7 @@ var bounce_force: int = 300
 	
 func take_damage(damage: int) -> bool: ## returns true if the object was destroyed
 	if health <= 0:
-		if $AnimatedSprite2D.animation != "death":
+		if sprite.animation != "death":
 			queue_free()
 		return false
 	health = health - damage
@@ -18,5 +18,5 @@ func take_damage(damage: int) -> bool: ## returns true if the object was destroy
 	return false
 
 func die():
-	$AnimatedSprite2D.play("death")
-	$AnimatedSprite2D.animation_finished.connect(func (): queue_free())
+	sprite.play("death")
+	sprite.animation_finished.connect(func (): queue_free())
