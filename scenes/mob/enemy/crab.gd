@@ -9,12 +9,7 @@ func _init() -> void:
 
 func _ready() -> void:
 	super()
-	$ProgressBar.max_value = health
 	add_to_group("enemies")
-
-func handle_healthbar():
-	$ProgressBar.visible = true
-	$ProgressBar.value = health
 
 func _physics_process(delta: float) -> void:
 	if chase_player:

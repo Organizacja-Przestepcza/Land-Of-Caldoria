@@ -12,12 +12,7 @@ func _init() -> void:
 func _ready() -> void:
 	super()
 	$AnimatedSprite2D.play("idle")
-	$ProgressBar.max_value = health
 	add_to_group("enemies")
 
 func play_chase() -> void:
 	$AudioStreamPlayer.play()
-
-func handle_healthbar():
-	$ProgressBar.visible = true
-	$ProgressBar.value = health

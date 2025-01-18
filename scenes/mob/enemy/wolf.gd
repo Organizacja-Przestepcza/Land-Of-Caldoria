@@ -11,9 +11,4 @@ func _init() -> void:
 func _ready() -> void:
 	super()
 	$AnimatedSprite2D.play("idle")
-	$ProgressBar.max_value = health
 	add_to_group("enemies")
-
-func handle_healthbar():
-	$ProgressBar.visible = true
-	$ProgressBar.value = health

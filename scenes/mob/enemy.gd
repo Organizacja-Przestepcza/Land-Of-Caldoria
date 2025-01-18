@@ -3,8 +3,11 @@ class_name Enemy
 var speed: int
 var strength: int
 var bounce_force: int = 300
-var chase_player = false
-var killed_count: int = 0
+var chase_player = false:
+	set(state):
+		$AnimatedSprite2D.animation = "walk" if state else "idle"
+		chase_player = state
+		
 
 func _physics_process(delta: float) -> void:
 	if chase_player:
@@ -37,7 +40,7 @@ func attack() -> void:
 	SignalBus.player_attacked.emit(mob_name,damage)
 	$AnimatedSprite2D.play("attack")
 	play_attack()
-	$AnimatedSprite2D.animation_looped.connect(func (): $AnimatedSprite2D.play("walk"))
+	$AnimatedSprite2D.animation_looped.connect(func (): $AnimatedSprite2D.animation = "walk" if chase_player else "idle")
 	
 func bounce_back(collision: KinematicCollision2D) -> void:
 	var bounce_direction = velocity.bounce(collision.get_normal()).normalized()
@@ -55,6 +58,7 @@ func _on_detection_area_body_exited(body: Node2D) -> void:
 		$AnimatedSprite2D.play("idle")
 
 func take_damage(damage: int) -> bool: ## returns true if the object was destroyed
+	chase_player = true
 	if health <= 0:
 		if $AnimatedSprite2D.animation != "death":
 			queue_free()
@@ -68,7 +72,6 @@ func take_damage(damage: int) -> bool: ## returns true if the object was destroy
 
 func die():
 	chase_player = false
-	killed_count += 1
 	SignalBus.enemy_killed.emit(mob_name)
 	$AnimatedSprite2D.play("death")
 	$AnimatedSprite2D.animation_finished.connect(func (): queue_free())

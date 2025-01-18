@@ -207,7 +207,7 @@ animations = [{
 radius = 61.2944
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_i5bvi"]
-size = Vector2(31, 28)
+size = Vector2(31, 15)
 
 [node name="Sheep" type="CharacterBody2D"]
 collision_layer = 8
@@ -215,10 +215,12 @@ collision_mask = 3
 script = ExtResource("1_uo4hf")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -12)
 sprite_frames = SubResource("SpriteFrames_fhyei")
 animation = &"idle"
 
 [node name="Area2D" type="Area2D" parent="."]
+position = Vector2(0, -12)
 collision_layer = 4
 collision_mask = 3
 
@@ -226,17 +228,17 @@ collision_mask = 3
 shape = SubResource("CircleShape2D_s1taf")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-0.5, 1)
+position = Vector2(-0.5, -4.5)
 shape = SubResource("RectangleShape2D_i5bvi")
 
-[node name="ProgressBar" type="ProgressBar" parent="."]
-visible = false
+[node name="HealthBar" type="ProgressBar" parent="."]
 self_modulate = Color(0.89, 0.1513, 0.1513, 1)
 offset_left = -12.0
-offset_top = -17.0
+offset_top = -29.0
 offset_right = 108.0
-offset_bottom = -1.0
+offset_bottom = -13.0
 scale = Vector2(0.2, 0.2)
 step = 1.0
 value = 100.0
 show_percentage = false
+metadata/_edit_use_anchors_ = true
