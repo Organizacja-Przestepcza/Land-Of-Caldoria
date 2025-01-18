@@ -61,7 +61,8 @@ func populate_keybinds():
 		button.add_to_group(&"keybind_buttons")
 		button.custom_minimum_size = Vector2i(50,60)
 		button.set_meta(&"action_name",action_name)
-		button.pressed.connect(_on_button_pressed.bind(action_name,button,input))
+		button.set_meta(&"input",input)
+		button.pressed.connect(_on_button_pressed.bind(action_name,button))
 		hbox.add_child(button)
 	# Hbox container
 	var hbox := HBoxContainer.new()
@@ -90,16 +91,18 @@ func set_button_texts():
 		var input: InputEvent = InputMap.action_get_events(action_name).filter(func(action): return action is InputEventKey or action is InputEventMouseButton).front()
 		button.text = input.as_text().get_slice(" (",0)
 
-func _on_button_pressed(action: StringName, button: Button, input: InputEvent) -> void:
-	var temp = button.text
+func _on_button_pressed(action: StringName, button: Button) -> void:
+	var temp := button.text
 	button.text = "..."
 	waiting_for_input = true
+	var input = button.get_meta(&"input")
 	var new_input: InputEvent = await new_input_selected
 	if new_input is InputEventKey and new_input.get_physical_keycode_with_modifiers() == KEY_ESCAPE or new_input is InputEventJoypadButton or new_input is InputEventJoypadMotion:
 		button.text = temp
 		return
 	InputMap.action_erase_event(action,input)
 	InputMap.action_add_event(action,new_input)
+	button.set_meta(&"input",new_input)
 	button.text = new_input.as_text().get_slice(" (",0)
 
 func _on_exit_button_pressed() -> void:
@@ -112,7 +115,8 @@ func _on_apply_button_pressed() -> void:
 		var action_name = button.get_meta(&"action_name")
 		var key = OS.find_keycode_from_string(button.text)
 		config.set_value("KEYBINDS",action_name,button.text)
-	config.save(OptionMenu.SETTINGS_FILE_PATH)
+	if config.save(OptionMenu.SETTINGS_FILE_PATH) == OK:
+		print("Applied actions")
 
 func _on_reset_button_pressed() -> void:
 	InputMap.load_from_project_settings()
