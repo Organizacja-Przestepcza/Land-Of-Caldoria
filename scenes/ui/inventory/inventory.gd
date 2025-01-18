@@ -79,13 +79,13 @@ func find_available_slot(itm: Item) -> InventorySlot:
 						return slot
 	return null
 
-func get_armor():
-	var armor_array: Array
+func get_armor() -> Array[InventoryItem]:
+	var armor_array: Array[InventoryItem]
 	for slot: InventorySlot in armor.get_children():
 		if slot.get_child_count() > 0:
 			var item: InventoryItem = slot.get_child(0)
 			if item.data is Armor:
-				armor_array.push_back(item.data)
+				armor_array.push_back(item)
 	return armor_array
 
 func find_item(itm: Item) -> InventorySlot:

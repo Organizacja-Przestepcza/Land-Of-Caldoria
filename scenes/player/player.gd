@@ -141,12 +141,11 @@ func hit(value: int):
 	var armor_protection: int = 0
 	var armor_array = inventory.get_armor()
 	for armor_piece in armor_array:
-		if armor_piece is Armor:
-			armor_protection += armor_piece.protection
-	print("protection: ", armor_protection)
+		if armor_piece.data is Armor:
+			armor_protection += armor_piece.data.protection
+			armor_piece.decrease_durability(1)
 	var effective_protection = armor_protection * 0.5
 	var damage_to_player = max(1, value - effective_protection)
-	print("hit received, damage: ", damage_to_player)
 	health_bar.modify_health(-damage_to_player)
 
 func effect_from_item(item: Consumable):
