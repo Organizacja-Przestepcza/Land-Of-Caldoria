@@ -14,6 +14,7 @@ func _ready() -> void:
 func load_lists(path: String):
 	var files = DirAccess.get_files_at(path)
 	for file in files:
+		file = file.trim_suffix(".remap")
 		var script: GDScript = load(path+"/"+file)
 		var obj: Resource = script.new()
 		if obj is ListTrade:
