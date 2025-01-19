@@ -6,6 +6,7 @@ var config = ConfigFile.new()
 const SETTINGS_FILE_PATH = "user://settings.cfg"
 @onready var options_container: VBoxContainer = $OptionsContainer
 @onready var keybinds_container: ScrollContainer = $KeybindsContainer
+@onready var joypad_keybinds_container: ScrollContainer = $JoypadKeybindsContainer
 
 func settings_controls_setup():
 	if config.has_section_key("MAIN_MENU_SECTION", "MUSIC_SLIDER_VALUE"):
@@ -62,8 +63,10 @@ func _on_sound_slider_value_changed(value: float) -> void:
 
 func _on_keybinds_button_pressed() -> void:
 	options_container.hide()
-	keybinds_container.show()
-
+	if Input.get_connected_joypads().size() > 0:
+		joypad_keybinds_container.show()
+	else:
+		keybinds_container.show()
 func _to_db(value: float) -> float:
 	return lerp(-80, 0, log(1 + value) / log(101))
 func _to_linear(volume_db: float) -> float:
