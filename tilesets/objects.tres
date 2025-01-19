@@ -1,4 +1,4 @@
-[gd_resource type="TileSet" load_steps=31 format=3 uid="uid://dgn2sg8mjagkv"]
+[gd_resource type="TileSet" load_steps=30 format=3 uid="uid://dgn2sg8mjagkv"]
 
 [ext_resource type="PackedScene" uid="uid://co4rbbidq8odq" path="res://scenes/object/plant/tree/tree_1.tscn" id="3_mmxfu"]
 [ext_resource type="PackedScene" uid="uid://b0t557dst46s0" path="res://scenes/object/plant/tree/tree_2.tscn" id="4_f3enp"]
@@ -18,7 +18,6 @@
 [ext_resource type="Texture2D" uid="uid://jedrukyooxy3" path="res://assets/textures/object/plant/carrot/growing_carrot.png" id="16_mokmt"]
 [ext_resource type="PackedScene" uid="uid://3278fl1modwe" path="res://scenes/object/furniture/stand.tscn" id="16_rwbnp"]
 [ext_resource type="PackedScene" uid="uid://c01gkrnojtn4m" path="res://scenes/object/furniture/clock.tscn" id="17_1b6qb"]
-[ext_resource type="Texture2D" uid="uid://dgm5u3x0tkox4" path="res://assets/textures/tilesets/door.png" id="17_to7kc"]
 [ext_resource type="PackedScene" uid="uid://r676xfcfj0hg" path="res://scenes/object/ore/stone/stone_4.tscn" id="17_uay60"]
 [ext_resource type="PackedScene" uid="uid://bf6msv0efjgt4" path="res://scenes/object/ore/stone/stone_5.tscn" id="18_q682w"]
 [ext_resource type="PackedScene" uid="uid://bklifknlhwuti" path="res://scenes/object/furniture/bookshelf.tscn" id="18_wlnnh"]
@@ -465,7 +464,6 @@ texture_region_size = Vector2i(32, 32)
 1:0/0 = 0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_l814u"]
-texture = ExtResource("17_to7kc")
 texture_region_size = Vector2i(32, 64)
 0:0/0 = 0
 0:0/0/texture_origin = Vector2i(0, 16)
