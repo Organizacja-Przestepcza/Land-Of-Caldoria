@@ -119,16 +119,16 @@ func _input(event: InputEvent) -> void:
 				elif event.is_action_pressed("ui_cancel"):
 					close_menus()
 					pause_menu.toggle()
+				elif event.is_action_pressed("joypad_next_tab"):
+					tabs.select_next_available()
+				elif event.is_action_pressed("joypad_previous_tab"):
+					tabs.select_previous_available()
 			State.DIALOG:
 				if event.is_action_pressed("LC_inventory"):
 					dialog_panel.hide()
 				elif event.is_action_pressed("ui_cancel"):
 					dialog_panel.hide()
 					pause_menu.toggle()
-				elif event.is_action_pressed("joypad_next_tab"):
-					tabs.select_next_available()
-				elif event.is_action_pressed("joypad_previous_tab"):
-					tabs.select_previous_available()
 			State.CONSOLE:
 				if event is InputEventKey and event.pressed and event.physical_keycode == KEY_QUOTELEFT:
 					console.close()

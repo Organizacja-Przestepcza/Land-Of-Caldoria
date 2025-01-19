@@ -65,7 +65,7 @@ func _on_quest_button_pressed() -> void:
 	
 	initial_options.hide()
 	quest_options.show()
-	
+	reject_button.grab_focus()
 func _on_trade_button_pressed() -> void:
 	hide()
 	get_tree().paused = true
@@ -74,7 +74,7 @@ func _on_trade_button_pressed() -> void:
 
 func _on_personal_question_button_pressed() -> void:
 	_goto_personal()
-
+	
 func _on_place_question_button_pressed() -> void:
 	dialog_text.text = "I don't know much about this place"
 	
@@ -100,7 +100,7 @@ func _on_special_button_pressed() -> void:
 			WorldData.player.health = WorldData.player.max_health
 			WorldData.player.health_bar.update_display()
 			dialog_text.text = "I did what I could, you should feel better"
-
+	
 func _on_accept_button_pressed() -> void:
 	if p_npc.has_uncompleted_quest:
 		if p_npc.next_quest_id < p_npc.quests.size():
@@ -126,19 +126,19 @@ func _goto_main():
 	initial_options.show()
 	quest_options.hide()
 	dialog_options.hide()
-	goodbye_button.grab_focus()
 	
 	dialog_text.text = "Hello"
 	var dialogs = p_npc.dialogs.get(NPC.Dialog.GREET, {})
 	if  not dialogs.is_empty():
 		dialog_text.text = dialogs.values().pick_random()
-
+	await get_tree().create_timer(0.5).timeout	
+	goodbye_button.grab_focus()
 func _goto_personal():
 	initial_options.hide()
 	quest_options.hide()
 	dialog_options.show()
 	dialog_text.text = "What do you want to know?"
-
+	$DialogOptions/BackButton.grab_focus()
 func _on_back_button_pressed() -> void:
 	_goto_main()
 
