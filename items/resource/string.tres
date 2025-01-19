@@ -11,4 +11,5 @@ weight = 1
 texture = ExtResource("2_yqkpf")
 max_stack_size = 16
 description = "Tie your shoes"
-value = 5
+value = 10
+is_throwable = false

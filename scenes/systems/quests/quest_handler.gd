@@ -298,5 +298,5 @@ func _setup_medic_quests(medic: NPC):
 	quest.quest_activated.connect(_on_quest_activated)
 	medic.quests.append(quest)
 
-func _end_quest_completed(quest: QuestEntry):
+func _end_quest_completed(_quest: QuestEntry):
 	get_tree().change_scene_to_file("res://scenes/ui/menu/end_screen.tscn")

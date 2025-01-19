@@ -5,7 +5,7 @@
 
 [resource]
 script = ExtResource("1_ue4oy")
-damage = 3
+damage = 7
 durability = 100
 knockback = 1
 range = 1.0
@@ -16,5 +16,5 @@ weight = 1
 texture = ExtResource("2_aifkk")
 max_stack_size = 1
 description = "Cut onions. NOT YOUR FINGERS!"
-value = 32
+value = 40
 is_throwable = true

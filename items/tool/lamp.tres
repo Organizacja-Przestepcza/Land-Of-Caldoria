@@ -11,4 +11,5 @@ weight = 3
 texture = ExtResource("2_xwlfc")
 max_stack_size = 1
 description = "Bright"
-value = 0
+value = 175
+is_throwable = false

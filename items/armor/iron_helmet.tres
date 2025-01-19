@@ -5,7 +5,7 @@
 
 [resource]
 script = ExtResource("1_5tsmu")
-durability = 100
+durability = 80
 protection = 6
 bonuses = {}
 slot = 1
@@ -14,4 +14,5 @@ weight = 1
 texture = ExtResource("2_pfei1")
 max_stack_size = 1
 description = "Sturdy head protection"
-value = 36
+value = 72
+is_throwable = false

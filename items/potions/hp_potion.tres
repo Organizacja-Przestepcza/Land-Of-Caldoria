@@ -15,5 +15,5 @@ weight = 2
 texture = ExtResource("2_urhbr")
 max_stack_size = 1
 description = "amarena"
-value = 11
+value = 50
 is_throwable = false

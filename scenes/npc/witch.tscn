@@ -37,3 +37,14 @@ animation = &"idle"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -2)
 shape = SubResource("RectangleShape2D_ou48k")
+
+[node name="HealthBar" type="ProgressBar" parent="."]
+self_modulate = Color(0.89, 0.1513, 0.1513, 1)
+offset_left = -21.0
+offset_top = -51.0
+offset_right = 189.0
+offset_bottom = -35.0
+scale = Vector2(0.2, 0.2)
+step = 1.0
+value = 100.0
+show_percentage = false

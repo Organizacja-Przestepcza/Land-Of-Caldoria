@@ -5,7 +5,7 @@
 
 [resource]
 script = ExtResource("1_bpthe")
-durability = 0
+durability = 75
 protection = 8
 bonuses = {
 "agility": -1
@@ -16,4 +16,5 @@ weight = 3
 texture = ExtResource("2_avy0a")
 max_stack_size = 1
 description = "Sturdy legs protection"
-value = 48
+value = 96
+is_throwable = false

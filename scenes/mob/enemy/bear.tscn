@@ -186,8 +186,7 @@ shape = SubResource("CircleShape2D_b105i")
 position = Vector2(-3.75, -12)
 shape = SubResource("RectangleShape2D_4y5yq")
 
-[node name="ProgressBar" type="ProgressBar" parent="."]
-visible = false
+[node name="HealthBar" type="ProgressBar" parent="."]
 self_modulate = Color(0.89, 0.1513, 0.1513, 1)
 offset_left = -24.0
 offset_top = -37.0

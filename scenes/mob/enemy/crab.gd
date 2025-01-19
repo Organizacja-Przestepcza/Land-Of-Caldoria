@@ -3,18 +3,13 @@ extends Enemy
 func _init() -> void:
 	mob_name = "crab"
 	health = 10
-	speed = 100
+	speed = randi_range(90,105)
 	exp = 5
 	strength = 5
 
 func _ready() -> void:
 	super()
-	$ProgressBar.max_value = health
 	add_to_group("enemies")
-
-func handle_healthbar():
-	$ProgressBar.visible = true
-	$ProgressBar.value = health
 
 func _physics_process(delta: float) -> void:
 	if chase_player:

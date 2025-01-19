@@ -15,5 +15,5 @@ weight = 2
 texture = ExtResource("2_u4k36")
 max_stack_size = 1
 description = "water in bootle"
-value = 11
+value = 45
 is_throwable = false

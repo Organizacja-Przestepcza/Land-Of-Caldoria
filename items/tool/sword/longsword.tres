@@ -5,14 +5,16 @@
 
 [resource]
 script = ExtResource("1_esove")
-damage = 7
+damage = 8
 durability = 100
 knockback = 1
 range = 1.0
+cooldown = 0.0
 slot = 0
 name = "Longsword"
 weight = 5
 texture = ExtResource("2_nak7j")
 max_stack_size = 1
 description = "Shiny"
-value = 30
+value = 40
+is_throwable = false

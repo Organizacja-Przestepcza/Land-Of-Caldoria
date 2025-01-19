@@ -5,7 +5,7 @@
 
 [resource]
 script = ExtResource("1_775ac")
-durability = 0
+durability = 110
 protection = 4
 bonuses = {}
 slot = 5
@@ -14,4 +14,5 @@ weight = 2
 texture = ExtResource("2_vfd2v")
 max_stack_size = 1
 description = "Sturdy feet protection"
-value = 24
+value = 48
+is_throwable = false

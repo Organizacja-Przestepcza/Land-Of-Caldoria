@@ -16,3 +16,4 @@ texture = SubResource("AtlasTexture_g65o6")
 max_stack_size = 1
 description = "Full of water"
 value = 10
+is_throwable = false

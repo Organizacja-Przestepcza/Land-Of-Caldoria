@@ -6,7 +6,7 @@
 [resource]
 script = ExtResource("1_mgiti")
 hunger_value = 10
-health_value = 0
+health_value = -10
 is_plantable = false
 atlas_id = -1
 slot = 0
@@ -15,5 +15,5 @@ weight = 1
 texture = ExtResource("2_urw1b")
 max_stack_size = 4
 description = "Restores 10 hunger"
-value = 20
+value = 11
 is_throwable = true

@@ -15,6 +15,10 @@ func update_build_list():
 	build_list.clear()
 	for recipe: BuildRecipe in ListLoader.build_recipes.values():
 		build_list.add_item(recipe.name)
+		var tooltip: String = "Required materials:\n"
+		for item: Item in recipe.items:
+			tooltip += item.name + " " + str(recipe.items.get(item, 0)) + "\n"
+		build_list.set_item_tooltip(build_list.item_count-1,tooltip)
 		build_list.set_item_metadata(build_list.item_count-1,recipe)
 
 func _on_exit_button_pressed() -> void:

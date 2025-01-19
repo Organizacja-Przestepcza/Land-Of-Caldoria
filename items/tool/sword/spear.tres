@@ -16,5 +16,5 @@ weight = 4
 texture = ExtResource("2_fh2s2")
 max_stack_size = 1
 description = "DIY"
-value = 30
+value = 35
 is_throwable = true

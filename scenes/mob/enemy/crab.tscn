@@ -97,7 +97,7 @@ shape = SubResource("RectangleShape2D_oix7d")
 stream = ExtResource("10_8jrhm")
 volume_db = -15.0
 
-[node name="ProgressBar" type="ProgressBar" parent="."]
+[node name="HealthBar" type="ProgressBar" parent="."]
 visible = false
 self_modulate = Color(0.89, 0.1513, 0.1513, 1)
 offset_left = -10.0

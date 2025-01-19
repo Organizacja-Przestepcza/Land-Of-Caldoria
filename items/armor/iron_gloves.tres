@@ -5,7 +5,7 @@
 
 [resource]
 script = ExtResource("1_oyn0q")
-durability = 0
+durability = 70
 protection = 2
 bonuses = {
 "agility": -1
@@ -16,4 +16,5 @@ weight = 1
 texture = ExtResource("2_bvg8b")
 max_stack_size = 1
 description = "Sturdy hand protection"
-value = 15
+value = 30
+is_throwable = false

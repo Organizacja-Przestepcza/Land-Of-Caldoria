@@ -1,24 +1,84 @@
-[gd_scene load_steps=8 format=3 uid="uid://cqatk1gs1ledq"]
+[gd_scene load_steps=16 format=3 uid="uid://cqatk1gs1ledq"]
 
-[ext_resource type="Script" path="res://scenes/mob/enemy/wolf.gd" id="1_fyyvd"]
-[ext_resource type="Texture2D" uid="uid://ujtimm1fmdv5" path="res://assets/textures/mob/bat/bat.png" id="2_ysr7f"]
+[ext_resource type="Script" path="res://scenes/mob/enemy/bat.gd" id="1_mxos8"]
+[ext_resource type="Texture2D" uid="uid://cor6ee8lht0h7" path="res://assets/textures/mob/bat/bat_death.png" id="2_0l7lm"]
+[ext_resource type="Texture2D" uid="uid://crnblqjv1ddxj" path="res://assets/textures/mob/bat/bat_idle.png" id="3_grgch"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_cpci2"]
-atlas = ExtResource("2_ysr7f")
+[sub_resource type="AtlasTexture" id="AtlasTexture_sscbj"]
+atlas = ExtResource("2_0l7lm")
 region = Rect2(0, 0, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_mje0m"]
-atlas = ExtResource("2_ysr7f")
+[sub_resource type="AtlasTexture" id="AtlasTexture_1xrqe"]
+atlas = ExtResource("2_0l7lm")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cnbnc"]
+atlas = ExtResource("2_0l7lm")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_amybu"]
+atlas = ExtResource("2_0l7lm")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_od61e"]
+atlas = ExtResource("2_0l7lm")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lfvrv"]
+atlas = ExtResource("3_grgch")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gk3ol"]
+atlas = ExtResource("3_grgch")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dajvq"]
+atlas = ExtResource("3_grgch")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pruig"]
+atlas = ExtResource("3_grgch")
 region = Rect2(32, 0, 32, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_bt3m1"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_cpci2")
+"texture": SubResource("AtlasTexture_sscbj")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_mje0m")
+"texture": SubResource("AtlasTexture_1xrqe")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cnbnc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_amybu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_od61e")
+}],
+"loop": false,
+"name": &"death",
+"speed": 6.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lfvrv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gk3ol")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dajvq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pruig")
 }],
 "loop": true,
 "name": &"walk",
@@ -29,30 +89,29 @@ animations = [{
 radius = 141.089
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_oix7d"]
-size = Vector2(25, 15.5)
+size = Vector2(12, 12)
 
 [node name="Bat" type="CharacterBody2D"]
 collision_layer = 8
 collision_mask = 3
-script = ExtResource("1_fyyvd")
+script = ExtResource("1_mxos8")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(6, -10)
+position = Vector2(-5, -14)
 sprite_frames = SubResource("SpriteFrames_bt3m1")
 animation = &"walk"
 
 [node name="DetectionArea" type="Area2D" parent="."]
+position = Vector2(-8, -4)
 collision_layer = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea"]
+position = Vector2(8, -6)
 shape = SubResource("CircleShape2D_efjds")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -6.25)
+position = Vector2(0, -6)
 shape = SubResource("RectangleShape2D_oix7d")
 
-[connection signal="area_entered" from="DetectionArea" to="." method="_on_detection_area_area_entered"]
-[connection signal="area_entered" from="DetectionArea" to="." method="_on_area_2d_area_entered"]
-[connection signal="area_exited" from="DetectionArea" to="." method="_on_detection_area_area_exited"]
 [connection signal="body_entered" from="DetectionArea" to="." method="_on_detection_area_body_entered"]
 [connection signal="body_exited" from="DetectionArea" to="." method="_on_detection_area_body_exited"]

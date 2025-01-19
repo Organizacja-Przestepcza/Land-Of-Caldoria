@@ -5,7 +5,7 @@
 
 [resource]
 script = ExtResource("1_fdf1i")
-damage = 6
+damage = 7
 durability = 100
 knockback = 1
 range = 1.0

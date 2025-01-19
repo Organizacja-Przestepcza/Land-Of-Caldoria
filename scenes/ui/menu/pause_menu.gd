@@ -49,4 +49,5 @@ func _on_load_button_pressed() -> void:
 
 
 func _on_texture_rect_visibility_changed() -> void:
-	if $TextureRect.visible==true:$TextureRect/VBoxContainer/ContinueButton.grab_focus()
+	if is_inside_tree() and $TextureRect.visible==true:
+		$TextureRect/VBoxContainer/ContinueButton.grab_focus()

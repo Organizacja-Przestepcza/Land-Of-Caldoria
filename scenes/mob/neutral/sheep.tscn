@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://cjtvqnkmxqxwa"]
+[gd_scene load_steps=45 format=3 uid="uid://cjtvqnkmxqxwa"]
 
 [ext_resource type="Script" path="res://scenes/mob/neutral/sheep.gd" id="1_uo4hf"]
 [ext_resource type="Texture2D" uid="uid://wq08hq6k1mhn" path="res://assets/textures/mob/sheep/sheep_idle.png" id="1_vdaef"]
@@ -6,6 +6,9 @@
 [ext_resource type="Texture2D" uid="uid://cacrjpf0f62xx" path="res://assets/textures/mob/sheep/sheep_walk_front.png" id="2_c2n6k"]
 [ext_resource type="Texture2D" uid="uid://dpmdvuvn0fgp0" path="res://assets/textures/mob/sheep/sheep_walk.png" id="3_08hbb"]
 [ext_resource type="Texture2D" uid="uid://e2begacvp4fg" path="res://assets/textures/mob/sheep/sheep_walk_back.png" id="4_vs6wf"]
+[ext_resource type="Texture2D" uid="uid://c75ynpl4vvot1" path="res://assets/textures/mob/sheep/shaved_sheep_death.png" id="5_brxna"]
+[ext_resource type="Texture2D" uid="uid://d2xvpef8weafu" path="res://assets/textures/mob/sheep/shaved_sheep_idle.png" id="6_ssjkq"]
+[ext_resource type="PackedScene" uid="uid://fdx8ye7rulig" path="res://scenes/interactable_area.tscn" id="7_ksdj0"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jkswb"]
 atlas = ExtResource("2_5f3pe")
@@ -203,11 +206,82 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_s1taf"]
-radius = 61.2944
+[sub_resource type="AtlasTexture" id="AtlasTexture_c6ehd"]
+atlas = ExtResource("5_brxna")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gn4uu"]
+atlas = ExtResource("5_brxna")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_in7mv"]
+atlas = ExtResource("5_brxna")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gdjio"]
+atlas = ExtResource("5_brxna")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tkgt1"]
+atlas = ExtResource("5_brxna")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cjtin"]
+atlas = ExtResource("5_brxna")
+region = Rect2(192, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w43mm"]
+atlas = ExtResource("6_ssjkq")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yfeqm"]
+atlas = ExtResource("6_ssjkq")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_kg3lp"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c6ehd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gn4uu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_in7mv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gdjio")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tkgt1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cjtin")
+}],
+"loop": true,
+"name": &"death",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w43mm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yfeqm")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 2.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"walk",
+"speed": 4.0
+}]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_i5bvi"]
-size = Vector2(31, 28)
+size = Vector2(31, 15)
 
 [node name="Sheep" type="CharacterBody2D"]
 collision_layer = 8
@@ -215,28 +289,30 @@ collision_mask = 3
 script = ExtResource("1_uo4hf")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -12)
 sprite_frames = SubResource("SpriteFrames_fhyei")
 animation = &"idle"
 
-[node name="Area2D" type="Area2D" parent="."]
-collision_layer = 4
-collision_mask = 3
+[node name="ShearedAnimatedSprite" type="AnimatedSprite2D" parent="."]
+visible = false
+position = Vector2(0, -12)
+sprite_frames = SubResource("SpriteFrames_kg3lp")
+animation = &"idle"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-shape = SubResource("CircleShape2D_s1taf")
+[node name="InteractableArea" parent="." instance=ExtResource("7_ksdj0")]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-0.5, 1)
+position = Vector2(-0.5, -4.5)
 shape = SubResource("RectangleShape2D_i5bvi")
 
-[node name="ProgressBar" type="ProgressBar" parent="."]
-visible = false
+[node name="HealthBar" type="ProgressBar" parent="."]
 self_modulate = Color(0.89, 0.1513, 0.1513, 1)
 offset_left = -12.0
-offset_top = -17.0
+offset_top = -29.0
 offset_right = 108.0
-offset_bottom = -1.0
+offset_bottom = -13.0
 scale = Vector2(0.2, 0.2)
 step = 1.0
 value = 100.0
 show_percentage = false
+metadata/_edit_use_anchors_ = true

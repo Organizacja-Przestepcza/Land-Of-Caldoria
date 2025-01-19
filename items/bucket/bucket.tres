@@ -16,3 +16,4 @@ texture = SubResource("AtlasTexture_niean")
 max_stack_size = 1
 description = "Can hold liquids"
 value = 6
+is_throwable = false

@@ -6,7 +6,7 @@
 [resource]
 script = ExtResource("1_irrfa")
 damage = 2
-durability = -1
+durability = 200
 knockback = 1
 range = 1.0
 cooldown = 0.0
@@ -16,5 +16,5 @@ weight = 3
 texture = ExtResource("2_g51ba")
 max_stack_size = 1
 description = "You can build with it"
-value = 20
+value = 40
 is_throwable = false

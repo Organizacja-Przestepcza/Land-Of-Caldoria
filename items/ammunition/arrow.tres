@@ -11,5 +11,5 @@ weight = 1
 texture = ExtResource("2_34jhh")
 max_stack_size = 32
 description = "Shoot'em all"
-value = 5
+value = 8
 is_throwable = false

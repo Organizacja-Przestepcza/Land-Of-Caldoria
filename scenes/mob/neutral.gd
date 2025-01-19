@@ -3,10 +3,13 @@ class_name Neutral
 
 var speed: int
 var bounce_force: int = 300
-signal neutral_killed
 
 	
 func take_damage(damage: int) -> bool: ## returns true if the object was destroyed
+	if health <= 0:
+		if sprite.animation != "death":
+			queue_free()
+		return false
 	health = health - damage
 	handle_healthbar()
 	if health <= 0:
@@ -15,6 +18,5 @@ func take_damage(damage: int) -> bool: ## returns true if the object was destroy
 	return false
 
 func die():
-	neutral_killed.emit(mob_name)
-	$AnimatedSprite2D.play("death")
-	$AnimatedSprite2D.animation_finished.connect(func (): queue_free())
+	sprite.play("death")
+	sprite.animation_finished.connect(func (): queue_free())
