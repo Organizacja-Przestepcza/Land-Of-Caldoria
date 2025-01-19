@@ -132,9 +132,9 @@ const building_types = {
 	"ruins2": preload("res://scenes/meadow_ruins2.tscn")
 }
 
-func is_valid_building_position(pos: Vector2i) -> bool:
-	for other_pos in active_buildings:
-		if (pos.distance_squared_to(other_pos) < 100):
+func is_valid_building_position(chunk_pos: Vector2i) -> bool:
+	for other_chunk_pos in active_buildings:
+		if (chunk_pos.distance_squared_to(other_chunk_pos) < 100):
 			return false
 	return true
 	
@@ -173,19 +173,17 @@ func generate_village() -> void:
 func chance_spawn_building(chunk_pos: Vector2i) -> void:
 	var tile_pos = _chunk_to_map(chunk_pos)
 	var h_noise_val = noise_generator.settings.noise.get_noise_2d(tile_pos.x,tile_pos.y)
-	if h_noise_val > -0.05 and object_layer.get_cell_source_id(tile_pos) == -1:
-		if randi_range(0, 10000) <= 10 and is_valid_building_position(chunk_pos):
-			var building_name = choose_random_building()
-			var building_scene = building_types[building_name]
-			if building_scene:
-				var building = building_scene.instantiate()
-				building.z_index = -1;
-				building.position = _chunk_to_global(chunk_pos)
-				var tiles = _chunk_positions_to_tile_positions([chunk_pos])
-				BetterTerrain.set_cells(floor_layer,tiles,0)
-				BetterTerrain.update_terrain_cells(floor_layer,tiles)
-				add_child(building)
-				active_buildings.append(chunk_pos)
+	if h_noise_val > -0.03 and randi_range(0, 100) <= 20 and is_valid_building_position(chunk_pos):
+		var building_name = choose_random_building()
+		var building_scene = building_types[building_name]
+		if building_scene:
+			print("Spawning at ",chunk_pos)
+			unload_objects(chunk_pos)
+			var building = building_scene.instantiate()
+			building.z_index = -1;
+			building.position = _chunk_to_global(chunk_pos)
+			add_child(building)
+			active_buildings.append(chunk_pos)
 				
 func generate_buildings_on_chunk(chunk_pos: Vector2i):
 	if chunk_pos.x < 3 and chunk_pos.y < 3:

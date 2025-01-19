@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=3 uid="uid://bsq4ne6a8pqrp"]
+
+[ext_resource type="Texture2D" uid="uid://bb3uiqw7lb847" path="res://assets/textures/object/furniture/chest/chest.png" id="1_68mlv"]
+[ext_resource type="Script" path="res://scenes/object/loot_chest.gd" id="1_dgmdb"]
+[ext_resource type="PackedScene" uid="uid://fdx8ye7rulig" path="res://scenes/interactable_area.tscn" id="2_jli1s"]
+
+[node name="LootChest" type="Node2D"]
+script = ExtResource("1_dgmdb")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -10)
+texture = ExtResource("1_68mlv")
+
+[node name="InteractableArea" parent="." instance=ExtResource("2_jli1s")]
+position = Vector2(0, -10)

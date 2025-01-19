@@ -26,6 +26,10 @@ func load_all_items(path: String):
 	else:
 		printerr("Error: Couldn't open " + path)
 
+func random_item() -> Item:
+	var item = items.values().pick_random() as Item
+	return item
+
 func name(n: String) -> Item:
 	n = n.to_lower().replace(" ", "_")
 	if n in items.keys():
