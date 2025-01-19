@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=4 uid="uid://dpb2tdwnl1one"]
+[gd_scene load_steps=4 format=4 uid="uid://dpb2tdwnl1one"]
 
 [ext_resource type="TileSet" uid="uid://d0pha3g0yk4g8" path="res://tilesets/main.tres" id="1_7t2cm"]
 [ext_resource type="TileSet" uid="uid://dpqylfwibmxl2" path="res://tilesets/ruins.tres" id="2_jvlqo"]
+[ext_resource type="PackedScene" uid="uid://bsq4ne6a8pqrp" path="res://scenes/object/loot_chest.tscn" id="3_2fvjo"]
 
 [node name="MeadowRuins2" type="Node2D"]
 
@@ -21,3 +22,9 @@ z_index = 1
 position = Vector2(254, 157)
 tile_map_data = PackedByteArray("AAD+/wEAAQAAAAMAAAD7//7/AQAAAAAAAAADAP//AQADAAAAAAD5/wYAAQADAAAAAAD5/wMAAQAAAAAAAAD6/wMAAQAAAAAAAFD6/wQAAQAAAAAAADAEAAQAAQAAAAAAAGAAAAgAAQADAAIAAAABAAgAAQADAAIAAAACAAkAAQADAAIAAAAAAAoAAQADAAIAAAD+/wgAAQAAAAAAAAD+/woAAQAAAAAAAAD6/woAAQAAAAAAAGACAP3/AQAAAAAAAGADAPz/AQAAAAAAAAAAAAUAAQADAAIAAAD+/wMAAQADAAIAAAAFAAcAAQAAAAMAAAD8//3/AQAAAAAAAAD6////AQAAAAAAAAD9//3/AQAAAAAAAFACAAIAAQAAAAAAAGACAAEAAQAAAAAAAAAFAAEAAQADAAIAAAAFAP//AQADAAIAAAA=")
 tile_set = ExtResource("2_jvlqo")
+
+[node name="LootChest" parent="." instance=ExtResource("3_2fvjo")]
+position = Vector2(244, 410)
+
+[node name="LootChest2" parent="." instance=ExtResource("3_2fvjo")]
+position = Vector2(166, 222)

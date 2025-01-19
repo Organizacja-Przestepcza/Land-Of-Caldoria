@@ -246,6 +246,11 @@ func interact():
 		nearest_interactable.open_dialog()
 	elif nearest_interactable is FurnaceObj:
 		interface.get_node("Furnace").open()
+	elif nearest_interactable is LootChest:
+		for item in nearest_interactable.items:
+			if item is Item:
+				inventory.add_item(item,1)
+		nearest_interactable.queue_free()
 	elif farming_manager.is_on_field(position):
 		farming_manager.plant_seed(hotbar.get_held_item(), position)
 	elif cave_manager.is_valid_entry(position): # check if there is a hole under player

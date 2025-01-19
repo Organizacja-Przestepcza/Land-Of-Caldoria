@@ -55,21 +55,21 @@ func add(amount: int) -> int: ## If there are leftover items, returns their amou
 	var amount_to_add = min(amount,space_left)
 	count+=amount_to_add
 	SignalBus.item_added.emit(data,amount_to_add)
+	display_count()
 	if amount > amount_to_add:
 		return amount-amount_to_add
-	display_count()
 	return 0
 
 func remove(amount: int) -> int: ## Returns the number of not removed items
 	var amount_to_remove = min(count, amount)
 	count -= amount_to_remove
 	SignalBus.item_added.emit(data,-amount_to_remove)
+	display_count()
 	if count <= 0:
 		if get_parent().is_selected:
 			SignalBus.selected_item_changed.emit(null)
 		self.queue_free()
 		return amount-amount_to_remove
-	display_count()
 	return 0
 
 func display_count() -> void:
