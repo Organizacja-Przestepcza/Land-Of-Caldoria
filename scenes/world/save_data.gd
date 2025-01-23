@@ -12,3 +12,4 @@ class_name SaveData
 @export var floors: Dictionary
 @export var quests: Array[Dictionary]
 @export var caves: Dictionary
+@export var difficulty: WorldData.Difficulty

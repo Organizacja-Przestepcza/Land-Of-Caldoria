@@ -12,6 +12,7 @@ func create_save_data() -> SaveData:
 	s.player_global_position = WorldData.player.global_position if WorldData.player.get_parent() is World else cave_manager.get_cave_global_position()
 	s.seed = WorldData.seed
 	s.size = WorldData.size
+	s.difficulty = WorldData.difficulty
 	s.time = Time.get_datetime_string_from_system(true,true)
 	world.save_loaded_chunks_objects()
 	s.objects = world.object_tiles.duplicate(true)
@@ -36,6 +37,7 @@ func load_game(load_data: SaveData):
 	WorldData.seed = load_data.seed
 	WorldData.size = load_data.size
 	WorldData.world_name = load_data.world_name
+	WorldData.difficulty = load_data.difficulty
 	WorldData.load = load_data
 	QuestHandler.quest_manager.set_data(load_data.quests)
 	get_tree().root.get_node("CaveManager").queue_free()
