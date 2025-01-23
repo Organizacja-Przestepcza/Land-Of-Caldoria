@@ -10,3 +10,6 @@ func _on_load_button_pressed() -> void:
 
 func _ready() -> void:
 	$VBoxContainer/MenuButton.grab_focus()
+	if WorldData.difficulty == WorldData.Difficulty.NIGHTMARE:
+		$VBoxContainer/LoadButton.disabled = true
+		SaveManager.remove_world()

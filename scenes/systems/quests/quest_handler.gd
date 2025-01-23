@@ -20,6 +20,13 @@ func _ready():
 	SignalBus.enemy_killed.connect(_on_enemy_killed)
 	SignalBus.item_added.connect(_on_item_added)
 	SignalBus.coins_changed.connect(_on_coins_changed)
+	
+	for q in get_quests():
+		if q.get_title() == "Where am i?":
+			print("found ", q)
+			quest_started.emit(q)
+			return
+	quest_started.emit(QuestHandler.quest_manager.add_quest("Where am i?","Find a way ouf of this place"))
 
 func new_random_quest(type: Type, giver: Variant = null, reward: Variant = null):
 	randomize()
@@ -131,13 +138,25 @@ func get_quests() -> Array[QuestEntry]:
 func reset_manager() -> void:
 	quest_manager.set_data([])
 
+func get_quests_by_giver(giver: String) -> Array:
+	var quests: Array
+	for quest in get_quests():
+		if quest.get_metadata(_key.GIVER) == giver:
+			quests.append(quest)
+	return quests
+
 func _setup_lumberjack_quests(lumberjack: NPC):
+	var quests = get_quests_by_giver("lumberjack")
+	if not quests.is_empty():
+		lumberjack.quests.append_array(quests)
+		return
+	
 	var quest = quest_manager.add_quest("Lumberjack - 1", "Kill 4 bears")
 	quest.set_metadata(_key.TYPE, Type.KILL)
 	quest.set_metadata(_key.PROGRESS, 0)
 	quest.set_metadata(_key.TARGET, "bear")
 	quest.set_metadata(_key.REQUIRED, 4)
-	quest.set_metadata(_key.GIVER, lumberjack)
+	quest.set_metadata(_key.GIVER, "lumberjack")
 	quest.set_metadata(_key.REWARD, ItemLoader.name("iron leggings"))
 	quest.quest_completed.connect(_on_quest_completed)
 	quest.quest_activated.connect(_on_quest_activated)
@@ -148,7 +167,7 @@ func _setup_lumberjack_quests(lumberjack: NPC):
 	quest.set_metadata(_key.PROGRESS, 0)
 	quest.set_metadata(_key.TARGET, ItemLoader.name("shears"))
 	quest.set_metadata(_key.REQUIRED, 1)
-	quest.set_metadata(_key.GIVER, lumberjack)
+	quest.set_metadata(_key.GIVER, "lumberjack")
 	quest.set_metadata(_key.REWARD, ItemLoader.name("iron leggings"))
 	quest.quest_completed.connect(_on_quest_completed)
 	quest.quest_activated.connect(_on_quest_activated)
@@ -159,7 +178,7 @@ func _setup_lumberjack_quests(lumberjack: NPC):
 	quest.set_metadata(_key.PROGRESS, 0)
 	quest.set_metadata(_key.TARGET, ItemLoader.name("carrot"))
 	quest.set_metadata(_key.REQUIRED, 7)
-	quest.set_metadata(_key.GIVER, lumberjack)
+	quest.set_metadata(_key.GIVER, "lumberjack")
 	quest.set_metadata(_key.REWARD, 40)
 	quest.quest_completed.connect(_on_quest_completed)
 	quest.quest_activated.connect(_on_quest_activated)
@@ -170,7 +189,7 @@ func _setup_lumberjack_quests(lumberjack: NPC):
 	quest.set_metadata(_key.PROGRESS, 0)
 	quest.set_metadata(_key.TARGET, "wolf")
 	quest.set_metadata(_key.REQUIRED, 4)
-	quest.set_metadata(_key.GIVER, lumberjack)
+	quest.set_metadata(_key.GIVER, "lumberjack")
 	quest.set_metadata(_key.REWARD, 70)
 	quest.quest_completed.connect(_on_quest_completed)
 	quest.quest_activated.connect(_on_quest_activated)
@@ -181,19 +200,24 @@ func _setup_lumberjack_quests(lumberjack: NPC):
 	quest.set_metadata(_key.PROGRESS, 0)
 	quest.set_metadata(_key.TARGET, ItemLoader.name("machete"))
 	quest.set_metadata(_key.REQUIRED, 1)
-	quest.set_metadata(_key.GIVER, lumberjack)
+	quest.set_metadata(_key.GIVER, "lumberjack")
 	quest.set_metadata(_key.REWARD, 100)
 	quest.quest_completed.connect(_on_quest_completed)
 	quest.quest_activated.connect(_on_quest_activated)
 	lumberjack.quests.append(quest)
 
 func _setup_blacksmith_quests(blacksmith: NPC):
+	var quests = get_quests_by_giver("blacksmith")
+	if not quests.is_empty():
+		blacksmith.quests.append_array(quests)
+		return
+	
 	var quest = quest_manager.add_quest("Blacksmith - 1", "Bring 5 iron ore")
 	quest.set_metadata(_key.TYPE, Type.COLLECT)
 	quest.set_metadata(_key.PROGRESS, 0)
 	quest.set_metadata(_key.TARGET, ItemLoader.name("iron ore"))
 	quest.set_metadata(_key.REQUIRED, 5)
-	quest.set_metadata(_key.GIVER, blacksmith)
+	quest.set_metadata(_key.GIVER, "blacksmith")
 	quest.set_metadata(_key.REWARD, ItemLoader.name("iron chestplate"))
 	quest.quest_completed.connect(_on_quest_completed)
 	quest.quest_activated.connect(_on_quest_activated)
@@ -204,7 +228,7 @@ func _setup_blacksmith_quests(blacksmith: NPC):
 	quest.set_metadata(_key.PROGRESS, 0)
 	quest.set_metadata(_key.TARGET, ItemLoader.name("coal"))
 	quest.set_metadata(_key.REQUIRED, 10)
-	quest.set_metadata(_key.GIVER, blacksmith)
+	quest.set_metadata(_key.GIVER, "blacksmith")
 	quest.set_metadata(_key.REWARD, ItemLoader.name("iron boots"))
 	quest.quest_completed.connect(_on_quest_completed)
 	quest.quest_activated.connect(_on_quest_activated)
@@ -215,19 +239,24 @@ func _setup_blacksmith_quests(blacksmith: NPC):
 	quest.set_metadata(_key.PROGRESS, 0)
 	quest.set_metadata(_key.TARGET, ItemLoader.name("stamina potion"))
 	quest.set_metadata(_key.REQUIRED, 3)
-	quest.set_metadata(_key.GIVER, blacksmith)
+	quest.set_metadata(_key.GIVER, "blacksmith")
 	quest.set_metadata(_key.REWARD, ItemLoader.name("iron boots"))
 	quest.quest_completed.connect(_on_quest_completed)
 	quest.quest_activated.connect(_on_quest_activated)
 	blacksmith.quests.append(quest)
 
 func _setup_medic_quests(medic: NPC):
+	var quests = get_quests_by_giver("medic")
+	if not quests.is_empty():
+		medic.quests.append_array(quests)
+		return
+	
 	var quest = quest_manager.add_quest("Medic - 1", "Bring 10 berries")
 	quest.set_metadata(_key.TYPE, Type.COLLECT)
 	quest.set_metadata(_key.PROGRESS, 0)
 	quest.set_metadata(_key.TARGET, ItemLoader.name("blueberry"))
 	quest.set_metadata(_key.REQUIRED, 10)
-	quest.set_metadata(_key.GIVER, medic)
+	quest.set_metadata(_key.GIVER, "medic")
 	quest.set_metadata(_key.REWARD, 50)
 	quest.quest_completed.connect(_on_quest_completed)
 	quest.quest_activated.connect(_on_quest_activated)
@@ -238,7 +267,7 @@ func _setup_medic_quests(medic: NPC):
 	quest.set_metadata(_key.PROGRESS, 0)
 	quest.set_metadata(_key.TARGET, ItemLoader.name("metal pipe"))
 	quest.set_metadata(_key.REQUIRED, 5)
-	quest.set_metadata(_key.GIVER, medic)
+	quest.set_metadata(_key.GIVER, "medic")
 	quest.set_metadata(_key.REWARD, 80)
 	quest.quest_completed.connect(_on_quest_completed)
 	quest.quest_activated.connect(_on_quest_activated)
@@ -249,7 +278,7 @@ func _setup_medic_quests(medic: NPC):
 	quest.set_metadata(_key.PROGRESS, 0)
 	quest.set_metadata(_key.TARGET, ItemLoader.name("glass"))
 	quest.set_metadata(_key.REQUIRED, 8)
-	quest.set_metadata(_key.GIVER, medic)
+	quest.set_metadata(_key.GIVER, "medic")
 	quest.set_metadata(_key.REWARD, ItemLoader.name("stamina potion"))
 	quest.quest_completed.connect(_on_quest_completed)
 	quest.quest_activated.connect(_on_quest_activated)
@@ -260,7 +289,7 @@ func _setup_medic_quests(medic: NPC):
 	quest.set_metadata(_key.PROGRESS, 0)
 	quest.set_metadata(_key.TARGET, ItemLoader.name("log"))
 	quest.set_metadata(_key.REQUIRED, 10)
-	quest.set_metadata(_key.GIVER, medic)
+	quest.set_metadata(_key.GIVER, "medic")
 	quest.set_metadata(_key.REWARD, 30)
 	quest.quest_completed.connect(_on_quest_completed)
 	quest.quest_activated.connect(_on_quest_activated)
@@ -271,7 +300,7 @@ func _setup_medic_quests(medic: NPC):
 	quest.set_metadata(_key.PROGRESS, 0)
 	quest.set_metadata(_key.TARGET, ItemLoader.name("knife"))
 	quest.set_metadata(_key.REQUIRED, 1)
-	quest.set_metadata(_key.GIVER, medic)
+	quest.set_metadata(_key.GIVER, "medic")
 	quest.set_metadata(_key.REWARD, 50)
 	quest.quest_completed.connect(_on_quest_completed)
 	quest.quest_activated.connect(_on_quest_activated)
@@ -282,7 +311,7 @@ func _setup_medic_quests(medic: NPC):
 	quest.set_metadata(_key.PROGRESS, 0)
 	quest.set_metadata(_key.TARGET, ItemLoader.name("lamp"))
 	quest.set_metadata(_key.REQUIRED, 1)
-	quest.set_metadata(_key.GIVER, medic)
+	quest.set_metadata(_key.GIVER, "medic")
 	quest.set_metadata(_key.REWARD, 150)
 	quest.quest_completed.connect(_on_quest_completed)
 	quest.quest_activated.connect(_on_quest_activated)
@@ -293,7 +322,7 @@ func _setup_medic_quests(medic: NPC):
 	quest.set_metadata(_key.PROGRESS, 0)
 	quest.set_metadata(_key.TARGET, _key.M_HAVE)
 	quest.set_metadata(_key.REQUIRED, 1)
-	quest.set_metadata(_key.GIVER, medic)
+	quest.set_metadata(_key.GIVER, "medic")
 	quest.quest_completed.connect(_end_quest_completed)
 	quest.quest_activated.connect(_on_quest_activated)
 	medic.quests.append(quest)

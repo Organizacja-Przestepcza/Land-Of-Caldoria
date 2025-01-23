@@ -75,8 +75,6 @@ func _ready() -> void:
 	sprite.visible = true
 	
 	SignalBus.selected_item_changed.connect(turn_on_light)
-	
-	QuestHandler.quest_started.emit(QuestHandler.quest_manager.add_quest("Where am i?","Find a way ouf of this place"))
 
 func turn_on_light(item: Item):
 	point_light.visible = item == ItemLoader.name("lamp")

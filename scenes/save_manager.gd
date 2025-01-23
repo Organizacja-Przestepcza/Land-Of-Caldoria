@@ -40,7 +40,8 @@ func load_game(load_data: SaveData):
 	WorldData.difficulty = load_data.difficulty
 	WorldData.load = load_data
 	QuestHandler.quest_manager.set_data(load_data.quests)
-	get_tree().root.get_node("CaveManager").queue_free()
+	if get_tree().root.has_node("CaveManager"):
+		get_tree().root.get_node("CaveManager").queue_free()
 	get_tree().change_scene_to_file("res://scenes/world/proc_world.tscn")
 
 func load_game_by_name(s_name:String):
@@ -78,3 +79,8 @@ func load_all() -> void:
 
 func get_save_names():
 	return _saves.map(func(element: SaveData): if element: return element.world_name+" - "+element.save_name+" - "+element.time)
+
+func remove_world():
+	for save: String in get_save_names():
+		if save.begins_with(WorldData.world_name):
+			remove_save(save)
