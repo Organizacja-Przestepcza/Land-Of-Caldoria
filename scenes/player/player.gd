@@ -233,7 +233,6 @@ func use_item() -> void:
 		var is_something_hit = await attack(held_item.data)
 		if is_something_hit:
 			held_item.decrease_durability(1)
-			print(held_item.durability)
 
 func interact():
 	if nearest_interactable is LootBag:

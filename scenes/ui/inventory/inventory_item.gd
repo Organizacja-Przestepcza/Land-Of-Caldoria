@@ -80,13 +80,15 @@ func display_count() -> void:
 		c_label.visible = false
 		
 func decrease_durability(value: int) -> void:
-	if (not data is Tool) && (not data is Armor):
+	if not data is Tool and not data is Armor:
 		return
-	durability-=value
+	var final_durability_decrease_value = clampi(value + WorldData.difficulty - 2, 1, 3)
+	durability -= final_durability_decrease_value
 	if durability <=0:
 		remove(1)
+
 func repair():
-	if (not data is Tool) && (not data is Armor):
+	if not data is Tool and not data is Armor:
 		return
 	durability=data.durability
 	

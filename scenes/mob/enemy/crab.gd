@@ -2,10 +2,11 @@ extends Enemy
 
 func _init() -> void:
 	mob_name = "crab"
-	health = 10
+	dropped_item = ItemLoader.name("raw meat")
+	health = 10 + WorldData.difficulty * 5
 	speed = randi_range(90,105)
-	exp = 5
-	strength = 5
+	exp = 5 + WorldData.difficulty * 2
+	strength = 5 + WorldData.difficulty * 2
 
 func _ready() -> void:
 	super()

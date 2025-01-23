@@ -31,7 +31,7 @@ anchor_bottom = 0.738426
 offset_top = 1.52588e-05
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/separation = 40
+theme_override_constants/separation = 35
 metadata/_edit_use_anchors_ = true
 
 [node name="Label" type="Label" parent="VBoxContainer"]
@@ -57,6 +57,20 @@ layout_mode = 2
 size_flags_horizontal = 4
 text = "White
 "
+
+[node name="DifficultyOptions" type="OptionButton" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+alignment = 1
+selected = 1
+item_count = 4
+popup/item_0/text = "Easy"
+popup/item_1/text = "Normal"
+popup/item_1/id = 1
+popup/item_2/text = "Hard"
+popup/item_2/id = 3
+popup/item_3/text = "Nightmare"
+popup/item_3/id = 5
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
 layout_mode = 2

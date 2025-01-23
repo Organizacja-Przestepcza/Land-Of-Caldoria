@@ -2,10 +2,10 @@ extends Enemy
 
 func _init() -> void:
 	mob_name = "bat"
-	health = 10
+	health = 10 + WorldData.difficulty * 5
 	speed = randi_range(60,80)
-	strength = 5
-	exp = 5
+	strength = 5 + WorldData.difficulty * 2
+	exp = 5 + WorldData.difficulty * 2
 
 func _ready() -> void:
 	super()
